@@ -2,6 +2,8 @@
 
 COTW Glück-Rechner für Desktop & Mobile - Berechne dein Glück in theHunter: Call of the Wild!
 
+📦 **Download für Windows**: [GitHub Releases](https://github.com/DerLuuz/HunterDash/releases) | 🌐 **Repository**: [DerLuuz/HunterDash](https://github.com/DerLuuz/HunterDash)
+
 ## Features
 
 - ✅ **Poisson Z-Score Berechnung** für Rares, Diamonds, Super Rares & Great Ones
@@ -12,7 +14,18 @@ COTW Glück-Rechner für Desktop & Mobile - Berechne dein Glück in theHunter: C
 - 🔌 **Backend-fertig**: REST API & WebSocket vorbereitet
 - 🧩 **Modular & Erweiterbar** - Einfaches Hinzufügen neuer Features
 
-## Installation
+## Windows Installation
+
+1. Lade die neueste Version von den [GitHub Releases](https://github.com/DerLuuz/HunterDash/releases) herunter
+2. Führe den `.exe` Installer aus
+3. Folge den Installationsanweisungen
+4. Starte HunterDash aus dem Startmenü oder Desktop
+
+**Systemanforderungen:**
+- Windows 10 oder höher
+- 100 MB freier Speicherplatz
+
+## Development & Builds
 
 ```bash
 # Abhängigkeiten installieren
@@ -23,11 +36,7 @@ npm start
 
 # Entwicklung mit DevTools
 npm run dev
-```
 
-## Builds
-
-```bash
 # Windows Installer (NSIS)
 npm run build:win
 
