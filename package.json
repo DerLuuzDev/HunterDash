@@ -1,0 +1,60 @@
+{
+  "name": "hunterdash",
+  "version": "1.0.0-alpha",
+  "description": "COTW Glück-Rechner für Desktop & Mobile",
+  "main": "main.js",
+  "author": "HunterDash Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --win --linux",
+    "generate:icons": "node utils/icons.js"
+  },
+  "devDependencies": {
+    "canvas": "^3.2.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "de.hunterdash.calculator",
+    "productName": "HunterDash",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icons/hunterdash.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "assets/icons/hunterdash.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icons/hunterdash.ico",
+      "uninstallerIcon": "assets/icons/hunterdash.ico",
+      "installerHeaderIcon": "assets/icons/hunterdash.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

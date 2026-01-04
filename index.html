@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HunterDash - COTW Glück-Rechner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5f2a;
+            --primary-dark: #0f421d;
+            --primary-light: #2d8f42;
+            --secondary: #4a7c35;
+            --accent: #8b6914;
+            --background: linear-gradient(135deg, #e8f5e9 0%, #c5e1a5 100%);
+            --surface: rgba(255, 255, 255, 0.92);
+            --text-primary: #1a2f1a;
+            --text-secondary: #4a5a4a;
+            --very-lucky: #7cb342;
+            --lucky: #2ecc71;
+            --neutral: #a0a8b0;
+            --unlucky: #f39c12;
+            --very-unlucky: #e67e22;
+        }
+        
+        .dark-mode {
+            --background: linear-gradient(135deg, #1a2f1a 0%, #0f421d 100%);
+            --surface: rgba(30, 41, 30, 0.92);
+            --text-primary: #e8f5e9;
+            --text-secondary: #a0c4a8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 40px 20px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .app-logo {
+            max-width: 200px;
+            height: auto;
+            transition: none;
+        }
+        
+        h1 {
+            font-weight: 700;
+            font-size: 3.25rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(31, 38, 135, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 36px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255,255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:hover {
+            box-shadow: 
+                0 12px 48px rgba(31, 38, 135, 0.2),
+                0 4px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        h3 {
+            font-weight: 600;
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .mini-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            padding: 8px 12px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            background: rgba(200, 200, 200, 0.25);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .mini-hint.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+        
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(200, 200, 200, 0.6);
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            background: rgba(255, 255, 255, 0.75);
+            color: var(--text-primary);
+        }
+        
+        input[type="number"]:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(74, 122, 42, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        input[type="number"]:hover {
+            border-color: var(--secondary);
+        }
+        
+        #result {
+            margin-top: 28px;
+        }
+        
+        .luck-title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 8px;
+            margin-bottom: 28px;
+            padding: 18px 16px;
+            background: rgba(245, 247, 250, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            border: 1px solid rgba(200, 200, 200, 0.4);
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(200, 200, 200, 0.6) transparent;
+        }
+        
+        .legend::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .legend::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .legend::-webkit-scrollbar-thumb {
+            background: rgba(200, 200, 200, 0.6);
+            border-radius: 3px;
+        }
+        
+        .legend::-webkit-scrollbar-thumb:hover {
+            background: rgba(180, 180, 180, 0.8);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 0.15px;
+            height: 28px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        
+        .legend-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-1px);
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+        }
+        
+        .luck-bar-container {
+            margin: 24px 0;
+        }
+        
+        .luck-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            letter-spacing: 0.2px;
+        }
+        
+        .luck-bar {
+            height: 44px;
+            background: rgba(232, 232, 232, 0.7);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.12),
+                inset 0 2px 4px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(8px);
+        }
+        
+        .luck-bar-fill {
+            height: 100%;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .luck-bar-fill.small {
+            color: var(--text-primary);
+            text-shadow: none;
+        }
+        
+        .very-lucky { 
+            background: var(--very-lucky);
+            box-shadow: 0 2px 8px rgba(124, 179, 66, 0.3);
+        }
+        .lucky { 
+            background: var(--lucky);
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+        .neutral { 
+            background: var(--neutral);
+            box-shadow: 0 2px 8px rgba(160, 168, 176, 0.3);
+        }
+        .unlucky { 
+            background: var(--unlucky);
+            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+        }
+        .very-unlucky { 
+            background: var(--very-unlucky);
+            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+        }
+        
+        .total-score {
+            text-align: center;
+            margin-top: 32px;
+            padding: 24px;
+            border-radius: 16px;
+            color: white;
+            box-shadow: 
+                0 8px 24px rgba(45, 80, 22, 0.35),
+                0 4px 12px rgba(45, 80, 22, 0.2);
+            backdrop-filter: blur(16px);
+            transition: background 0.3s ease;
+        }
+        
+        .total-score strong {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: 400;
+        }
+        
+        .settings-button {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+        }
+        
+        .settings-button:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--primary-light);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .settings-modal.show {
+            display: flex;
+            opacity: 1;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .settings-content {
+            background: var(--surface);
+            backdrop-filter: blur(24px);
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 520px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .settings-modal.show .settings-content {
+            animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        
+        .settings-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .settings-close {
+            background: rgba(200, 200, 200, 0.3);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        
+        .settings-close:hover {
+            background: rgba(200, 200, 200, 0.5);
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .setting-item {
+            margin-bottom: 28px;
+            padding: 20px;
+            background: rgba(245, 247, 250, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(200, 200, 200, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .setting-item:hover {
+            background: rgba(245, 247, 250, 0.7);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .setting-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .setting-label {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .setting-icon {
+            font-size: 1.3rem;
+        }
+        
+        .setting-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            background: rgba(200, 200, 200, 0.5);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .toggle-switch:hover {
+            background: rgba(200, 200, 200, 0.6);
+        }
+        
+        .toggle-switch.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.4);
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toggle-switch.active::after {
+            transform: translateX(28px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .reset-button {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .reset-button:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .reset-button:active {
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            
+            .app-logo {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+                margin-top: 1rem;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .card {
+                padding: 28px;
+                border-radius: 16px;
+            }
+            
+            .input-group {
+                margin-bottom: 16px;
+            }
+            
+            .mini-hint {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+                margin-top: -8px;
+                margin-bottom: 14px;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+                margin-top: 24px;
+                margin-bottom: 14px;
+            }
+            
+            input[type="number"] {
+                padding: 14px 18px;
+                font-size: 1rem;
+            }
+            
+            .legend {
+                font-size: 0.7rem;
+                padding: 14px 12px;
+                gap: 6px;
+            }
+            
+            .legend-item {
+                font-size: 0.7rem;
+                height: 26px;
+                padding: 3px 8px;
+                letter-spacing: 0.1px;
+            }
+            
+            .legend-color {
+                width: 14px;
+                height: 14px;
+                border-radius: 4px;
+                margin-right: 6px;
+            }
+            
+            .luck-bar {
+                height: 40px;
+            }
+            
+            .luck-bar-fill {
+                font-size: 0.9rem;
+                padding: 0 12px;
+            }
+            
+            .luck-bar-container {
+                margin: 20px 0;
+            }
+            
+            .luck-label {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+            
+            .total-score {
+                padding: 20px;
+                margin-top: 28px;
+            }
+            
+            .total-score strong {
+                font-size: 1.35rem;
+                margin-bottom: 10px;
+            }
+            
+            .settings-button {
+                top: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+            
+            .settings-content {
+                padding: 28px;
+                max-width: 95%;
+            }
+            
+            .settings-title {
+                font-size: 1.5rem;
+            }
+            
+            .setting-item {
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .setting-label {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="settings-button" onclick="SettingsManager.open()">⚙️</button>
+    
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2 class="settings-title">Einstellungen</h2>
+                <button class="settings-close" onclick="SettingsManager.close()">✕</button>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span class="setting-label">
+                        <span class="setting-icon">✨</span>
+                        Animationen
+                    </span>
+                    <div class="toggle-switch active" id="animToggle" onclick="SettingsManager.toggleAnimation()"></div>
+                </div>
+                <p class="setting-description">
+                    Aktiviert oder deaktiviert alle Animationen in der App, einschließlich Balken-Animationen und Übergängen.
+                </p>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span class="setting-label">
+                        <span class="setting-icon">💫</span>
+                        Ripple-Effekte
+                    </span>
+                    <div class="toggle-switch active" id="rippleToggle" onclick="SettingsManager.toggleRipple()"></div>
+                </div>
+                <p class="setting-description">
+                    Zeigt Welleneffekte beim Klicken auf Buttons und interaktive Elemente.
+                </p>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span class="setting-label">
+                        <span class="setting-icon">🌙</span>
+                        Dunkles Design
+                    </span>
+                    <div class="toggle-switch" id="darkToggle" onclick="SettingsManager.toggleDarkMode()"></div>
+                </div>
+                <p class="setting-description">
+                    Wechselt zwischen hellen und dunklen Farben für mehr Komfort bei verschiedenen Lichtverhältnissen.
+                </p>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span class="setting-label">
+                        <span class="setting-icon">🔄</span>
+                        Standardwerte zurücksetzen
+                    </span>
+                </div>
+                <p class="setting-description">
+                    Setzt alle Eingabefelder auf die ursprünglichen Standardwerte zurück.
+                </p>
+                <button class="reset-button" onclick="Calculator.resetDefaults()">
+                    <span>🔄</span>
+                    Zurücksetzen
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <img src="assets/icons/HunterDash.png" alt="HunterDash Logo" class="app-logo">
+        </div>
+        <h1>HunterDash</h1>
+        <p class="subtitle">Berechne dein Glück basierend auf dataminierten Werten aus COTW 2025/2026</p>
+        
+        <form id="form" class="card">
+            <div class="input-group">
+                <label for="n">Total Harvests:</label>
+                <p class="mini-hint" id="hint-text">
+                    n = Total Harvests (alle verwerteten Tiere Account-weit)<br>
+                    Aus Spiel: Career > Statistics > Total Harvests
+                </p>
+                <input type="number" id="n" value="15000" min="1" required>
+            </div>
+            
+            <h3>🔥 Rares (Albino/Piebald/Melanistic)</h3>
+            <div class="input-group">
+                <label for="k_rare">Deine Rare Harvests:</label>
+                <input type="number" id="k_rare" value="45" min="0" required>
+            </div>
+            <div class="input-group">
+                <label for="p_rare">p (Avg: 0.003 / 1:333):</label>
+                <input type="number" id="p_rare" value="0.003" step="0.0001" min="0" max="1" required>
+            </div>
+            
+            <h3>💎 Diamonds (Top Rating)</h3>
+            <div class="input-group">
+                <label for="k_diamond">Deine Diamonds:</label>
+                <input type="number" id="k_diamond" value="150" min="0" required>
+            </div>
+            <div class="input-group">
+                <label for="p_diamond">p (Avg: 0.01 / 1:100):</label>
+                <input type="number" id="p_diamond" value="0.01" step="0.0001" min="0" max="1" required>
+            </div>
+            
+            <h3>⭐ Super Rares (Rare Fur + Diamond)</h3>
+            <div class="input-group">
+                <label for="k_super">Deine Super Rares:</label>
+                <input type="number" id="k_super" value="1" min="0" required>
+            </div>
+            <div class="input-group">
+                <label for="p_super">p (Avg: 0.00003 / 1:33.000):</label>
+                <input type="number" id="p_super" value="0.00003" step="0.000001" min="0" max="1" required>
+            </div>
+            
+            <h3>👑 Great Ones (Top 0.05% Größe)</h3>
+            <div class="input-group">
+                <label for="k_go">Deine Great Ones:</label>
+                <input type="number" id="k_go" value="1" min="0" required>
+            </div>
+            <div class="input-group">
+                <label for="p_go">p (Avg: 0.00005 / 1:20.000):</label>
+                <input type="number" id="p_go" value="0.00005" step="0.000001" min="0" max="1" required>
+            </div>
+        </form>
+        
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        // ========================================
+        // SETTINGS MANAGER
+        // ========================================
+        const SettingsManager = {
+            settings: {
+                animations: true,
+                ripple: true,
+                darkMode: false
+            },
+
+            open() {
+                const modal = document.getElementById('settingsModal');
+                modal.classList.add('show');
+            },
+
+            close() {
+                const modal = document.getElementById('settingsModal');
+                modal.classList.remove('show');
+            },
+
+            toggleAnimation() {
+                this.settings.animations = !this.settings.animations;
+                const toggle = document.getElementById('animToggle');
+                toggle.classList.toggle('active');
+                this.save();
+            },
+
+            toggleRipple() {
+                this.settings.ripple = !this.settings.ripple;
+                const toggle = document.getElementById('rippleToggle');
+                toggle.classList.toggle('active');
+                this.save();
+            },
+
+            toggleDarkMode() {
+                this.settings.darkMode = !this.settings.darkMode;
+                const toggle = document.getElementById('darkToggle');
+                toggle.classList.toggle('active');
+                this.applyDarkMode();
+                this.save();
+            },
+
+            applyDarkMode() {
+                if (this.settings.darkMode) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            },
+
+            save() {
+                localStorage.setItem('cotw-calculator-settings', JSON.stringify(this.settings));
+            },
+
+            load() {
+                const saved = localStorage.getItem('cotw-calculator-settings');
+                if (saved) {
+                    this.settings = JSON.parse(saved);
+                    
+                    const animToggle = document.getElementById('animToggle');
+                    const rippleToggle = document.getElementById('rippleToggle');
+                    const darkToggle = document.getElementById('darkToggle');
+
+                    if (animToggle) animToggle.classList.toggle('active', this.settings.animations);
+                    if (rippleToggle) rippleToggle.classList.toggle('active', this.settings.ripple);
+                    if (darkToggle) darkToggle.classList.toggle('active', this.settings.darkMode);
+
+                    this.applyDarkMode();
+                }
+            }
+        };
+
+        // ========================================
+        // CALCULATOR ENGINE
+        // ========================================
+        const Calculator = {
+            DEFAULTS: {
+                n: 15000,
+                k_rare: 45,
+                p_rare: 0.003,
+                k_diamond: 150,
+                p_diamond: 0.01,
+                k_super: 1,
+                p_super: 0.00003,
+                k_go: 1,
+                p_go: 0.00005
+            },
+
+            getLuckColorClass(z) {
+                if (z >= 2) return 'very-lucky';
+                if (z >= 0.5) return 'lucky';
+                if (z >= -0.5) return 'neutral';
+                if (z >= -2) return 'unlucky';
+                return 'very-unlucky';
+            },
+
+            getLuckLabel(z) {
+                if (z >= 2) return 'Sehr glücklich';
+                if (z >= 0.5) return 'Glücklich';
+                if (z >= -0.5) return 'Neutral';
+                if (z >= -2) return 'Unglücklich';
+                return 'Sehr unglücklich';
+            },
+
+            calculateBarWidth(z) {
+                return Math.min(Math.max((z + 4) / 8 * 100, 15), 100);
+            },
+
+            getInterpretation(totalL) {
+                if (totalL > 3) return 'Absolut legendäres Glück! 🎉 Du bist ein Glücksritter!';
+                if (totalL > 2) return 'Super glücklicher als erwartet! 👍 Weiter so!';
+                if (totalL > 0) return 'Leicht glücklicher als erwartet. 😊 Solides Glück!';
+                if (totalL > -2) return 'Durchschnittliches Glück. 😌 Alles im grünen Bereich!';
+                if (totalL > -3) return 'Ein bisschen Pech gehabt, aber du schaffst das! 💪 Nächstes Mal mehr!';
+                return 'Viel Pech bisher, aber der nächste Grind wird episch! 🌟 Bleib dran!';
+            },
+
+            calculate() {
+                const n = parseFloat(document.getElementById('n').value);
+                const categories = [
+                    { k: parseFloat(document.getElementById('k_rare').value), p: parseFloat(document.getElementById('p_rare').value), name: 'Rares' },
+                    { k: parseFloat(document.getElementById('k_diamond').value), p: parseFloat(document.getElementById('p_diamond').value), name: 'Diamonds' },
+                    { k: parseFloat(document.getElementById('k_super').value), p: parseFloat(document.getElementById('p_super').value), name: 'Super Rares' },
+                    { k: parseFloat(document.getElementById('k_go').value), p: parseFloat(document.getElementById('p_go').value), name: 'Great Ones' }
+                ];
+                
+                let totalL = 0;
+                let bars = '';
+                
+                categories.forEach(cat => {
+                    const lambda = n * cat.p;
+                    if (lambda === 0 || isNaN(lambda)) return;
+                    const sqrtLambda = Math.sqrt(lambda);
+                    const z = sqrtLambda > 0 ? (cat.k - lambda) / sqrtLambda : 0;
+                    totalL += z;
+                    
+                    const luckColor = this.getLuckColorClass(z);
+                    const luckLabel = this.getLuckLabel(z);
+                    const barWidth = this.calculateBarWidth(z);
+                    const isSmall = barWidth < 60;
+                    
+                    bars += `
+                        <div class="luck-bar-container">
+                            <div class="luck-label">${cat.name}</div>
+                            <div class="luck-bar">
+                                <div class="luck-bar-fill ${luckColor} ${isSmall ? 'small' : ''}" style="width: 0%" data-width="${barWidth}%">
+                                    ${luckLabel} Z: ${z.toFixed(2)}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                const interpretation = this.getInterpretation(totalL);
+                const totalLColorClass = this.getLuckColorClass(totalL);
+                const totalLColor = getComputedStyle(document.documentElement).getPropertyValue(`--${totalLColorClass}`).trim();
+                
+                const legend = `
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color very-unlucky"></div>Sehr unglücklich Z&lt;-2
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color unlucky"></div>Unglücklich Z&lt;-0.5
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color neutral"></div>Neutral -0.5~0.5
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color lucky"></div>Glücklich Z≥0.5
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color very-lucky"></div>Sehr glücklich Z≥2
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('result').innerHTML = `
+                    <div class="card">
+                        <div class="luck-title">Dein Glück-Score</div>
+                        ${legend}
+                        ${bars}
+                        <div class="total-score" style="background: ${totalLColor};">
+                            <strong>Gesamt L: ${totalL.toFixed(2)}</strong>
+                            ${interpretation}
+                        </div>
+                        <p class="note">Poisson-Z-Score | p aus Datamines 2025/2026</p>
+                    </div>
+                `;
+                
+                if (SettingsManager.settings.animations) {
+                    this.animateBars();
+                } else {
+                    document.querySelectorAll('.luck-bar-fill').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                }
+            },
+
+            animateBars() {
+                document.querySelectorAll('.luck-bar-fill').forEach((bar, index) => {
+                    const width = bar.getAttribute('data-width');
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 200 + (index * 200));
+                });
+            },
+
+            resetDefaults() {
+                document.getElementById('n').value = this.DEFAULTS.n;
+                document.getElementById('k_rare').value = this.DEFAULTS.k_rare;
+                document.getElementById('p_rare').value = this.DEFAULTS.p_rare;
+                document.getElementById('k_diamond').value = this.DEFAULTS.k_diamond;
+                document.getElementById('p_diamond').value = this.DEFAULTS.p_diamond;
+                document.getElementById('k_super').value = this.DEFAULTS.k_super;
+                document.getElementById('p_super').value = this.DEFAULTS.p_super;
+                document.getElementById('k_go').value = this.DEFAULTS.k_go;
+                document.getElementById('p_go').value = this.DEFAULTS.p_go;
+                this.calculate();
+            }
+        };
+
+        // ========================================
+        // EVENT HANDLERS
+        // ========================================
+        let debounceTimer;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            SettingsManager.load();
+            Calculator.calculate();
+            
+            const inputFields = document.querySelectorAll('input[type="number"]');
+            inputFields.forEach(input => {
+                input.addEventListener('input', function() {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => Calculator.calculate(), 200);
+                });
+                input.addEventListener('change', () => Calculator.calculate());
+            });
+        });
+
+        document.getElementById('settingsModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                SettingsManager.close();
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                SettingsManager.close();
+            }
+        });
+    </script>
+</body>
+</html>
