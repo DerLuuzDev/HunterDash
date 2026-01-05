@@ -43,13 +43,26 @@ module.exports = {
     KEYS: {
       SETTINGS: 'hunterdash-settings',
       LAST_VALUES: 'hunterdash-last-values',
-      THEME: 'hunterdash-theme'
+      THEME: 'hunterdash-theme',
+      CALCULATION_HISTORY: 'hunterdash-history',
+      TEMPLATES: 'hunterdash-templates',
+      ACCOUNTS: 'hunterdash-accounts',
+      UNDO_STACK: 'hunterdash-undo',
+      REDO_STACK: 'hunterdash-redo'
     },
     DEFAULT_SETTINGS: {
       theme: 'light',
       autoSave: true,
       apiEnabled: false,
-      apiEndpoint: 'http://localhost:3000'
+      apiEndpoint: 'http://localhost:3000',
+      autoHistory: true
+    },
+    HISTORY: {
+      MAX_ENTRIES: 100,
+      AUTO_SAVE: true
+    },
+    UNDO_REDO: {
+      MAX_STACK_SIZE: 50
     }
   },
   
@@ -80,5 +93,95 @@ module.exports = {
   DEV: {
     ENABLE_DEV_TOOLS: true,
     LOG_LEVEL: 'info'
+  },
+
+  TEMPLATES: {
+    PRESETS: [
+      {
+        id: 'new-player',
+        name: 'Neuer Spieler',
+        description: 'Für Spieler unter 5000 Harvests',
+        data: {
+          n: 2500,
+          k_rare: 8,
+          p_rare: 0.003,
+          k_diamond: 25,
+          p_diamond: 0.01,
+          k_super: 0,
+          p_super: 0.00003,
+          k_go: 0,
+          p_go: 0.00005
+        }
+      },
+      {
+        id: 'average',
+        name: 'Durchschnittlicher Spieler',
+        description: 'Für Spieler mit 10000-20000 Harvests',
+        data: {
+          n: 15000,
+          k_rare: 45,
+          p_rare: 0.003,
+          k_diamond: 150,
+          p_diamond: 0.01,
+          k_super: 0,
+          p_super: 0.00003,
+          k_go: 0,
+          p_go: 0.00005
+        }
+      },
+      {
+        id: 'veteran',
+        name: 'Veteran',
+        description: 'Für Spieler mit 20000+ Harvests',
+        data: {
+          n: 35000,
+          k_rare: 105,
+          p_rare: 0.003,
+          k_diamond: 350,
+          p_diamond: 0.01,
+          k_super: 1,
+          p_super: 0.00003,
+          k_go: 1,
+          p_go: 0.00005
+        }
+      },
+      {
+        id: 'lucky',
+        name: 'Glücklicher Spieler',
+        description: 'Für überdurchschnittlich glückliche Werte',
+        data: {
+          n: 10000,
+          k_rare: 50,
+          p_rare: 0.005,
+          k_diamond: 200,
+          p_diamond: 0.02,
+          k_super: 1,
+          p_super: 0.00003,
+          k_go: 1,
+          p_go: 0.00005
+        }
+      }
+    ]
+  },
+
+  P_PRESETS: {
+    rare: [
+      { label: 'Durchschnitt (1:333)', value: 0.003 },
+      { label: 'Glücklich (1:250)', value: 0.004 },
+      { label: 'Pech (1:500)', value: 0.002 }
+    ],
+    diamond: [
+      { label: 'Durchschnitt (1:100)', value: 0.01 },
+      { label: 'Glücklich (1:80)', value: 0.0125 },
+      { label: 'Pech (1:150)', value: 0.0067 }
+    ],
+    super: [
+      { label: 'Durchschnitt (1:33.000)', value: 0.00003 },
+      { label: 'Glücklich (1:25.000)', value: 0.00004 }
+    ],
+    go: [
+      { label: 'Durchschnitt (1:20.000)', value: 0.00005 },
+      { label: 'Glücklich (1:15.000)', value: 0.000067 }
+    ]
   }
 };

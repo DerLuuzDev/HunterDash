@@ -1,7 +1,15 @@
 const { POISSON } = require('../build-config/constants');
 
 class CalculationService {
-  calculatePoisson(data) {
+  constructor(historyService = null) {
+    this.historyService = historyService;
+  }
+
+  setHistoryService(historyService) {
+    this.historyService = historyService;
+  }
+
+  async calculatePoisson(data, saveHistory = true) {
     const n = parseFloat(data.n);
     const categories = [];
     
@@ -29,12 +37,18 @@ class CalculationService {
     const totalL = categories.reduce((sum, cat) => sum + cat.z, 0);
     const interpretation = this.getInterpretation(totalL);
     
-    return {
+    const result = {
       categories,
       totalL,
       interpretation,
       timestamp: new Date().toISOString()
     };
+
+    if (saveHistory && this.historyService) {
+      await this.historyService.saveToHistory(data, result);
+    }
+
+    return result;
   }
   
   getZScoreColor(z) {

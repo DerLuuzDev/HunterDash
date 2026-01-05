@@ -57,5 +57,9 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true
     }
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "jsdom": "^22.1.0"
   }
 }
