@@ -1271,6 +1271,354 @@
             }
         }
 
+        .nav-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--secondary);
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(26, 95, 42, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .account-tabs, .grind-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid rgba(200, 200, 200, 0.3);
+            padding-bottom: 12px;
+        }
+
+        .account-tab, .grind-tab {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(200, 200, 200, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .account-tab:hover, .grind-tab:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--secondary);
+        }
+
+        .account-tab.active, .grind-tab.active {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(45, 143, 66, 0.3);
+        }
+
+        .subtab-content, .grind-subtab-content {
+            display: none;
+        }
+
+        .subtab-content.active, .grind-subtab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grind-tips-section {
+            margin-top: 20px;
+        }
+
+        .grind-tip {
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .grind-tip:hover {
+            border-color: var(--secondary);
+        }
+
+        .tip-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--surface);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tip-toggle:hover {
+            background: rgba(255,255,255, 0.9);
+        }
+
+        .tip-icon {
+            font-size: 1.5rem;
+        }
+
+        .tip-title {
+            flex: 1;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-align: left;
+        }
+
+        .tip-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .grind-tip.open .tip-arrow {
+            transform: rotate(180deg);
+        }
+
+        .tip-content {
+            padding: 0 20px 20px 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--surface);
+        }
+
+        .grind-tip.open .tip-content {
+            max-height: 1000px;
+        }
+
+        .tip-content p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .tip-content ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .tip-content li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .tip-content strong {
+            color: var(--primary);
+        }
+
+        .session-display {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .session-metric {
+            background: var(--surface);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .metric-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .session-controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .session-info {
+            background: var(--surface);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .session-info .note {
+            margin: 0;
+        }
+
+        .simulation-form {
+            margin-bottom: 24px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:hover {
+            border-color: var(--secondary);
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 95, 42, 0.1);
+        }
+
+        .simulation-result {
+            background: var(--surface);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .result-item {
+            background: var(--surface);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .result-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .result-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .simulation-chart-container {
+            height: 300px;
+            margin-bottom: 16px;
+        }
+
+        .grind-sessions-list {
+            margin-top: 24px;
+        }
+
+        .grind-session-item {
+            background: var(--surface);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grind-session-info {
+            flex: 1;
+        }
+
+        .grind-session-date {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .grind-session-stats {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .grind-session-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .grind-session-actions button {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            min-width: auto;
+        }
+
+        @media (max-width: 768px) {
+            .session-display,
+            .session-controls,
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grind-session-item {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .grind-session-actions {
+                width: 100%;
+            }
+
+            .grind-session-actions button {
+                flex: 1;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1351,8 +1699,9 @@
 
         <nav class="nav-tabs">
             <button class="nav-tab active" onclick="NavigationManager.switchTab('calculator')" data-tab="calculator">🧮 Berechner</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋 Templates</button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('grind')" data-tab="grind">🔧 Grind Helper</button>
             <button class="nav-tab" onclick="NavigationManager.switchTab('history')" data-tab="history">📜 Historie</button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋 Templates</button>
             <button class="nav-tab" onclick="NavigationManager.switchTab('accounts')" data-tab="accounts">👤 Accounts</button>
         </nav>
 
@@ -1541,8 +1890,155 @@
                 </div>
             </div>
         </div>
+
+        <div id="tab-grind" class="tab-content">
+            <nav class="grind-tabs">
+                <button class="grind-tab active" onclick="GrindManager.switchSubTab('tips')" data-subtab="tips">
+                    🐗 Herd-Tipps
+                </button>
+                <button class="grind-tab" onclick="GrindManager.switchSubTab('timer')" data-subtab="timer">
+                    ⏱️ Session-Timer
+                </button>
+                <button class="grind-tab" onclick="GrindManager.switchSubTab('simulator')" data-subtab="simulator">
+                    🎲 Simulator
+                </button>
+                <button class="grind-tab" onclick="GrindManager.switchSubTab('sessions')" data-subtab="sessions">
+                    📊 Sessions
+                </button>
+            </nav>
+
+            <div id="subtab-tips" class="grind-subtab-content active">
+                <div class="card">
+                    <h2>🐗 Herd-Management-Tipps</h2>
+                    <p class="note">Strategien für effizientes Farmen von Great Ones.</p>
+                    <div class="grind-tips-section">
+                        <div class="grind-tip" data-tip="general">
+                            <button class="tip-toggle" onclick="GrindManager.toggleTip('general')">
+                                <span class="tip-icon">📖</span>
+                                <span class="tip-title">Allgemeines Herd-Management</span>
+                                <span class="tip-arrow">▼</span>
+                            </button>
+                            <div class="tip-content" id="tip-content-general"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="subtab-timer" class="grind-subtab-content">
+                <div class="card">
+                    <h2>⏱️ Session-Timer & Kill-Counter</h2>
+                    <p class="note">Verfolge deine Grind-Sessions für bessere Statistiken.</p>
+                    <div class="session-display">
+                        <div class="session-metric">
+                            <span class="metric-label">Dauer</span>
+                            <span class="metric-value" id="session-duration">00:00:00</span>
+                        </div>
+                        <div class="session-metric">
+                            <span class="metric-label">Kills</span>
+                            <span class="metric-value" id="session-kills">0</span>
+                        </div>
+                        <div class="session-metric">
+                            <span class="metric-label">Kills/Stunde</span>
+                            <span class="metric-value" id="session-kph">0.0</span>
+                        </div>
+                    </div>
+                    <div class="session-controls">
+                        <button class="action-button" id="btn-start-session" onclick="GrindManager.startSession()">
+                            ▶️ Session starten
+                        </button>
+                        <button class="action-button secondary" id="btn-add-kill" onclick="GrindManager.addKill()" disabled>
+                            💀 Kill hinzufügen (+1)
+                        </button>
+                        <button class="action-button secondary" id="btn-end-session" onclick="GrindManager.endSession()" disabled>
+                            ⏹️ Session beenden
+                        </button>
+                    </div>
+                    <div class="session-info" id="session-info" style="display: none;">
+                        <p class="note">
+                            <strong>🎯 Letzte Session:</strong> <span id="last-session">-</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="subtab-simulator" class="grind-subtab-content">
+                <div class="card">
+                    <h2>🎲 Expected Kills bis GO-Simulator</h2>
+                    <p class="note">Schätze, wie viele Kills du bis zum nächsten Great One brauchst.</p>
+                    <div class="simulation-form">
+                        <div class="input-group">
+                            <label for="sim-animal">Tierart:</label>
+                            <select id="sim-animal" class="form-select"></select>
+                        </div>
+                        <div class="input-group">
+                            <label for="sim-current-kills">Aktuelle Kills:</label>
+                            <input type="number" id="sim-current-kills" value="0" min="0" step="1">
+                            <p class="mini-hint">Anzahl der Kills seit dem letzten GO für dieses Tier</p>
+                        </div>
+                        <div class="input-group">
+                            <label for="sim-spawn-chance">Spawn-Chance (p):</label>
+                            <input type="number" id="sim-spawn-chance" value="0.00005" min="0" max="1" step="0.00001">
+                            <p class="mini-hint">
+                                Durchschnittliche Spawn-Chance aus Datamines (z. B. 0.00005 für 1:20.000)<br>
+                                <strong>Hinweis:</strong> Dies ist eine statistische Annäherung, keine Garantie!
+                            </p>
+                        </div>
+                        <div class="input-group">
+                            <label for="sim-confidence">Konfidenz (95% / 99%):</label>
+                            <select id="sim-confidence" class="form-select">
+                                <option value="0.95">95% Konfidenz (Standard)</option>
+                                <option value="0.99">99% Konfidenz (Konservativ)</option>
+                            </select>
+                        </div>
+                        <button class="action-button" onclick="GrindManager.simulate()">
+                            🧮 Simulieren
+                        </button>
+                    </div>
+                    <div class="simulation-result" id="simulation-result" style="display: none;">
+                        <h3>📊 Simulationsergebnis</h3>
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <span class="result-label">Erwartete Kills (Ø)</span>
+                                <span class="result-value" id="sim-expected">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Minimale Spanne (5%)</span>
+                                <span class="result-value" id="sim-min">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Maximale Spanne (95%)</span>
+                                <span class="result-value" id="sim-max">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Wahrscheinlichkeit (aktuell)</span>
+                                <span class="result-value" id="sim-probability">-</span>
+                            </div>
+                        </div>
+                        <div class="simulation-chart-container" id="sim-chart-container" style="display: none;">
+                            <canvas id="simulation-chart"></canvas>
+                        </div>
+                        <p class="note">
+                            <strong>⚠️ Hinweis:</strong> Diese Simulation basiert auf Poisson-Statistik und ist eine statistische Annäherung.
+                            RND-Zufallsgeneratoren in Spielen sind nicht perfekt zufällig. Nutze dies als groben Richtwert, nicht als Garantie!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="subtab-sessions" class="grind-subtab-content">
+                <div class="card">
+                    <h2>📊 Grind-Sessions</h2>
+                    <p class="note">Verwalte deine vergangenen Grind-Sessions.</p>
+                    <div class="action-buttons">
+                        <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ Sessions löschen</button>
+                        <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 Export CSV</button>
+                    </div>
+                    <div class="grind-sessions-list" id="grindSessionsList"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <script>
         // ========================================
         // SETTINGS MANAGER
@@ -1901,6 +2397,9 @@
                 } else if (tabName === 'accounts') {
                     AccountManager.loadAccounts();
                     AccountManager.switchSubTab('statistics');
+                } else if (tabName === 'grind') {
+                    GrindManager.init();
+                    GrindManager.switchSubTab('tips');
                 }
             }
         };
@@ -2775,6 +3274,428 @@
         };
 
         // ========================================
+        // GRIND HELPER MANAGER
+        // ========================================
+        const GrindManager = {
+            sessionTimer: null,
+            sessionStartTime: null,
+            sessionKills: 0,
+            isSessionRunning: false,
+            simulationChart: null,
+            tips: {},
+            customTips: {},
+            settings: {},
+            animals: [],
+
+            async init() {
+                await this.loadSettings();
+                await this.loadTips();
+                await this.loadAnimals();
+                await this.loadCustomTips();
+                await this.loadSessions();
+            },
+
+            async loadSettings() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        const response = await window.electronAPI.grind.getSettings();
+                        if (response.success) {
+                            this.settings = response.data;
+                        }
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Laden der Einstellungen:', error);
+                }
+            },
+
+            async loadTips() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        const response = await window.electronAPI.grind.getTips();
+                        if (response.success) {
+                            this.tips = response.data;
+                            this.renderTips();
+                        }
+                    } else {
+                        this.tips = this.getFallbackTips();
+                        this.renderTips();
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Laden der Tipps:', error);
+                }
+            },
+
+            async loadAnimals() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        const response = await window.electronAPI.grind.getAnimals();
+                        if (response.success) {
+                            this.animals = response.data;
+                            this.renderAnimalDropdown();
+                        }
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Laden der Tiere:', error);
+                }
+            },
+
+            async loadCustomTips() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        const response = await window.electronAPI.grind.getCustomTips();
+                        if (response.success) {
+                            this.customTips = response.data;
+                        }
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Laden der benutzerdefinierten Tipps:', error);
+                }
+            },
+
+            async loadSessions() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        const response = await window.electronAPI.grind.getSessions();
+                        if (response.success) {
+                            this.renderSessions(response.data);
+                        }
+                    } else {
+                        const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
+                        this.renderSessions(sessions);
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Laden der Sessions:', error);
+                }
+            },
+
+            renderTips() {
+                Object.keys(this.tips).forEach(key => {
+                    const contentDiv = document.getElementById(`tip-content-${key}`);
+                    if (contentDiv) {
+                        contentDiv.innerHTML = this.customTips[key] || this.tips[key];
+                    }
+                });
+            },
+
+            renderAnimalDropdown() {
+                const dropdown = document.getElementById('sim-animal');
+                if (!dropdown) return;
+
+                dropdown.innerHTML = this.animals.map(animal =>
+                    `<option value="${animal.id}">${animal.icon} ${animal.name} (p=${animal.spawnChance})</option>`
+                ).join('');
+
+                dropdown.addEventListener('change', () => {
+                    const selectedAnimal = this.animals.find(a => a.id === dropdown.value);
+                    if (selectedAnimal) {
+                        document.getElementById('sim-spawn-chance').value = selectedAnimal.spawnChance;
+                    }
+                });
+            },
+
+            renderSessions(sessions) {
+                const listContainer = document.getElementById('grindSessionsList');
+                if (!listContainer) return;
+
+                if (sessions.length === 0) {
+                    listContainer.innerHTML = '<p class="note" style="text-align: center; padding: 20px;">Keine Sessions vorhanden</p>';
+                    return;
+                }
+
+                listContainer.innerHTML = sessions.map(session => `
+                    <div class="grind-session-item">
+                        <div class="grind-session-info">
+                            <div class="grind-session-date">${new Date(session.timestamp).toLocaleString('de-DE')}</div>
+                            <div class="grind-session-stats">
+                                ${session.kills} Kills in ${this.formatDuration(session.duration)} (${session.kph.toFixed(1)} K/h)
+                            </div>
+                        </div>
+                        <div class="grind-session-actions">
+                            <button class="action-button secondary" onclick="GrindManager.deleteSession('${session.id}')">🗑️</button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            getFallbackTips() {
+                return {
+                    general: `
+                        <p><strong>📖 Grundlagen des Herd-Managements:</strong></p>
+                        <p>Herden in COTW verhalten sich wie echte Tierpopulationen. Wenn du eine Herd überjagst, kann es dauern, bis sie sich neu formiert.</p>
+                        <ul>
+                            <li><strong>Respawn-Time:</strong> Herden spawnen meist nach 2-4 Stunden neu</li>
+                            <li><strong>Qualität beeinflussen:</strong> Kills von niedriger Qualität (z.B. 2-5 Score) ziehen den Durchschnitt der Herde runter</li>
+                            <li><strong>High-Only:</strong> Fokussiere dich auf nur High-Scoring-Tiere für bessere Chancen</li>
+                        </ul>
+                        <p><strong>💡 Pro-Tipp:</strong> Überprüfe regelmäßig die Respawn-Zeiten deiner bevorzugten Zonen!</p>
+                    `
+                };
+            },
+
+            toggleTip(key) {
+                const tipElement = document.querySelector(`[data-tip="${key}"]`);
+                if (tipElement) {
+                    tipElement.classList.toggle('open');
+                }
+            },
+
+            formatDuration(ms) {
+                const seconds = Math.floor(ms / 1000);
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            },
+
+            startSession() {
+                this.sessionStartTime = Date.now();
+                this.sessionKills = 0;
+                this.isSessionRunning = true;
+
+                document.getElementById('session-duration').textContent = '00:00:00';
+                document.getElementById('session-kills').textContent = '0';
+                document.getElementById('session-kph').textContent = '0.0';
+
+                document.getElementById('btn-start-session').disabled = true;
+                document.getElementById('btn-add-kill').disabled = false;
+                document.getElementById('btn-end-session').disabled = false;
+
+                this.sessionTimer = setInterval(() => {
+                    const elapsed = Date.now() - this.sessionStartTime;
+                    document.getElementById('session-duration').textContent = this.formatDuration(elapsed);
+
+                    const hours = elapsed / (1000 * 60 * 60);
+                    const kph = hours > 0 ? (this.sessionKills / hours) : 0;
+                    document.getElementById('session-kph').textContent = kph.toFixed(1);
+                }, 1000);
+
+                ToastManager.show('Session gestartet!', 'success');
+            },
+
+            addKill() {
+                if (!this.isSessionRunning) return;
+
+                this.sessionKills++;
+                document.getElementById('session-kills').textContent = this.sessionKills;
+
+                const elapsed = Date.now() - this.sessionStartTime;
+                const hours = elapsed / (1000 * 60 * 60);
+                const kph = hours > 0 ? (this.sessionKills / hours) : 0;
+                document.getElementById('session-kph').textContent = kph.toFixed(1);
+
+                ToastManager.show('Kill hinzugefügt!', 'info');
+            },
+
+            endSession() {
+                if (!this.isSessionRunning) return;
+
+                clearInterval(this.sessionTimer);
+                const duration = Date.now() - this.sessionStartTime;
+                const hours = duration / (1000 * 60 * 60);
+                const kph = hours > 0 ? (this.sessionKills / hours) : 0;
+
+                const session = {
+                    id: Date.now().toString(),
+                    timestamp: Date.now(),
+                    kills: this.sessionKills,
+                    duration: duration,
+                    kph: kph
+                };
+
+                this.saveSession(session);
+
+                this.isSessionRunning = false;
+                this.sessionStartTime = null;
+                this.sessionKills = 0;
+
+                document.getElementById('btn-start-session').disabled = false;
+                document.getElementById('btn-add-kill').disabled = true;
+                document.getElementById('btn-end-session').disabled = true;
+
+                document.getElementById('last-session').textContent =
+                    `${session.kills} Kills in ${this.formatDuration(session.duration)}`;
+
+                document.getElementById('session-info').style.display = 'block';
+
+                ToastManager.show(`Session beendet: ${session.kills} Kills`, 'success');
+            },
+
+            async saveSession(session) {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        await window.electronAPI.grind.saveSession(session);
+                        await this.loadSessions();
+                    } else {
+                        const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
+                        sessions.push(session);
+                        localStorage.setItem('grind-sessions', JSON.stringify(sessions));
+                        this.renderSessions(sessions);
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Speichern der Session:', error);
+                    ToastManager.show('Fehler beim Speichern der Session', 'error');
+                }
+            },
+
+            async deleteSession(id) {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        await window.electronAPI.grind.deleteSession(id);
+                        await this.loadSessions();
+                    } else {
+                        const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
+                        const filtered = sessions.filter(s => s.id !== id);
+                        localStorage.setItem('grind-sessions', JSON.stringify(filtered));
+                        this.renderSessions(filtered);
+                    }
+                    ToastManager.show('Session gelöscht', 'info');
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Löschen der Session:', error);
+                    ToastManager.show('Fehler beim Löschen der Session', 'error');
+                }
+            },
+
+            async clearSessions() {
+                if (!confirm('Möchtest du wirklich alle Sessions löschen?')) return;
+
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        await window.electronAPI.grind.clearSessions();
+                    } else {
+                        localStorage.setItem('grind-sessions', JSON.stringify([]));
+                    }
+                    await this.loadSessions();
+                    ToastManager.show('Alle Sessions gelöscht', 'success');
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Löschen der Sessions:', error);
+                    ToastManager.show('Fehler beim Löschen der Sessions', 'error');
+                }
+            },
+
+            async exportSessions() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        await window.electronAPI.grind.exportSessions();
+                    } else {
+                        const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
+                        const csv = 'Datum,Kills,Dauer,KPH\n' + sessions.map(s =>
+                            `${new Date(s.timestamp).toLocaleString('de-DE')},${s.kills},${Math.round(s.duration/1000)},${s.kph.toFixed(1)}`
+                        ).join('\n');
+
+                        const blob = new Blob([csv], { type: 'text/csv' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `grind-sessions-${new Date().toISOString().split('T')[0]}.csv`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    }
+                    ToastManager.show('Sessions exportiert', 'success');
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Export:', error);
+                    ToastManager.show('Fehler beim Export', 'error');
+                }
+            },
+
+            async simulate() {
+                try {
+                    const animalId = document.getElementById('sim-animal').value;
+                    const currentKills = parseFloat(document.getElementById('sim-current-kills').value) || 0;
+                    const spawnChance = parseFloat(document.getElementById('sim-spawn-chance').value);
+                    const confidence = parseFloat(document.getElementById('sim-confidence').value);
+
+                    if (!window.electronAPI || !window.electronAPI.grind) {
+                        ToastManager.show('Nur im Electron-Modus verfügbar', 'error');
+                        return;
+                    }
+
+                    const response = await window.electronAPI.grind.simulate({
+                        animalId,
+                        currentKills,
+                        spawnChance,
+                        confidence
+                    });
+
+                    if (response.success) {
+                        this.displaySimulationResult(response.data);
+                        ToastManager.show('Simulation abgeschlossen', 'success');
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler bei Simulation:', error);
+                    ToastManager.show('Fehler bei Simulation', 'error');
+                }
+            },
+
+            displaySimulationResult(result) {
+                document.getElementById('sim-expected').textContent = result.expected.toFixed(0);
+                document.getElementById('sim-min').textContent = result.min.toFixed(0);
+                document.getElementById('sim-max').textContent = result.max.toFixed(0);
+                document.getElementById('sim-probability').textContent = (result.currentProbability * 100).toFixed(4) + '%';
+
+                const resultDiv = document.getElementById('simulation-result');
+                resultDiv.style.display = 'block';
+
+                if (result.data && result.data.length > 0) {
+                    const chartContainer = document.getElementById('sim-chart-container');
+                    chartContainer.style.display = 'block';
+
+                    if (this.simulationChart) {
+                        this.simulationChart.destroy();
+                    }
+
+                    const ctx = document.getElementById('simulation-chart').getContext('2d');
+                    this.simulationChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: result.data.map(d => d.kills),
+                            datasets: [{
+                                label: 'Wahrscheinlichkeit',
+                                data: result.data.map(d => d.probability),
+                                backgroundColor: 'rgba(26, 95, 42, 0.6)',
+                                borderColor: '#1a5f2a',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Wahrscheinlichkeit'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Kills'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            },
+
+            switchSubTab(subtabName) {
+                document.querySelectorAll('.grind-tab').forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.subtab === subtabName);
+                });
+
+                document.querySelectorAll('.grind-subtab-content').forEach(content => {
+                    content.classList.toggle('active', content.id === `subtab-${subtabName}`);
+                });
+            }
+        };
+
+        // ========================================
         // TOOLTIP MANAGER
         // ========================================
         const tooltips = {
@@ -2939,6 +3860,7 @@
         window.TemplateManager = TemplateManager;
         window.HistoryManager = HistoryManager;
         window.AccountManager = AccountManager;
+        window.GrindManager = GrindManager;
         window.ToastManager = ToastManager;
         window.StatisticsManager = StatisticsManager;
     </script>

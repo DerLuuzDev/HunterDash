@@ -17,11 +17,15 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   history: {
     get: (filters) => ipcRenderer.invoke('history:get', filters),
-    getStatistics: (period) => ipcRenderer.invoke('history:get-statistics', period),
-    getTimeSeries: (categoryKey, aggregation) => ipcRenderer.invoke('history:get-timeseries', categoryKey, aggregation),
+    getStatistics: (options) => ipcRenderer.invoke('history:get-stats', options),
+    getStatisticsMarkdown: (options) => ipcRenderer.invoke('history:get-stats-markdown', options),
+    getTimeSeries: (options) => ipcRenderer.invoke('history:get-timeseries', options),
     clear: () => ipcRenderer.invoke('history:clear'),
     exportCSV: () => ipcRenderer.invoke('history:export-csv'),
-    exportJSON: () => ipcRenderer.invoke('history:export-json')
+    exportJSON: () => ipcRenderer.invoke('history:export-json'),
+    listBackups: () => ipcRenderer.invoke('history:list-backups'),
+    restoreBackup: (backupFileName) => ipcRenderer.invoke('history:restore-backup', backupFileName),
+    createBackup: () => ipcRenderer.invoke('history:create-backup')
   },
 
   templates: {
@@ -39,5 +43,20 @@ contextBridge.exposeInMainWorld('electronAPI', {
     listBackups: () => ipcRenderer.invoke('accounts:list-backups'),
     restoreBackup: (backupFileName) => ipcRenderer.invoke('accounts:restore-backup', backupFileName),
     createBackup: () => ipcRenderer.invoke('accounts:create-backup')
+  },
+
+  grind: {
+    getTips: () => ipcRenderer.invoke('grind:get-tips'),
+    getCustomTips: () => ipcRenderer.invoke('grind:get-custom-tips'),
+    saveCustomTip: (animalId, content) => ipcRenderer.invoke('grind:save-custom-tip', animalId, content),
+    resetCustomTip: (animalId) => ipcRenderer.invoke('grind:reset-custom-tip', animalId),
+    simulate: (data) => ipcRenderer.invoke('grind:simulate', data),
+    saveSession: (session) => ipcRenderer.invoke('grind:save-session', session),
+    getSessions: () => ipcRenderer.invoke('grind:get-sessions'),
+    deleteSession: (sessionId) => ipcRenderer.invoke('grind:delete-session', sessionId),
+    clearSessions: () => ipcRenderer.invoke('grind:clear-sessions'),
+    getSettings: () => ipcRenderer.invoke('grind:get-settings'),
+    saveSettings: (settings) => ipcRenderer.invoke('grind:save-settings', settings),
+    getAnimals: () => ipcRenderer.invoke('grind:get-animals')
   }
 });

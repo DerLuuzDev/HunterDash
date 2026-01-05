@@ -1,6 +1,6 @@
 # HunterDash - Agent Development Guidelines
 
-This file contains essential information for AI agents working on the HunterDash codebase.
+This file contains essential information for AI agents working on HunterDash codebase.
 
 ## Build Commands
 
@@ -44,6 +44,7 @@ const { WINDOW, API, POISSON } = require('./build-config/constants');
 - Classes: `PascalCase`
 - Constants: `UPPER_SNAKE_CASE`
 - Files: `camelCase.js` (code), `kebab-case.js` (assets)
+- UI Managers: `Manager` suffix (e.g., NavigationManager, GrindManager)
 
 Service instantiation pattern:
 ```javascript
@@ -62,11 +63,15 @@ module.exports = calculationService;
 ```
 main.js                 - Electron main process, window creation, IPC handlers
 preload.js              - Context bridge (electronAPI)
-renderer.js             - UI logic, DOM manipulation
+index.html              - UI structure, CSS, inline JavaScript
 services/               - Business logic classes
   - calculation.service.js
-  - api.service.js
   - storage.service.js
+  - history.service.js      # File system storage & time series
+  - account.service.js       # Account management & backups
+  - template.service.js      # Template presets
+  - grind.service.js         # Grind helper (tips, timer, simulator, sessions)
+  - api.service.js
 utils/                  - Utility functions
   - validator.js
   - icons.js
@@ -86,27 +91,26 @@ build-config/           - Configuration constants
   }
   ```
 - Log errors with `console.error()`
+- Show user notifications via `ToastManager.show(message, type)`
 - Global handlers in main.js for `uncaughtException` and `unhandledRejection`
 
 ### IPC Communication
 - All IPC endpoints use `namespace:action` pattern
-- Examples: `api:calculate`, `storage:save-settings`, `app:get-info`
+- Namespaces: `api:*`, `storage:*`, `history:*`, `accounts:*`, `templates:*`, `grind:*`
 - Use `ipcMain.handle()` in main process
 - Use `ipcRenderer.invoke()` in preload
 - Always check `response.success` before using data
+- Provide default values for options: `const { key = null } = options || {}`
 
 Example IPC handler:
 ```javascript
-ipcMain.handle('api:calculate', async (event, data) => {
+ipcMain.handle('history:get-timeseries', async (event, options = null) => {
   try {
-    const validation = validatePoissonInput(data);
-    if (!validation.valid) {
-      return { success: false, error: 'Ungültige Eingabedaten', validationErrors: validation.errors };
-    }
-    const result = calculationService.calculatePoisson(validation.data);
-    return { success: true, data: result };
+    const { categoryKey = null, aggregation = 'daily', period = 'all' } = options || {};
+    const series = await historyService.getTimeSeries(categoryKey, aggregation, period);
+    return series;
   } catch (error) {
-    console.error('Berechnungsfehler:', error);
+    console.error('TimeSeries-Fehler:', error);
     return { success: false, error: error.message };
   }
 });
@@ -119,27 +123,47 @@ ipcMain.handle('api:calculate', async (event, data) => {
 - Never expose Node APIs directly to renderer
 - Use `contextBridge.exposeInMainWorld()` for renderer access
 
-### Validation Pattern
-- Use validator utility functions
-- Return `{ valid: boolean, data?: any, errors?: any[] }`
-- Import from `utils/validator.js`
+### File System Storage Pattern
+- Dual storage: `storageService` (localStorage) + File System (`userDataPath`)
+- History/Accounts automatically saved as JSON files
+- Backup system: `STORAGE.HISTORY.BACKUP_DIR`, `STORAGE.HISTORY.MAX_BACKUPS = 10`
+- Path: `app.getPath('userData')` → `~/.config/hunterdash/`
+- Initialize: `historyService.userDataPath = userDataPath; historyService.initializeFileSystem();`
 
-Example:
-```javascript
-const { validateNumber, validatePoissonInput } = require('./utils/validator');
+### Chart.js Integration
+- Chart.js CDN: `<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">`
+- Canvas: `<canvas id="chartId"></canvas>` in `.chart-container` div
+- Manager method pattern:
+  ```javascript
+  if (this.chart) this.chart.destroy();
+  this.chart = new Chart(ctx, { type: 'line', data: {...}, options: {...} });
+  ```
 
-const validation = validatePoissonInput(data);
-if (!validation.valid) {
-  return { success: false, error: 'Ungültige Eingabedaten', validationErrors: validation.errors };
-}
-```
+### Sub-Tabs CSS Pattern
+- Main navigation: `.nav-tabs`, `.nav-tab`, `.nav-tab.active`, `.nav-tab:hover`
+- Tab content: `.tab-content { display: none; }`, `.tab-content.active { display: block; }`
+- Sub-tabs: `.account-tabs`, `.account-tab`, `.grind-tabs`, `.grind-tab`
+- Sub-content: `.subtab-content`, `.grind-subtab-content` + `.active`
+- Animation: `@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`
 
-### Service Pattern
-- Classes with business logic methods
-- Instantiate then export the instance
-- Use async/await for operations
+### Manager Pattern
+- Global exposures at end of index.html:
+  ```javascript
+  window.SettingsManager = SettingsManager;
+  window.Calculator = Calculator;
+  window.NavigationManager = NavigationManager;
+  window.HistoryManager = HistoryManager;
+  window.AccountManager = AccountManager;
+  window.GrindManager = GrindManager;
+  window.TemplateManager = TemplateManager;
+  window.ToastManager = ToastManager;
+  window.StatisticsManager = StatisticsManager;
+  ```
+- `switchTab(tabName)` in NavigationManager for main tab switching
+- `switchSubTab(subtabName)` for sub-tab switching (Accounts, Grind)
 
-### UI Development (renderer.js)
+### UI Development
+- All UI managers in `<script>` tag in index.html
 - Use `DOMContentLoaded` for initialization
 - Access electronAPI via `window.electronAPI`
 - Check `window.electronAPI && window.electronAPI.isElectron()` before use
@@ -149,9 +173,87 @@ if (!validation.valid) {
 - All constants in `build-config/constants.js`
 - Environment variables with fallbacks: `process.env.API_BASE_URL || 'http://localhost:3000'`
 - Use `STORAGE.DEFAULT_SETTINGS` for default values
+- New configs: `STORAGE.GRIND.ANIMALS`, `STORAGE.GRIND.TIPS`, `TEMPLATES.PRESETS`
 
 ### Code Quality
 - Prefer descriptive naming over comments
 - Keep functions focused and single-purpose
 - Use template literals for multi-line HTML
 - Handle edge cases (division by zero, undefined values)
+
+## Documentation Maintenance
+
+### When to Update AGENTS.md
+
+**ALWAYS after:**
+- New services added (e.g., grind.service.js)
+- New managers added (e.g., GrindManager, StatisticsManager)
+- Architecture changes (new folders, file system storage, etc.)
+- IPC namespace changes (new namespaces, API changes)
+- New libraries (e.g., Chart.js integration)
+- Code style changes (new patterns, conventions)
+- Build process changes (new scripts, dependencies)
+
+**REGULARLY:**
+- Monthly audit - Verify everything is still current
+- Per sprint/feature - After each major feature
+
+**OPTIONALLY:**
+- Small bugfixes (only if they change patterns)
+- UI tweaks (only on structural changes)
+
+### Update Strategy
+
+**Strategy: "Per Feature + Monthly Audit" (Recommended)**
+
+**Daily Work:**
+- After each feature/major update:
+  1. What changed? (Services, Managers, IPC, Patterns)
+  2. Open AGENTS.md and update relevant sections
+  3. 5-10 minutes effort per feature
+
+**Monthly:**
+- Read AGENTS.md completely
+- Verify: Is everything still correct? Is anything missing?
+- ~15-20 minutes audit
+
+**Before Release:**
+- Final check before release
+- Bring everything up to date
+
+### Update Log Template
+
+Use this template for quick logging after each update:
+
+```
+YYYY-MM-DD: [Feature Name] [added/updated/removed]
+- [Service 1] created/modified
+- [Manager 1] created/modified
+- [Pattern/Library/IPC] updated
+- [Specific changes]
+```
+
+### Example: HunterDash Update Log
+
+```
+2025-01-05: Grind Helper feature added
+- grind.service.js created
+- GrindManager, StatisticsManager added to index.html
+- Chart.js integration documented
+- Sub-tabs CSS pattern added
+- IPC namespaces: grind:* extended
+- File system storage pattern documented
+```
+
+**Next Update**: After next feature (e.g., [feature name])
+
+### Concrete Triggers for HunterDash
+
+**Update AGENTS.md when:**
+- New service in `/services/` → Update Architecture section
+- New manager in `index.html` → Update Manager Pattern section
+- New IPC namespace in `main.js` → Update IPC Communication section
+- New constants in `constants.js` → Update Configuration section
+- New CSS patterns (e.g., Sub-Tabs) → Update Style Guidelines section
+- New libraries (e.g., Chart.js) → Add new documentation section
+- Build scripts change → Update Build Commands section

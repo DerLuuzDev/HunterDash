@@ -7,13 +7,26 @@ const storageService = require('./services/storage.service');
 const historyService = require('./services/history.service');
 const templateService = require('./services/template.service');
 const accountServiceFactory = require('./services/account.service');
+const GrindService = require('./services/grind.service');
 const { validatePoissonInput, validateSettings } = require('./utils/validator');
 
 let mainWindow;
 let settings = { ...STORAGE.DEFAULT_SETTINGS };
 let accountService = null;
-
+let grindService = null;
 calculationService.setHistoryService(historyService);
+
+function initializeHistoryService() {
+  const userDataPath = app.getPath('userData');
+  historyService.userDataPath = userDataPath;
+  historyService.initializeFileSystem();
+  console.log('HistoryService initialisiert mit userDataPath:', userDataPath);
+}
+
+function initializeGrindService() {
+  grindService = new GrindService(storageService);
+  console.log('GrindService initialisiert');
+}
 
 function initializeAccountService() {
   const userDataPath = app.getPath('userData');
@@ -56,6 +69,8 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  initializeHistoryService();
+  initializeGrindService();
   initializeAccountService();
   createWindow();
   setupIpcHandlers();
@@ -71,6 +86,9 @@ app.on('before-quit', () => {
   saveSettingsToFile();
   if (accountService) {
     accountService.checkAndCreateAutoBackup();
+  }
+  if (historyService) {
+    historyService.createBackup();
   }
 });
 
@@ -194,9 +212,10 @@ function setupIpcHandlers() {
     }
   });
 
-  ipcMain.handle('history:get-statistics', async (event, period) => {
+  ipcMain.handle('history:get-stats', async (event, options = {}) => {
     try {
-      const stats = await historyService.getStatistics(period);
+      const { accountId, period } = options;
+      const stats = await historyService.getStats(accountId, period);
       return stats;
     } catch (error) {
       console.error('Statistics-Fehler:', error);
@@ -204,9 +223,25 @@ function setupIpcHandlers() {
     }
   });
 
-  ipcMain.handle('history:get-timeseries', async (event, categoryKey, aggregation) => {
+  ipcMain.handle('history:get-stats-markdown', async (event, options = {}) => {
     try {
-      const series = await historyService.getTimeSeries(categoryKey, aggregation);
+      const { accountId, period } = options;
+      const statsResult = await historyService.getStats(accountId, period);
+      if (!statsResult.success) {
+        return statsResult;
+      }
+      const markdown = await historyService.formatStatsMarkdown(statsResult.data);
+      return { success: true, data: markdown };
+    } catch (error) {
+      console.error('Statistics-Markdown-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('history:get-timeseries', async (event, options = null) => {
+    try {
+      const { categoryKey = null, aggregation = 'daily', period = 'all' } = options || {};
+      const series = await historyService.getTimeSeries(categoryKey, aggregation, period);
       return series;
     } catch (error) {
       console.error('TimeSeries-Fehler:', error);
@@ -237,6 +272,33 @@ function setupIpcHandlers() {
       return await historyService.exportToJSON();
     } catch (error) {
       console.error('JSON-Export-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('history:list-backups', async () => {
+    try {
+      return await historyService.listBackups();
+    } catch (error) {
+      console.error('History-ListBackups-Fehler:', error);
+      return { success: false, error: error.message, data: [] };
+    }
+  });
+
+  ipcMain.handle('history:restore-backup', async (event, backupFileName) => {
+    try {
+      return await historyService.restoreBackup(backupFileName);
+    } catch (error) {
+      console.error('History-RestoreBackup-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('history:create-backup', async () => {
+    try {
+      return await historyService.createBackup();
+    } catch (error) {
+      console.error('History-CreateBackup-Fehler:', error);
       return { success: false, error: error.message };
     }
   });
@@ -281,7 +343,15 @@ function setupIpcHandlers() {
 
   ipcMain.handle('accounts:save', async (event, name, data) => {
     try {
-      return await accountService.saveAccount(name, data);
+      const result = await accountService.saveAccount(name, data);
+      if (result.success) {
+        const savedAccount = result.data.find(a => a.name === name);
+        if (savedAccount) {
+          const flatData = accountService.convertToFlatData(savedAccount.data);
+          await calculationService.calculatePoisson(flatData, true, savedAccount.id);
+        }
+      }
+      return result;
     } catch (error) {
       console.error('Account-Save-Fehler:', error);
       return { success: false, error: error.message };
@@ -293,6 +363,23 @@ function setupIpcHandlers() {
       return await accountService.deleteAccount(id);
     } catch (error) {
       console.error('Account-Delete-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('accounts:update-by-id', async (event, accountId, updateData) => {
+    try {
+      const result = await accountService.updateAccountById(accountId, updateData);
+      if (result.success) {
+        const updatedAccount = result.data;
+        if (updatedAccount) {
+          const flatData = accountService.convertToFlatData(updatedAccount.data);
+          await calculationService.calculatePoisson(flatData, true, updatedAccount.id);
+        }
+      }
+      return result;
+    } catch (error) {
+      console.error('Account-Update-Fehler:', error);
       return { success: false, error: error.message };
     }
   });
@@ -339,6 +426,114 @@ function setupIpcHandlers() {
       return { success: true };
     } catch (error) {
       console.error('Account-CreateBackup-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-tips', async () => {
+    try {
+      return grindService.getTips();
+    } catch (error) {
+      console.error('Grind-Tips-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-custom-tips', async () => {
+    try {
+      return await grindService.getCustomTips();
+    } catch (error) {
+      console.error('Grind-CustomTips-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:save-custom-tip', async (event, animalId, content) => {
+    try {
+      return await grindService.saveCustomTip(animalId, content);
+    } catch (error) {
+      console.error('Grind-SaveCustomTip-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:reset-custom-tip', async (event, animalId) => {
+    try {
+      return await grindService.resetCustomTip(animalId);
+    } catch (error) {
+      console.error('Grind-ResetCustomTip-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:simulate', async (event, data) => {
+    try {
+      return grindService.calculateExpectedKills(data);
+    } catch (error) {
+      console.error('Grind-Simulation-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:save-session', async (event, session) => {
+    try {
+      return await grindService.saveSession(session);
+    } catch (error) {
+      console.error('Grind-Session-Save-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-sessions', async () => {
+    try {
+      return await grindService.getSessions();
+    } catch (error) {
+      console.error('Grind-Sessions-Laden-Fehler:', error);
+      return { success: false, error: error.message, data: [] };
+    }
+  });
+
+  ipcMain.handle('grind:delete-session', async (event, sessionId) => {
+    try {
+      return await grindService.deleteSession(sessionId);
+    } catch (error) {
+      console.error('Grind-Session-Löschen-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:clear-sessions', async () => {
+    try {
+      return await grindService.clearSessions();
+    } catch (error) {
+      console.error('Grind-Sessions-Leeren-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-settings', async () => {
+    try {
+      return await grindService.getSettings();
+    } catch (error) {
+      console.error('Grind-Settings-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:save-settings', async (event, settings) => {
+    try {
+      return await grindService.saveSettings(settings);
+    } catch (error) {
+      console.error('Grind-Settings-Save-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-animals', async () => {
+    try {
+      return grindService.getAnimals();
+    } catch (error) {
+      console.error('Grind-Animals-Fehler:', error);
       return { success: false, error: error.message };
     }
   });

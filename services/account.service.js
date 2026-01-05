@@ -214,6 +214,35 @@ class AccountService {
     }
   }
 
+  async updateAccountById(accountId, updateData) {
+    try {
+      const accounts = await this.getAccounts();
+      const index = accounts.findIndex(a => a.id === accountId);
+
+      if (index < 0) {
+        return { success: false, error: 'Account nicht gefunden' };
+      }
+
+      const currentAccount = accounts[index];
+      const updatedAccount = { ...currentAccount, ...updateData };
+
+      if (updateData.data) {
+        updatedAccount.data = this.sanitizeAccountData(updateData.data);
+      }
+
+      updatedAccount.lastUpdated = new Date().toISOString();
+      accounts[index] = updatedAccount;
+
+      this.accounts = accounts;
+      await this.saveAccountsToFile(false);
+
+      return { success: true, data: updatedAccount };
+    } catch (error) {
+      console.error('AccountService: Fehler beim Aktualisieren nach ID:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
   async compareAccounts(accountId1, accountId2, calculationService) {
     try {
       const accounts = await this.getAccounts();
@@ -228,8 +257,8 @@ class AccountService {
       const flatData1 = this.convertToFlatData(acc1.data);
       const flatData2 = this.convertToFlatData(acc2.data);
 
-      const result1 = await calculationService.calculatePoisson(flatData1);
-      const result2 = await calculationService.calculatePoisson(flatData2);
+      const result1 = await calculationService.calculatePoisson(flatData1, true, accountId1);
+      const result2 = await calculationService.calculatePoisson(flatData2, true, accountId2);
 
       const difference = this.calculateDifference(result1, result2);
 
@@ -267,7 +296,7 @@ class AccountService {
 
       // Convert sanitized account data back to flat structure for calculation service
       const flatData = this.convertToFlatData(account.data);
-      const result = await calculationService.calculatePoisson(flatData);
+      const result = await calculationService.calculatePoisson(flatData, false);
 
       return {
         success: true,

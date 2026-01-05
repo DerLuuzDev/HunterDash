@@ -48,18 +48,26 @@ module.exports = {
       TEMPLATES: 'hunterdash-templates',
       ACCOUNTS: 'hunterdash-accounts',
       UNDO_STACK: 'hunterdash-undo',
-      REDO_STACK: 'hunterdash-redo'
+      REDO_STACK: 'hunterdash-redo',
+      GRIND_SESSIONS: 'grind-sessions',
+      GRIND_SETTINGS: 'grind-settings'
     },
     DEFAULT_SETTINGS: {
       theme: 'light',
       autoSave: true,
       apiEnabled: false,
       apiEndpoint: 'http://localhost:3000',
-      autoHistory: true
+      autoHistory: true,
+      grindEditableTips: false,
+      grindShowCharts: true
     },
     HISTORY: {
-      MAX_ENTRIES: 100,
-      AUTO_SAVE: true
+      MAX_ENTRIES: 180,
+      AUTO_SAVE: true,
+      FILENAME: 'history.json',
+      BACKUP_DIR: 'backups/history',
+      MAX_BACKUPS: 10,
+      BACKUP_INTERVAL_DAYS: 7
     },
     UNDO_REDO: {
       MAX_STACK_SIZE: 50
@@ -183,5 +191,220 @@ module.exports = {
       { label: 'Durchschnitt (1:20.000)', value: 0.00005 },
       { label: 'Glücklich (1:15.000)', value: 0.000067 }
     ]
+  },
+
+  GRIND: {
+    ANIMALS: [
+      { id: 'wildboar', name: 'Wildschwein', icon: '🐗', spawnChance: 0.00005 },
+      { id: 'bear', name: 'Bär', icon: '🐻', spawnChance: 0.00003 },
+      { id: 'moose', name: 'Elch', icon: '🫎', spawnChance: 0.00003 },
+      { id: 'lion', name: 'Löwe', icon: '🦁', spawnChance: 0.00002 },
+      { id: 'bison', name: 'Bison', icon: '🌿', spawnChance: 0.00004 },
+      { id: 'whitetail', name: 'Weißwedelhirsch', icon: '🦌', spawnChance: 0.00003 },
+      { id: 'redfox', name: 'Rotfuchs', icon: '🦊', spawnChance: 0.00004 },
+      { id: 'blackbear', name: 'Schwarzbär', icon: '🐻‍❄️', spawnChance: 0.00003 },
+      { id: 'caribou', name: 'Rentier', icon: '🫎', spawnChance: 0.00003 },
+      { id: 'fallowdeer', name: 'Damhirsch', icon: '🦌', spawnChance: 0.00003 },
+      { id: 'roebuck', name: 'Rehbock', icon: '🦌', spawnChance: 0.00003 },
+      { id: 'whitetaildoe', name: 'Weißwedelhirsch-Kuh', icon: '🦌', spawnChance: 0.00003 },
+      { id: 'blacktaildeer', name: 'Schwarzschwanzhirsch', icon: '🦌', spawnChance: 0.00003 },
+      { id: 'puma', name: 'Puma', icon: '🐱', spawnChance: 0.00002 },
+      { id: 'coyote', name: 'Kojote', icon: '🐺', spawnChance: 0.00004 },
+      { id: 'bobcat', name: 'Rotluchs', icon: '🐱', spawnChance: 0.00003 },
+      { id: 'europeanbison', name: 'Wisent', icon: '🌿', spawnChance: 0.00004 }
+    ],
+    TIPS: {
+      general: `
+        <p><strong>📖 Grundlagen des Herd-Managements:</strong></p>
+        <p>Herden in COTW verhalten sich wie echte Tierpopulationen. Wenn du eine Herd überjagst, kann es dauern, bis sie sich neu formiert.</p>
+        <ul>
+          <li><strong>Respawn-Time:</strong> Herden spawnen meist nach 2-4 Stunden neu</li>
+          <li><strong>Qualität beeinflussen:</strong> Kills von niedriger Qualität (z.B. 2-5 Score) ziehen den Durchschnitt der Herde runter</li>
+          <li><strong>High-Only:</strong> Fokussiere dich auf nur High-Scoring-Tiere für bessere Chancen</li>
+        </ul>
+        <p><strong>💡 Pro-Tipp:</strong> Überprüfe regelmäßig die Respawn-Zeiten deiner bevorzugten Zonen!</p>
+      `,
+      wildboar: `
+        <p><strong>🐗 Wildschwein GO-Grind:</strong></p>
+        <p>Wildschweine sind eines der besten Tiere für GO-Farming aufgrund ihrer hohen Spawn-Rate und guten Herdengröße.</p>
+        <ul>
+          <li><strong>Konzenriere dich auf Männchen:</strong> Nur männliche Wildschweine können GOs werden</li>
+          <li><strong>Vermeide Weibchen-Kills:</strong> Weibchen-Kills zählen nicht zur Herdenqualität</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Layton Lake District</li>
+          <li><strong>Herdengröße:</strong> 8-12 Tiere pro Herd typisch</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:20.000 (p = 0.00005)</p>
+      `,
+      bear: `
+        <p><strong>🐻 Bären GO-Grind:</strong></p>
+        <p>Bären sind seltener als Wildschweine, aber GOs sind lohnenswert.</p>
+        <ul>
+          <li><strong>Konzenriere dich auf Männchen:</strong> Nur männliche Bären können GOs werden</li>
+          <li><strong>Bären-Essen:</strong> Schaffe einen Bärenfutterplatz in deiner Reserve</li>
+          <li><strong>Night-Grind:</strong> Bären sind nachts aktiver</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Yukon Valley</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      moose: `
+        <p><strong>🫎 Elch GO-Grind:</strong></p>
+        <p>Elche haben eine mittlere Spawn-Rate und sind gut für GO-Farming.</p>
+        <ul>
+          <li><strong>Konzenriere dich auf Männchen:</strong> Nur männliche Elche können GOs werden</li>
+          <li><strong>Ruf-Lock:</strong> Nutze Elchrufe, um sie anzulocken</li>
+          <li><strong>Water-Edge:</strong> Elche trinken oft am Wasserufer</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Yukon Valley</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      lion: `
+        <p><strong>🦁 Löwen GO-Grind:</strong></p>
+        <p>Löwen sind die seltensten GOs, aber sehr wertvoll.</p>
+        <ul>
+          <li><strong>Nur Männchen:</strong> Nur männliche Löwen können GOs werden</li>
+          <li><strong>Respawn:</strong> Löwen-Herden respawnen nach 4-6 Stunden</li>
+          <li><strong>Optimale Zonen:</strong> Vurhonga Savanna, Bushuza</li>
+          <li><strong>Grind-Strategie:</strong> Überjage nicht zu schnell, Herdenqualität ist wichtig</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:50.000 (p = 0.00002)</p>
+      `,
+      bison: `
+        <p><strong>🌿 Bison GO-Grind:</strong></p>
+        <p>Bisons haben eine hohe Spawn-Rate, aber große Herden sind schwer zu finden.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 10-20 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Layton Lake, Yukon Valley</li>
+          <li><strong>Grind-Strategie:</strong> Konzentriere dich auf die größten Herden</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:25.000 (p = 0.00004)</p>
+      `,
+      whitetail: `
+        <p><strong>🦌 Weißwedelhirsch GO-Grind:</strong></p>
+        <p>Weißwedelhirsche sind häufig, aber GOs sind wertvoll.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 6-10 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Layton Lake</li>
+          <li><strong>Grind-Strategie:</strong> Fokus auf High-Score-Böcke</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      redfox: `
+        <p><strong>🦊 Rotfuchs GO-Grind:</strong></p>
+        <p>Füchse sind klein, aber GOs sind seltene Schätze.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 4-8 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Yukon Valley</li>
+          <li><strong>Grind-Strategie:</strong> Nutze Fuchsrufe, um sie anzulocken</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:25.000 (p = 0.00004)</p>
+      `,
+      blackbear: `
+        <p><strong>🐻‍❄️ Schwarzbären GO-Grind:</strong></p>
+        <p>Schwarzbären sind ähnlich wie normale Bären, aber mit leichter Variation.</p>
+        <ul>
+          <li><strong>Konzenriere dich auf Männchen:</strong> Nur männliche Schwarzbären können GOs werden</li>
+          <li><strong>Bären-Essen:</strong> Schaffe einen Schwarzbärenfutterplatz</li>
+          <li><strong>Night-Grind:</strong> Schwarzbären sind nachts aktiver</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Yukon Valley</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      caribou: `
+        <p><strong>🫎 Rentier GO-Grind:</strong></p>
+        <p>Rentiere haben eine mittlere Spawn-Rate.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 8-12 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Yukon Valley, Medved Taiga</li>
+          <li><strong>Grind-Strategie:</strong> Konzentriere dich auf die großen Herden</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      fallowdeer: `
+        <p><strong>🦌 Damhirsch GO-Grind:</strong></p>
+        <p>Damhirsche sind häufig, aber GOs sind wertvoll.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 6-10 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Layton Lake</li>
+          <li><strong>Grind-Strategie:</strong> Fokus auf High-Score-Hirsche</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      roebuck: `
+        <p><strong>🦌 Rehbock GO-Grind:</strong></p>
+        <p>Rehböcke sind klein, aber GOs sind seltene Schätze.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 4-8 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Medved Taiga</li>
+          <li><strong>Grind-Strategie:</strong> Nutze Rehrufe, um sie anzulocken</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      whitetaildoe: `
+        <p><strong>🦌 Weißwedelhirsch-Kuh GO-Grind:</strong></p>
+        <p>Weißwedelhirsch-Kühe sind häufig, aber GOs sind sehr selten.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 6-10 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Layton Lake</li>
+          <li><strong>Grind-Strategie:</strong> Fokus auf High-Score-Kühe</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      blacktaildeer: `
+        <p><strong>🦌 Schwarzschwanzhirsch GO-Grind:</strong></p>
+        <p>Schwarzschwanzhirsche sind in bestimmten Zonen häufig.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 6-10 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Yukon Valley, Medved Taiga</li>
+          <li><strong>Grind-Strategie:</strong> Fokus auf High-Score-Hirsche</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      puma: `
+        <p><strong>🐱 Puma GO-Grind:</strong></p>
+        <p>Pumas sind seltene Raubtiere, aber GOs sind wertvoll.</p>
+        <ul>
+          <li><strong>Respawn:</strong> Puma-Herden respawnen nach 4-6 Stunden</li>
+          <li><strong>Optimale Zonen:</strong> Silver Ridge Peaks, Yukon Valley</li>
+          <li><strong>Grind-Strategie:</strong> Überjage nicht zu schnell, Herdenqualität ist wichtig</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:50.000 (p = 0.00002)</p>
+      `,
+      coyote: `
+        <p><strong>🐺 Kojote GO-Grind:</strong></p>
+        <p>Kojoten sind häufige Raubtiere, aber GOs sind selten.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 4-8 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Yukon Valley</li>
+          <li><strong>Grind-Strategie:</strong> Nutze Kojotenrufe, um sie anzulocken</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:25.000 (p = 0.00004)</p>
+      `,
+      bobcat: `
+        <p><strong>🐱 Rotluchs GO-Grind:</strong></p>
+        <p>Rotluchse sind seltene Raubtiere, aber GOs sind wertvoll.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 4-8 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Yukon Valley, Medved Taiga</li>
+          <li><strong>Grind-Strategie:</strong> Nutze Luchsrufe, um sie anzulocken</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:33.000 (p = 0.00003)</p>
+      `,
+      europeanbison: `
+        <p><strong>🌿 Wisent GO-Grind:</strong></p>
+        <p>Wisente sind selten, aber GOs sind sehr wertvoll.</p>
+        <ul>
+          <li><strong>Herdengröße:</strong> 10-20 Tiere pro Herd typisch</li>
+          <li><strong>Optimale Zonen:</strong> Hirschfelden, Medved Taiga</li>
+          <li><strong>Grind-Strategie:</strong> Konzentriere dich auf die größten Herden</li>
+        </ul>
+        <p><strong>📊 Statistik:</strong> Spawn-Chance ≈ 1:25.000 (p = 0.00004)</p>
+      `
+    },
+    STORAGE_KEY: 'grind-sessions',
+    MAX_SESSIONS: 50,
+    DEFAULT_SETTINGS: {
+      editableTips: false,
+      showCharts: true
+    }
   }
 };

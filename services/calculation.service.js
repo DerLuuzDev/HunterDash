@@ -9,7 +9,7 @@ class CalculationService {
     this.historyService = historyService;
   }
 
-  async calculatePoisson(data, saveHistory = true) {
+  async calculatePoisson(data, saveHistory = true, accountId = null) {
     const n = parseFloat(data.n);
     const categories = [];
     
@@ -45,7 +45,7 @@ class CalculationService {
     };
 
     if (saveHistory && this.historyService) {
-      await this.historyService.saveToHistory(data, result);
+      await this.historyService.saveToHistory(data, result, accountId);
     }
 
     return result;
