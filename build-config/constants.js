@@ -3,7 +3,7 @@ module.exports = {
   APP_VERSION: '1.0.0',
   APP_DESCRIPTION: 'COTW Glück-Rechner für Desktop & Mobile',
   APP_ID: 'de.hunterdash.calculator',
-  
+
   WINDOW: {
     DEFAULT_WIDTH: 800,
     DEFAULT_HEIGHT: 600,
@@ -15,13 +15,13 @@ module.exports = {
     TITLE_BAR_STYLE: 'default',
     HIDE_MENU_BAR: true
   },
-  
+
   ICONS: {
     WINDOWS: 'assets/icons/hunterdash.ico',
     LINUX: 'assets/icons/hunterdash.png',
     SVG_SOURCE: 'assets/icons/hunterdash.svg'
   },
-  
+
   API: {
     BASE_URL: process.env.API_BASE_URL || 'http://localhost:3000',
     ENDPOINTS: {
@@ -31,14 +31,14 @@ module.exports = {
     ENABLE_BACKEND: false,
     TIMEOUT: 5000
   },
-  
+
   WEBSOCKET: {
     ENABLED: false,
     URL: process.env.WS_URL || 'ws://localhost:3000/ws',
     RECONNECT_INTERVAL: 5000,
     MAX_RECONNECT_ATTEMPTS: 5
   },
-  
+
   STORAGE: {
     KEYS: {
       SETTINGS: 'hunterdash-settings',
@@ -59,7 +59,17 @@ module.exports = {
       apiEndpoint: 'http://localhost:3000',
       autoHistory: true,
       grindEditableTips: false,
-      grindShowCharts: true
+      grindShowCharts: true,
+      overlayMode: false,
+      audioFeedback: true,
+      audioVolume: 0.5,
+      animalLanguage: 'de',
+      sessionHotkeys: {
+        addKill: 'F7',
+        removeKill: 'F8',
+        togglePause: 'F9',
+        endSession: 'F10'
+      }
     },
     HISTORY: {
       MAX_ENTRIES: 180,
@@ -73,7 +83,7 @@ module.exports = {
       MAX_STACK_SIZE: 50
     }
   },
-  
+
   POISSON: {
     CATEGORIES: [
       { key: 'rare', name: 'Rares', defaultP: 0.003 },
@@ -97,7 +107,7 @@ module.exports = {
       { min: -Infinity, text: 'Viel Pech bisher, aber der nächste Grind wird episch! 🌟 Bleib dran!' }
     ]
   },
-  
+
   DEV: {
     ENABLE_DEV_TOOLS: true,
     LOG_LEVEL: 'info'
@@ -194,24 +204,40 @@ module.exports = {
   },
 
   GRIND: {
+    FILENAME: 'grind-sessions.json',
+    BACKUP_DIR: 'backups/grind',
+    MAX_BACKUPS: 10,
+    SESSION_TEMPLATES: [
+      { id: 'go-tier', name: 'GO [Tier]', icon: '🏆', animalBased: true },
+      { id: 'general', name: 'General Grind', icon: '🎯', animalBased: false },
+      { id: 'practice', name: 'Practice', icon: '🎮', animalBased: false },
+      { id: 'speedrun', name: 'Speedrun', icon: '⚡', animalBased: false }
+    ],
+    DEFAULT_HOTKEYS: {
+      addKill: 'F7',
+      removeKill: 'F8',
+      togglePause: 'F9',
+      endSession: 'F10'
+    },
+    SESSION_STATUS: {
+      RUNNING: 'running',
+      PAUSED: 'paused',
+      COMPLETED: 'completed',
+      CANCELLED: 'cancelled'
+    },
     ANIMALS: [
-      { id: 'wildboar', name: 'Wildschwein', icon: '🐗', spawnChance: 0.00005 },
-      { id: 'bear', name: 'Bär', icon: '🐻', spawnChance: 0.00003 },
-      { id: 'moose', name: 'Elch', icon: '🫎', spawnChance: 0.00003 },
-      { id: 'lion', name: 'Löwe', icon: '🦁', spawnChance: 0.00002 },
-      { id: 'bison', name: 'Bison', icon: '🌿', spawnChance: 0.00004 },
-      { id: 'whitetail', name: 'Weißwedelhirsch', icon: '🦌', spawnChance: 0.00003 },
-      { id: 'redfox', name: 'Rotfuchs', icon: '🦊', spawnChance: 0.00004 },
-      { id: 'blackbear', name: 'Schwarzbär', icon: '🐻‍❄️', spawnChance: 0.00003 },
-      { id: 'caribou', name: 'Rentier', icon: '🫎', spawnChance: 0.00003 },
-      { id: 'fallowdeer', name: 'Damhirsch', icon: '🦌', spawnChance: 0.00003 },
-      { id: 'roebuck', name: 'Rehbock', icon: '🦌', spawnChance: 0.00003 },
-      { id: 'whitetaildoe', name: 'Weißwedelhirsch-Kuh', icon: '🦌', spawnChance: 0.00003 },
-      { id: 'blacktaildeer', name: 'Schwarzschwanzhirsch', icon: '🦌', spawnChance: 0.00003 },
-      { id: 'puma', name: 'Puma', icon: '🐱', spawnChance: 0.00002 },
-      { id: 'coyote', name: 'Kojote', icon: '🐺', spawnChance: 0.00004 },
-      { id: 'bobcat', name: 'Rotluchs', icon: '🐱', spawnChance: 0.00003 },
-      { id: 'europeanbison', name: 'Wisent', icon: '🌿', spawnChance: 0.00004 }
+      // Great Ones - Official List (Stand: Januar 2026)
+      { id: 'whitetail', name: 'Whitetail Deer', nameDe: 'Weißwedelhirsch', icon: '🦌', spawnChance: 0.00005, releaseDate: '2020-04' },
+      { id: 'reddeer', name: 'Red Deer', nameDe: 'Rothirsch', icon: '🦌', spawnChance: 0.00005, releaseDate: '2021-11' },
+      { id: 'blackbear', name: 'Black Bear', nameDe: 'Schwarzbär', icon: '🐻', spawnChance: 0.00005, releaseDate: '2022-06' },
+      { id: 'moose', name: 'Moose', nameDe: 'Elch', icon: '🫎', spawnChance: 0.00005, releaseDate: '2022-12' },
+      { id: 'fallowdeer', name: 'Fallow Deer', nameDe: 'Damhirsch', icon: '🦌', spawnChance: 0.00005, releaseDate: '2023-06' },
+      { id: 'tahr', name: 'Tahr', nameDe: 'Tahr', icon: '🐐', spawnChance: 0.00005, releaseDate: '2024-06' },
+      { id: 'redfox', name: 'Red Fox', nameDe: 'Rotfuchs', icon: '🦊', spawnChance: 0.00005, releaseDate: '2024-12' },
+      { id: 'pheasant', name: 'Ring-Necked Pheasant', nameDe: 'Ringfasan', icon: '🐦', spawnChance: 0.00005, releaseDate: '2024-12' },
+      { id: 'muledeer', name: 'Mule Deer', nameDe: 'Maultierhirsch', icon: '🦌', spawnChance: 0.00005, releaseDate: '2025-06' },
+      { id: 'graywolf', name: 'Gray Wolf', nameDe: 'Grauwolf', icon: '🐺', spawnChance: 0.00005, releaseDate: '2025-10' },
+      { id: 'wildboar', name: 'Wild Boar', nameDe: 'Wildschwein', icon: '🐗', spawnChance: 0.00005, releaseDate: '2025-12' }
     ],
     TIPS: {
       general: `

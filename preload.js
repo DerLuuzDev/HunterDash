@@ -57,6 +57,28 @@ contextBridge.exposeInMainWorld('electronAPI', {
     clearSessions: () => ipcRenderer.invoke('grind:clear-sessions'),
     getSettings: () => ipcRenderer.invoke('grind:get-settings'),
     saveSettings: (settings) => ipcRenderer.invoke('grind:save-settings', settings),
-    getAnimals: () => ipcRenderer.invoke('grind:get-animals')
+    getAnimals: () => ipcRenderer.invoke('grind:get-animals'),
+    getTemplates: () => ipcRenderer.invoke('grind:get-templates'),
+    getCustomTemplates: () => ipcRenderer.invoke('grind:get-custom-templates'),
+    saveCustomTemplate: (template) => ipcRenderer.invoke('grind:save-custom-template', template),
+    deleteCustomTemplate: (templateId) => ipcRenderer.invoke('grind:delete-custom-template', templateId),
+    getActiveSession: (name) => ipcRenderer.invoke('grind:get-active-session', name),
+    validateSessionName: (name) => ipcRenderer.invoke('grind:validate-session-name', name),
+    pauseSession: (sessionId) => ipcRenderer.invoke('grind:pause-session', sessionId),
+    resumeSession: (sessionId) => ipcRenderer.invoke('grind:resume-session', sessionId),
+    cancelSession: (sessionId) => ipcRenderer.invoke('grind:cancel-session', sessionId),
+    registerHotkeys: (hotkeys) => ipcRenderer.invoke('grind:register-hotkeys', hotkeys),
+    unregisterHotkeys: () => ipcRenderer.invoke('grind:unregister-hotkeys'),
+    updateHotkeys: (hotkeys) => ipcRenderer.invoke('grind:update-hotkeys', hotkeys)
+  },
+  setAlwaysOnTop: (alwaysOnTop) => ipcRenderer.invoke('window:set-always-on-top', alwaysOnTop),
+  onGrindHotkey: (channel, callback) => {
+    const validChannels = ['grind:add-kill', 'grind:remove-kill', 'grind:toggle-pause', 'grind:end-session'];
+    if (validChannels.includes(channel)) {
+      ipcRenderer.on(channel, callback);
+    }
+  },
+  removeGrindHotkeyListener: (channel, callback) => {
+    ipcRenderer.removeListener(channel, callback);
   }
 });

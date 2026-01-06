@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,20 +26,20 @@
             --unlucky: #f39c12;
             --very-unlucky: #e67e22;
         }
-        
+
         .dark-mode {
             --background: linear-gradient(135deg, #1a2f1a 0%, #0f421d 100%);
             --surface: rgba(30, 41, 30, 0.92);
             --text-primary: #e8f5e9;
             --text-secondary: #a0c4a8;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Roboto', sans-serif;
             background: var(--background);
@@ -47,24 +48,24 @@
             padding: 40px 20px;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .logo-container {
             text-align: center;
             margin-bottom: 1.5rem;
         }
-        
+
         .app-logo {
             max-width: 200px;
             height: auto;
             transition: none;
         }
-        
+
         h1 {
             font-weight: 700;
             font-size: 3.25rem;
@@ -76,7 +77,7 @@
             margin-bottom: 0.75rem;
             letter-spacing: -0.5px;
         }
-        
+
         .subtitle {
             text-align: center;
             color: var(--text-secondary);
@@ -85,28 +86,28 @@
             line-height: 1.7;
             font-weight: 400;
         }
-        
+
         .card {
             background: var(--surface);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
-            box-shadow: 
+            box-shadow:
                 0 8px 32px rgba(31, 38, 135, 0.15),
                 0 2px 8px rgba(0, 0, 0, 0.08);
             padding: 36px;
             margin-bottom: 28px;
-            border: 1px solid rgba(255,255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .card:hover {
-            box-shadow: 
+            box-shadow:
                 0 12px 48px rgba(31, 38, 135, 0.2),
                 0 4px 16px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
-        
+
         h3 {
             font-weight: 600;
             font-size: 1.35rem;
@@ -115,11 +116,11 @@
             margin-bottom: 16px;
             letter-spacing: -0.3px;
         }
-        
+
         .input-group {
             margin-bottom: 20px;
         }
-        
+
         .mini-hint {
             font-size: 0.8rem;
             color: var(--text-secondary);
@@ -132,12 +133,12 @@
             border-left: 3px solid var(--accent);
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        
+
         .mini-hint.hidden {
             visibility: hidden;
             opacity: 0;
         }
-        
+
         label {
             display: block;
             font-weight: 500;
@@ -146,7 +147,7 @@
             font-size: 0.9rem;
             letter-spacing: 0.2px;
         }
-        
+
         input[type="number"] {
             width: 100%;
             padding: 16px 20px;
@@ -159,21 +160,21 @@
             background: rgba(255, 255, 255, 0.75);
             color: var(--text-primary);
         }
-        
+
         input[type="number"]:focus {
             border-color: var(--primary-light);
             box-shadow: 0 0 0 4px rgba(74, 122, 42, 0.15);
             background: rgba(255, 255, 255, 0.95);
         }
-        
+
         input[type="number"]:hover {
             border-color: var(--secondary);
         }
-        
+
         #result {
             margin-top: 28px;
         }
-        
+
         .luck-title {
             font-weight: 700;
             font-size: 1.75rem;
@@ -185,7 +186,7 @@
             text-align: center;
             letter-spacing: -0.5px;
         }
-        
+
         .legend {
             display: flex;
             justify-content: space-between;
@@ -201,24 +202,24 @@
             scrollbar-width: thin;
             scrollbar-color: rgba(200, 200, 200, 0.6) transparent;
         }
-        
+
         .legend::-webkit-scrollbar {
             height: 6px;
         }
-        
+
         .legend::-webkit-scrollbar-track {
             background: transparent;
         }
-        
+
         .legend::-webkit-scrollbar-thumb {
             background: rgba(200, 200, 200, 0.6);
             border-radius: 3px;
         }
-        
+
         .legend::-webkit-scrollbar-thumb:hover {
             background: rgba(180, 180, 180, 0.8);
         }
-        
+
         .legend-item {
             display: flex;
             align-items: center;
@@ -234,12 +235,12 @@
             flex-shrink: 0;
             white-space: nowrap;
         }
-        
+
         .legend-item:hover {
             background: rgba(255, 255, 255, 0.8);
             transform: translateY(-1px);
         }
-        
+
         .legend-color {
             width: 20px;
             height: 20px;
@@ -248,11 +249,11 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             flex-shrink: 0;
         }
-        
+
         .luck-bar-container {
             margin: 24px 0;
         }
-        
+
         .luck-label {
             font-weight: 600;
             margin-bottom: 10px;
@@ -260,19 +261,19 @@
             color: var(--text-primary);
             letter-spacing: 0.2px;
         }
-        
+
         .luck-bar {
             height: 44px;
             background: rgba(232, 232, 232, 0.7);
             border-radius: 12px;
             position: relative;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 4px 16px rgba(0, 0, 0, 0.12),
                 inset 0 2px 4px rgba(0, 0, 0, 0.08);
             backdrop-filter: blur(8px);
         }
-        
+
         .luck-bar-fill {
             height: 100%;
             transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -287,53 +288,57 @@
             overflow: hidden;
             white-space: nowrap;
         }
-        
+
         .luck-bar-fill.small {
             color: var(--text-primary);
             text-shadow: none;
         }
-        
-        .very-lucky { 
+
+        .very-lucky {
             background: var(--very-lucky);
             box-shadow: 0 2px 8px rgba(124, 179, 66, 0.3);
         }
-        .lucky { 
+
+        .lucky {
             background: var(--lucky);
             box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
         }
-        .neutral { 
+
+        .neutral {
             background: var(--neutral);
             box-shadow: 0 2px 8px rgba(160, 168, 176, 0.3);
         }
-        .unlucky { 
+
+        .unlucky {
             background: var(--unlucky);
             box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
         }
-        .very-unlucky { 
+
+        .very-unlucky {
             background: var(--very-unlucky);
             box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
         }
-        
+
         .total-score {
             text-align: center;
             margin-top: 32px;
             padding: 24px;
             border-radius: 16px;
             color: white;
-            box-shadow: 
+            box-shadow:
                 0 8px 24px rgba(45, 80, 22, 0.35),
                 0 4px 12px rgba(45, 80, 22, 0.2);
             backdrop-filter: blur(16px);
             transition: background 0.3s ease;
         }
-        
+
         .total-score strong {
             font-size: 1.5rem;
             display: block;
             margin-bottom: 12px;
             font-weight: 700;
         }
-        
+
         .note {
             font-size: 0.9rem;
             color: var(--text-secondary);
@@ -342,341 +347,7 @@
             font-style: italic;
             font-weight: 400;
         }
-        
-        .settings-button {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            background: var(--surface);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(200, 200, 200, 0.4);
-            border-radius: 50%;
-            width: 52px;
-            height: 52px;
-            cursor: pointer;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-            z-index: 999;
-        }
-        
-        .settings-button:hover {
-            background: rgba(255, 255, 255, 0.95);
-            border-color: var(--primary-light);
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .settings-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .settings-modal.show {
-            display: flex;
-            opacity: 1;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .settings-content {
-            background: var(--surface);
-            backdrop-filter: blur(24px);
-            border-radius: 24px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.3),
-                0 8px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 520px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        
-        .settings-modal.show .settings-content {
-            animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        
-        .settings-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-        
-        .settings-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .settings-close {
-            background: rgba(200, 200, 200, 0.3);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-        }
-        
-        .settings-close:hover {
-            background: rgba(200, 200, 200, 0.5);
-            transform: rotate(90deg) scale(1.1);
-        }
-        
-        .setting-item {
-            margin-bottom: 28px;
-            padding: 20px;
-            background: rgba(245, 247, 250, 0.5);
-            border-radius: 16px;
-            border: 1px solid rgba(200, 200, 200, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .setting-item:hover {
-            background: rgba(245, 247, 250, 0.7);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .setting-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .setting-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .setting-label {
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .setting-icon {
-            font-size: 1.3rem;
-        }
-        
-        .setting-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-        
-        .toggle-switch {
-            position: relative;
-            width: 60px;
-            height: 32px;
-            background: rgba(200, 200, 200, 0.5);
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .toggle-switch:hover {
-            background: rgba(200, 200, 200, 0.6);
-        }
-        
-        .toggle-switch.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.4);
-        }
-        
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            background: white;
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .toggle-switch.active::after {
-            transform: translateX(28px);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .reset-button {
-            width: 100%;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 600;
-            font-family: 'Roboto', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
-        }
-        
-        .reset-button:hover {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        .reset-button:active {
-            transform: translateY(0);
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 12px;
-            }
-            
-            .container {
-                max-width: 100%;
-            }
-            
-            .logo-container {
-                margin-bottom: 1rem;
-            }
-            
-            .app-logo {
-                display: none;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-                margin-top: 1rem;
-            }
-            
-            .subtitle {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .card {
-                padding: 28px;
-                border-radius: 16px;
-            }
-            
-            .input-group {
-                margin-bottom: 16px;
-            }
-            
-            .mini-hint {
-                font-size: 0.75rem;
-                padding: 6px 10px;
-                margin-top: -8px;
-                margin-bottom: 14px;
-            }
-            
-            h3 {
-                font-size: 1.2rem;
-                margin-top: 24px;
-                margin-bottom: 14px;
-            }
-            
-            input[type="number"] {
-                padding: 14px 18px;
-                font-size: 1rem;
-            }
-            
-            .legend {
-                font-size: 0.7rem;
-                padding: 14px 12px;
-                gap: 6px;
-            }
-            
-            .legend-item {
-                font-size: 0.7rem;
-                height: 26px;
-                padding: 3px 8px;
-                letter-spacing: 0.1px;
-            }
-            
-            .legend-color {
-                width: 14px;
-                height: 14px;
-                border-radius: 4px;
-                margin-right: 6px;
-            }
-            
-            .luck-bar {
-                height: 40px;
-            }
-            
-            .luck-bar-fill {
-                font-size: 0.9rem;
-                padding: 0 12px;
-            }
-            
-            .luck-bar-container {
-                margin: 20px 0;
-            }
-            
-            .luck-label {
-                font-size: 0.95rem;
-                margin-bottom: 8px;
-            }
-            
-            .total-score {
-                padding: 20px;
-                margin-top: 28px;
-            }
-            
-            .total-score strong {
-                font-size: 1.35rem;
-                margin-bottom: 10px;
-            }
-            
+
         .settings-button {
             position: fixed;
             top: 24px;
@@ -698,27 +369,644 @@
         }
 
         .settings-button:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--primary-light);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .settings-modal.show {
+            display: flex;
+            opacity: 1;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .settings-content {
+            background: var(--surface);
+            backdrop-filter: blur(24px);
+            border-radius: 24px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+            padding: 32px;
+            max-width: 560px;
+            width: 90%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .settings-body {
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex: 1;
+            padding-right: 8px;
+            margin-right: -8px;
+        }
+
+        .settings-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .settings-body::-webkit-scrollbar-track {
+            background: rgba(200, 200, 200, 0.2);
+            border-radius: 3px;
+        }
+
+        .settings-body::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 3px;
+        }
+
+        .settings-section {
+            margin-bottom: 24px;
+        }
+
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(200, 200, 200, 0.3);
+        }
+
+        .settings-section-icon {
+            font-size: 1.4rem;
+        }
+
+        .settings-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+
+        .settings-modal.show .settings-content {
+            animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .settings-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .settings-close {
+            background: rgba(200, 200, 200, 0.3);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .settings-close:hover {
+            background: rgba(200, 200, 200, 0.5);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .setting-item {
+            margin-bottom: 28px;
+            padding: 20px;
+            background: rgba(245, 247, 250, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(200, 200, 200, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .setting-item:hover {
+            background: rgba(245, 247, 250, 0.7);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .setting-label {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .setting-icon {
+            font-size: 1.3rem;
+        }
+
+        .setting-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            background: rgba(200, 200, 200, 0.5);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle-switch:hover {
+            background: rgba(200, 200, 200, 0.6);
+        }
+
+        .toggle-switch.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.4);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(28px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .reset-button {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .reset-button:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .reset-button:active {
+            transform: translateY(0);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(200, 200, 200, 0.1);
+            border-radius: 10px;
+        }
+
+        .volume-control label {
+            flex-shrink: 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .volume-control input[type="range"] {
+            flex: 1;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(200, 200, 200, 0.5);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .volume-control input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.4);
+        }
+
+        .language-toggle {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .lang-btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            border-radius: 12px;
+            background: var(--surface);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--secondary);
+            background: rgba(26, 95, 42, 0.05);
+        }
+
+        .lang-btn.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .hotkey-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .hotkey-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(200, 200, 200, 0.1);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .hotkey-item:hover {
+            background: rgba(200, 200, 200, 0.15);
+        }
+
+        .hotkey-item label {
+            flex-shrink: 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            min-width: 140px;
+        }
+
+        .hotkey-item input[type="text"] {
+            flex: 1;
+            padding: 10px 14px;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-family: 'Roboto Mono', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            user-select: none;
+        }
+
+        .hotkey-item input[type="text"]:hover {
+            background: rgba(200, 200, 200, 0.1);
+        }
+
+        .hotkey-item input[type="text"]:focus,
+        .hotkey-item input[type="text"].recording {
+            background: var(--primary);
+            color: white;
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        .hotkey-item input[type="text"].recording {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .status-badge {
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.running {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+        }
+
+        .status-badge.paused {
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+            color: white;
+        }
+
+        .status-badge.completed {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .status-badge.cancelled {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            background: white;
+            border: 2px solid rgba(200, 200, 200, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-select:hover {
+            border-color: rgba(200, 200, 200, 0.5);
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: white;
+            border: 2px solid rgba(200, 200, 200, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-input:hover {
+            border-color: rgba(200, 200, 200, 0.5);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+
+            .app-logo {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-top: 1rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .card {
+                padding: 28px;
+                border-radius: 16px;
+            }
+
+            .input-group {
+                margin-bottom: 16px;
+            }
+
+            .mini-hint {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+                margin-top: -8px;
+                margin-bottom: 14px;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                margin-top: 24px;
+                margin-bottom: 14px;
+            }
+
+            input[type="number"] {
+                padding: 14px 18px;
+                font-size: 1rem;
+            }
+
+            .legend {
+                font-size: 0.7rem;
+                padding: 14px 12px;
+                gap: 6px;
+            }
+
+            .legend-item {
+                font-size: 0.7rem;
+                height: 26px;
+                padding: 3px 8px;
+                letter-spacing: 0.1px;
+            }
+
+            .legend-color {
+                width: 14px;
+                height: 14px;
+                border-radius: 4px;
+                margin-right: 6px;
+            }
+
+            .luck-bar {
+                height: 40px;
+            }
+
+            .luck-bar-fill {
+                font-size: 0.9rem;
+                padding: 0 12px;
+            }
+
+            .luck-bar-container {
+                margin: 20px 0;
+            }
+
+            .luck-label {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+
+            .total-score {
+                padding: 20px;
+                margin-top: 28px;
+            }
+
+            .total-score strong {
+                font-size: 1.35rem;
+                margin-bottom: 10px;
+            }
+
+            .settings-button {
+                position: fixed;
+                top: 24px;
+                right: 24px;
+                background: var(--surface);
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(200, 200, 200, 0.4);
+                border-radius: 50%;
+                width: 52px;
+                height: 52px;
+                cursor: pointer;
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+                z-index: 999;
+            }
+
+            .settings-button:hover {
                 top: 16px;
                 right: 16px;
                 width: 48px;
                 height: 48px;
                 font-size: 1.2rem;
             }
-            
+
             .settings-content {
                 padding: 28px;
                 max-width: 95%;
             }
-            
+
             .settings-title {
                 font-size: 1.5rem;
             }
-            
+
             .setting-item {
                 padding: 16px;
                 margin-bottom: 20px;
             }
-            
+
             .setting-label {
                 font-size: 1rem;
             }
@@ -797,9 +1085,17 @@
             transform: translateX(0);
         }
 
-        .toast-success { border-color: var(--very-lucky); }
-        .toast-error { border-color: var(--very-unlucky); }
-        .toast-info { border-color: var(--lucky); }
+        .toast-success {
+            border-color: var(--very-lucky);
+        }
+
+        .toast-error {
+            border-color: var(--very-unlucky);
+        }
+
+        .toast-info {
+            border-color: var(--lucky);
+        }
 
         .tooltip {
             position: absolute;
@@ -955,7 +1251,7 @@
         }
 
         .account-tab:hover {
-            background: rgba(255,255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9);
             border-color: var(--secondary);
             transform: translateY(-2px);
         }
@@ -1052,6 +1348,17 @@
 
         .action-button.secondary {
             background: rgba(200, 200, 200, 0.8);
+        }
+
+        .action-button.active {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateY(1px);
+        }
+
+        .action-button.active:hover {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .account-list {
@@ -1258,17 +1565,17 @@
             .chart-container {
                 height: 300px;
                 padding: 16px;
-                }
             }
+        }
 
-            .account-tabs {
-                gap: 8px;
-            }
+        .account-tabs {
+            gap: 8px;
+        }
 
-            .account-tab {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
+        .account-tab {
+            padding: 8px 16px;
+            font-size: 0.8rem;
+        }
         }
 
         .nav-tabs {
@@ -1311,7 +1618,8 @@
             display: block;
         }
 
-        .account-tabs, .grind-tabs {
+        .account-tabs,
+        .grind-tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 24px;
@@ -1319,7 +1627,8 @@
             padding-bottom: 12px;
         }
 
-        .account-tab, .grind-tab {
+        .account-tab,
+        .grind-tab {
             padding: 10px 18px;
             background: rgba(255, 255, 255, 0.6);
             border: 2px solid rgba(200, 200, 200, 0.3);
@@ -1331,30 +1640,41 @@
             color: var(--text-primary);
         }
 
-        .account-tab:hover, .grind-tab:hover {
+        .account-tab:hover,
+        .grind-tab:hover {
             background: rgba(255, 255, 255, 0.8);
             border-color: var(--secondary);
         }
 
-        .account-tab.active, .grind-tab.active {
+        .account-tab.active,
+        .grind-tab.active {
             background: var(--primary-light);
             color: white;
             border-color: var(--primary);
             box-shadow: 0 2px 8px rgba(45, 143, 66, 0.3);
         }
 
-        .subtab-content, .grind-subtab-content {
+        .subtab-content,
+        .grind-subtab-content {
             display: none;
         }
 
-        .subtab-content.active, .grind-subtab-content.active {
+        .subtab-content.active,
+        .grind-subtab-content.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .grind-tips-section {
@@ -1386,7 +1706,7 @@
         }
 
         .tip-toggle:hover {
-            background: rgba(255,255,255, 0.9);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .tip-icon {
@@ -1475,6 +1795,67 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-bottom: 16px;
+        }
+
+        /* New Timer UI Styles */
+        .session-start-container {
+            margin-bottom: 20px;
+        }
+
+        .session-start-container .start-session-btn {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 15px rgba(26, 95, 42, 0.3);
+        }
+
+        .session-start-container .start-session-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 95, 42, 0.4);
+        }
+
+        .session-controls-active {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .session-controls-row {
+            display: grid;
+            gap: 12px;
+        }
+
+        .session-controls-row.primary-row {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .session-controls-row.secondary-row {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .session-controls-active .kill-btn {
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .session-controls-active .action-button.kill-btn:not(.secondary) {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        }
+
+        .session-controls-active .action-button.secondary.kill-btn {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+
+        .session-controls-active .action-button.danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .session-controls-active .action-button.danger:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
         }
 
         .session-info {
@@ -1598,7 +1979,54 @@
             min-width: auto;
         }
 
+        .grind-session-group {
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .grind-session-group-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: linear-gradient(135deg, rgba(26, 95, 42, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
+            transition: background 0.2s;
+        }
+
+        .grind-session-group-header:hover {
+            background: linear-gradient(135deg, rgba(26, 95, 42, 0.15) 0%, rgba(34, 197, 94, 0.15) 100%);
+        }
+
+        .grind-session-group-header .toggle-icon {
+            font-size: 0.8rem;
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+
+        .grind-session-group-details {
+            border-top: 1px solid rgba(200, 200, 200, 0.3);
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .grind-session-item.nested {
+            background: var(--surface);
+            border: 1px solid rgba(200, 200, 200, 0.3);
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        .grind-session-item.nested:last-child {
+            margin-bottom: 0;
+        }
+
         @media (max-width: 768px) {
+
             .session-display,
             .session-controls,
             .result-grid {
@@ -1618,78 +2046,195 @@
                 flex: 1;
             }
         }
-
     </style>
 </head>
+
 <body>
     <button class="settings-button" onclick="SettingsManager.open()">⚙️</button>
     <div class="toast-container" id="toastContainer"></div>
     <div id="tooltip" class="tooltip"></div>
-    
+
     <div class="settings-modal" id="settingsModal">
         <div class="settings-content">
             <div class="settings-header">
-                <h2 class="settings-title">Einstellungen</h2>
+                <h2 class="settings-title">⚙️ Einstellungen</h2>
                 <button class="settings-close" onclick="SettingsManager.close()">✕</button>
             </div>
-            
-            <div class="setting-item">
-                <div class="setting-header">
-                    <span class="setting-label">
-                        <span class="setting-icon">✨</span>
-                        Animationen
-                    </span>
-                    <div class="toggle-switch active" id="animToggle" onclick="SettingsManager.toggleAnimation()"></div>
+
+            <div class="settings-body">
+                <!-- Section: Darstellung -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="settings-section-icon">🎨</span>
+                        <span class="settings-section-title">Darstellung</span>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">✨</span>
+                                Animationen
+                            </span>
+                            <div class="toggle-switch active" id="animToggle"
+                                onclick="SettingsManager.toggleAnimation()"></div>
+                        </div>
+                        <p class="setting-description">
+                            Balken-Animationen und Übergänge aktivieren.
+                        </p>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">💫</span>
+                                Ripple-Effekte
+                            </span>
+                            <div class="toggle-switch active" id="rippleToggle"
+                                onclick="SettingsManager.toggleRipple()"></div>
+                        </div>
+                        <p class="setting-description">
+                            Welleneffekte beim Klicken auf Buttons.
+                        </p>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">🌙</span>
+                                Dunkles Design
+                            </span>
+                            <div class="toggle-switch" id="darkToggle" onclick="SettingsManager.toggleDarkMode()"></div>
+                        </div>
+                        <p class="setting-description">
+                            Augenfreundliche dunkle Farben aktivieren.
+                        </p>
+                    </div>
                 </div>
-                <p class="setting-description">
-                    Aktiviert oder deaktiviert alle Animationen in der App, einschließlich Balken-Animationen und Übergängen.
-                </p>
-            </div>
-            
-            <div class="setting-item">
-                <div class="setting-header">
-                    <span class="setting-label">
-                        <span class="setting-icon">💫</span>
-                        Ripple-Effekte
-                    </span>
-                    <div class="toggle-switch active" id="rippleToggle" onclick="SettingsManager.toggleRipple()"></div>
+
+                <!-- Section: Grind Helper -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="settings-section-icon">🎮</span>
+                        <span class="settings-section-title">Grind Helper</span>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">📌</span>
+                                Overlay-Modus
+                            </span>
+                            <div class="toggle-switch" id="overlayToggle" onclick="SettingsManager.toggleOverlayMode()">
+                            </div>
+                        </div>
+                        <p class="setting-description">
+                            HunterDash immer im Vordergrund (always on top).
+                        </p>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">🔊</span>
+                                Audio-Feedback
+                            </span>
+                            <div class="toggle-switch active" id="audioToggle"
+                                onclick="SettingsManager.toggleAudioFeedback()"></div>
+                        </div>
+                        <p class="setting-description">
+                            Ton abspielen bei Kill-Hotkeys.
+                        </p>
+                        <div class="volume-control" id="volumeControl">
+                            <label>🔈</label>
+                            <input type="range" min="0" max="1" step="0.1" value="0.5"
+                                onchange="SettingsManager.setAudioVolume(this.value)">
+                            <label>🔊</label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">🌍</span>
+                                Tier-Sprache
+                            </span>
+                        </div>
+                        <p class="setting-description">
+                            Sprache für Great Ones Tiernamen im Session-Timer.
+                        </p>
+                        <div class="language-toggle">
+                            <button class="lang-btn active" id="langDe"
+                                onclick="SettingsManager.setAnimalLanguage('de')">
+                                🇩🇪 Deutsch
+                            </button>
+                            <button class="lang-btn" id="langEn" onclick="SettingsManager.setAnimalLanguage('en')">
+                                🇬🇧 English
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">⌨️</span>
+                                Session Hotkeys
+                            </span>
+                        </div>
+                        <p class="setting-description">
+                            Globale Hotkeys für Session-Steuerung (funktionieren auch wenn minimiert).
+                        </p>
+                        <div class="hotkey-list">
+                            <div class="hotkey-item">
+                                <label>+1 Kill:</label>
+                                <input type="text" id="hotkey-addKill" readonly
+                                    onclick="SettingsManager.recordHotkey('addKill')" value="F7">
+                            </div>
+                            <div class="hotkey-item">
+                                <label>-1 Kill:</label>
+                                <input type="text" id="hotkey-removeKill" readonly
+                                    onclick="SettingsManager.recordHotkey('removeKill')" value="F8">
+                            </div>
+                            <div class="hotkey-item">
+                                <label>Pause/Fortfahren:</label>
+                                <input type="text" id="hotkey-togglePause" readonly
+                                    onclick="SettingsManager.recordHotkey('togglePause')" value="F9">
+                            </div>
+                            <div class="hotkey-item">
+                                <label>Session beenden:</label>
+                                <input type="text" id="hotkey-endSession" readonly
+                                    onclick="SettingsManager.recordHotkey('endSession')" value="F10">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="setting-description">
-                    Zeigt Welleneffekte beim Klicken auf Buttons und interaktive Elemente.
-                </p>
-            </div>
-            
-            <div class="setting-item">
-                <div class="setting-header">
-                    <span class="setting-label">
-                        <span class="setting-icon">🌙</span>
-                        Dunkles Design
-                    </span>
-                    <div class="toggle-switch" id="darkToggle" onclick="SettingsManager.toggleDarkMode()"></div>
+
+                <!-- Section: Daten -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="settings-section-icon">🗃️</span>
+                        <span class="settings-section-title">Daten</span>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
+                                <span class="setting-icon">🔄</span>
+                                Standardwerte zurücksetzen
+                            </span>
+                        </div>
+                        <p class="setting-description">
+                            Setzt alle Eingabefelder auf die ursprünglichen Werte zurück.
+                        </p>
+                        <button class="reset-button" onclick="resetAllDefaults()">
+                            <span>🔄</span>
+                            Zurücksetzen
+                        </button>
+                    </div>
                 </div>
-                <p class="setting-description">
-                    Wechselt zwischen hellen und dunklen Farben für mehr Komfort bei verschiedenen Lichtverhältnissen.
-                </p>
-            </div>
-            
-            <div class="setting-item">
-                <div class="setting-header">
-                    <span class="setting-label">
-                        <span class="setting-icon">🔄</span>
-                        Standardwerte zurücksetzen
-                    </span>
-                </div>
-                <p class="setting-description">
-                    Setzt alle Eingabefelder auf die ursprünglichen Standardwerte zurück.
-                </p>
-                <button class="reset-button" onclick="Calculator.resetDefaults()">
-                    <span>🔄</span>
-                    Zurücksetzen
-                </button>
             </div>
         </div>
     </div>
-    
+
     <div class="container">
         <div class="logo-container">
             <img src="assets/icons/HunterDash.png" alt="HunterDash Logo" class="app-logo">
@@ -1698,99 +2243,107 @@
         <p class="subtitle">Berechne dein Glück basierend auf dataminierten Werten aus COTW 2025/2026</p>
 
         <nav class="nav-tabs">
-            <button class="nav-tab active" onclick="NavigationManager.switchTab('calculator')" data-tab="calculator">🧮 Berechner</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('grind')" data-tab="grind">🔧 Grind Helper</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('history')" data-tab="history">📜 Historie</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋 Templates</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('accounts')" data-tab="accounts">👤 Accounts</button>
+            <button class="nav-tab active" onclick="NavigationManager.switchTab('calculator')" data-tab="calculator">🧮
+                Berechner</button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('grind')" data-tab="grind">🔧 Grind
+                Helper</button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('history')" data-tab="history">📜
+                Historie</button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋
+                Templates</button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('accounts')" data-tab="accounts">👤
+                Accounts</button>
         </nav>
 
         <div id="tab-calculator" class="tab-content active">
             <form id="form" class="card">
-            <div class="input-group">
-                <label for="n">Total Harvests:</label>
-                <p class="mini-hint" id="hint-text">
-                    n = Total Harvests (alle verwerteten Tiere Account-weit)<br>
-                    Aus Spiel: Career > Statistics > Total Harvests
-                </p>
-                <input type="number" id="n" value="15000" min="1" required>
-            </div>
-            
-            <h3>🔥 Rares (Albino/Piebald/Melanistic)</h3>
-            <div class="input-group">
-                <label for="k_rare">Deine Rare Harvests:</label>
-                <input type="number" id="k_rare" value="45" min="0" required>
-            </div>
-            <div class="input-group">
-                <label for="p_rare">p (Avg: 0.003 / 1:333):</label>
-                <div class="p-input-group">
-                    <input type="range" id="p_rare_slider" min="0" max="0.01" step="0.0001" value="0.003">
-                    <input type="number" id="p_rare" value="0.003" step="0.0001" min="0" max="1" required>
-                    <div class="p-preset-dropdown">
-                        <button class="preset-button" onclick="TemplateManager.showPresets('rare')">📋</button>
-                        <ul class="preset-list" id="presets_rare"></ul>
+                <div class="input-group">
+                    <label for="n">Total Harvests:</label>
+                    <p class="mini-hint" id="hint-text">
+                        n = Total Harvests (alle verwerteten Tiere Account-weit)<br>
+                        Aus Spiel: Career > Statistics > Total Harvests
+                    </p>
+                    <input type="number" id="n" value="15000" min="1" required>
+                </div>
+
+                <h3>🔥 Rares (Albino/Piebald/Melanistic)</h3>
+                <div class="input-group">
+                    <label for="k_rare">Deine Rare Harvests:</label>
+                    <input type="number" id="k_rare" value="45" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label for="p_rare">p (Avg: 0.003 / 1:333):</label>
+                    <div class="p-input-group">
+                        <input type="range" id="p_rare_slider" min="0" max="0.01" step="0.0001" value="0.003">
+                        <input type="number" id="p_rare" value="0.003" step="0.0001" min="0" max="1" required>
+                        <div class="p-preset-dropdown">
+                            <button class="preset-button" onclick="TemplateManager?.showPresets?.('rare')">📋</button>
+                            <ul class="preset-list" id="presets_rare"></ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <h3>💎 Diamonds (Top Rating)</h3>
-            <div class="input-group">
-                <label for="k_diamond">Deine Diamonds:</label>
-                <input type="number" id="k_diamond" value="150" min="0" required>
-            </div>
-            <div class="input-group">
-                <label for="p_diamond">p (Avg: 0.01 / 1:100):</label>
-                <div class="p-input-group">
-                    <input type="range" id="p_diamond_slider" min="0" max="0.05" step="0.0001" value="0.01">
-                    <input type="number" id="p_diamond" value="0.01" step="0.0001" min="0" max="1" required>
-                    <div class="p-preset-dropdown">
-                        <button class="preset-button" onclick="TemplateManager.showPresets('diamond')">📋</button>
-                        <ul class="preset-list" id="presets_diamond"></ul>
+                <h3>💎 Diamonds (Top Rating)</h3>
+                <div class="input-group">
+                    <label for="k_diamond">Deine Diamonds:</label>
+                    <input type="number" id="k_diamond" value="150" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label for="p_diamond">p (Avg: 0.01 / 1:100):</label>
+                    <div class="p-input-group">
+                        <input type="range" id="p_diamond_slider" min="0" max="0.05" step="0.0001" value="0.01">
+                        <input type="number" id="p_diamond" value="0.01" step="0.0001" min="0" max="1" required>
+                        <div class="p-preset-dropdown">
+                            <button class="preset-button"
+                                onclick="TemplateManager?.showPresets?.('diamond')">📋</button>
+                            <ul class="preset-list" id="presets_diamond"></ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <h3>⭐ Super Rares (Rare Fur + Diamond)</h3>
-            <div class="input-group">
-                <label for="k_super">Deine Super Rares:</label>
-                <input type="number" id="k_super" value="1" min="0" required>
-            </div>
-            <div class="input-group">
-                <label for="p_super">p (Avg: 0.00003 / 1:33.000):</label>
-                <div class="p-input-group">
-                    <input type="range" id="p_super_slider" min="0" max="0.0001" step="0.000001" value="0.00003">
-                    <input type="number" id="p_super" value="0.00003" step="0.000001" min="0" max="1" required>
-                    <div class="p-preset-dropdown">
-                        <button class="preset-button" onclick="TemplateManager.showPresets('super')">📋</button>
-                        <ul class="preset-list" id="presets_super"></ul>
+                <h3>⭐ Super Rares (Rare Fur + Diamond)</h3>
+                <div class="input-group">
+                    <label for="k_super">Deine Super Rares:</label>
+                    <input type="number" id="k_super" value="1" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label for="p_super">p (Avg: 0.00003 / 1:33.000):</label>
+                    <div class="p-input-group">
+                        <input type="range" id="p_super_slider" min="0" max="0.0001" step="0.000001" value="0.00003">
+                        <input type="number" id="p_super" value="0.00003" step="0.000001" min="0" max="1" required>
+                        <div class="p-preset-dropdown">
+                            <button class="preset-button" onclick="TemplateManager?.showPresets?.('super')">📋</button>
+                            <ul class="preset-list" id="presets_super"></ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <h3>👑 Great Ones (Top 0.05% Größe)</h3>
-            <div class="input-group">
-                <label for="k_go">Deine Great Ones:</label>
-                <input type="number" id="k_go" value="1" min="0" required>
-            </div>
-            <div class="input-group">
-                <label for="p_go">p (Avg: 0.00005 / 1:20.000):</label>
-                <div class="p-input-group">
-                    <input type="range" id="p_go_slider" min="0" max="0.0001" step="0.000001" value="0.00005">
-                    <input type="number" id="p_go" value="0.00005" step="0.000001" min="0" max="1" required>
-                    <div class="p-preset-dropdown">
-                        <button class="preset-button" onclick="TemplateManager.showPresets('go')">📋</button>
-                        <ul class="preset-list" id="presets_go"></ul>
+
+                <h3>👑 Great Ones (Top 0.05% Größe)</h3>
+                <div class="input-group">
+                    <label for="k_go">Deine Great Ones:</label>
+                    <input type="number" id="k_go" value="1" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label for="p_go">p (Avg: 0.00005 / 1:20.000):</label>
+                    <div class="p-input-group">
+                        <input type="range" id="p_go_slider" min="0" max="0.0001" step="0.000001" value="0.00005">
+                        <input type="number" id="p_go" value="0.00005" step="0.000001" min="0" max="1" required>
+                        <div class="p-preset-dropdown">
+                            <button class="preset-button" onclick="TemplateManager?.showPresets?.('go')">📋</button>
+                            <ul class="preset-list" id="presets_go"></ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="action-buttons">
-                <button type="button" class="action-button secondary" onclick="UndoRedoManager.undo()">↩️ Undo</button>
-                <button type="button" class="action-button secondary" onclick="UndoRedoManager.redo()">↪️ Redo</button>
-            </div>
-        </form>
+                <div class="action-buttons">
+                    <button type="button" class="action-button secondary" onclick="UndoRedoManager?.undo?.()">↩️
+                        Undo</button>
+                    <button type="button" class="action-button secondary" onclick="UndoRedoManager?.redo?.()">↪️
+                        Redo</button>
+                </div>
+            </form>
 
-        <div id="result"></div>
+            <div id="result"></div>
         </div>
 
         <div id="tab-templates" class="tab-content">
@@ -1807,7 +2360,8 @@
                 <div class="action-buttons">
                     <button class="action-button" onclick="HistoryManager.exportCSV()">📄 CSV Export</button>
                     <button class="action-button" onclick="HistoryManager.exportJSON()">📦 JSON Export</button>
-                    <button class="action-button secondary" onclick="HistoryManager.clearHistory()">🗑️ Historie löschen</button>
+                    <button class="action-button secondary" onclick="HistoryManager.clearHistory()">🗑️ Historie
+                        löschen</button>
                 </div>
                 <div class="history-list" id="historyList"></div>
             </div>
@@ -1815,7 +2369,8 @@
 
         <div id="tab-accounts" class="tab-content">
             <nav class="account-tabs">
-                <button class="account-tab active" onclick="AccountManager.switchSubTab('statistics')" data-subtab="statistics">
+                <button class="account-tab active" onclick="AccountManager.switchSubTab('statistics')"
+                    data-subtab="statistics">
                     📊 Statistiken
                 </button>
                 <button class="account-tab" onclick="AccountManager.switchSubTab('compare')" data-subtab="compare">
@@ -1834,11 +2389,19 @@
                     <h2>📊 Statistiken</h2>
                     <p class="note">Analysiere deinen Glück-Verlauf über die Zeit.</p>
 
-                    <div class="action-buttons">
-                        <button class="action-button" onclick="StatisticsManager.loadStatistics('week')">📅 Woche</button>
-                        <button class="action-button" onclick="StatisticsManager.loadStatistics('month')">📆 Monat</button>
-                        <button class="action-button" onclick="StatisticsManager.loadStatistics('quarter')">📋 Quartal</button>
-                        <button class="action-button secondary" onclick="StatisticsManager.loadStatistics('all')">📊 Alle</button>
+                    <div class="action-buttons" id="stats-period-buttons">
+                        <button class="action-button" data-period="week"
+                            onclick="StatisticsManager.loadStatistics('week')">📅
+                            Woche</button>
+                        <button class="action-button" data-period="month"
+                            onclick="StatisticsManager.loadStatistics('month')">📆
+                            Monat</button>
+                        <button class="action-button" data-period="quarter"
+                            onclick="StatisticsManager.loadStatistics('quarter')">📋
+                            Quartal</button>
+                        <button class="action-button active" data-period="all"
+                            onclick="StatisticsManager.loadStatistics('all')">📊
+                            Alle</button>
                     </div>
 
                     <div class="stat-grid" id="statGrid"></div>
@@ -1928,6 +2491,31 @@
                 <div class="card">
                     <h2>⏱️ Session-Timer & Kill-Counter</h2>
                     <p class="note">Verfolge deine Grind-Sessions für bessere Statistiken.</p>
+
+                    <div class="input-group">
+                        <label for="session-template">Session-Template:</label>
+                        <select id="session-template" class="form-select">
+                            <option value="">-- Kein Template --</option>
+                            <option value="go-tier">🏆 GO [Tier]</option>
+                            <option value="general">🎯 General Grind</option>
+                            <option value="practice">🎮 Practice</option>
+                            <option value="speedrun">⚡ Speedrun</option>
+                            <option value="custom">✏️ Eigene Templates...</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group" id="animal-select-group" style="display: none;">
+                        <label for="session-animal">Tier:</label>
+                        <select id="session-animal" class="form-select"></select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="session-name">Session-Name:</label>
+                        <input type="text" id="session-name" class="form-input" placeholder="z.B. GO Wolf"
+                            maxlength="50">
+                        <span class="mini-hint" id="session-name-hint"></span>
+                    </div>
+
                     <div class="session-display">
                         <div class="session-metric">
                             <span class="metric-label">Dauer</span>
@@ -1942,17 +2530,38 @@
                             <span class="metric-value" id="session-kph">0.0</span>
                         </div>
                     </div>
-                    <div class="session-controls">
-                        <button class="action-button" id="btn-start-session" onclick="GrindManager.startSession()">
+
+                    <!-- Start Button (nur sichtbar wenn keine Session läuft) -->
+                    <div class="session-start-container" id="session-start-container">
+                        <button class="action-button start-session-btn" id="btn-start-session"
+                            onclick="GrindManager.startSession()">
                             ▶️ Session starten
                         </button>
-                        <button class="action-button secondary" id="btn-add-kill" onclick="GrindManager.addKill()" disabled>
-                            💀 Kill hinzufügen (+1)
-                        </button>
-                        <button class="action-button secondary" id="btn-end-session" onclick="GrindManager.endSession()" disabled>
-                            ⏹️ Session beenden
-                        </button>
                     </div>
+
+                    <!-- Session Controls (nur sichtbar wenn Session läuft) -->
+                    <div class="session-controls-active" id="session-controls-active" style="display: none;">
+                        <div class="session-controls-row primary-row">
+                            <button class="action-button kill-btn" id="btn-add-kill" onclick="GrindManager.addKill()">
+                                💀 +1 Kill
+                            </button>
+                            <button class="action-button secondary kill-btn" id="btn-remove-kill"
+                                onclick="GrindManager.removeKill()">
+                                ↩️ -1 Kill
+                            </button>
+                        </div>
+                        <div class="session-controls-row secondary-row">
+                            <button class="action-button secondary" id="btn-pause-session"
+                                onclick="GrindManager.togglePause()">
+                                ⏸️ Pause
+                            </button>
+                            <button class="action-button secondary danger" id="btn-end-session"
+                                onclick="GrindManager.endSession()">
+                                ⏹️ Beenden
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="session-info" id="session-info" style="display: none;">
                         <p class="note">
                             <strong>🎯 Letzte Session:</strong> <span id="last-session">-</span>
@@ -2018,8 +2627,10 @@
                             <canvas id="simulation-chart"></canvas>
                         </div>
                         <p class="note">
-                            <strong>⚠️ Hinweis:</strong> Diese Simulation basiert auf Poisson-Statistik und ist eine statistische Annäherung.
-                            RND-Zufallsgeneratoren in Spielen sind nicht perfekt zufällig. Nutze dies als groben Richtwert, nicht als Garantie!
+                            <strong>⚠️ Hinweis:</strong> Diese Simulation basiert auf Poisson-Statistik und ist eine
+                            statistische Annäherung.
+                            RND-Zufallsgeneratoren in Spielen sind nicht perfekt zufällig. Nutze dies als groben
+                            Richtwert, nicht als Garantie!
                         </p>
                     </div>
                 </div>
@@ -2030,8 +2641,10 @@
                     <h2>📊 Grind-Sessions</h2>
                     <p class="note">Verwalte deine vergangenen Grind-Sessions.</p>
                     <div class="action-buttons">
-                        <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ Sessions löschen</button>
-                        <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 Export CSV</button>
+                        <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ Sessions
+                            löschen</button>
+                        <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 Export
+                            CSV</button>
                     </div>
                     <div class="grind-sessions-list" id="grindSessionsList"></div>
                 </div>
@@ -2047,7 +2660,16 @@
             settings: {
                 animations: true,
                 ripple: true,
-                darkMode: false
+                darkMode: false,
+                overlayMode: false,
+                audioFeedback: true,
+                audioVolume: 0.5,
+                sessionHotkeys: {
+                    addKill: 'F7',
+                    removeKill: 'F8',
+                    togglePause: 'F9',
+                    endSession: 'F10'
+                }
             },
 
             open() {
@@ -2090,29 +2712,241 @@
                 }
             },
 
-            save() {
+            async save() {
+                // Speichere NUR lokale Settings (ohne Hotkeys - die werden separat via updateHotkeys gespeichert)
                 localStorage.setItem('cotw-calculator-settings', JSON.stringify(this.settings));
             },
 
-            load() {
+            async load() {
                 const saved = localStorage.getItem('cotw-calculator-settings');
                 if (saved) {
                     this.settings = JSON.parse(saved);
-                    
-                    const animToggle = document.getElementById('animToggle');
-                    const rippleToggle = document.getElementById('rippleToggle');
-                    const darkToggle = document.getElementById('darkToggle');
-
-                    if (animToggle) animToggle.classList.toggle('active', this.settings.animations);
-                    if (rippleToggle) rippleToggle.classList.toggle('active', this.settings.ripple);
-                    if (darkToggle) darkToggle.classList.toggle('active', this.settings.darkMode);
-
-                    this.applyDarkMode();
                 }
+
+                // Initialisiere sessionHotkeys mit Defaults
+                if (!this.settings.sessionHotkeys) {
+                    this.settings.sessionHotkeys = {
+                        addKill: 'F7',
+                        removeKill: 'F8',
+                        togglePause: 'F9',
+                        endSession: 'F10'
+                    };
+                }
+
+                // Lade individuelle Hotkeys aus localStorage (haben Priorität)
+                const hotkeyIds = ['addKill', 'removeKill', 'togglePause', 'endSession'];
+                hotkeyIds.forEach(id => {
+                    const stored = localStorage.getItem(`hotkey-${id}`);
+                    if (stored) {
+                        this.settings.sessionHotkeys[id] = stored;
+                        console.log(`Loaded hotkey ${id} from localStorage:`, stored);
+                    }
+                });
+
+                // GrindService als Fallback (wenn kein lokaler Wert existiert)
+                if (window.electronAPI && window.electronAPI.grind) {
+                    try {
+                        const grindSettings = await window.electronAPI.grind.getSettings();
+                        if (grindSettings.success && grindSettings.data?.sessionHotkeys) {
+                            hotkeyIds.forEach(id => {
+                                // Nur übernehmen wenn KEIN lokaler Wert existiert
+                                if (!localStorage.getItem(`hotkey-${id}`) && grindSettings.data.sessionHotkeys[id]) {
+                                    this.settings.sessionHotkeys[id] = grindSettings.data.sessionHotkeys[id];
+                                }
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Fehler beim Laden der Hotkeys aus GrindService:', error);
+                    }
+                }
+
+                console.log('Final sessionHotkeys:', JSON.stringify(this.settings.sessionHotkeys));
+
+                const animToggle = document.getElementById('animToggle');
+                const rippleToggle = document.getElementById('rippleToggle');
+                const darkToggle = document.getElementById('darkToggle');
+                const overlayToggle = document.getElementById('overlayToggle');
+                const audioToggle = document.getElementById('audioToggle');
+
+                if (animToggle) animToggle.classList.toggle('active', this.settings.animations);
+                if (rippleToggle) rippleToggle.classList.toggle('active', this.settings.ripple);
+                if (darkToggle) darkToggle.classList.toggle('active', this.settings.darkMode);
+                if (overlayToggle) overlayToggle.classList.toggle('active', this.settings.overlayMode);
+                if (audioToggle) audioToggle.classList.toggle('active', this.settings.audioFeedback);
+
+                const volumeControl = document.getElementById('volumeControl');
+                if (volumeControl) {
+                    const volumeInput = volumeControl.querySelector('input');
+                    if (volumeInput) {
+                        volumeInput.value = this.settings.audioVolume || 0.5;
+                    }
+                }
+
+                this.applyDarkMode();
+                this.updateHotkeyInputs();
+            },
+
+            toggleOverlayMode() {
+                this.settings.overlayMode = !this.settings.overlayMode;
+                document.getElementById('overlayToggle').classList.toggle('active');
+
+                if (window.electronAPI && window.electronAPI.setAlwaysOnTop) {
+                    window.electronAPI.setAlwaysOnTop(this.settings.overlayMode);
+                }
+
+                this.save();
+            },
+
+            toggleAudioFeedback() {
+                this.settings.audioFeedback = !this.settings.audioFeedback;
+                document.getElementById('audioToggle').classList.toggle('active');
+                this.save();
+            },
+
+            setAudioVolume(volume) {
+                this.settings.audioVolume = parseFloat(volume);
+                this.save();
+            },
+
+            recordHotkey(hotkeyId) {
+                const input = document.getElementById(`hotkey-${hotkeyId}`);
+                if (!input) return;
+
+                input.value = 'Drücke eine Taste...';
+                input.classList.add('recording');
+                input.disabled = true;
+
+                const handleKeyDown = async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Ignoriere reine Modifier-Tasten
+                    if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) {
+                        console.log('Modifier-Taste ignoriert:', e.key);
+                        return;
+                    }
+
+                    const hotkeyString = this.formatHotkey(e);
+                    console.log('=== HOTKEY CHANGE ===');
+                    console.log('hotkeyId:', hotkeyId, '| new value:', hotkeyString);
+
+                    input.value = hotkeyString;
+                    input.classList.remove('recording');
+                    input.disabled = false;
+
+                    // Direkt in localStorage mit eigenem Key speichern (isoliert)
+                    localStorage.setItem(`hotkey-${hotkeyId}`, hotkeyString);
+
+                    // Auch in settings aktualisieren
+                    if (!this.settings.sessionHotkeys) {
+                        this.settings.sessionHotkeys = {};
+                    }
+                    this.settings.sessionHotkeys[hotkeyId] = hotkeyString;
+
+                    // An GrindService senden (nur dieser eine Key)
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        console.log('Sending single hotkey update:', hotkeyId, '=', hotkeyString);
+                        await window.electronAPI.grind.updateHotkeys({ [hotkeyId]: hotkeyString });
+
+                        if (GrindManager.isSessionRunning) {
+                            await window.electronAPI.grind.registerHotkeys();
+                        }
+                    }
+
+                    document.removeEventListener('keydown', handleKeyDown, { capture: true });
+                    document.removeEventListener('keyup', handleKeyUp, { capture: true });
+                };
+
+                const handleKeyUp = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                };
+
+                document.addEventListener('keydown', handleKeyDown, { capture: true });
+                document.addEventListener('keyup', handleKeyUp, { capture: true });
+            },
+
+            formatHotkey(event) {
+                // Use event.code (physical key position) instead of event.key to handle dead keys
+                event.preventDefault(); // Prevent OS composition mode
+
+                const parts = [];
+                if (event.ctrlKey || event.metaKey) parts.push('Ctrl');
+                if (event.altKey) parts.push('Alt');
+                if (event.shiftKey) parts.push('Shift');
+
+                // Use event.code for reliable physical key detection
+                const code = event.code;
+
+                // Debug output for raw input analysis
+                console.log(`🔍 RAW INPUT: Key: "${event.key}", Code: "${code}", Modifiers: [Ctrl:${event.ctrlKey}, Alt:${event.altKey}, Shift:${event.shiftKey}]`);
+
+                // Map common codes to readable names
+                if (code === 'Space') parts.push('Space');
+                else if (code) parts.push(code);
+                else parts.push(event.key || 'Unknown');
+
+                const result = parts.join(' + ');
+                console.log('formatHotkey result:', result);
+                return result;
+            },
+
+            updateHotkeyInputs() {
+                if (this.settings.sessionHotkeys) {
+                    Object.keys(this.settings.sessionHotkeys).forEach(key => {
+                        const input = document.getElementById(`hotkey-${key}`);
+                        if (input) {
+                            let value = this.settings.sessionHotkeys[key];
+                            value = value
+                                .replace('CommandOrControl', 'Ctrl')
+                                .replace('DeadCircumflex', '^')
+                                .replace('Space', 'Leertaste');
+                            input.value = value;
+                        }
+                    });
+                }
+            },
+
+            async resetToDefaults() {
+                if (!confirm('Möchtest du wirklich alle Einstellungen zurücksetzen?')) return;
+
+                this.settings = {
+                    animations: true,
+                    ripple: true,
+                    darkMode: false,
+                    overlayMode: false,
+                    audioFeedback: true,
+                    audioVolume: 0.5,
+                    sessionHotkeys: {
+                        addKill: 'F7',
+                        removeKill: 'F8',
+                        togglePause: 'F9',
+                        endSession: 'F10'
+                    }
+                };
+
+                this.save();
+                this.load();
+
+                if (window.electronAPI) {
+                    if (window.electronAPI.grind) {
+                        await window.electronAPI.grind.updateHotkeys(this.settings.sessionHotkeys);
+                    }
+                    if (window.electronAPI.setAlwaysOnTop) {
+                        window.electronAPI.setAlwaysOnTop(false);
+                    }
+                }
+
+                ToastManager.show('Einstellungen zurückgesetzt', 'success');
             }
         };
 
-        
+        function resetAllDefaults() {
+            SettingsManager.resetToDefaults();
+            Calculator?.resetDefaults?.();
+        }
+
+
 
         // ========================================
         // CALCULATOR ENGINE
@@ -2327,9 +3161,6 @@
             }
         };
 
-        // Expose to global scope for inline onclick handlers
-        window.Calculator = Calculator;
-
         // ========================================
         // EVENT HANDLERS
         // ========================================
@@ -2340,13 +3171,13 @@
             Calculator.calculate();
         });
 
-        document.getElementById('settingsModal').addEventListener('click', function(event) {
+        document.getElementById('settingsModal').addEventListener('click', function (event) {
             if (event.target === this) {
                 SettingsManager.close();
             }
         });
 
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 SettingsManager.close();
                 closeAllDropdowns();
@@ -2380,32 +3211,37 @@
             currentTab: 'calculator',
 
             switchTab(tabName) {
-                document.querySelectorAll('.nav-tab').forEach(tab => {
-                    tab.classList.toggle('active', tab.dataset.tab === tabName);
-                });
+                try {
+                    document.querySelectorAll('.nav-tab').forEach(tab => {
+                        tab.classList.toggle('active', tab.dataset.tab === tabName);
+                    });
 
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.toggle('active', content.id === `tab-${tabName}`);
-                });
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.toggle('active', content.id === `tab-${tabName}`);
+                    });
 
-                this.currentTab = tabName;
+                    this.currentTab = tabName;
 
-                if (tabName === 'templates') {
-                    TemplateManager.loadTemplates();
-                } else if (tabName === 'history') {
-                    HistoryManager.loadHistory();
-                } else if (tabName === 'accounts') {
-                    AccountManager.loadAccounts();
-                    AccountManager.switchSubTab('statistics');
-                } else if (tabName === 'grind') {
-                    GrindManager.init();
-                    GrindManager.switchSubTab('tips');
+                    if (tabName === 'templates') {
+                        TemplateManager?.loadTemplates?.();
+                    } else if (tabName === 'history') {
+                        HistoryManager?.loadHistory?.();
+                    } else if (tabName === 'accounts') {
+                        AccountManager?.loadAccounts?.();
+                        AccountManager?.switchSubTab?.('statistics');
+                    } else if (tabName === 'grind') {
+                        if (!GrindManager) {
+                            throw new Error('GrindManager nicht initialisiert');
+                        }
+                        GrindManager.init();
+                        GrindManager.switchSubTab('tips');
+                    }
+                } catch (error) {
+                    console.error('Navigation error:', error);
+                    ToastManager?.show?.(`Tab wechsel fehlgeschlagen: ${error.message}`, 'error');
                 }
             }
         };
-
-        // Expose to global scope for inline onclick handlers
-        window.NavigationManager = NavigationManager;
 
         // ========================================
         // UNDO / REDO MANAGER
@@ -2454,9 +3290,6 @@
                 ToastManager.show('Wiederholt', 'success');
             }
         };
-
-        // Expose to global scope for inline onclick handlers
-        window.UndoRedoManager = UndoRedoManager;
 
         // ========================================
         // TEMPLATE MANAGER
@@ -2555,9 +3388,6 @@
                 ToastManager.show(`Preset angewendet`, 'info');
             }
         };
-
-        // Expose to global scope for inline onclick handlers
-        window.TemplateManager = TemplateManager;
 
         // ========================================
         // HISTORY MANAGER
@@ -2661,9 +3491,6 @@
                 URL.revokeObjectURL(url);
             }
         };
-
-        // Expose to global scope for inline onclick handlers
-        window.HistoryManager = HistoryManager;
 
         // ========================================
         // ACCOUNT MANAGER
@@ -3128,9 +3955,6 @@
             }
         };
 
-        // Expose to global scope for inline onclick handlers
-        window.AccountManager = AccountManager;
-
         // ========================================
         // STATISTICS MANAGER
         // ========================================
@@ -3138,9 +3962,21 @@
             chart: null,
 
             async loadStatistics(period) {
+                // Update active button styling
+                const buttonContainer = document.getElementById('stats-period-buttons');
+                if (buttonContainer) {
+                    buttonContainer.querySelectorAll('.action-button').forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.period === period);
+                    });
+                }
+
                 if (window.electronAPI && window.electronAPI.history) {
                     const statsResponse = await window.electronAPI.history.getStatistics(period);
-                    const seriesResponse = await window.electronAPI.history.getTimeSeries(null, 'daily');
+                    const seriesResponse = await window.electronAPI.history.getTimeSeries({
+                        categoryKey: null,
+                        aggregation: 'daily',
+                        period: period
+                    });
 
                     if (statsResponse.success) {
                         this.renderStatistics(statsResponse.data);
@@ -3278,14 +4114,22 @@
         // ========================================
         const GrindManager = {
             sessionTimer: null,
+            autoSaveInterval: null,
             sessionStartTime: null,
             sessionKills: 0,
             isSessionRunning: false,
+            sessionName: null,
+            sessionTemplate: null,
+            isSessionPaused: false,
+            pauseStartTime: null,
+            pausedDuration: 0,
+            currentSessionId: null,
             simulationChart: null,
             tips: {},
             customTips: {},
             settings: {},
             animals: [],
+            hotkeyListeners: {},
 
             async init() {
                 await this.loadSettings();
@@ -3293,6 +4137,9 @@
                 await this.loadAnimals();
                 await this.loadCustomTips();
                 await this.loadSessions();
+                await this.loadTemplates();
+                this.setupTemplateDropdown();
+                this.setupHotkeyListeners();
             },
 
             async loadSettings() {
@@ -3368,6 +4215,138 @@
                 }
             },
 
+            async loadTemplates() {
+                try {
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        const response = await window.electronAPI.grind.getTemplates();
+                        if (response.success) {
+                            this.templates = response.data;
+                        }
+                    }
+                } catch (error) {
+                    console.error('GrindManager: Fehler beim Laden der Templates:', error);
+                }
+            },
+
+            setupTemplateDropdown() {
+                const templateDropdown = document.getElementById('session-template');
+                const animalDropdown = document.getElementById('session-animal');
+                const nameInput = document.getElementById('session-name');
+                const animalGroup = document.getElementById('animal-select-group');
+
+                if (!templateDropdown || !animalDropdown || !nameInput) return;
+
+                if (this.animals && this.animals.length > 0) {
+                    animalDropdown.innerHTML = this.animals.map(animal =>
+                        `<option value="${animal.id}">${animal.icon} ${animal.name}</option>`
+                    ).join('');
+                }
+
+                templateDropdown.addEventListener('change', () => {
+                    const templateId = templateDropdown.value;
+
+                    if (templateId === 'go-tier') {
+                        animalGroup.style.display = 'block';
+                        this.updateSessionNameFromTemplate(templateId);
+                    } else if (templateId === 'custom') {
+                        animalGroup.style.display = 'none';
+                    } else {
+                        animalGroup.style.display = 'none';
+                        this.updateSessionNameFromTemplate(templateId);
+                    }
+                });
+
+                if (animalDropdown) {
+                    animalDropdown.addEventListener('change', () => {
+                        if (templateDropdown.value === 'go-tier') {
+                            this.updateSessionNameFromTemplate('go-tier');
+                        }
+                    });
+                }
+            },
+
+            updateSessionNameFromTemplate(templateId) {
+                const nameInput = document.getElementById('session-name');
+                const animalSelect = document.getElementById('session-animal');
+                if (!nameInput || !animalSelect) return;
+
+                if (templateId === 'go-tier') {
+                    const animal = this.animals.find(a => a.id === animalSelect.value);
+                    if (animal) {
+                        nameInput.value = `GO ${animal.name}`;
+                    }
+                } else if (templateId && templateId !== '') {
+                    const template = this.templates && this.templates.find(t => t.id === templateId);
+                    if (template) {
+                        nameInput.value = template.name;
+                    }
+                }
+            },
+
+            setupHotkeyListeners() {
+                // IPC listeners for global shortcuts (X11)
+                if (window.electronAPI && window.electronAPI.onGrindHotkey) {
+                    this.hotkeyListeners.addKill = () => this.addKill();
+                    this.hotkeyListeners.removeKill = () => this.removeKill();
+                    this.hotkeyListeners.togglePause = () => this.togglePause();
+                    this.hotkeyListeners.endSession = () => this.endSession();
+
+                    window.electronAPI.onGrindHotkey('grind:add-kill', this.hotkeyListeners.addKill);
+                    window.electronAPI.onGrindHotkey('grind:remove-kill', this.hotkeyListeners.removeKill);
+                    window.electronAPI.onGrindHotkey('grind:toggle-pause', this.hotkeyListeners.togglePause);
+                    window.electronAPI.onGrindHotkey('grind:end-session', this.hotkeyListeners.endSession);
+                }
+
+                // In-app keyboard listener fallback (works on Wayland/Hyprland when window is focused)
+                this.inAppKeyHandler = (e) => {
+                    if (!this.isSessionRunning) return;
+
+                    // Ignoriere Modifier-Tasten alleine
+                    if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) return;
+
+                    const hotkeys = SettingsManager.settings?.sessionHotkeys || {};
+                    const pressedKey = this.formatKeyEvent(e);
+
+                    console.log('Hotkey pressed:', pressedKey, '| Expected addKill:', hotkeys.addKill);
+
+                    if (pressedKey === hotkeys.addKill) {
+                        e.preventDefault();
+                        this.addKill();
+                    } else if (pressedKey === hotkeys.removeKill) {
+                        e.preventDefault();
+                        this.removeKill();
+                    } else if (pressedKey === hotkeys.togglePause) {
+                        e.preventDefault();
+                        this.togglePause();
+                    } else if (pressedKey === hotkeys.endSession) {
+                        e.preventDefault();
+                        this.endSession();
+                    }
+                };
+
+                document.addEventListener('keydown', this.inAppKeyHandler);
+            },
+
+            formatKeyEvent(event) {
+                // Use event.code (physical key) like formatHotkey for consistent matching
+                const parts = [];
+                if (event.ctrlKey || event.metaKey) parts.push('Ctrl');
+                if (event.altKey) parts.push('Alt');
+                if (event.shiftKey) parts.push('Shift');
+
+                // Use event.code for reliable physical key detection
+                const code = event.code;
+
+                // Debug output
+                console.log(`🔍 formatKeyEvent: Key: "${event.key}", Code: "${code}"`);
+
+                if (code === 'Space') parts.push('Space');
+                else if (code) parts.push(code);
+                else parts.push(event.key || 'Unknown');
+
+                return parts.join(' + ');
+            },
+
             renderTips() {
                 Object.keys(this.tips).forEach(key => {
                     const contentDiv = document.getElementById(`tip-content-${key}`);
@@ -3402,19 +4381,122 @@
                     return;
                 }
 
-                listContainer.innerHTML = sessions.map(session => `
-                    <div class="grind-session-item">
+                // Group sessions by name
+                const groups = {};
+                sessions.forEach(session => {
+                    const name = session.name || 'Unbenannt';
+                    if (!groups[name]) {
+                        groups[name] = [];
+                    }
+                    groups[name].push(session);
+                });
+
+                // Render grouped sessions
+                let html = '';
+                Object.entries(groups).forEach(([name, groupSessions]) => {
+                    // Sort by timestamp (newest first)
+                    groupSessions.sort((a, b) => b.timestamp - a.timestamp);
+
+                    // Calculate aggregated stats
+                    const totalKills = groupSessions.reduce((sum, s) => sum + (s.kills || 0), 0);
+                    const totalDuration = groupSessions.reduce((sum, s) => sum + (s.duration || 0), 0);
+                    const avgKph = totalDuration > 0 ? (totalKills / (totalDuration / 3600000)) : 0;
+                    const hasActive = groupSessions.some(s => s.status === 'running' || s.status === 'paused');
+                    const latestSession = groupSessions[0];
+
+                    if (groupSessions.length === 1) {
+                        // Single session - render normally
+                        const session = groupSessions[0];
+                        html += this.renderSingleSession(session);
+                    } else {
+                        // Multiple sessions - render as group
+                        html += `
+                            <div class="grind-session-group">
+                                <div class="grind-session-group-header" onclick="GrindManager.toggleGroup('${name}')">
+                                    <div class="grind-session-info">
+                                        <div class="grind-session-name">
+                                            🏆 ${name} (${groupSessions.length} Sessions)
+                                            ${hasActive ? '<span class="status-badge running">🟢 Aktiv</span>' : ''}
+                                        </div>
+                                        <div class="grind-session-stats" style="font-weight: bold; color: var(--primary-dark);">
+                                            Gesamt: ${totalKills} Kills in ${this.formatDuration(totalDuration)} (${avgKph.toFixed(1)} K/h)
+                                        </div>
+                                    </div>
+                                    <div class="grind-session-actions">
+                                        <button class="action-button" onclick="event.stopPropagation(); GrindManager.continueGroup('${name}')">
+                                            ▶️ Fortsetzen
+                                        </button>
+                                        <span class="toggle-icon">▼</span>
+                                    </div>
+                                </div>
+                                <div class="grind-session-group-details" id="group-${name.replace(/\s+/g, '-')}" style="display: none;">
+                                    ${groupSessions.map(session => this.renderSingleSession(session, true)).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                listContainer.innerHTML = html;
+            },
+
+            renderSingleSession(session, isNested = false) {
+                return `
+                    <div class="grind-session-item ${session.status || ''} ${isNested ? 'nested' : ''}">
                         <div class="grind-session-info">
+                            <div class="grind-session-name">
+                                ${isNested ? '' : (session.name || 'Unbenannt')}
+                                ${this.getStatusBadge(session.status)}
+                            </div>
                             <div class="grind-session-date">${new Date(session.timestamp).toLocaleString('de-DE')}</div>
                             <div class="grind-session-stats">
-                                ${session.kills} Kills in ${this.formatDuration(session.duration)} (${session.kph.toFixed(1)} K/h)
+                                ${session.kills} Kills in ${this.formatDuration(session.duration)} (${(session.kph || 0).toFixed(1)} K/h)
                             </div>
                         </div>
                         <div class="grind-session-actions">
+                            ${session.status === 'paused' ? `
+                                <button class="action-button" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);" onclick="GrindManager.resumeSession('${session.id}')">
+                                    ▶️
+                                </button>
+                            ` : ''}
                             <button class="action-button secondary" onclick="GrindManager.deleteSession('${session.id}')">🗑️</button>
                         </div>
                     </div>
-                `).join('');
+                `;
+            },
+
+            toggleGroup(name) {
+                const details = document.getElementById(`group-${name.replace(/\s+/g, '-')}`);
+                if (details) {
+                    details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                }
+            },
+
+            async continueGroup(name) {
+                // Wechsle zum Timer-Tab
+                this.switchSubTab('timer');
+
+                // Setze den Session-Namen
+                document.getElementById('session-name').value = name;
+
+                // Kurz warten damit UI aktualisiert ist, dann Session starten
+                setTimeout(async () => {
+                    await this.startSession();
+                }, 100);
+
+                ToastManager.show(`Session "${name}" wird fortgesetzt...`, 'info');
+            },
+
+            getStatusBadge(status) {
+                if (!status || status === 'completed') return '';
+
+                const statusLabels = {
+                    running: '🟢 Läuft',
+                    paused: '⏸️ Pausiert',
+                    cancelled: '❌ Abgebrochen'
+                };
+
+                return `<span class="status-badge ${status}">${statusLabels[status] || status}</span>`;
             },
 
             getFallbackTips() {
@@ -3447,70 +4529,200 @@
                 return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             },
 
-            startSession() {
+            async startSession() {
+                const name = document.getElementById('session-name').value.trim();
+                const templateId = document.getElementById('session-template').value;
+
+                if (!name) {
+                    ToastManager.show('Bitte gib einen Session-Namen ein', 'error');
+                    return;
+                }
+
+                if (window.electronAPI && window.electronAPI.grind) {
+                    const validation = await window.electronAPI.grind.validateSessionName(name);
+                    if (!validation.valid) {
+                        ToastManager.show(validation.error, 'error');
+                        return;
+                    }
+
+                    const response = await window.electronAPI.grind.getActiveSession(name);
+                    if (response.success && response.data) {
+                        const confirmed = confirm(
+                            `Eine Session mit dem Namen "${name}" ist bereits aktiv.\n` +
+                            `Möchtest du sie fortsetzen?`
+                        );
+                        if (confirmed) {
+                            await this.resumeSession(response.data.id);
+                            return;
+                        }
+                        return; // User declined to resume, don't start new session with same name
+                    }
+                }
+
+                this.sessionName = name;
+                this.sessionTemplate = templateId;
+                this.currentSessionId = Date.now().toString();
                 this.sessionStartTime = Date.now();
                 this.sessionKills = 0;
                 this.isSessionRunning = true;
+                this.isSessionPaused = false;
+                this.pausedDuration = 0;
+
+                // Speichere die Session sofort beim Start (für Auto-Save)
+                const initialSession = {
+                    id: this.currentSessionId,
+                    name: this.sessionName,
+                    status: 'running',
+                    templateId: this.sessionTemplate,
+                    timestamp: this.sessionStartTime,
+                    kills: this.sessionKills,
+                    duration: 0,
+                    kph: 0,
+                    pausedDuration: 0
+                };
+                await this.saveSession(initialSession);
 
                 document.getElementById('session-duration').textContent = '00:00:00';
                 document.getElementById('session-kills').textContent = '0';
                 document.getElementById('session-kph').textContent = '0.0';
 
-                document.getElementById('btn-start-session').disabled = true;
-                document.getElementById('btn-add-kill').disabled = false;
-                document.getElementById('btn-end-session').disabled = false;
+                document.getElementById('session-start-container').style.display = 'none';
+                document.getElementById('session-controls-active').style.display = 'flex';
 
-                this.sessionTimer = setInterval(() => {
-                    const elapsed = Date.now() - this.sessionStartTime;
-                    document.getElementById('session-duration').textContent = this.formatDuration(elapsed);
+                this.sessionTimer = setInterval(() => this.updateTimer(), 1000);
 
-                    const hours = elapsed / (1000 * 60 * 60);
-                    const kph = hours > 0 ? (this.sessionKills / hours) : 0;
-                    document.getElementById('session-kph').textContent = kph.toFixed(1);
-                }, 1000);
+                // Auto-Save alle 30 Sekunden
+                this.autoSaveInterval = setInterval(async () => {
+                    if (this.isSessionRunning && !this.isSessionPaused) {
+                        await this.autoSaveSession();
+                    }
+                }, 30000);
 
-                ToastManager.show('Session gestartet!', 'success');
+                if (window.electronAPI && window.electronAPI.grind) {
+                    await window.electronAPI.grind.registerHotkeys();
+                }
+
+                ToastManager.show(`Session "${name}" gestartet!`, 'success');
             },
 
             addKill() {
-                if (!this.isSessionRunning) return;
+                if (!this.isSessionRunning || this.isSessionPaused) return;
 
                 this.sessionKills++;
                 document.getElementById('session-kills').textContent = this.sessionKills;
 
-                const elapsed = Date.now() - this.sessionStartTime;
-                const hours = elapsed / (1000 * 60 * 60);
-                const kph = hours > 0 ? (this.sessionKills / hours) : 0;
-                document.getElementById('session-kph').textContent = kph.toFixed(1);
+                this.playKillAudio();
+                this.updateKPH();
 
                 ToastManager.show('Kill hinzugefügt!', 'info');
             },
 
-            endSession() {
-                if (!this.isSessionRunning) return;
+            removeKill() {
+                if (!this.isSessionRunning || this.isSessionPaused) return;
 
-                clearInterval(this.sessionTimer);
-                const duration = Date.now() - this.sessionStartTime;
+                this.sessionKills = Math.max(0, this.sessionKills - 1);
+                document.getElementById('session-kills').textContent = this.sessionKills;
+
+                this.updateKPH();
+                ToastManager.show('Kill entfernt', 'info');
+            },
+
+            playKillAudio() {
+                try {
+                    if (window.electronAPI && window.electronAPI.setAlwaysOnTop) {
+                        const settings = SettingsManager.settings || {};
+                        if (settings.audioFeedback && settings.audioVolume > 0) {
+                            const audio = new Audio('data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhAAAAAA==');
+                            audio.volume = settings.audioVolume || 0.5;
+                            audio.play();
+                        }
+                    }
+                } catch (error) {
+                    console.error('Fehler beim Abspielen des Audio-Signals:', error);
+                }
+            },
+
+            updateTimer() {
+                if (!this.sessionStartTime) return;
+
+                const elapsed = Date.now() - this.sessionStartTime - this.pausedDuration;
+                document.getElementById('session-duration').textContent = this.formatDuration(elapsed);
+
+                this.updateKPH();
+            },
+
+            updateKPH() {
+                const elapsed = Date.now() - this.sessionStartTime - this.pausedDuration;
+                const hours = elapsed / (1000 * 60 * 60);
+                const kph = hours > 0 ? (this.sessionKills / hours) : 0;
+                document.getElementById('session-kph').textContent = kph.toFixed(1);
+            },
+
+            async autoSaveSession() {
+                if (!this.isSessionRunning || !this.currentSessionId) return;
+
+                const duration = Date.now() - this.sessionStartTime - this.pausedDuration;
                 const hours = duration / (1000 * 60 * 60);
                 const kph = hours > 0 ? (this.sessionKills / hours) : 0;
 
                 const session = {
-                    id: Date.now().toString(),
+                    id: this.currentSessionId,
+                    name: this.sessionName,
+                    status: this.isSessionPaused ? 'paused' : 'running',
+                    templateId: this.sessionTemplate,
+                    timestamp: this.sessionStartTime,
+                    kills: this.sessionKills,
+                    duration: duration,
+                    kph: kph,
+                    pausedDuration: this.pausedDuration
+                };
+
+                await this.saveSession(session);
+            },
+
+            async endSession() {
+                if (!this.isSessionRunning) return;
+
+                clearInterval(this.sessionTimer);
+                if (this.autoSaveInterval) {
+                    clearInterval(this.autoSaveInterval);
+                    this.autoSaveInterval = null;
+                }
+
+                const duration = Date.now() - this.sessionStartTime - this.pausedDuration;
+                const hours = duration / (1000 * 60 * 60);
+                const kph = hours > 0 ? (this.sessionKills / hours) : 0;
+
+                const session = {
+                    id: this.currentSessionId || Date.now().toString(),
+                    name: this.sessionName,
+                    status: 'completed',
+                    templateId: this.sessionTemplate,
                     timestamp: Date.now(),
                     kills: this.sessionKills,
                     duration: duration,
-                    kph: kph
+                    kph: kph,
+                    pausedDuration: this.pausedDuration
                 };
 
-                this.saveSession(session);
+                await this.saveSession(session);
+
+                if (window.electronAPI && window.electronAPI.grind) {
+                    await window.electronAPI.grind.unregisterHotkeys();
+                }
 
                 this.isSessionRunning = false;
                 this.sessionStartTime = null;
                 this.sessionKills = 0;
+                this.sessionName = null;
+                this.sessionTemplate = null;
+                this.currentSessionId = null;
+                this.isSessionPaused = false;
+                this.pauseStartTime = null;
+                this.pausedDuration = 0;
 
-                document.getElementById('btn-start-session').disabled = false;
-                document.getElementById('btn-add-kill').disabled = true;
-                document.getElementById('btn-end-session').disabled = true;
+                document.getElementById('session-start-container').style.display = 'block';
+                document.getElementById('session-controls-active').style.display = 'none';
 
                 document.getElementById('last-session').textContent =
                     `${session.kills} Kills in ${this.formatDuration(session.duration)}`;
@@ -3520,20 +4732,126 @@
                 ToastManager.show(`Session beendet: ${session.kills} Kills`, 'success');
             },
 
+            async togglePause() {
+                if (this.isSessionPaused) {
+                    await this.resumeSession();
+                } else {
+                    await this.pauseSession();
+                }
+            },
+
+            async pauseSession() {
+                if (!this.isSessionRunning || this.isSessionPaused) return;
+
+                this.isSessionPaused = true;
+                this.pauseStartTime = Date.now();
+                clearInterval(this.sessionTimer);
+
+                // Speichere Session beim Pausieren
+                await this.autoSaveSession();
+
+                if (window.electronAPI && window.electronAPI.grind && this.currentSessionId) {
+                    await window.electronAPI.grind.pauseSession(this.currentSessionId);
+                }
+
+                document.getElementById('btn-pause-session').textContent = '▶️ Fortsetzen';
+                ToastManager.show('Session pausiert', 'info');
+            },
+
+            async resumeSession(sessionId = null) {
+                if (sessionId) {
+                    const response = await window.electronAPI.grind.getSessions();
+                    if (response.success) {
+                        const session = response.data.find(s => s.id === sessionId);
+                        if (session) {
+                            this.currentSessionId = session.id;
+                            this.sessionName = session.name;
+                            this.sessionTemplate = session.templateId;
+                            this.sessionKills = session.kills;
+                            this.pausedDuration = session.pausedDuration || 0;
+
+                            // Berechne die ursprüngliche Startzeit basierend auf der Session-Dauer
+                            // session.timestamp ist der ursprüngliche Startzeitpunkt
+                            if (session.timestamp) {
+                                this.sessionStartTime = session.timestamp;
+                            } else {
+                                // Fallback: Wenn kein timestamp vorhanden, berechne aus duration
+                                const estimatedStartTime = Date.now() - (session.duration || 0) - this.pausedDuration;
+                                this.sessionStartTime = estimatedStartTime;
+                            }
+                        }
+                    }
+                } else {
+                    // Wenn keine sessionId, aber pauseStartTime existiert, berechne die ursprüngliche Startzeit
+                    if (this.pauseStartTime && !this.sessionStartTime) {
+                        // Fallback: Wenn sessionStartTime nicht gesetzt ist, setze es auf jetzt minus elapsed
+                        const estimatedElapsed = this.pausedDuration || 0;
+                        this.sessionStartTime = Date.now() - estimatedElapsed;
+                    }
+                }
+
+                if (this.pauseStartTime) {
+                    this.pausedDuration += Date.now() - this.pauseStartTime;
+                    this.pauseStartTime = null;
+                }
+
+                this.isSessionPaused = false;
+                this.isSessionRunning = true;
+
+                this.sessionTimer = setInterval(() => this.updateTimer(), 1000);
+
+                // Starte Auto-Save wieder
+                if (this.autoSaveInterval) {
+                    clearInterval(this.autoSaveInterval);
+                }
+                this.autoSaveInterval = setInterval(async () => {
+                    if (this.isSessionRunning && !this.isSessionPaused) {
+                        await this.autoSaveSession();
+                    }
+                }, 30000);
+
+                document.getElementById('session-duration').textContent = this.formatDuration(
+                    Date.now() - this.sessionStartTime - this.pausedDuration
+                );
+                document.getElementById('session-kills').textContent = this.sessionKills;
+                this.updateKPH();
+
+                document.getElementById('session-start-container').style.display = 'none';
+                document.getElementById('session-controls-active').style.display = 'flex';
+                document.getElementById('btn-pause-session').textContent = '⏸️ Pause';
+
+                if (window.electronAPI && window.electronAPI.grind && this.currentSessionId) {
+                    await window.electronAPI.grind.resumeSession(this.currentSessionId);
+                    await window.electronAPI.grind.registerHotkeys();
+                }
+
+                ToastManager.show(`Session "${this.sessionName}" fortgesetzt!`, 'success');
+            },
+
             async saveSession(session) {
                 try {
                     if (window.electronAPI && window.electronAPI.grind) {
+                        // GrindService aktualisiert automatisch existierende Sessions
                         await window.electronAPI.grind.saveSession(session);
                         await this.loadSessions();
                     } else {
                         const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
-                        sessions.push(session);
+                        const existingIndex = sessions.findIndex(s => s.id === session.id);
+
+                        if (existingIndex !== -1) {
+                            sessions[existingIndex] = session;
+                        } else {
+                            sessions.push(session);
+                        }
                         localStorage.setItem('grind-sessions', JSON.stringify(sessions));
                         this.renderSessions(sessions);
                     }
                 } catch (error) {
                     console.error('GrindManager: Fehler beim Speichern der Session:', error);
-                    ToastManager.show('Fehler beim Speichern der Session', 'error');
+                    // Toast nur bei kritischen Fehlern anzeigen, nicht bei Auto-Save
+                    if (session.status === 'completed') {
+                        ToastManager.show('Fehler beim Speichern der Session', 'error');
+                    }
                 }
             },
 
@@ -3579,7 +4897,7 @@
                     } else {
                         const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
                         const csv = 'Datum,Kills,Dauer,KPH\n' + sessions.map(s =>
-                            `${new Date(s.timestamp).toLocaleString('de-DE')},${s.kills},${Math.round(s.duration/1000)},${s.kph.toFixed(1)}`
+                            `${new Date(s.timestamp).toLocaleString('de-DE')},${s.kills},${Math.round(s.duration / 1000)},${s.kph.toFixed(1)}`
                         ).join('\n');
 
                         const blob = new Blob([csv], { type: 'text/csv' });
@@ -3823,18 +5141,46 @@
             });
         }
 
+        // Expose core managers globally for inline handlers (set BEFORE DOMContentLoaded)
+        window.SettingsManager = SettingsManager;
+        window.Calculator = Calculator;
+        window.NavigationManager = NavigationManager;
+        window.UndoRedoManager = UndoRedoManager;
+        window.TemplateManager = TemplateManager;
+        window.HistoryManager = HistoryManager;
+        window.AccountManager = AccountManager;
+        window.GrindManager = GrindManager;
+        window.ToastManager = ToastManager;
+        window.StatisticsManager = StatisticsManager;
+
         // ========================================
         // ENHANCED INITIALIZATION
         // ========================================
-        document.addEventListener('DOMContentLoaded', function() {
-            SettingsManager.load();
-            setupPSliders();
-            setupTooltips();
-            Calculator.calculate();
+        document.addEventListener('DOMContentLoaded', async function () {
+            console.log('DOM Content Loaded');
+            console.log('Managers available:', {
+                Calculator: typeof Calculator,
+                NavigationManager: typeof NavigationManager,
+                GrindManager: typeof GrindManager
+            });
+
+            try {
+                // Await SettingsManager.load() to ensure settings are ready
+                await SettingsManager.load();
+                setupPSliders();
+                setupTooltips();
+
+                console.log('Starting Calculator.calculate()...');
+                await Calculator.calculate();
+                console.log('Calculator.calculate() completed');
+            } catch (error) {
+                console.error('Initialization error:', error);
+                ToastManager?.show?.('Fehler bei der Initialisierung', 'error');
+            }
 
             const inputFields = document.querySelectorAll('input[type="number"]');
             inputFields.forEach(input => {
-                input.addEventListener('input', function() {
+                input.addEventListener('input', function () {
                     clearTimeout(debounceTimer);
                     debounceTimer = setTimeout(() => {
                         Calculator.calculate();
@@ -3851,18 +5197,7 @@
                 }
             });
         });
-
-        // Expose core managers globally for inline handlers (set once after declarations)
-        window.SettingsManager = SettingsManager;
-        window.Calculator = Calculator;
-        window.NavigationManager = NavigationManager;
-        window.UndoRedoManager = UndoRedoManager;
-        window.TemplateManager = TemplateManager;
-        window.HistoryManager = HistoryManager;
-        window.AccountManager = AccountManager;
-        window.GrindManager = GrindManager;
-        window.ToastManager = ToastManager;
-        window.StatisticsManager = StatisticsManager;
     </script>
 </body>
+
 </html>

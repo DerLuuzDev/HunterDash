@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, globalShortcut } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { WINDOW, API, STORAGE, APP_NAME, APP_VERSION, ICONS, DEV } = require('./build-config/constants');
@@ -16,6 +16,54 @@ let accountService = null;
 let grindService = null;
 calculationService.setHistoryService(historyService);
 
+const hotkeyManager = {
+  registered: {},
+  callbacks: {},
+
+  register(hotkey, name, callback) {
+    try {
+      if (this.registered[hotkey]) {
+        globalShortcut.unregister(hotkey);
+      }
+      const result = globalShortcut.register(hotkey, callback);
+      if (result) {
+        this.registered[hotkey] = name;
+        this.callbacks[name] = callback;
+        console.log(`Hotkey registriert: ${hotkey} (${name})`);
+      } else {
+        console.error(`Hotkey konnte nicht registriert werden: ${hotkey}`);
+      }
+      return result;
+    } catch (error) {
+      console.error('Fehler beim Registrieren des Hotkeys:', error);
+      return false;
+    }
+  },
+
+  unregister(hotkey) {
+    try {
+      globalShortcut.unregister(hotkey);
+      const name = this.registered[hotkey];
+      delete this.registered[hotkey];
+      delete this.callbacks[name];
+      console.log(`Hotkey entregistriert: ${hotkey}`);
+    } catch (error) {
+      console.error('Fehler beim Entregistrieren des Hotkeys:', error);
+    }
+  },
+
+  unregisterAll() {
+    try {
+      globalShortcut.unregisterAll();
+      this.registered = {};
+      this.callbacks = {};
+      console.log('Alle Hotkeys entregistriert');
+    } catch (error) {
+      console.error('Fehler beim Entregistrieren aller Hotkeys:', error);
+    }
+  }
+};
+
 function initializeHistoryService() {
   const userDataPath = app.getPath('userData');
   historyService.userDataPath = userDataPath;
@@ -24,8 +72,9 @@ function initializeHistoryService() {
 }
 
 function initializeGrindService() {
-  grindService = new GrindService(storageService);
-  console.log('GrindService initialisiert');
+  const userDataPath = app.getPath('userData');
+  grindService = new GrindService(storageService, userDataPath);
+  console.log('GrindService initialisiert mit userDataPath:', userDataPath);
 }
 
 function initializeAccountService() {
@@ -90,6 +139,9 @@ app.on('before-quit', () => {
   if (historyService) {
     historyService.createBackup();
   }
+  if (grindService) {
+    grindService.createBackup();
+  }
 });
 
 app.on('window-all-closed', () => {
@@ -146,7 +198,7 @@ function setupIpcHandlers() {
   ipcMain.handle('storage:save-settings', async (event, newSettings) => {
     try {
       const validation = validateSettings(newSettings);
-      
+
       if (!validation.valid) {
         return {
           success: false,
@@ -154,15 +206,15 @@ function setupIpcHandlers() {
           validationErrors: validation.errors
         };
       }
-      
+
       settings = { ...settings, ...validation.data };
       const saved = saveSettingsToFile();
-      
+
       return {
         success: saved,
         data: settings
       };
-      
+
     } catch (error) {
       console.error('Einstellungs-Speicherfehler:', error);
       return {
@@ -537,12 +589,240 @@ function setupIpcHandlers() {
       return { success: false, error: error.message };
     }
   });
+
+  ipcMain.handle('grind:get-templates', async () => {
+    try {
+      return grindService.getTemplates();
+    } catch (error) {
+      console.error('Grind-Templates-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-custom-templates', async () => {
+    try {
+      return await grindService.getCustomTemplates();
+    } catch (error) {
+      console.error('Grind-Custom-Templates-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:save-custom-template', async (event, template) => {
+    try {
+      return await grindService.saveCustomTemplate(template);
+    } catch (error) {
+      console.error('Grind-Custom-Template-Save-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:delete-custom-template', async (event, templateId) => {
+    try {
+      return await grindService.deleteCustomTemplate(templateId);
+    } catch (error) {
+      console.error('Grind-Custom-Template-Delete-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:get-active-session', async (event, name) => {
+    try {
+      const session = await grindService.getActiveSession(name);
+      return { success: true, data: session };
+    } catch (error) {
+      console.error('Grind-Active-Session-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:validate-session-name', async (event, name) => {
+    try {
+      return await grindService.validateSessionName(name);
+    } catch (error) {
+      console.error('Grind-Validate-Session-Name-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:pause-session', async (event, sessionId) => {
+    try {
+      return await grindService.pauseSession(sessionId);
+    } catch (error) {
+      console.error('Grind-Pause-Session-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:resume-session', async (event, sessionId) => {
+    try {
+      return await grindService.resumeSession(sessionId);
+    } catch (error) {
+      console.error('Grind-Resume-Session-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:cancel-session', async (event, sessionId) => {
+    try {
+      return await grindService.cancelSession(sessionId);
+    } catch (error) {
+      console.error('Grind-Cancel-Session-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:register-hotkeys', async (event, hotkeys) => {
+    try {
+      hotkeyManager.unregisterAll();
+
+      const currentSettings = await grindService.getSettings();
+      const settingsHotkeys = (currentSettings.success && currentSettings.data?.sessionHotkeys)
+        ? currentSettings.data.sessionHotkeys
+        : STORAGE.DEFAULT_SETTINGS.sessionHotkeys;
+
+      console.log('Registriere Hotkeys:', settingsHotkeys);
+
+      // Convert UI format (e.g., "Ctrl + ^") to Electron format
+      const convertToElectronFormat = (key) => {
+        if (!key) return '';
+
+        // If already in Electron format, just handle special chars
+        if (key.includes('CommandOrControl')) {
+          let converted = key.replace(/DeadCircumflex/g, '^');
+          console.log(`Converting hotkey (already electron format): "${key}" -> "${converted}"`);
+          return converted;
+        }
+
+        // Convert from UI format
+        let converted = key
+          .replace(/Ctrl/g, 'CommandOrControl')
+          .replace(/ \+ /g, '+')
+          .replace(/DeadCircumflex/g, '^');
+
+        // Don't convert standalone "Control" if it's part of "CommandOrControl"
+        if (!converted.includes('CommandOrControl')) {
+          converted = converted.replace(/Control/g, 'CommandOrControl');
+        }
+
+        console.log(`Converting hotkey: "${key}" -> "${converted}"`);
+        return converted;
+      };
+
+      const registerHotkey = (uiKey, name, eventName) => {
+        const electronKey = convertToElectronFormat(uiKey);
+        console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
+        hotkeyManager.register(electronKey, name, () => {
+          mainWindow.webContents.send(eventName);
+        });
+      };
+
+      registerHotkey(settingsHotkeys.addKill, 'addKill', 'grind:add-kill');
+      registerHotkey(settingsHotkeys.removeKill, 'removeKill', 'grind:remove-kill');
+      registerHotkey(settingsHotkeys.togglePause, 'togglePause', 'grind:toggle-pause');
+      registerHotkey(settingsHotkeys.endSession, 'endSession', 'grind:end-session');
+
+      return { success: true };
+    } catch (error) {
+      console.error('Grind-Register-Hotkeys-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:unregister-hotkeys', async () => {
+    try {
+      hotkeyManager.unregisterAll();
+      return { success: true };
+    } catch (error) {
+      console.error('Grind-Unregister-Hotkeys-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('grind:update-hotkeys', async (event, newHotkeys) => {
+    try {
+      const response = await grindService.getSettings();
+      if (response.success) {
+        const settings = response.data;
+        settings.sessionHotkeys = { ...settings.sessionHotkeys, ...newHotkeys };
+        await grindService.saveSettings(settings);
+
+        // If hotkeys are currently active (session running), re-register them
+        const hadActiveHotkeys = Object.keys(hotkeyManager.registered).length > 0;
+        if (hadActiveHotkeys) {
+          hotkeyManager.unregisterAll();
+
+          const convertToElectronFormat = (key) => {
+            if (!key) return '';
+
+            // If already in Electron format, just handle special chars
+            if (key.includes('CommandOrControl')) {
+              let converted = key.replace(/DeadCircumflex/g, '^');
+              console.log(`Converting hotkey (already electron format): "${key}" -> "${converted}"`);
+              return converted;
+            }
+
+            // Convert from UI format
+            let converted = key
+              .replace(/Ctrl/g, 'CommandOrControl')
+              .replace(/ \+ /g, '+')
+              .replace(/DeadCircumflex/g, '^');
+
+            // Don't convert standalone "Control" if it's part of "CommandOrControl"
+            if (!converted.includes('CommandOrControl')) {
+              converted = converted.replace(/Control/g, 'CommandOrControl');
+            }
+
+            console.log(`Converting hotkey: "${key}" -> "${converted}"`);
+            return converted;
+          };
+
+          const registerHotkey = (uiKey, name, eventName) => {
+            const electronKey = convertToElectronFormat(uiKey);
+            console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
+            hotkeyManager.register(electronKey, name, () => {
+              mainWindow.webContents.send(eventName);
+            });
+          };
+
+          registerHotkey(settings.sessionHotkeys.addKill, 'addKill', 'grind:add-kill');
+          registerHotkey(settings.sessionHotkeys.removeKill, 'removeKill', 'grind:remove-kill');
+          registerHotkey(settings.sessionHotkeys.togglePause, 'togglePause', 'grind:toggle-pause');
+          registerHotkey(settings.sessionHotkeys.endSession, 'endSession', 'grind:end-session');
+
+          console.log('Hotkeys wurden nach Update neu registriert');
+
+          console.log('Hotkeys wurden nach Update neu registriert');
+        }
+
+        return { success: true };
+      }
+      return { success: false, error: 'Einstellungen konnten nicht geladen werden' };
+    } catch (error) {
+      console.error('Grind-Update-Hotkeys-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('window:set-always-on-top', (event, alwaysOnTop) => {
+    try {
+      if (mainWindow) {
+        mainWindow.setAlwaysOnTop(alwaysOnTop);
+        mainWindow.setVisibleOnAllWorkspaces(alwaysOnTop);
+        return { success: true };
+      }
+      return { success: false, error: 'Hauptfenster nicht gefunden' };
+    } catch (error) {
+      console.error('Window-Set-Always-On-Top-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
 }
 
 function loadSettingsFromFile() {
   const userDataPath = app.getPath('userData');
   const settingsPath = path.join(userDataPath, 'settings.json');
-  
+
   try {
     if (fs.existsSync(settingsPath)) {
       const fileContent = fs.readFileSync(settingsPath, 'utf-8');
@@ -554,19 +834,19 @@ function loadSettingsFromFile() {
     console.error('Fehler beim Laden der Einstellungen:', error);
     settings = { ...STORAGE.DEFAULT_SETTINGS };
   }
-  
+
   return settings;
 }
 
 function saveSettingsToFile() {
   const userDataPath = app.getPath('userData');
   const settingsPath = path.join(userDataPath, 'settings.json');
-  
+
   try {
     if (!fs.existsSync(userDataPath)) {
       fs.mkdirSync(userDataPath, { recursive: true });
     }
-    
+
     fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
     console.log('Einstellungen gespeichert:', settingsPath);
     return true;

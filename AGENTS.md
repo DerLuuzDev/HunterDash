@@ -125,10 +125,11 @@ ipcMain.handle('history:get-timeseries', async (event, options = null) => {
 
 ### File System Storage Pattern
 - Dual storage: `storageService` (localStorage) + File System (`userDataPath`)
-- History/Accounts automatically saved as JSON files
-- Backup system: `STORAGE.HISTORY.BACKUP_DIR`, `STORAGE.HISTORY.MAX_BACKUPS = 10`
+- History/Accounts/Grind-Sessions automatically saved as JSON files
+- Backup system: `STORAGE.HISTORY.BACKUP_DIR`, `STORAGE.HISTORY.MAX_BACKUPS = 10`, `GRIND.BACKUP_DIR`, `GRIND.MAX_BACKUPS = 10`
 - Path: `app.getPath('userData')` → `~/.config/hunterdash/`
-- Initialize: `historyService.userDataPath = userDataPath; historyService.initializeFileSystem();`
+- Initialize History: `historyService.userDataPath = userDataPath; historyService.initializeFileSystem();`
+- Initialize Grind: `grindService = new GrindService(storageService, userDataPath);`
 
 ### Chart.js Integration
 - Chart.js CDN: `<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">`
@@ -173,7 +174,7 @@ ipcMain.handle('history:get-timeseries', async (event, options = null) => {
 - All constants in `build-config/constants.js`
 - Environment variables with fallbacks: `process.env.API_BASE_URL || 'http://localhost:3000'`
 - Use `STORAGE.DEFAULT_SETTINGS` for default values
-- New configs: `STORAGE.GRIND.ANIMALS`, `STORAGE.GRIND.TIPS`, `TEMPLATES.PRESETS`
+- New configs: `STORAGE.GRIND.ANIMALS`, `STORAGE.GRIND.TIPS`, `TEMPLATES.PRESETS`, `GRIND.FILENAME`, `GRIND.BACKUP_DIR`, `GRIND.MAX_BACKUPS`
 
 ### Code Quality
 - Prefer descriptive naming over comments
@@ -245,7 +246,297 @@ YYYY-MM-DD: [Feature Name] [added/updated/removed]
 - File system storage pattern documented
 ```
 
+```
+2026-01-06: Grind Sessions persistent storage added
+- grind.service.js extended with file system storage
+- GRIND.FILENAME, GRIND.BACKUP_DIR, GRIND.MAX_BACKUPS added to constants
+- GrindService constructor accepts userDataPath parameter
+- Session data persists across app restarts via JSON file
+- Backup system for grind sessions implemented
+- Auto-backup on app exit (before-quit event)
+```
+
+```
+2026-01-06: Session Naming, Fortsetzung & Hotkeys
+- Session Templates (vorgegeben + benutzerdefiniert) hinzugefügt
+- Session-Fortsetzung implementiert (manueller Button)
+- Status-System (running/paused/completed/cancelled)
+- Global Hotkeys (konfigurierbar, auch wenn minimiert)
+- Audio-Feedback (Bing-Ton, Lautstärke regelbar)
+- Overlay-Modus (always on top)
+- GRIND.SESSION_TEMPLATES, GRIND.DEFAULT_HOTKEYS, GRIND.SESSION_STATUS
+- STORAGE.DEFAULT_SETTINGS erweitert (overlayMode, audioFeedback, sessionHotkeys)
+- grind.service.js: Template-Management, Session-Status-Management
+- main.js: globalShortcut integration, hotkeyManager, window control
+- preload.js: Neue IPC Endpoints (templates, hotkeys, audio)
+- index.html: UI Erweiterungen (Timer-Tab, Settings-Modal, Sessions-List)
+- SettingsManager: Overlay-Modus, Audio-Steuerung, Hotkey-Aufnahme
+```
+
 **Next Update**: After next feature (e.g., [feature name])
+
+```
+2026-01-06: Bug-Fixes - Navigation & Manager Timing
+- Manager-Exposur VOR DOMContentLoaded verschoben (Lines 4470-4479)
+- Alte duplizierte Exposur entfernt
+- Debug-Logging in DOMContentLoaded hinzugefügt
+- Navigation Bug behoben (Manager verfügbar beim Aufruf)
+- AGENTS.md erweitert um "Common Pitfalls & Prevention" Abschnitt
+- Checklisten für Manager-Exposur-Timing und Event-Listener-Positionierung
+```
+
+```
+2026-01-06: Timer UI Redesign & Session-Fortsetzung Fix
+- Timer UI komplett überarbeitet mit neuen CSS-Klassen:
+  - `.session-start-container`: Prominenter Start-Button (volle Breite)
+  - `.session-controls-active`: Container für aktive Session-Controls
+  - `.session-controls-row`: Zwei-Zeilen-Layout (Kill-Buttons oben, Pause/Ende unten)
+  - `.kill-btn`: Größere, farbcodierte Kill-Buttons (rot für +1, grau für -1)
+  - `.action-button.danger`: Rote Markierung für Beenden-Button
+- `continueGroup()` Methode erweitert:
+  - Wechselt jetzt zum Timer-Tab (`switchSubTab('timer')`)
+  - Setzt Session-Name und startet Session automatisch
+- UI-Container-Visibility statt Button-Disabled:
+  - `session-start-container` wird bei aktiver Session ausgeblendet
+  - `session-controls-active` wird bei aktiver Session angezeigt
+```
+
+### Common Pitfalls & Prevention
+
+**⚠️ Bug: Manager-Navigation bricht nach AI-Änderungen**
+
+**Ursache:**
+- Duplizierte `window.ManagerName = ManagerName` Exposur
+- Manager werden VOR ihrer Definition im globalen Scope exponiert
+- Cross-Manager-Abhängigkeiten (z.B. `NavigationManager` → `GrindManager`)
+
+**Vorbeugung:**
+1. ✅ Manager Exposur nur EINMAL am Ende aller Definitionen (empfohlen: Zeile ~4500)
+2. ✅ Alle Manager-Definitionen VOR der Exposur abschließen
+3. ✅ Cross-Manager-Aufrufe nur NACH der Exposur
+4. ✅ Bei neuen Managern: Exposur-Block am Ende erweitern
+
+**Exposur-Block-Muster:**
+```javascript
+// Am Ende vom Script (nach ALLEN Manager-Definitionen)
+window.SettingsManager = SettingsManager;
+window.Calculator = Calculator;
+window.NavigationManager = NavigationManager;
+// ... alle Manager
+window.GrindManager = GrindManager;  // NEUER Manager hier hinzufügen!
+```
+
+**❌ NICHT tun:**
+```javascript
+// FALSCH - Frühe Exposur
+const NavigationManager = { ... };
+window.NavigationManager = NavigationManager;  // ❌
+
+// FALSCH - Manager noch nicht definiert
+NavigationManager.switchTab('grind');  // Ruft GrindManager.switchSubTab auf
+const GrindManager = { ... };  // ✗ Zu spät!
+```
+
+**Checkliste nach AI-Änderungen:**
+- [ ] Nur EINER Exposur-Block am Ende?
+- [ ] ALLE Manager im Exposur-Block enthalten?
+- [ ] Keine frühen Exposuren vorhanden (mit `grep -n "Expose to global"` prüfen)?
+- [ ] Alle Manager vor Exposur definiert?
+- [ ] Keine Cross-Manager-Aufrufe VOR Exposur?
+
+---
+
+**⚠️ Bug: Zeilennummern-Verschiebungen nach Code-Entfernungen**
+
+**Ursache:**
+- AI verwendet oft absolute Zeilennummern (z.B. "Line 2797")
+- Nach Code-Entfernungen verschieben sich alle nachfolgenden Zeilennummern
+- Führt zu falschen Referenzen und Edits an falschen Stellen
+
+**Vorbeugung:**
+1. ✅ Relative Positionen statt absoluter Zeilennummern verwenden
+2. ✅ Text-Suche statt Zeilennummern (z.B. `grep -n "Pattern"`)
+3. ✅ Kontext prüfen mit `sed -n 'Linie,p' file`
+4. ✅ Nach Edits mit `grep` überprüfen, ob Änderungen korrekt sind
+
+**Beispiel:**
+```bash
+# SCHLECHT - Absolute Zeilennummer
+Line 2797 entfären (könnte nach Editen falsch sein)
+
+# GUT - Text-Suche mit Kontext
+grep -n "window.NavigationManager = NavigationManager;" file
+# Ausgabe: 2797:        window.NavigationManager = NavigationManager;
+# Dann mit Kontext prüfen:
+sed -n '2795,2800p' file
+```
+
+**Checkliste nach Code-Entfernungen:**
+- [ ] Text-Suche statt absoluter Zeilennummern?
+- [ ] Kontext mit `sed -n 'Start,Ende'p'` überprüft?
+- [ ] Mit `grep` überprüft, ob alle Exposuren gefunden?
+- [ ] Nach Edits mit `grep` nochmal überprüft, ob korrekt?
+
+---
+
+**⚠️ Bug: Manager-Exposur NACH DOMContentLoaded führt zu Timing-Problemen**
+
+**Ursache:**
+- Manager werden NACH dem DOMContentLoaded-Block exponiert
+- DOMContentLoaded feuert, aber Manager sind noch nicht verfügbar (Race Condition)
+- Inline onclick-Handler können nicht auf Manager zugreifen
+- Führt zu `undefined` Fehlern oder stummer Fehler
+
+**Vorbeugung:**
+1. ✅ Manager-Exposur immer VOR dem DOMContentLoaded-Block platzieren
+2. ✅ Manager SOFORT nach ihrer Definition exponieren
+3. ✅ Nie Manager-Exposur nach Event-Listener-Registrierung platzieren
+4. ✅ Debug-Logging hinzufügen, um Manager-Verfügbarkeit zu prüfen
+
+**Falsches Muster:**
+```javascript
+// FALSCH - Manager Exposur NACH DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    SettingsManager.load();
+    Calculator.calculate();
+});
+
+// Manager werden hier exponiert - ZU SPÄT!
+window.Calculator = Calculator;
+window.NavigationManager = NavigationManager;
+```
+
+**Korrektes Muster:**
+```javascript
+// KORREKT - Manager Exposur VOR DOMContentLoaded
+// Alle Manager werden SOFORT exponiert
+window.Calculator = Calculator;
+window.NavigationManager = NavigationManager;
+window.GrindManager = GrindManager;
+// ... alle Manager
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Managers available:', {
+        Calculator: typeof Calculator,
+        NavigationManager: typeof NavigationManager,
+        GrindManager: typeof GrindManager
+    });
+    
+    SettingsManager.load();
+    Calculator.calculate();
+    // ...
+});
+```
+
+**WICHTIG:** Die Reihenfolge innerhalb von DOMContentLoaded spielt keine Rolle, solange die Manager VOR dem Block exponiert sind. DOMContentLoaded feuert NACHDEM das gesamte Script geladen wurde.
+
+**Checkliste nach Manager-Exposur-Änderungen:**
+- [ ] Alle Manager VOR DOMContentLoaded-Block exponiert?
+- [ ] Keine duplizierten Exposuren?
+- [ ] Debug-Logging hinzugefügt zur Prüfung der Manager-Verfügbarkeit?
+- [ ] Event-Listener NACH Manager-Exposur registriert?
+- [ ] Inline onclick-Handler können auf alle Manager zugreifen?
+
+---
+
+**⚠️ Bug: Duplizierte/unvollständige Manager-Exposur**
+
+**Ursache:**
+- Manager werden mehrfach exponiert (früh + spät)
+- Frühe Exposur ist unvollständig (fehlt einige Manager)
+- Führt zu `undefined` Fehlern wenn auf noch nicht exponierte Manager zugegriffen wird
+- Cross-Manager-Aufrufe (z.B. `NavigationManager` → `GrindManager`) schlagen fehl
+
+**Vorbeugung:**
+1. ✅ Manager Exposur nur EINMAL am Ende aller Definitionen (empfohlen: Zeile ~4500)
+2. ✅ ALLE Manager im selben Exposur-Block exponieren
+3. ✅ Alle frühen Exposuren entfernen, wenn vorhanden
+4. ✅ Alle Manager-Definitionen VOR der Exposur abschließen
+5. ✅ Cross-Manager-Aufrufe nur NACH vollständiger Exposur
+
+**Falsches Muster:**
+```javascript
+// FALSCH - Frühe, unvollständige Exposur
+const Calculator = { ... };
+window.Calculator = Calculator;  // ❌
+
+const NavigationManager = { ... };
+// NavigationManager fehlt! ❌
+
+const GrindManager = { ... };
+// GrindManager fehlt! ❌
+
+// Später nochmal Exposur
+window.Calculator = Calculator;
+window.NavigationManager = NavigationManager;
+window.GrindManager = GrindManager;
+```
+
+**Korrektes Muster:**
+```javascript
+// KORREKT - Nur eine vollständige Exposur am Ende
+const Calculator = { ... };
+const NavigationManager = { ... };
+const GrindManager = { ... };
+
+// ... alle Event-Listener, etc.
+
+// Am Ende vom Script (nach ALLEN Manager-Definitionen):
+window.Calculator = Calculator;
+window.NavigationManager = NavigationManager;
+window.GrindManager = GrindManager;
+window.SettingsManager = SettingsManager;
+// ... alle Manager
+```
+
+**WICHTIG:** Nach Code-Entfernungen verschieben sich die Zeilennummern!
+- Verwende relative Positionen oder Text-Suche, nicht absolute Zeilennummern
+- Prüfe mit `grep -n "Expose to global"`, ob alle frühen Exposuren entfernt sind
+- Prüfe mit `grep -n "window\..*Manager"`, ob nur EINER Exposur-Block existiert
+
+**Checkliste nach AI-Änderungen:**
+- [ ] Nur EINER Exposur-Block am Ende?
+- [ ] ALLE Manager im Exposur-Block enthalten?
+- [ ] Keine frühen Exposuren vorhanden (mit `grep -n "Expose to global"` prüfen)?
+- [ ] Alle Manager vor Exposur definiert?
+- [ ] Keine Cross-Manager-Aufrufe VOR Exposur?
+
+---
+
+**⚠️ Bug: Tippfehler in Property-Namen führen zu fehlenden UI-Elementen**
+
+**Ursache:**
+- Tippfehler zwischen Variable/Methodenname und Zugriff
+- `interpretation` vs `interpretation` (ohne/mit zweitem 'a')
+- Führt zu `undefined` Werten im UI
+
+**Vorbeugung:**
+1. ✅ Konsistente Schreibweise von Property-Namen
+2. ✅ Copy-Paste statt Tippen bei Property-Namen
+3. ✅ Nach Änderungen: Überprüfen ob alle Zugriffe konsistent sind
+4. ✅ Optional: TypeScript oder JSDoc für Typ-Sicherheit
+
+**Beispiel:**
+```javascript
+// DEFINITION
+getInterpretation(totalL) { ... }  // mit 't' am Ende
+
+// ZUGRIFF - Alle konsistent!
+const interpretation = this.getInterpretation(totalL);  // ✅
+result.interpretation  // ✅ mit 't'
+${result.interpretation}  // ✅ mit 't'
+
+// ❌ NICHT:
+result.interpretation  // ❌ ohne 't'
+${result.interpretation}  // ❌ ohne 't'
+```
+
+**Checkliste nach UI-Änderungen:**
+- [ ] Alle Property-Zugriffe konsistent?
+- [ ] Keine Tippfehler in Variable-/Methodennamen?
+- [ ] UI-Test: Werden alle Werte korrekt angezeigt?
+
+---
 
 ### Concrete Triggers for HunterDash
 
