@@ -61,6 +61,7 @@ module.exports = {
       grindEditableTips: false,
       grindShowCharts: true,
       overlayMode: false,
+      minimizeToTray: false,
       audioFeedback: true,
       audioVolume: 0.5,
       animalLanguage: 'de',

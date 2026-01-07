@@ -25,13 +25,50 @@
             --neutral: #a0a8b0;
             --unlucky: #f39c12;
             --very-unlucky: #e67e22;
+            /* Adaptive Colors */
+            --input-bg: rgba(255, 255, 255, 0.75);
+            --input-bg-focus: rgba(255, 255, 255, 0.95);
+            --input-border: rgba(200, 200, 200, 0.6);
+            --card-border: rgba(255, 255, 255, 0.6);
+            --legend-bg: rgba(245, 247, 250, 0.6);
+            --border-light: rgba(200, 200, 200, 0.4);
+            --mini-hint-bg: rgba(200, 200, 200, 0.25);
+            --settings-btn-bg: var(--surface);
+            --bar-bg: rgba(232, 232, 232, 0.7);
+            --legend-item-bg: rgba(255, 255, 255, 0.5);
+            --form-select-bg: rgba(255, 255, 255, 0.75);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --nav-hover-bg: rgba(255, 255, 255, 0.95);
+            --setting-item-bg: rgba(245, 247, 250, 0.5);
+            --nav-active-text: #ffffff;
         }
 
         .dark-mode {
-            --background: linear-gradient(135deg, #1a2f1a 0%, #0f421d 100%);
-            --surface: rgba(30, 41, 30, 0.92);
-            --text-primary: #e8f5e9;
-            --text-secondary: #a0c4a8;
+            --primary: #81c784;
+            --primary-dark: #2e7d32;
+            --primary-light: #4caf50;
+            --secondary: #a5d6a7;
+            --accent: #ffd54f;
+            --background: #121212;
+            --surface: #1e1e1e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+
+            --input-bg: #2c2c2c;
+            --input-bg-focus: #383838;
+            --input-border: #424242;
+            --card-border: #333333;
+            --legend-bg: #262626;
+            --border-light: #333333;
+            --mini-hint-bg: #2c2c2c;
+            --settings-btn-bg: #2c2c2c;
+            --bar-bg: #2c2c2c;
+            --legend-item-bg: #333333;
+            --form-select-bg: #2c2c2c;
+            --nav-bg: #2c2c2c;
+            --nav-hover-bg: #383838;
+            --setting-item-bg: #2c2c2c;
+            --nav-active-text: rgba(0, 0, 0, 0.85);
         }
 
         * {
@@ -97,7 +134,7 @@
                 0 2px 8px rgba(0, 0, 0, 0.08);
             padding: 36px;
             margin-bottom: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--card-border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -128,7 +165,7 @@
             padding: 8px 12px;
             margin-top: 0;
             margin-bottom: 8px;
-            background: rgba(200, 200, 200, 0.25);
+            background: var(--mini-hint-bg);
             border-radius: 8px;
             border-left: 3px solid var(--accent);
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -151,20 +188,20 @@
         input[type="number"] {
             width: 100%;
             padding: 16px 20px;
-            border: 2px solid rgba(200, 200, 200, 0.6);
+            border: 2px solid var(--input-border);
             border-radius: 12px;
             font-size: 1.05rem;
             font-family: 'Roboto', sans-serif;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             outline: none;
-            background: rgba(255, 255, 255, 0.75);
+            background: var(--input-bg);
             color: var(--text-primary);
         }
 
         input[type="number"]:focus {
             border-color: var(--primary-light);
             box-shadow: 0 0 0 4px rgba(74, 122, 42, 0.15);
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--input-bg-focus);
         }
 
         input[type="number"]:hover {
@@ -194,10 +231,12 @@
             gap: 8px;
             margin-bottom: 28px;
             padding: 18px 16px;
-            background: rgba(245, 247, 250, 0.6);
+            margin-bottom: 28px;
+            padding: 18px 16px;
+            background: var(--legend-bg);
             backdrop-filter: blur(12px);
             border-radius: 14px;
-            border: 1px solid rgba(200, 200, 200, 0.4);
+            border: 1px solid var(--border-light);
             overflow-x: auto;
             scrollbar-width: thin;
             scrollbar-color: rgba(200, 200, 200, 0.6) transparent;
@@ -230,7 +269,7 @@
             height: 28px;
             padding: 4px 10px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.5);
+            background: var(--legend-item-bg);
             transition: all 0.2s ease;
             flex-shrink: 0;
             white-space: nowrap;
@@ -264,7 +303,7 @@
 
         .luck-bar {
             height: 44px;
-            background: rgba(232, 232, 232, 0.7);
+            background: var(--bar-bg);
             border-radius: 12px;
             position: relative;
             overflow: hidden;
@@ -283,14 +322,15 @@
             padding: 0 16px;
             font-weight: 700;
             font-size: 1rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            color: rgba(0, 0, 0, 0.85);
+            text-shadow: none;
             border-radius: 12px;
             overflow: hidden;
             white-space: nowrap;
         }
 
         .luck-bar-fill.small {
-            color: var(--text-primary);
+            color: rgba(0, 0, 0, 0.85);
             text-shadow: none;
         }
 
@@ -352,7 +392,7 @@
             position: fixed;
             top: 24px;
             right: 24px;
-            background: var(--surface);
+            background: var(--settings-btn-bg);
             backdrop-filter: blur(20px);
             border: 2px solid rgba(200, 200, 200, 0.4);
             border-radius: 50%;
@@ -420,7 +460,7 @@
             max-height: 85vh;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--card-border);
             transform: scale(0.9);
             transition: transform 0.3s ease;
         }
@@ -461,7 +501,7 @@
             gap: 10px;
             margin-bottom: 16px;
             padding-bottom: 12px;
-            border-bottom: 2px solid rgba(200, 200, 200, 0.3);
+            border-bottom: 2px solid var(--border-light);
         }
 
         .settings-section-icon {
@@ -532,9 +572,9 @@
         .setting-item {
             margin-bottom: 28px;
             padding: 20px;
-            background: rgba(245, 247, 250, 0.5);
+            background: var(--setting-item-bg);
             border-radius: 16px;
-            border: 1px solid rgba(200, 200, 200, 0.3);
+            border: 1px solid var(--border-light);
             transition: all 0.3s ease;
         }
 
@@ -821,8 +861,8 @@
         .form-select {
             width: 100%;
             padding: 14px 18px;
-            background: white;
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            background: var(--form-select-bg);
+            border: 2px solid var(--input-border);
             border-radius: 12px;
             font-size: 1rem;
             color: var(--text-primary);
@@ -844,8 +884,8 @@
         .form-input {
             width: 100%;
             padding: 14px 18px;
-            background: white;
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
             border-radius: 12px;
             font-size: 1rem;
             color: var(--text-primary);
@@ -1040,7 +1080,7 @@
 
         .nav-tab.active {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
+            color: var(--nav-active-text);
             border-color: var(--primary);
         }
 
@@ -1171,21 +1211,25 @@
         }
 
         .preset-button {
-            background: var(--surface);
-            border: 2px solid rgba(200, 200, 200, 0.4);
+            background: var(--primary);
+            border: 2px solid var(--primary);
             border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 0.85rem;
+            padding: 8px 16px;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            color: white;
+            font-weight: 500;
         }
 
         .preset-button:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--secondary);
             border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .preset-list {
@@ -1278,10 +1322,10 @@
         }
 
         .stat-card {
-            background: rgba(245, 247, 250, 0.5);
+            background: var(--setting-item-bg);
             border-radius: 16px;
             padding: 24px;
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            border: 2px solid var(--border-light);
             transition: all 0.3s ease;
         }
 
@@ -1311,7 +1355,8 @@
             position: relative;
             height: 400px;
             margin: 32px 0;
-            background: rgba(255, 255, 255, 0.5);
+            background: var(--setting-item-bg);
+            border: 2px solid var(--border-light);
             border-radius: 16px;
             padding: 24px;
         }
@@ -1347,7 +1392,9 @@
         }
 
         .action-button.secondary {
-            background: rgba(200, 200, 200, 0.8);
+            background: var(--surface);
+            border: 2px solid var(--border-light);
+            color: var(--text-primary);
         }
 
         .action-button.active {
@@ -1368,10 +1415,10 @@
         }
 
         .account-card {
-            background: rgba(245, 247, 250, 0.5);
+            background: var(--setting-item-bg);
             border-radius: 12px;
             padding: 20px;
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            border: 2px solid var(--border-light);
             transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
@@ -1446,7 +1493,7 @@
             border-radius: 12px;
             font-size: 0.95rem;
             font-family: 'Roboto', sans-serif;
-            background: rgba(255, 255, 255, 0.75);
+            background: var(--form-select-bg);
             color: var(--text-primary);
             cursor: pointer;
         }
@@ -1459,10 +1506,10 @@
         }
 
         .template-card {
-            background: rgba(245, 247, 250, 0.5);
+            background: var(--setting-item-bg);
             border-radius: 12px;
             padding: 20px;
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            border: 2px solid var(--border-light);
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -1497,7 +1544,7 @@
         .template-badge {
             display: inline-block;
             padding: 4px 8px;
-            background: var(--primary);
+            background: #6c757d;
             color: white;
             border-radius: 4px;
             font-size: 0.75rem;
@@ -1513,10 +1560,10 @@
         }
 
         .history-item {
-            background: rgba(245, 247, 250, 0.5);
+            background: var(--setting-item-bg);
             border-radius: 12px;
             padding: 16px 20px;
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            border: 2px solid var(--border-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1524,7 +1571,7 @@
         }
 
         .history-item:hover {
-            background: rgba(255, 255, 255, 0.7);
+            background: var(--nav-hover-bg);
             border-color: var(--primary);
         }
 
@@ -1589,8 +1636,8 @@
             flex: 1;
             min-width: 120px;
             padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(200, 200, 200, 0.4);
+            background: var(--nav-bg);
+            border: 2px solid var(--border-light);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1599,7 +1646,7 @@
         }
 
         .nav-tab:hover {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-hover-bg);
             border-color: var(--secondary);
         }
 
@@ -1630,8 +1677,8 @@
         .account-tab,
         .grind-tab {
             padding: 10px 18px;
-            background: rgba(255, 255, 255, 0.6);
-            border: 2px solid rgba(200, 200, 200, 0.3);
+            background: var(--nav-bg);
+            border: 2px solid var(--border-light);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1642,14 +1689,14 @@
 
         .account-tab:hover,
         .grind-tab:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: var(--nav-hover-bg);
             border-color: var(--secondary);
         }
 
         .account-tab.active,
         .grind-tab.active {
             background: var(--primary-light);
-            color: white;
+            color: var(--nav-active-text);
             border-color: var(--primary);
             box-shadow: 0 2px 8px rgba(45, 143, 66, 0.3);
         }
@@ -1682,7 +1729,7 @@
         }
 
         .grind-tip {
-            border: 2px solid rgba(200, 200, 200, 0.4);
+            border: 2px solid var(--border-light);
             border-radius: 12px;
             margin-bottom: 12px;
             overflow: hidden;
@@ -1706,7 +1753,7 @@
         }
 
         .tip-toggle:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--nav-hover-bg);
         }
 
         .tip-icon {
@@ -1877,8 +1924,8 @@
         .form-select {
             width: 100%;
             padding: 12px 16px;
-            background: var(--surface);
-            border: 2px solid rgba(200, 200, 200, 0.4);
+            background: var(--form-select-bg);
+            border: 2px solid var(--input-border);
             border-radius: 12px;
             font-size: 1rem;
             color: var(--text-primary);
@@ -1898,7 +1945,7 @@
 
         .simulation-result {
             background: var(--surface);
-            border: 2px solid rgba(200, 200, 200, 0.4);
+            border: 2px solid var(--border-light);
             border-radius: 12px;
             padding: 24px;
             margin-top: 24px;
@@ -2057,7 +2104,7 @@
     <div class="settings-modal" id="settingsModal">
         <div class="settings-content">
             <div class="settings-header">
-                <h2 class="settings-title">⚙️ Einstellungen</h2>
+                <h2 class="settings-title">⚙️ <span data-i18n="settings">Einstellungen</span></h2>
                 <button class="settings-close" onclick="SettingsManager.close()">✕</button>
             </div>
 
@@ -2066,19 +2113,19 @@
                 <div class="settings-section">
                     <div class="settings-section-header">
                         <span class="settings-section-icon">🎨</span>
-                        <span class="settings-section-title">Darstellung</span>
+                        <span class="settings-section-title" data-i18n="settingsAppearance">Darstellung</span>
                     </div>
 
                     <div class="setting-item">
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">✨</span>
-                                Animationen
+                                <span data-i18n="settingsAnimations">Animationen</span>
                             </span>
                             <div class="toggle-switch active" id="animToggle"
                                 onclick="SettingsManager.toggleAnimation()"></div>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsAnimationsDesc">
                             Balken-Animationen und Übergänge aktivieren.
                         </p>
                     </div>
@@ -2087,12 +2134,12 @@
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">💫</span>
-                                Ripple-Effekte
+                                <span data-i18n="settingsRipple">Ripple-Effekte</span>
                             </span>
                             <div class="toggle-switch active" id="rippleToggle"
                                 onclick="SettingsManager.toggleRipple()"></div>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsRippleDesc">
                             Welleneffekte beim Klicken auf Buttons.
                         </p>
                     </div>
@@ -2101,11 +2148,11 @@
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">🌙</span>
-                                Dunkles Design
+                                <span data-i18n="settingsDarkMode">Dunkles Design</span>
                             </span>
                             <div class="toggle-switch" id="darkToggle" onclick="SettingsManager.toggleDarkMode()"></div>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsDarkModeDesc">
                             Augenfreundliche dunkle Farben aktivieren.
                         </p>
                     </div>
@@ -2115,19 +2162,19 @@
                 <div class="settings-section">
                     <div class="settings-section-header">
                         <span class="settings-section-icon">🎮</span>
-                        <span class="settings-section-title">Grind Helper</span>
+                        <span class="settings-section-title" data-i18n="settingsGrindHelper">Grind Helper</span>
                     </div>
 
                     <div class="setting-item">
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">📌</span>
-                                Overlay-Modus
+                                <span data-i18n="settingsOverlay">Overlay-Modus</span>
                             </span>
                             <div class="toggle-switch" id="overlayToggle" onclick="SettingsManager.toggleOverlayMode()">
                             </div>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsOverlayDesc">
                             HunterDash immer im Vordergrund (always on top).
                         </p>
                     </div>
@@ -2136,12 +2183,12 @@
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">🔊</span>
-                                Audio-Feedback
+                                <span data-i18n="settingsAudio">Audio-Feedback</span>
                             </span>
                             <div class="toggle-switch active" id="audioToggle"
                                 onclick="SettingsManager.toggleAudioFeedback()"></div>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsAudioDesc">
                             Ton abspielen bei Kill-Hotkeys.
                         </p>
                         <div class="volume-control" id="volumeControl">
@@ -2155,19 +2202,32 @@
                     <div class="setting-item">
                         <div class="setting-header">
                             <span class="setting-label">
+                                <span class="setting-icon">📥</span>
+                                <span data-i18n="settingsMinimizeToTray">In Tray minimieren</span>
+                            </span>
+                            <div class="toggle-switch" id="trayToggle" onclick="SettingsManager.toggleMinimizeToTray()">
+                            </div>
+                        </div>
+                        <p class="setting-description" data-i18n="settingsMinimizeToTrayDesc">
+                            Beim Schließen in den System-Tray minimieren statt beenden.
+                        </p>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-header">
+                            <span class="setting-label">
                                 <span class="setting-icon">🌍</span>
-                                Tier-Sprache
+                                <span data-i18n="settingsLanguage">Sprache</span>
                             </span>
                         </div>
-                        <p class="setting-description">
-                            Sprache für Great Ones Tiernamen im Session-Timer.
+                        <p class="setting-description" data-i18n="settingsLanguageDesc">
+                            Sprache für die App und Tiernamen.
                         </p>
                         <div class="language-toggle">
-                            <button class="lang-btn active" id="langDe"
-                                onclick="SettingsManager.setAnimalLanguage('de')">
+                            <button class="lang-btn active" id="langDe" onclick="SettingsManager.setLanguage('de')">
                                 🇩🇪 Deutsch
                             </button>
-                            <button class="lang-btn" id="langEn" onclick="SettingsManager.setAnimalLanguage('en')">
+                            <button class="lang-btn" id="langEn" onclick="SettingsManager.setLanguage('en')">
                                 🇬🇧 English
                             </button>
                         </div>
@@ -2177,30 +2237,30 @@
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">⌨️</span>
-                                Session Hotkeys
+                                <span data-i18n="settingsHotkeys">Session Hotkeys</span>
                             </span>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsHotkeysDesc">
                             Globale Hotkeys für Session-Steuerung (funktionieren auch wenn minimiert).
                         </p>
                         <div class="hotkey-list">
                             <div class="hotkey-item">
-                                <label>+1 Kill:</label>
+                                <label data-i18n="hotkeyAddKill">+1 Kill:</label>
                                 <input type="text" id="hotkey-addKill" readonly
                                     onclick="SettingsManager.recordHotkey('addKill')" value="F7">
                             </div>
                             <div class="hotkey-item">
-                                <label>-1 Kill:</label>
+                                <label data-i18n="hotkeyRemoveKill">-1 Kill:</label>
                                 <input type="text" id="hotkey-removeKill" readonly
                                     onclick="SettingsManager.recordHotkey('removeKill')" value="F8">
                             </div>
                             <div class="hotkey-item">
-                                <label>Pause/Fortfahren:</label>
+                                <label data-i18n="hotkeyTogglePause">Pause/Fortfahren:</label>
                                 <input type="text" id="hotkey-togglePause" readonly
                                     onclick="SettingsManager.recordHotkey('togglePause')" value="F9">
                             </div>
                             <div class="hotkey-item">
-                                <label>Session beenden:</label>
+                                <label data-i18n="hotkeyEndSession">Session beenden:</label>
                                 <input type="text" id="hotkey-endSession" readonly
                                     onclick="SettingsManager.recordHotkey('endSession')" value="F10">
                             </div>
@@ -2212,22 +2272,22 @@
                 <div class="settings-section">
                     <div class="settings-section-header">
                         <span class="settings-section-icon">🗃️</span>
-                        <span class="settings-section-title">Daten</span>
+                        <span class="settings-section-title" data-i18n="settingsData">Daten</span>
                     </div>
 
                     <div class="setting-item">
                         <div class="setting-header">
                             <span class="setting-label">
                                 <span class="setting-icon">🔄</span>
-                                Standardwerte zurücksetzen
+                                <span data-i18n="settingsReset">Standardwerte zurücksetzen</span>
                             </span>
                         </div>
-                        <p class="setting-description">
+                        <p class="setting-description" data-i18n="settingsResetDesc">
                             Setzt alle Eingabefelder auf die ursprünglichen Werte zurück.
                         </p>
                         <button class="reset-button" onclick="resetAllDefaults()">
                             <span>🔄</span>
-                            Zurücksetzen
+                            <span data-i18n="settingsResetBtn">Zurücksetzen</span>
                         </button>
                     </div>
                 </div>
@@ -2240,35 +2300,36 @@
             <img src="assets/icons/HunterDash.png" alt="HunterDash Logo" class="app-logo">
         </div>
         <h1>HunterDash</h1>
-        <p class="subtitle">Berechne dein Glück basierend auf dataminierten Werten aus COTW 2025/2026</p>
+        <p class="subtitle" data-i18n="appSubtitle">Berechne dein Glück basierend auf dataminierten Werten aus COTW
+            2025/2026</p>
 
         <nav class="nav-tabs">
             <button class="nav-tab active" onclick="NavigationManager.switchTab('calculator')" data-tab="calculator">🧮
-                Berechner</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('grind')" data-tab="grind">🔧 Grind
-                Helper</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('history')" data-tab="history">📜
-                Historie</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋
-                Templates</button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('accounts')" data-tab="accounts">👤
-                Accounts</button>
+                <span data-i18n="navCalculator">Berechner</span></button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('grind')" data-tab="grind">🔧 <span
+                    data-i18n="navGrindHelper">Grind Helper</span></button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('history')" data-tab="history">📜 <span
+                    data-i18n="navHistory">Historie</span></button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋 <span
+                    data-i18n="navTemplates">Templates</span></button>
+            <button class="nav-tab" onclick="NavigationManager.switchTab('accounts')" data-tab="accounts">👤 <span
+                    data-i18n="navAccounts">Accounts</span></button>
         </nav>
 
         <div id="tab-calculator" class="tab-content active">
             <form id="form" class="card">
                 <div class="input-group">
-                    <label for="n">Total Harvests:</label>
+                    <label for="n" data-i18n="calcTotalHarvests">Total Harvests:</label>
                     <p class="mini-hint" id="hint-text">
-                        n = Total Harvests (alle verwerteten Tiere Account-weit)<br>
-                        Aus Spiel: Career > Statistics > Total Harvests
+                        <span data-i18n="calcHintN">n = Total Harvests (alle verwerteten Tiere Account-weit)</span><br>
+                        <span data-i18n="calcHintGame">Aus Spiel: Career > Statistics > Total Harvests</span>
                     </p>
                     <input type="number" id="n" value="15000" min="1" required>
                 </div>
 
-                <h3>🔥 Rares (Albino/Piebald/Melanistic)</h3>
+                <h3>🔥 <span data-i18n="calcRares">Rares (Albino/Piebald/Melanistic)</span></h3>
                 <div class="input-group">
-                    <label for="k_rare">Deine Rare Harvests:</label>
+                    <label for="k_rare" data-i18n="calcYourRares">Deine Rare Harvests:</label>
                     <input type="number" id="k_rare" value="45" min="0" required>
                 </div>
                 <div class="input-group">
@@ -2283,9 +2344,9 @@
                     </div>
                 </div>
 
-                <h3>💎 Diamonds (Top Rating)</h3>
+                <h3>💎 <span data-i18n="calcDiamonds">Diamonds (Top Rating)</span></h3>
                 <div class="input-group">
-                    <label for="k_diamond">Deine Diamonds:</label>
+                    <label for="k_diamond" data-i18n="calcYourDiamonds">Deine Diamonds:</label>
                     <input type="number" id="k_diamond" value="150" min="0" required>
                 </div>
                 <div class="input-group">
@@ -2301,9 +2362,9 @@
                     </div>
                 </div>
 
-                <h3>⭐ Super Rares (Rare Fur + Diamond)</h3>
+                <h3>⭐ <span data-i18n="calcSuperRares">Super Rares (Rare Fur + Diamond)</span></h3>
                 <div class="input-group">
-                    <label for="k_super">Deine Super Rares:</label>
+                    <label for="k_super" data-i18n="calcYourSuperRares">Deine Super Rares:</label>
                     <input type="number" id="k_super" value="1" min="0" required>
                 </div>
                 <div class="input-group">
@@ -2318,9 +2379,9 @@
                     </div>
                 </div>
 
-                <h3>👑 Great Ones (Top 0.05% Größe)</h3>
+                <h3>👑 <span data-i18n="calcGreatOnes">Great Ones (Top 0.05% Größe)</span></h3>
                 <div class="input-group">
-                    <label for="k_go">Deine Great Ones:</label>
+                    <label for="k_go" data-i18n="calcYourGreatOnes">Deine Great Ones:</label>
                     <input type="number" id="k_go" value="1" min="0" required>
                 </div>
                 <div class="input-group">
@@ -2336,8 +2397,8 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button type="button" class="action-button secondary" onclick="UndoRedoManager?.undo?.()">↩️
-                        Undo</button>
+                    <button type="button" class="action-button secondary" onclick="UndoRedoManager?.undo?.()">↩️ <span
+                            data-i18n="calcUndo">Undo</span></button>
                     <button type="button" class="action-button secondary" onclick="UndoRedoManager?.redo?.()">↪️
                         Redo</button>
                 </div>
@@ -2348,20 +2409,23 @@
 
         <div id="tab-templates" class="tab-content">
             <div class="card">
-                <h2>📋 Vorlagen</h2>
-                <p class="note">Wähle eine Vorlage aus, um schnell die Eingabewerte zu füllen.</p>
+                <h2>📋 <span data-i18n="templatesTitle">Vorlagen</span></h2>
+                <p class="note" data-i18n="templatesDesc">Wähle eine Vorlage aus, um schnell die Eingabewerte zu füllen.
+                </p>
                 <div class="template-grid" id="templateGrid"></div>
             </div>
         </div>
 
         <div id="tab-history" class="tab-content">
             <div class="card">
-                <h2>📜 Berechnungshistorie</h2>
+                <h2>📜 <span data-i18n="historyTitle">Berechnungshistorie</span></h2>
                 <div class="action-buttons">
-                    <button class="action-button" onclick="HistoryManager.exportCSV()">📄 CSV Export</button>
-                    <button class="action-button" onclick="HistoryManager.exportJSON()">📦 JSON Export</button>
-                    <button class="action-button secondary" onclick="HistoryManager.clearHistory()">🗑️ Historie
-                        löschen</button>
+                    <button class="action-button" onclick="HistoryManager.exportCSV()">📄 <span
+                            data-i18n="historyExportCSV">CSV Export</span></button>
+                    <button class="action-button" onclick="HistoryManager.exportJSON()">📦 <span
+                            data-i18n="historyExportJSON">JSON Export</span></button>
+                    <button class="action-button secondary" onclick="HistoryManager.clearHistory()">🗑️ <span
+                            data-i18n="historyDelete">Historie löschen</span></button>
                 </div>
                 <div class="history-list" id="historyList"></div>
             </div>
@@ -2371,37 +2435,38 @@
             <nav class="account-tabs">
                 <button class="account-tab active" onclick="AccountManager.switchSubTab('statistics')"
                     data-subtab="statistics">
-                    📊 Statistiken
+                    📊 <span data-i18n="accountsStatistics">Statistiken</span>
                 </button>
                 <button class="account-tab" onclick="AccountManager.switchSubTab('compare')" data-subtab="compare">
-                    🆎 Account-Vergleich
+                    🆎 <span data-i18n="accountsCompare">Account-Vergleich</span>
                 </button>
                 <button class="account-tab" onclick="AccountManager.switchSubTab('save')" data-subtab="save">
-                    💾 Account speichern
+                    💾 <span data-i18n="accountsSave">Account speichern</span>
                 </button>
                 <button class="account-tab" onclick="AccountManager.switchSubTab('list')" data-subtab="list">
-                    📋 Accounts
+                    📋 <span data-i18n="accountsList">Accounts</span>
                 </button>
             </nav>
 
             <div id="subtab-statistics" class="subtab-content active">
                 <div class="card">
-                    <h2>📊 Statistiken</h2>
-                    <p class="note">Analysiere deinen Glück-Verlauf über die Zeit.</p>
+                    <h2>📊 <span data-i18n="accountsStatisticsTitle">Statistiken</span></h2>
+                    <p class="note" data-i18n="accountsStatisticsDesc">Analysiere deinen Glück-Verlauf über die Zeit.
+                    </p>
 
                     <div class="action-buttons" id="stats-period-buttons">
                         <button class="action-button" data-period="week"
-                            onclick="StatisticsManager.loadStatistics('week')">📅
-                            Woche</button>
+                            onclick="StatisticsManager.loadStatistics('week')">📅 <span
+                                data-i18n="accountsWeek">Woche</span></button>
                         <button class="action-button" data-period="month"
-                            onclick="StatisticsManager.loadStatistics('month')">📆
-                            Monat</button>
+                            onclick="StatisticsManager.loadStatistics('month')">📆 <span
+                                data-i18n="accountsMonth">Monat</span></button>
                         <button class="action-button" data-period="quarter"
-                            onclick="StatisticsManager.loadStatistics('quarter')">📋
-                            Quartal</button>
+                            onclick="StatisticsManager.loadStatistics('quarter')">📋 <span
+                                data-i18n="accountsQuarter">Quartal</span></button>
                         <button class="action-button active" data-period="all"
-                            onclick="StatisticsManager.loadStatistics('all')">📊
-                            Alle</button>
+                            onclick="StatisticsManager.loadStatistics('all')">📊 <span
+                                data-i18n="accountsAll">Alle</span></button>
                     </div>
 
                     <div class="stat-grid" id="statGrid"></div>
@@ -2413,18 +2478,19 @@
 
             <div id="subtab-compare" class="subtab-content">
                 <div class="card">
-                    <h2>🆎 Account-Vergleich</h2>
-                    <p class="note">Vergleiche zwei Accounts gegeneinander.</p>
+                    <h2>🆎 <span data-i18n="accountsCompareTitle">Account-Vergleich</span></h2>
+                    <p class="note" data-i18n="accountsCompareDesc">Vergleiche zwei Accounts gegeneinander.</p>
 
                     <div class="compare-controls">
                         <select class="compare-select" id="compareAccount1">
-                            <option value="">Account 1 auswählen...</option>
+                            <option value="" data-i18n="accountsSelect1">Account 1 auswählen...</option>
                         </select>
                         <span>vs</span>
                         <select class="compare-select" id="compareAccount2">
-                            <option value="">Account 2 auswählen...</option>
+                            <option value="" data-i18n="accountsSelect2">Account 2 auswählen...</option>
                         </select>
-                        <button class="action-button" onclick="AccountManager.compare()">🔄 Vergleichen</button>
+                        <button class="action-button" onclick="AccountManager.compare()">🔄 <span
+                                data-i18n="accountsCompareBtn">Vergleichen</span></button>
                     </div>
                     <div id="comparisonResult"></div>
                 </div>
@@ -2432,23 +2498,24 @@
 
             <div id="subtab-save" class="subtab-content">
                 <div class="card">
-                    <h2>💾 Account speichern</h2>
-                    <p class="note">Speichere deine aktuellen Eingabewerte als Account.</p>
+                    <h2>💾 <span data-i18n="accountsSaveTitle">Account speichern</span></h2>
+                    <p class="note" data-i18n="accountsSaveDesc">Speichere deine aktuellen Eingabewerte als Account.</p>
 
                     <div class="input-group">
-                        <label for="accountName">Account-Name:</label>
-                        <input type="text" id="accountName" placeholder="z.B. Mein Main Account">
+                        <label for="accountName" data-i18n="accountsNameLabel">Account-Name:</label>
+                        <input type="text" id="accountName" placeholder="z.B. Mein Main Account"
+                            data-i18n-placeholder="accountsNamePlaceholder">
                     </div>
                     <button class="action-button" onclick="AccountManager.saveCurrentAsAccount()">
-                        💾 Als Account speichern
+                        💾 <span data-i18n="accountsSaveBtn">Als Account speichern</span>
                     </button>
                 </div>
             </div>
 
             <div id="subtab-list" class="subtab-content">
                 <div class="card">
-                    <h2>📋 Gespeicherte Accounts</h2>
-                    <p class="note">Verwalte deine gespeicherten Accounts.</p>
+                    <h2>📋 <span data-i18n="accountsListTitle">Gespeicherte Accounts</span></h2>
+                    <p class="note" data-i18n="accountsListDesc">Verwalte deine gespeicherten Accounts.</p>
                     <div class="account-list" id="accountList"></div>
                 </div>
             </div>
@@ -2457,28 +2524,28 @@
         <div id="tab-grind" class="tab-content">
             <nav class="grind-tabs">
                 <button class="grind-tab active" onclick="GrindManager.switchSubTab('tips')" data-subtab="tips">
-                    🐗 Herd-Tipps
+                    🐗 <span data-i18n="grindTips">Herd-Tipps</span>
                 </button>
                 <button class="grind-tab" onclick="GrindManager.switchSubTab('timer')" data-subtab="timer">
-                    ⏱️ Session-Timer
+                    ⏱️ <span data-i18n="grindTimer">Session-Timer</span>
                 </button>
                 <button class="grind-tab" onclick="GrindManager.switchSubTab('simulator')" data-subtab="simulator">
-                    🎲 Simulator
+                    🎲 <span data-i18n="grindSimulator">Simulator</span>
                 </button>
                 <button class="grind-tab" onclick="GrindManager.switchSubTab('sessions')" data-subtab="sessions">
-                    📊 Sessions
+                    📊 <span data-i18n="grindSessions">Sessions</span>
                 </button>
             </nav>
 
             <div id="subtab-tips" class="grind-subtab-content active">
                 <div class="card">
-                    <h2>🐗 Herd-Management-Tipps</h2>
-                    <p class="note">Strategien für effizientes Farmen von Great Ones.</p>
+                    <h2>🐗 <span data-i18n="grindTipsTitle">Herd-Management-Tipps</span></h2>
+                    <p class="note" data-i18n="grindTipsDesc">Strategien für effizientes Farmen von Great Ones.</p>
                     <div class="grind-tips-section">
                         <div class="grind-tip" data-tip="general">
                             <button class="tip-toggle" onclick="GrindManager.toggleTip('general')">
                                 <span class="tip-icon">📖</span>
-                                <span class="tip-title">Allgemeines Herd-Management</span>
+                                <span class="tip-title" data-i18n="grindTipGeneral">Allgemeines Herd-Management</span>
                                 <span class="tip-arrow">▼</span>
                             </button>
                             <div class="tip-content" id="tip-content-general"></div>
@@ -2489,44 +2556,45 @@
 
             <div id="subtab-timer" class="grind-subtab-content">
                 <div class="card">
-                    <h2>⏱️ Session-Timer & Kill-Counter</h2>
-                    <p class="note">Verfolge deine Grind-Sessions für bessere Statistiken.</p>
+                    <h2>⏱️ <span data-i18n="grindTimerTitle">Session-Timer & Kill-Counter</span></h2>
+                    <p class="note" data-i18n="grindTimerDesc">Verfolge deine Grind-Sessions für bessere Statistiken.
+                    </p>
 
                     <div class="input-group">
-                        <label for="session-template">Session-Template:</label>
+                        <label for="session-template" data-i18n="grindTemplateLabel">Session-Template:</label>
                         <select id="session-template" class="form-select">
-                            <option value="">-- Kein Template --</option>
-                            <option value="go-tier">🏆 GO [Tier]</option>
-                            <option value="general">🎯 General Grind</option>
-                            <option value="practice">🎮 Practice</option>
-                            <option value="speedrun">⚡ Speedrun</option>
-                            <option value="custom">✏️ Eigene Templates...</option>
+                            <option value="" data-i18n="grindTemplateNone">-- Kein Template --</option>
+                            <option value="go-tier" data-i18n="grindTemplateGO">🏆 GO [Tier]</option>
+                            <option value="general" data-i18n="grindTemplateGeneral">🎯 General Grind</option>
+                            <option value="practice" data-i18n="grindTemplatePractice">🎮 Practice</option>
+                            <option value="speedrun" data-i18n="grindTemplateSpeedrun">⚡ Speedrun</option>
+                            <option value="custom" data-i18n="grindTemplateCustom">✏️ Eigene Templates...</option>
                         </select>
                     </div>
 
                     <div class="input-group" id="animal-select-group" style="display: none;">
-                        <label for="session-animal">Tier:</label>
+                        <label for="session-animal" data-i18n="grindAnimalLabel">Tier:</label>
                         <select id="session-animal" class="form-select"></select>
                     </div>
 
                     <div class="input-group">
-                        <label for="session-name">Session-Name:</label>
+                        <label for="session-name" data-i18n="grindSessionNameLabel">Session-Name:</label>
                         <input type="text" id="session-name" class="form-input" placeholder="z.B. GO Wolf"
-                            maxlength="50">
+                            maxlength="50" data-i18n="grindSessionNamePlaceholder">
                         <span class="mini-hint" id="session-name-hint"></span>
                     </div>
 
                     <div class="session-display">
                         <div class="session-metric">
-                            <span class="metric-label">Dauer</span>
+                            <span class="metric-label" data-i18n="grindDuration">Dauer</span>
                             <span class="metric-value" id="session-duration">00:00:00</span>
                         </div>
                         <div class="session-metric">
-                            <span class="metric-label">Kills</span>
+                            <span class="metric-label" data-i18n="grindKills">Kills</span>
                             <span class="metric-value" id="session-kills">0</span>
                         </div>
                         <div class="session-metric">
-                            <span class="metric-label">Kills/Stunde</span>
+                            <span class="metric-label" data-i18n="grindKillsPerHour">Kills/Stunde</span>
                             <span class="metric-value" id="session-kph">0.0</span>
                         </div>
                     </div>
@@ -2534,7 +2602,7 @@
                     <!-- Start Button (nur sichtbar wenn keine Session läuft) -->
                     <div class="session-start-container" id="session-start-container">
                         <button class="action-button start-session-btn" id="btn-start-session"
-                            onclick="GrindManager.startSession()">
+                            onclick="GrindManager.startSession()" data-i18n="grindStartSession">
                             ▶️ Session starten
                         </button>
                     </div>
@@ -2542,21 +2610,22 @@
                     <!-- Session Controls (nur sichtbar wenn Session läuft) -->
                     <div class="session-controls-active" id="session-controls-active" style="display: none;">
                         <div class="session-controls-row primary-row">
-                            <button class="action-button kill-btn" id="btn-add-kill" onclick="GrindManager.addKill()">
+                            <button class="action-button kill-btn" id="btn-add-kill" onclick="GrindManager.addKill()"
+                                data-i18n="grindAddKill">
                                 💀 +1 Kill
                             </button>
                             <button class="action-button secondary kill-btn" id="btn-remove-kill"
-                                onclick="GrindManager.removeKill()">
+                                onclick="GrindManager.removeKill()" data-i18n="grindRemoveKill">
                                 ↩️ -1 Kill
                             </button>
                         </div>
                         <div class="session-controls-row secondary-row">
                             <button class="action-button secondary" id="btn-pause-session"
-                                onclick="GrindManager.togglePause()">
+                                onclick="GrindManager.togglePause()" data-i18n="grindPause">
                                 ⏸️ Pause
                             </button>
                             <button class="action-button secondary danger" id="btn-end-session"
-                                onclick="GrindManager.endSession()">
+                                onclick="GrindManager.endSession()" data-i18n="grindEndSession">
                                 ⏹️ Beenden
                             </button>
                         </div>
@@ -2564,7 +2633,8 @@
 
                     <div class="session-info" id="session-info" style="display: none;">
                         <p class="note">
-                            <strong>🎯 Letzte Session:</strong> <span id="last-session">-</span>
+                            <strong data-i18n="grindLastSession">🎯 Letzte Session:</strong> <span
+                                id="last-session">-</span>
                         </p>
                     </div>
                 </div>
@@ -2572,63 +2642,67 @@
 
             <div id="subtab-simulator" class="grind-subtab-content">
                 <div class="card">
-                    <h2>🎲 Expected Kills bis GO-Simulator</h2>
-                    <p class="note">Schätze, wie viele Kills du bis zum nächsten Great One brauchst.</p>
+                    <h2>🎲 <span data-i18n="grindSimulatorTitle">Expected Kills bis GO-Simulator</span></h2>
+                    <p class="note" data-i18n="grindSimulatorDesc">Schätze, wie viele Kills du bis zum nächsten Great
+                        One brauchst.</p>
                     <div class="simulation-form">
                         <div class="input-group">
-                            <label for="sim-animal">Tierart:</label>
+                            <label for="sim-animal" data-i18n="grindAnimalType">Tierart:</label>
                             <select id="sim-animal" class="form-select"></select>
                         </div>
                         <div class="input-group">
-                            <label for="sim-current-kills">Aktuelle Kills:</label>
+                            <label for="sim-current-kills" data-i18n="grindCurrentKills">Aktuelle Kills:</label>
                             <input type="number" id="sim-current-kills" value="0" min="0" step="1">
-                            <p class="mini-hint">Anzahl der Kills seit dem letzten GO für dieses Tier</p>
+                            <p class="mini-hint" data-i18n="grindCurrentKillsHint">Anzahl der Kills seit dem letzten GO
+                                für dieses Tier</p>
                         </div>
                         <div class="input-group">
-                            <label for="sim-spawn-chance">Spawn-Chance (p):</label>
+                            <label for="sim-spawn-chance" data-i18n="grindSpawnChance">Spawn-Chance (p):</label>
                             <input type="number" id="sim-spawn-chance" value="0.00005" min="0" max="1" step="0.00001">
                             <p class="mini-hint">
-                                Durchschnittliche Spawn-Chance aus Datamines (z. B. 0.00005 für 1:20.000)<br>
-                                <strong>Hinweis:</strong> Dies ist eine statistische Annäherung, keine Garantie!
+                                <span data-i18n="grindSpawnChanceHint">Durchschnittliche Spawn-Chance aus Datamines (z.
+                                    B. 0.00005 für 1:20.000)</span><br>
+                                <strong>⚠️</strong> <span data-i18n="grindSpawnChanceNote">Dies ist eine statistische
+                                    Annäherung, keine Garantie!</span>
                             </p>
                         </div>
                         <div class="input-group">
-                            <label for="sim-confidence">Konfidenz (95% / 99%):</label>
+                            <label for="sim-confidence" data-i18n="grindConfidence">Konfidenz (95% / 99%):</label>
                             <select id="sim-confidence" class="form-select">
-                                <option value="0.95">95% Konfidenz (Standard)</option>
-                                <option value="0.99">99% Konfidenz (Konservativ)</option>
+                                <option value="0.95" data-i18n="grindConfidence95">95% Konfidenz (Standard)</option>
+                                <option value="0.99" data-i18n="grindConfidence99">99% Konfidenz (Konservativ)</option>
                             </select>
                         </div>
                         <button class="action-button" onclick="GrindManager.simulate()">
-                            🧮 Simulieren
+                            🧮 <span data-i18n="grindSimulate">Simulieren</span>
                         </button>
                     </div>
                     <div class="simulation-result" id="simulation-result" style="display: none;">
-                        <h3>📊 Simulationsergebnis</h3>
+                        <h3>📊 <span data-i18n="grindSimResultTitle">Simulationsergebnis</span></h3>
                         <div class="result-grid">
                             <div class="result-item">
-                                <span class="result-label">Erwartete Kills (Ø)</span>
+                                <span class="result-label" data-i18n="grindSimExpected">Erwartete Kills (Ø)</span>
                                 <span class="result-value" id="sim-expected">-</span>
                             </div>
                             <div class="result-item">
-                                <span class="result-label">Minimale Spanne (5%)</span>
+                                <span class="result-label" data-i18n="grindSimMin">Minimale Spanne (5%)</span>
                                 <span class="result-value" id="sim-min">-</span>
                             </div>
                             <div class="result-item">
-                                <span class="result-label">Maximale Spanne (95%)</span>
+                                <span class="result-label" data-i18n="grindSimMax">Maximale Spanne (95%)</span>
                                 <span class="result-value" id="sim-max">-</span>
                             </div>
                             <div class="result-item">
-                                <span class="result-label">Wahrscheinlichkeit (aktuell)</span>
+                                <span class="result-label" data-i18n="grindSimProbability">Wahrscheinlichkeit
+                                    (aktuell)</span>
                                 <span class="result-value" id="sim-probability">-</span>
                             </div>
                         </div>
                         <div class="simulation-chart-container" id="sim-chart-container" style="display: none;">
                             <canvas id="simulation-chart"></canvas>
                         </div>
-                        <p class="note">
-                            <strong>⚠️ Hinweis:</strong> Diese Simulation basiert auf Poisson-Statistik und ist eine
-                            statistische Annäherung.
+                        <p class="note" data-i18n="grindSimNote">
+                            Diese Simulation basiert auf Poisson-Statistik und ist eine statistische Annäherung.
                             RND-Zufallsgeneratoren in Spielen sind nicht perfekt zufällig. Nutze dies als groben
                             Richtwert, nicht als Garantie!
                         </p>
@@ -2638,13 +2712,13 @@
 
             <div id="subtab-sessions" class="grind-subtab-content">
                 <div class="card">
-                    <h2>📊 Grind-Sessions</h2>
-                    <p class="note">Verwalte deine vergangenen Grind-Sessions.</p>
+                    <h2>📊 <span data-i18n="grindSessionsTitle">Grind-Sessions</span></h2>
+                    <p class="note" data-i18n="grindSessionsDesc">Verwalte deine vergangenen Grind-Sessions.</p>
                     <div class="action-buttons">
-                        <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ Sessions
-                            löschen</button>
-                        <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 Export
-                            CSV</button>
+                        <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ <span
+                                data-i18n="grindSessionsDelete">Sessions löschen</span></button>
+                        <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 <span
+                                data-i18n="grindSessionsExport">Export CSV</span></button>
                     </div>
                     <div class="grind-sessions-list" id="grindSessionsList"></div>
                 </div>
@@ -2654,6 +2728,313 @@
 
     <script>
         // ========================================
+        // TRANSLATION MANAGER
+        // ========================================
+        const TranslationManager = {
+            translations: {
+                de: {
+                    appSubtitle: 'Berechne dein Glück basierend auf dataminierten Werten aus COTW 2025/2026',
+                    navCalculator: 'Berechner', navGrindHelper: 'Grind Helper', navHistory: 'Historie',
+                    navTemplates: 'Templates', navAccounts: 'Accounts',
+                    settings: 'Einstellungen', settingsAppearance: 'Darstellung',
+                    settingsAnimations: 'Animationen', settingsAnimationsDesc: 'Balken-Animationen und Übergänge aktivieren.',
+                    settingsRipple: 'Ripple-Effekte', settingsRippleDesc: 'Welleneffekte beim Klicken auf Buttons.',
+                    settingsDarkMode: 'Dunkles Design', settingsDarkModeDesc: 'Augenfreundliche dunkle Farben aktivieren.',
+                    settingsGrindHelper: 'Grind Helper', settingsOverlay: 'Overlay-Modus',
+                    settingsOverlayDesc: 'HunterDash immer im Vordergrund (always on top).',
+                    settingsAudio: 'Audio-Feedback', settingsAudioDesc: 'Ton abspielen bei Kill-Hotkeys.',
+                    settingsLanguage: 'Sprache', settingsLanguageDesc: 'Sprache für die App und Tiernamen.',
+                    settingsHotkeys: 'Session Hotkeys',
+                    settingsHotkeysDesc: 'Globale Hotkeys für Session-Steuerung (funktionieren auch wenn minimiert).',
+                    settingsData: 'Daten', settingsReset: 'Standardwerte zurücksetzen',
+                    settingsResetDesc: 'Setzt alle Eingabefelder auf die ursprünglichen Werte zurück.',
+                    settingsResetBtn: 'Zurücksetzen',
+                    settingsResetConfirm: 'Möchtest du wirklich alle Einstellungen zurücksetzen?',
+                    settingsResetSuccess: 'Einstellungen zurückgesetzt',
+                    hotkeyAddKill: '+1 Kill:', hotkeyRemoveKill: '-1 Kill:',
+                    hotkeyTogglePause: 'Pause/Fortfahren:', hotkeyEndSession: 'Session beenden:',
+                    hotkeyRecording: 'Drücke eine Taste...',
+                    calcTotalHarvests: 'Total Harvests:',
+                    calcHintN: 'n = Total Harvests (alle verwerteten Tiere Account-weit)',
+                    calcHintGame: 'Aus Spiel: Career > Statistics > Total Harvests',
+                    calcRares: 'Rares (Albino/Piebald/Melanistic)', calcYourRares: 'Deine Rare Harvests:',
+                    calcDiamonds: 'Diamonds (Top Rating)', calcYourDiamonds: 'Deine Diamonds:',
+                    calcSuperRares: 'Super Rares (Rare Fur + Diamond)', calcYourSuperRares: 'Deine Super Rares:',
+                    calcGreatOnes: 'Great Ones (Top 0.05% Größe)', calcYourGreatOnes: 'Deine Great Ones:',
+                    calcUndo: 'Undo', calcRedo: 'Redo',
+                    templatesTitle: 'Vorlagen', templatesDesc: 'Wähle eine Vorlage aus, um schnell die Eingabewerte zu füllen.',
+                    templateApply: 'Anwenden',
+                    historyTitle: 'Berechnungshistorie', historyExportCSV: 'CSV Export', historyExportJSON: 'JSON Export',
+                    historyDelete: 'Historie löschen', historyEmpty: 'Keine Berechnungen vorhanden',
+                    historyDeleteConfirm: 'Möchtest du wirklich die gesamte Historie löschen?',
+                    historyDeleteSuccess: 'Historie gelöscht',
+                    accountsStatistics: 'Statistiken', accountsCompare: 'Account-Vergleich',
+                    accountsSave: 'Account speichern', accountsList: 'Accounts',
+                    accountsStatisticsTitle: 'Statistiken',
+                    accountsStatisticsDesc: 'Analysiere deinen Glück-Verlauf über die Zeit.',
+                    accountsWeek: 'Woche', accountsMonth: 'Monat', accountsQuarter: 'Quartal', accountsAll: 'Alle',
+                    accountsCompareTitle: 'Account-Vergleich',
+                    accountsCompareDesc: 'Vergleiche zwei Accounts gegeneinander.',
+                    accountsSelect1: 'Account 1 auswählen...', accountsSelect2: 'Account 2 auswählen...',
+                    accountsCompareBtn: 'Vergleichen', accountsSaveTitle: 'Account speichern',
+                    accountsSaveDesc: 'Speichere deine aktuellen Eingabewerte als Account.',
+                    accountsNameLabel: 'Account-Name:', accountsNamePlaceholder: 'z.B. Mein Main Account',
+                    accountsSaveBtn: 'Als Account speichern', accountsListTitle: 'Gespeicherte Accounts',
+                    accountsListDesc: 'Verwalte deine gespeicherten Accounts.',
+                    accountsLoad: 'Laden', accountsDelete: 'Löschen', accountsEmpty: 'Keine Accounts vorhanden',
+                    grindTips: 'Herd-Tipps', grindTimer: 'Session-Timer', grindSimulator: 'Simulator', grindSessions: 'Sessions',
+                    grindTipsTitle: 'Herd-Management-Tipps',
+                    grindTipsDesc: 'Strategien für effizientes Farmen von Great Ones.',
+                    grindTipGeneral: 'Allgemeines Herd-Management',
+                    grindTimerTitle: 'Session-Timer & Kill-Counter',
+                    grindTimerDesc: 'Verfolge deine Grind-Sessions für bessere Statistiken.',
+                    grindTemplateLabel: 'Session-Template:', grindTemplateNone: '-- Kein Template --',
+                    grindTemplateGO: 'GO [Tier]', grindTemplateGeneral: 'General Grind',
+                    grindTemplatePractice: 'Practice', grindTemplateSpeedrun: 'Speedrun',
+                    grindTemplateCustom: 'Eigene Templates...', grindAnimalLabel: 'Tier:',
+                    grindSessionNameLabel: 'Session-Name:', grindSessionNamePlaceholder: 'z.B. GO Wolf',
+                    grindDuration: 'Dauer', grindKills: 'Kills', grindKillsPerHour: 'Kills/Stunde',
+                    grindStartSession: 'Session starten', grindAddKill: '+1 Kill', grindRemoveKill: '-1 Kill',
+                    grindPause: 'Pause', grindResume: 'Fortfahren', grindEndSession: 'Beenden',
+                    grindLastSession: 'Letzte Session:',
+                    grindSimulatorTitle: 'Expected Kills bis GO-Simulator',
+                    grindSimulatorDesc: 'Schätze, wie viele Kills du bis zum nächsten Great One brauchst.',
+                    grindAnimalType: 'Tierart:', grindCurrentKills: 'Aktuelle Kills:',
+                    grindCurrentKillsHint: 'Anzahl der Kills seit dem letzten GO für dieses Tier',
+                    grindSpawnChance: 'Spawn-Chance (p):',
+                    grindSpawnChanceHint: 'Durchschnittliche Spawn-Chance aus Datamines (z. B. 0.00005 für 1:20.000)',
+                    grindSpawnChanceNote: 'Dies ist eine statistische Annäherung, keine Garantie!',
+                    grindConfidence: 'Konfidenz (95% / 99%):', grindConfidence95: '95% Konfidenz (Standard)',
+                    grindConfidence99: '99% Konfidenz (Konservativ)', grindSimulate: 'Simulieren',
+                    grindSimResultTitle: 'Simulationsergebnis', grindSimExpected: 'Erwartete Kills (Ø)',
+                    grindSimMin: 'Minimale Spanne (5%)', grindSimMax: 'Maximale Spanne (95%)',
+                    grindSimProbability: 'Wahrscheinlichkeit (aktuell)',
+                    grindSimNote: 'Diese Simulation basiert auf Poisson-Statistik und ist eine statistische Annäherung. RND-Zufallsgeneratoren in Spielen sind nicht perfekt zufällig. Nutze dies als groben Richtwert, nicht als Garantie!',
+                    grindSessionsTitle: 'Grind-Sessions',
+                    grindSessionsDesc: 'Verwalte deine vergangenen Grind-Sessions.',
+                    grindSessionsDelete: 'Sessions löschen', grindSessionsExport: 'Export CSV',
+                    grindSessionsEmpty: 'Keine Sessions vorhanden', grindSessionContinue: 'Fortsetzen',
+                    toastLanguageDe: 'Sprache: Deutsch', toastLanguageEn: 'Language: English',
+                    toastSessionStarted: 'Session gestartet', toastSessionEnded: 'Session beendet',
+                    toastSessionPaused: 'Session pausiert', toastSessionResumed: 'Session fortgesetzt',
+                    toastKillAdded: 'Kill hinzugefügt!', toastKillRemoved: 'Kill entfernt',
+                    toastAccountSaved: 'Account gespeichert', toastAccountDeleted: 'Account gelöscht',
+                    toastAccountLoaded: 'Account geladen', toastError: 'Fehler', toastSuccess: 'Erfolg',
+                    toastSettingsReset: 'Einstellungen zurückgesetzt', toastCalcError: 'Berechnungsfehler',
+                    toastStateSaved: 'Zustand gespeichert', toastNothingToUndo: 'Nichts zum Rückgängig machen',
+                    toastUndone: 'Rückgängig gemacht', toastNothingToRedo: 'Nichts zum Wiederholen',
+                    toastRedone: 'Wiederholt', toastPresetApplied: 'Preset angewendet',
+                    toastHistoryCleared: 'Historie geleert', toastDeleteError: 'Fehler beim Löschen',
+                    toastCsvExported: 'CSV exportiert', toastJsonExported: 'JSON exportiert',
+                    toastAccountLoadError: 'Fehler beim Laden der Accounts',
+                    toastEnterAccountName: 'Bitte gib einen Account-Namen ein',
+                    toastSaveError: 'Fehler beim Speichern', toastAccountNotAvailable: 'Account-Funktionalität nicht verfügbar',
+                    toastSelectTwoAccounts: 'Bitte wähle zwei Accounts zum Vergleichen aus',
+                    toastSelectDifferentAccounts: 'Bitte wähle zwei verschiedene Accounts',
+                    toastNoStats: 'Keine Statistiken verfügbar',
+                    toastSessionContinued: 'Session wird fortgesetzt...',
+                    toastEnterSessionName: 'Bitte gib einen Session-Namen ein',
+                    toastSessionDeleted: 'Session gelöscht', toastSessionDeleteError: 'Fehler beim Löschen der Session',
+                    toastAllSessionsDeleted: 'Alle Sessions gelöscht', toastSessionsDeleteError: 'Fehler beim Löschen der Sessions',
+                    toastSessionsExported: 'Sessions exportiert', toastExportError: 'Fehler beim Export',
+                    toastElectronOnly: 'Nur im Electron-Modus verfügbar', toastSimulationComplete: 'Simulation abgeschlossen',
+                    toastSessionSaveError: 'Fehler beim Speichern der Session',
+                    luckVeryLucky: 'Absolut legendäres Glück! 🎉 Du bist ein Glücksritter!',
+                    luckLucky: 'Super glücklicher als erwartet! 👍 Weiter so!',
+                    luckSlightlyLucky: 'Leicht glücklicher als erwartet. 😊 Solides Glück!',
+                    luckAverage: 'Durchschnittliches Glück. 😌 Alles im grünen Bereich!',
+                    luckUnlucky: 'Ein bisschen Pech gehabt, aber du schaffst das! 💪 Nächstes Mal mehr!',
+                    luckVeryUnlucky: 'Viel Pech bisher, aber der nächste Grind wird episch! 🌟 Bleib dran!',
+                    luckScoreTitle: 'Dein Glück-Score', luckTotalL: 'Gesamt L', luckNote: 'Poisson-Z-Score | p aus Datamines 2025/2026',
+                    legendVeryUnlucky: 'Sehr unglücklich Z≤-2', legendUnlucky: 'Unglücklich', legendAverage: 'Durchschnitt',
+                    legendLucky: 'Glücklich', legendVeryLucky: 'Sehr glücklich Z≥2',
+                    luckLabelVeryLucky: 'Sehr glücklich', luckLabelLucky: 'Glücklich', luckLabelNeutral: 'Neutral',
+                    luckLabelUnlucky: 'Unglücklich', luckLabelVeryUnlucky: 'Sehr unglücklich',
+                    catRares: 'Rares', catDiamonds: 'Diamonds', catSuperRares: 'Super Rares', catGreatOnes: 'Great Ones',
+                    templateStandard: 'Standard', templateApplied: 'Template angewendet',
+                    accountNoAccounts: 'Keine Accounts vorhanden', accountLastUpdated: 'Zuletzt aktualisiert',
+                    tipsBasics: 'Grundlagen des Herd-Managements', tipsRespawnTime: 'Respawn-Time',
+                    tipsRespawnDesc: 'Herden spawnen meist nach 2-4 Stunden neu',
+                    tipsQuality: 'Qualität beeinflussen', tipsQualityDesc: 'Kills von niedriger Qualität ziehen den Durchschnitt der Herde runter',
+                    tipsHighOnly: 'High-Only', tipsHighOnlyDesc: 'Fokussiere dich auf nur High-Scoring-Tiere für bessere Chancen',
+                    tipsProTip: 'Pro-Tipp', tipsProTipDesc: 'Überprüfe regelmäßig die Respawn-Zeiten deiner bevorzugten Zonen!',
+                    statsAvgLuck: 'Ø Glück', statsCalculations: 'Berechnungen', statsBestLuck: 'Bestes Glück',
+                    statsAvgL: 'Durchschnitt L', statsMedianL: 'Median L', statsStdDev: 'Standardabweichung',
+                    statsMinL: 'Minimum L', statsMaxL: 'Maximum L', statsTrend: 'Trend',
+                    statsTrendImproving: 'Verbessernd', statsTrendDeclining: 'Rückläufig', statsTrendStable: 'Stabil',
+                    statsNoData: 'Keine Statistiken verfügbar', statsChartLabel: 'Durchschnittlicher L-Score',
+                    settingsMinimizeToTray: 'In Tray minimieren', settingsMinimizeToTrayDesc: 'Beim Schließen in den System-Tray minimieren statt beenden.',
+                    toastTrayEnabled: 'Minimize-to-Tray aktiviert', toastTrayDisabled: 'Minimize-to-Tray deaktiviert',
+                    grindSessionNamePlaceholder: 'z.B. GO Wolf', grindStartSession: 'Session starten',
+                    grindAddKill: '+1 Kill', grindRemoveKill: '-1 Kill',
+                    grindPause: 'Pause', grindResume: 'Fortsetzen', grindEndSession: 'Beenden',
+                    grindLastSession: 'Letzte Session:',
+                    german: 'Deutsch', english: 'English'
+                },
+                en: {
+                    appSubtitle: 'Calculate your luck based on datamined values from COTW 2025/2026',
+                    navCalculator: 'Calculator', navGrindHelper: 'Grind Helper', navHistory: 'History',
+                    navTemplates: 'Templates', navAccounts: 'Accounts',
+                    settings: 'Settings', settingsAppearance: 'Appearance',
+                    settingsAnimations: 'Animations', settingsAnimationsDesc: 'Enable bar animations and transitions.',
+                    settingsRipple: 'Ripple Effects', settingsRippleDesc: 'Wave effects when clicking buttons.',
+                    settingsDarkMode: 'Dark Mode', settingsDarkModeDesc: 'Enable eye-friendly dark colors.',
+                    settingsGrindHelper: 'Grind Helper', settingsOverlay: 'Overlay Mode',
+                    settingsOverlayDesc: 'Keep HunterDash always on top.',
+                    settingsAudio: 'Audio Feedback', settingsAudioDesc: 'Play sound on kill hotkeys.',
+                    settingsLanguage: 'Language', settingsLanguageDesc: 'Language for the app and animal names.',
+                    settingsHotkeys: 'Session Hotkeys',
+                    settingsHotkeysDesc: 'Global hotkeys for session control (work even when minimized).',
+                    settingsData: 'Data', settingsReset: 'Reset to Defaults',
+                    settingsResetDesc: 'Reset all input fields to their original values.',
+                    settingsResetBtn: 'Reset',
+                    settingsResetConfirm: 'Do you really want to reset all settings?',
+                    settingsResetSuccess: 'Settings reset',
+                    hotkeyAddKill: '+1 Kill:', hotkeyRemoveKill: '-1 Kill:',
+                    hotkeyTogglePause: 'Pause/Resume:', hotkeyEndSession: 'End Session:',
+                    hotkeyRecording: 'Press a key...',
+                    calcTotalHarvests: 'Total Harvests:',
+                    calcHintN: 'n = Total Harvests (all harvested animals account-wide)',
+                    calcHintGame: 'From game: Career > Statistics > Total Harvests',
+                    calcRares: 'Rares (Albino/Piebald/Melanistic)', calcYourRares: 'Your Rare Harvests:',
+                    calcDiamonds: 'Diamonds (Top Rating)', calcYourDiamonds: 'Your Diamonds:',
+                    calcSuperRares: 'Super Rares (Rare Fur + Diamond)', calcYourSuperRares: 'Your Super Rares:',
+                    calcGreatOnes: 'Great Ones (Top 0.05% Size)', calcYourGreatOnes: 'Your Great Ones:',
+                    calcUndo: 'Undo', calcRedo: 'Redo',
+                    templatesTitle: 'Templates', templatesDesc: 'Choose a template to quickly fill in input values.',
+                    templateApply: 'Apply',
+                    historyTitle: 'Calculation History', historyExportCSV: 'CSV Export', historyExportJSON: 'JSON Export',
+                    historyDelete: 'Delete History', historyEmpty: 'No calculations available',
+                    historyDeleteConfirm: 'Do you really want to delete the entire history?',
+                    historyDeleteSuccess: 'History deleted',
+                    accountsStatistics: 'Statistics', accountsCompare: 'Account Comparison',
+                    accountsSave: 'Save Account', accountsList: 'Accounts',
+                    accountsStatisticsTitle: 'Statistics',
+                    accountsStatisticsDesc: 'Analyze your luck progression over time.',
+                    accountsWeek: 'Week', accountsMonth: 'Month', accountsQuarter: 'Quarter', accountsAll: 'All',
+                    accountsCompareTitle: 'Account Comparison',
+                    accountsCompareDesc: 'Compare two accounts against each other.',
+                    accountsSelect1: 'Select Account 1...', accountsSelect2: 'Select Account 2...',
+                    accountsCompareBtn: 'Compare', accountsSaveTitle: 'Save Account',
+                    accountsSaveDesc: 'Save your current input values as an account.',
+                    accountsNameLabel: 'Account Name:', accountsNamePlaceholder: 'e.g. My Main Account',
+                    accountsSaveBtn: 'Save as Account', accountsListTitle: 'Saved Accounts',
+                    accountsListDesc: 'Manage your saved accounts.',
+                    accountsLoad: 'Load', accountsDelete: 'Delete', accountsEmpty: 'No accounts available',
+                    grindTips: 'Herd Tips', grindTimer: 'Session Timer', grindSimulator: 'Simulator', grindSessions: 'Sessions',
+                    grindTipsTitle: 'Herd Management Tips',
+                    grindTipsDesc: 'Strategies for efficient Great Ones farming.',
+                    grindTipGeneral: 'General Herd Management',
+                    grindTimerTitle: 'Session Timer & Kill Counter',
+                    grindTimerDesc: 'Track your grind sessions for better statistics.',
+                    grindTemplateLabel: 'Session Template:', grindTemplateNone: '-- No Template --',
+                    grindTemplateGO: 'GO [Animal]', grindTemplateGeneral: 'General Grind',
+                    grindTemplatePractice: 'Practice', grindTemplateSpeedrun: 'Speedrun',
+                    grindTemplateCustom: 'Custom Templates...', grindAnimalLabel: 'Animal:',
+                    grindSessionNameLabel: 'Session Name:', grindSessionNamePlaceholder: 'e.g. GO Wolf',
+                    grindDuration: 'Duration', grindKills: 'Kills', grindKillsPerHour: 'Kills/Hour',
+                    grindStartSession: 'Start Session', grindAddKill: '+1 Kill', grindRemoveKill: '-1 Kill',
+                    grindPause: 'Pause', grindResume: 'Resume', grindEndSession: 'End',
+                    grindLastSession: 'Last Session:',
+                    grindSimulatorTitle: 'Expected Kills to GO Simulator',
+                    grindSimulatorDesc: 'Estimate how many kills you need until the next Great One.',
+                    grindAnimalType: 'Animal Type:', grindCurrentKills: 'Current Kills:',
+                    grindCurrentKillsHint: 'Number of kills since the last GO for this animal',
+                    grindSpawnChance: 'Spawn Chance (p):',
+                    grindSpawnChanceHint: 'Average spawn chance from datamines (e.g. 0.00005 for 1:20,000)',
+                    grindSpawnChanceNote: 'This is a statistical approximation, not a guarantee!',
+                    grindConfidence: 'Confidence (95% / 99%):', grindConfidence95: '95% Confidence (Standard)',
+                    grindConfidence99: '99% Confidence (Conservative)', grindSimulate: 'Simulate',
+                    grindSimResultTitle: 'Simulation Result', grindSimExpected: 'Expected Kills (Ø)',
+                    grindSimMin: 'Minimum Range (5%)', grindSimMax: 'Maximum Range (95%)',
+                    grindSimProbability: 'Current Probability',
+                    grindSimNote: 'This simulation is based on Poisson statistics and is a statistical approximation. RNG in games is not perfectly random. Use this as a rough guideline, not a guarantee!',
+                    grindSessionsTitle: 'Grind Sessions',
+                    grindSessionsDesc: 'Manage your past grind sessions.',
+                    grindSessionsDelete: 'Delete Sessions', grindSessionsExport: 'Export CSV',
+                    grindSessionsEmpty: 'No sessions available', grindSessionContinue: 'Continue',
+                    toastLanguageDe: 'Sprache: Deutsch', toastLanguageEn: 'Language: English',
+                    toastSessionStarted: 'Session started', toastSessionEnded: 'Session ended',
+                    toastSessionPaused: 'Session paused', toastSessionResumed: 'Session resumed',
+                    toastKillAdded: 'Kill added!', toastKillRemoved: 'Kill removed',
+                    toastAccountSaved: 'Account saved', toastAccountDeleted: 'Account deleted',
+                    toastAccountLoaded: 'Account loaded', toastError: 'Error', toastSuccess: 'Success',
+                    toastSettingsReset: 'Settings reset', toastCalcError: 'Calculation error',
+                    toastStateSaved: 'State saved', toastNothingToUndo: 'Nothing to undo',
+                    toastUndone: 'Undone', toastNothingToRedo: 'Nothing to redo',
+                    toastRedone: 'Redone', toastPresetApplied: 'Preset applied',
+                    toastHistoryCleared: 'History cleared', toastDeleteError: 'Error deleting',
+                    toastCsvExported: 'CSV exported', toastJsonExported: 'JSON exported',
+                    toastAccountLoadError: 'Error loading accounts',
+                    toastEnterAccountName: 'Please enter an account name',
+                    toastSaveError: 'Error saving', toastAccountNotAvailable: 'Account functionality not available',
+                    toastSelectTwoAccounts: 'Please select two accounts to compare',
+                    toastSelectDifferentAccounts: 'Please select two different accounts',
+                    toastNoStats: 'No statistics available',
+                    toastSessionContinued: 'Session continued...',
+                    toastEnterSessionName: 'Please enter a session name',
+                    toastSessionDeleted: 'Session deleted', toastSessionDeleteError: 'Error deleting session',
+                    toastAllSessionsDeleted: 'All sessions deleted', toastSessionsDeleteError: 'Error deleting sessions',
+                    toastSessionsExported: 'Sessions exported', toastExportError: 'Error exporting',
+                    toastElectronOnly: 'Only available in Electron mode', toastSimulationComplete: 'Simulation complete',
+                    toastSessionSaveError: 'Error saving session',
+                    luckVeryLucky: 'Absolutely legendary luck! 🎉 You are a lucky knight!',
+                    luckLucky: 'Super lucky beyond expectations! 👍 Keep it up!',
+                    luckSlightlyLucky: 'Slightly luckier than expected. 😊 Solid luck!',
+                    luckAverage: 'Average luck. 😌 All good!',
+                    luckUnlucky: 'A bit unlucky, but you got this! 💪 Better luck next time!',
+                    luckVeryUnlucky: 'Lots of bad luck so far, but the next grind will be epic! 🌟 Keep going!',
+                    luckScoreTitle: 'Your Luck Score', luckTotalL: 'Total L', luckNote: 'Poisson Z-Score | p from Datamines 2025/2026',
+                    legendVeryUnlucky: 'Very Unlucky Z≤-2', legendUnlucky: 'Unlucky', legendAverage: 'Average',
+                    legendLucky: 'Lucky', legendVeryLucky: 'Very Lucky Z≥2',
+                    luckLabelVeryLucky: 'Very Lucky', luckLabelLucky: 'Lucky', luckLabelNeutral: 'Neutral',
+                    luckLabelUnlucky: 'Unlucky', luckLabelVeryUnlucky: 'Very Unlucky',
+                    catRares: 'Rares', catDiamonds: 'Diamonds', catSuperRares: 'Super Rares', catGreatOnes: 'Great Ones',
+                    templateStandard: 'Standard', templateApplied: 'Template applied',
+                    accountNoAccounts: 'No accounts available', accountLastUpdated: 'Last updated',
+                    tipsBasics: 'Herd Management Basics', tipsRespawnTime: 'Respawn Time',
+                    tipsRespawnDesc: 'Herds usually respawn after 2-4 hours',
+                    tipsQuality: 'Influence Quality', tipsQualityDesc: 'Low quality kills drag down the herd average',
+                    tipsHighOnly: 'High-Only', tipsHighOnlyDesc: 'Focus only on high-scoring animals for better chances',
+                    tipsProTip: 'Pro Tip', tipsProTipDesc: 'Regularly check respawn times of your favorite zones!',
+                    statsAvgLuck: 'Ø Luck', statsCalculations: 'Calculations', statsBestLuck: 'Best Luck',
+                    statsAvgL: 'Average L', statsMedianL: 'Median L', statsStdDev: 'Standard Deviation',
+                    statsMinL: 'Minimum L', statsMaxL: 'Maximum L', statsTrend: 'Trend',
+                    statsTrendImproving: 'Improving', statsTrendDeclining: 'Declining', statsTrendStable: 'Stable',
+                    statsNoData: 'No statistics available', statsChartLabel: 'Average L-Score',
+                    settingsMinimizeToTray: 'Minimize to Tray', settingsMinimizeToTrayDesc: 'Minimize to system tray when closing instead of quitting.',
+                    toastTrayEnabled: 'Minimize-to-Tray enabled', toastTrayDisabled: 'Minimize-to-Tray disabled',
+                    grindSessionNamePlaceholder: 'e.g. GO Wolf', grindStartSession: 'Start Session',
+                    grindAddKill: '+1 Kill', grindRemoveKill: '-1 Kill',
+                    grindPause: 'Pause', grindResume: 'Resume', grindEndSession: 'End Session',
+                    grindLastSession: 'Last Session:',
+                    german: 'Deutsch', english: 'English'
+                }
+            },
+
+            t(key) {
+                const lang = SettingsManager?.settings?.language || 'de';
+                return this.translations[lang]?.[key] || this.translations['de'][key] || key;
+            },
+
+            updateAll() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    const text = this.t(key);
+                    if (el.tagName === 'INPUT' && el.type === 'text') {
+                        el.placeholder = text;
+                    } else {
+                        // Preserve emojis at the start
+                        const currentText = el.textContent;
+                        const emojiMatch = currentText.match(/^[\p{Emoji}\s]+/u);
+                        const emoji = emojiMatch ? emojiMatch[0].trim() + ' ' : '';
+                        el.textContent = emoji + text;
+                    }
+                });
+            }
+        };
+
+        // ========================================
         // SETTINGS MANAGER
         // ========================================
         const SettingsManager = {
@@ -2662,8 +3043,10 @@
                 ripple: true,
                 darkMode: false,
                 overlayMode: false,
+                minimizeToTray: false,
                 audioFeedback: true,
                 audioVolume: 0.5,
+                language: 'de',
                 sessionHotkeys: {
                     addKill: 'F7',
                     removeKill: 'F8',
@@ -2710,6 +3093,14 @@
                 } else {
                     document.body.classList.remove('dark-mode');
                 }
+
+                // Statistiken aktualisieren, falls verfügbar
+                if (window.StatisticsManager && typeof StatisticsManager.loadStatistics === 'function') {
+                    // Prüfen ob wir im Statistics Tab sind oder generell aktualisieren
+                    // 'all' ist der Standard-Zeitraum
+                    const currentPeriod = document.querySelector('.action-buttons .action-button.active[data-period]')?.dataset.period || 'all';
+                    StatisticsManager.loadStatistics(currentPeriod);
+                }
             },
 
             async save() {
@@ -2721,6 +3112,18 @@
                 const saved = localStorage.getItem('cotw-calculator-settings');
                 if (saved) {
                     this.settings = JSON.parse(saved);
+                }
+
+                // Sync minimizeToTray from main process (source of truth)
+                if (window.electronAPI && window.electronAPI.getSettings) {
+                    try {
+                        const mainSettings = await window.electronAPI.getSettings();
+                        if (mainSettings.success && mainSettings.data) {
+                            this.settings.minimizeToTray = mainSettings.data.minimizeToTray || false;
+                        }
+                    } catch (e) {
+                        console.error('Failed to sync settings from main:', e);
+                    }
                 }
 
                 // Initialisiere sessionHotkeys mit Defaults
@@ -2767,12 +3170,19 @@
                 const darkToggle = document.getElementById('darkToggle');
                 const overlayToggle = document.getElementById('overlayToggle');
                 const audioToggle = document.getElementById('audioToggle');
+                const trayToggle = document.getElementById('trayToggle');
 
                 if (animToggle) animToggle.classList.toggle('active', this.settings.animations);
                 if (rippleToggle) rippleToggle.classList.toggle('active', this.settings.ripple);
                 if (darkToggle) darkToggle.classList.toggle('active', this.settings.darkMode);
                 if (overlayToggle) overlayToggle.classList.toggle('active', this.settings.overlayMode);
                 if (audioToggle) audioToggle.classList.toggle('active', this.settings.audioFeedback);
+                if (trayToggle) {
+                    trayToggle.classList.remove('active');
+                    if (this.settings.minimizeToTray) {
+                        trayToggle.classList.add('active');
+                    }
+                }
 
                 const volumeControl = document.getElementById('volumeControl');
                 if (volumeControl) {
@@ -2782,8 +3192,18 @@
                     }
                 }
 
+                // Animal language buttons
+                const langDe = document.getElementById('langDe');
+                const langEn = document.getElementById('langEn');
+                const lang = this.settings.language || 'de';
+                if (langDe) langDe.classList.toggle('active', lang === 'de');
+                if (langEn) langEn.classList.toggle('active', lang === 'en');
+
                 this.applyDarkMode();
                 this.updateHotkeyInputs();
+
+                // Apply saved language to UI
+                TranslationManager.updateAll();
             },
 
             toggleOverlayMode() {
@@ -2803,9 +3223,62 @@
                 this.save();
             },
 
+            toggleMinimizeToTray() {
+                this.settings.minimizeToTray = !this.settings.minimizeToTray;
+                document.getElementById('trayToggle').classList.toggle('active');
+
+                if (window.electronAPI && window.electronAPI.setMinimizeToTray) {
+                    window.electronAPI.setMinimizeToTray(this.settings.minimizeToTray);
+                }
+
+                this.save();
+                const msg = this.settings.minimizeToTray
+                    ? TranslationManager.t('toastTrayEnabled')
+                    : TranslationManager.t('toastTrayDisabled');
+                ToastManager.show(msg, 'success');
+            },
+
             setAudioVolume(volume) {
                 this.settings.audioVolume = parseFloat(volume);
                 this.save();
+            },
+
+            setLanguage(lang) {
+                this.settings.language = lang;
+
+                // Update UI buttons
+                const langDe = document.getElementById('langDe');
+                const langEn = document.getElementById('langEn');
+                if (langDe) langDe.classList.toggle('active', lang === 'de');
+                if (langEn) langEn.classList.toggle('active', lang === 'en');
+
+                // Update all UI text
+                TranslationManager.updateAll();
+
+                // Update the animal dropdown with new language
+                if (typeof GrindManager !== 'undefined' && GrindManager.updateAnimalDropdowns) {
+                    GrindManager.updateAnimalDropdowns();
+                }
+
+                // Refresh dynamic content that needs re-rendering
+                if (typeof StatisticsManager !== 'undefined' && StatisticsManager.loadStatistics) {
+                    StatisticsManager.loadStatistics('all');
+                }
+
+                // Recalculate Luck Score to update translations
+                if (typeof Calculator !== 'undefined' && Calculator.calculate) {
+                    // Check if result is visible (optional, but safe to just run)
+                    Calculator.calculate(false);
+                }
+                if (typeof AccountManager !== 'undefined' && AccountManager.renderAccounts) {
+                    AccountManager.renderAccounts();
+                }
+                if (typeof TemplateManager !== 'undefined' && TemplateManager.renderTemplates) {
+                    TemplateManager.renderTemplates();
+                }
+
+                this.save();
+                ToastManager.show(lang === 'de' ? TranslationManager.t('toastLanguageDe') : TranslationManager.t('toastLanguageEn'), 'success');
             },
 
             recordHotkey(hotkeyId) {
@@ -2937,7 +3410,7 @@
                     }
                 }
 
-                ToastManager.show('Einstellungen zurückgesetzt', 'success');
+                ToastManager.show(TranslationManager.t('toastSettingsReset'), 'success');
             }
         };
 
@@ -2973,11 +3446,11 @@
             },
 
             getLuckLabel(z) {
-                if (z >= 2) return 'Sehr glücklich';
-                if (z >= 0.5) return 'Glücklich';
-                if (z >= -0.5) return 'Neutral';
-                if (z >= -2) return 'Unglücklich';
-                return 'Sehr unglücklich';
+                if (z >= 2) return TranslationManager.t('luckLabelVeryLucky');
+                if (z >= 0.5) return TranslationManager.t('luckLabelLucky');
+                if (z >= -0.5) return TranslationManager.t('luckLabelNeutral');
+                if (z >= -2) return TranslationManager.t('luckLabelUnlucky');
+                return TranslationManager.t('luckLabelVeryUnlucky');
             },
 
             calculateBarWidth(z) {
@@ -2985,12 +3458,12 @@
             },
 
             getInterpretation(totalL) {
-                if (totalL > 3) return 'Absolut legendäres Glück! 🎉 Du bist ein Glücksritter!';
-                if (totalL > 2) return 'Super glücklicher als erwartet! 👍 Weiter so!';
-                if (totalL > 0) return 'Leicht glücklicher als erwartet. 😊 Solides Glück!';
-                if (totalL > -2) return 'Durchschnittliches Glück. 😌 Alles im grünen Bereich!';
-                if (totalL > -3) return 'Ein bisschen Pech gehabt, aber du schaffst das! 💪 Nächstes Mal mehr!';
-                return 'Viel Pech bisher, aber der nächste Grind wird episch! 🌟 Bleib dran!';
+                if (totalL > 3) return TranslationManager.t('luckVeryLucky');
+                if (totalL > 2) return TranslationManager.t('luckLucky');
+                if (totalL > 0) return TranslationManager.t('luckSlightlyLucky');
+                if (totalL > -2) return TranslationManager.t('luckAverage');
+                if (totalL > -3) return TranslationManager.t('luckUnlucky');
+                return TranslationManager.t('luckVeryUnlucky');
             },
 
             async calculate(saveHistory = true) {
@@ -3029,10 +3502,10 @@
             calculatePoissonLocal(data) {
                 const n = parseFloat(data.n);
                 const categories = [
-                    { k: parseFloat(data.k_rare), p: parseFloat(data.p_rare), name: 'Rares' },
-                    { k: parseFloat(data.k_diamond), p: parseFloat(data.p_diamond), name: 'Diamonds' },
-                    { k: parseFloat(data.k_super), p: parseFloat(data.p_super), name: 'Super Rares' },
-                    { k: parseFloat(data.k_go), p: parseFloat(data.p_go), name: 'Great Ones' }
+                    { k: parseFloat(data.k_rare), p: parseFloat(data.p_rare), name: TranslationManager.t('catRares') },
+                    { k: parseFloat(data.k_diamond), p: parseFloat(data.p_diamond), name: TranslationManager.t('catDiamonds') },
+                    { k: parseFloat(data.k_super), p: parseFloat(data.p_super), name: TranslationManager.t('catSuperRares') },
+                    { k: parseFloat(data.k_go), p: parseFloat(data.p_go), name: TranslationManager.t('catGreatOnes') }
                 ];
 
                 let totalL = 0;
@@ -3107,33 +3580,33 @@
                 const legend = `
                     <div class="legend">
                         <div class="legend-item">
-                            <div class="legend-color very-unlucky"></div>Sehr unglücklich Z&lt;-2
+                            <div class="legend-color very-unlucky"></div>${TranslationManager.t('legendVeryUnlucky')}
                         </div>
                         <div class="legend-item">
-                            <div class="legend-color unlucky"></div>Unglücklich Z&lt;-0.5
+                            <div class="legend-color unlucky"></div>${TranslationManager.t('legendUnlucky')} Z&lt;-0.5
                         </div>
                         <div class="legend-item">
-                            <div class="legend-color neutral"></div>Neutral -0.5~0.5
+                            <div class="legend-color neutral"></div>${TranslationManager.t('legendAverage')} -0.5~0.5
                         </div>
                         <div class="legend-item">
-                            <div class="legend-color lucky"></div>Glücklich Z≥0.5
+                            <div class="legend-color lucky"></div>${TranslationManager.t('legendLucky')} Z≥0.5
                         </div>
                         <div class="legend-item">
-                            <div class="legend-color very-lucky"></div>Sehr glücklich Z≥2
+                            <div class="legend-color very-lucky"></div>${TranslationManager.t('legendVeryLucky')}
                         </div>
                     </div>
                 `;
 
                 document.getElementById('result').innerHTML = `
                     <div class="card">
-                        <div class="luck-title">Dein Glück-Score</div>
+                        <div class="luck-title">${TranslationManager.t('luckScoreTitle')}</div>
                         ${legend}
                         ${bars}
                         <div class="total-score" style="background: ${totalLColor};">
-                            <strong>Gesamt L: ${result.totalL.toFixed(2)}</strong>
+                            <strong>${TranslationManager.t('luckTotalL')}: ${result.totalL.toFixed(2)}</strong>
                             ${result.interpretation}
                         </div>
-                        <p class="note">Poisson-Z-Score | p aus Datamines 2025/2026</p>
+                        <p class="note">${TranslationManager.t('luckNote')}</p>
                     </div>
                 `;
             },
@@ -3257,12 +3730,12 @@
                     this.undoStack.shift();
                 }
                 this.redoStack = [];
-                ToastManager.show('Zustand gespeichert', 'info');
+                ToastManager.show(TranslationManager.t('toastStateSaved'), 'info');
             },
 
             undo() {
                 if (this.undoStack.length === 0) {
-                    ToastManager.show('Nichts zum Rückgängig machen', 'error');
+                    ToastManager.show(TranslationManager.t('toastNothingToUndo'), 'error');
                     return;
                 }
 
@@ -3272,7 +3745,7 @@
                 const previous = JSON.parse(this.undoStack.pop());
                 applyFormData(previous);
                 Calculator.calculate();
-                ToastManager.show('Rückgängig gemacht', 'success');
+                ToastManager.show(TranslationManager.t('toastUndone'), 'success');
             },
 
             redo() {
@@ -3337,10 +3810,10 @@
                     card.innerHTML = `
                         <div class="template-name">${template.name}</div>
                         <div class="template-description">${template.description}</div>
-                        ${template.isCustom ? '' : '<span class="template-badge">Standard</span>'}
+                        ${template.isCustom ? '' : `<span class="template-badge">${TranslationManager.t('templateStandard')}</span>`}
                         <div style="margin-top:12px">
                             <button class="preset-button" onclick="TemplateManager.applyTemplate('${template.id}')">
-                                Anwenden
+                                ${TranslationManager.t('templateApply')}
                             </button>
                         </div>
                     `;
@@ -3536,16 +4009,17 @@
 
                 if (!this.accounts || !Array.isArray(this.accounts)) {
                     console.warn('this.accounts ist kein Array:', this.accounts);
-                    list.innerHTML = '<p style="text-align:center; padding:40px; color:var(--text-secondary)">Keine Accounts verfügbar</p>';
+                    list.innerHTML = `<p style="text-align:center; padding:40px; color:var(--text-secondary)">${TranslationManager.t('accountNoAccounts')}</p>`;
                     return;
                 }
 
                 if (this.accounts.length === 0) {
-                    list.innerHTML = '<p style="text-align:center; padding:40px; color:var(--text-secondary)">Keine Accounts gespeichert</p>';
+                    list.innerHTML = `<p style="text-align:center; padding:40px; color:var(--text-secondary)">${TranslationManager.t('accountNoAccounts')}</p>`;
                     return;
                 }
 
                 console.log('Renderiere', this.accounts.length, 'Accounts');
+                const dateLocale = SettingsManager.settings?.language === 'en' ? 'en-US' : 'de-DE';
 
                 this.accounts.forEach(account => {
                     const card = document.createElement('div');
@@ -3553,7 +4027,7 @@
                     card.innerHTML = `
                         <div class="account-info">
                             <div class="account-name">${account.name}</div>
-                            <div class="account-meta">Zuletzt aktualisiert: ${new Date(account.lastUpdated || account.timestamp).toLocaleDateString('de-DE')}</div>
+                            <div class="account-meta">${TranslationManager.t('accountLastUpdated')}: ${new Date(account.lastUpdated || account.timestamp).toLocaleDateString(dateLocale)}</div>
                         </div>
                         <div class="account-actions">
                             <button class="account-action-button">📋</button>
@@ -3837,6 +4311,9 @@
 
             createComparisonBarCharts(chartId, result, accountName) {
                 const ctx = document.getElementById(chartId).getContext('2d');
+                const style = getComputedStyle(document.body);
+                const textColor = style.getPropertyValue('--text-primary').trim();
+                const gridColor = style.getPropertyValue('--text-secondary').trim();
 
                 const categories = result.categories.map(cat => ({
                     name: cat.name,
@@ -3866,20 +4343,24 @@
                             title: {
                                 display: true,
                                 text: `${accountName} - Z-Scores`,
-                                font: { size: 14 }
+                                font: { size: 14 },
+                                color: textColor
                             }
                         },
                         scales: {
                             x: {
-                                grid: { display: false }
+                                grid: { display: false },
+                                ticks: { color: gridColor }
                             },
                             y: {
                                 beginAtZero: false,
                                 min: -3,
                                 max: 3,
                                 ticks: {
-                                    stepSize: 1
-                                }
+                                    stepSize: 1,
+                                    color: gridColor
+                                },
+                                grid: { color: 'rgba(200, 200, 200, 0.1)' }
                             }
                         }
                     }
@@ -3888,6 +4369,26 @@
 
             createRadarComparisonChart(chartId, data) {
                 const ctx = document.getElementById(chartId).getContext('2d');
+                const style = getComputedStyle(document.body);
+                const textColor = style.getPropertyValue('--text-primary').trim();
+                const gridColor = style.getPropertyValue('--text-secondary').trim();
+
+                // Use primary colors with opacity for radar
+                const primary = style.getPropertyValue('--primary').trim();
+                const secondary = style.getPropertyValue('--secondary').trim();
+
+                // Simple hex to rgba helper (assuming hex is #RRGGBB)
+                const hexToRgba = (hex, alpha) => {
+                    const r = parseInt(hex.slice(1, 3), 16);
+                    const g = parseInt(hex.slice(3, 5), 16);
+                    const b = parseInt(hex.slice(5, 7), 16);
+                    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                };
+
+                const p1Color = hexToRgba(primary, 0.8);
+                const p1Bg = hexToRgba(primary, 0.2);
+                const p2Color = hexToRgba(secondary, 0.8);
+                const p2Bg = hexToRgba(secondary, 0.2);
 
                 const categories = data.account1.result.categories.map(cat => cat.name);
                 const account1Data = data.account1.result.categories.map(cat => cat.z);
@@ -3901,22 +4402,22 @@
                             {
                                 label: data.account1.name,
                                 data: account1Data,
-                                borderColor: 'rgba(26, 95, 42, 0.8)',
-                                backgroundColor: 'rgba(26, 95, 42, 0.2)',
-                                pointBackgroundColor: 'rgba(26, 95, 42, 1)',
+                                borderColor: p1Color,
+                                backgroundColor: p1Bg,
+                                pointBackgroundColor: p1Color,
                                 pointBorderColor: '#fff',
                                 pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: 'rgba(26, 95, 42, 1)'
+                                pointHoverBorderColor: p1Color
                             },
                             {
                                 label: data.account2.name,
                                 data: account2Data,
-                                borderColor: 'rgba(74, 124, 53, 0.8)',
-                                backgroundColor: 'rgba(74, 124, 53, 0.2)',
-                                pointBackgroundColor: 'rgba(74, 124, 53, 1)',
+                                borderColor: p2Color,
+                                backgroundColor: p2Bg,
+                                pointBackgroundColor: p2Color,
                                 pointBorderColor: '#fff',
                                 pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: 'rgba(74, 124, 53, 1)'
+                                pointHoverBorderColor: p2Color
                             }
                         ]
                     },
@@ -3927,18 +4428,32 @@
                             title: {
                                 display: true,
                                 text: 'Vergleich der Z-Scores',
-                                font: { size: 16 }
+                                font: { size: 16 },
+                                color: textColor
+                            },
+                            legend: {
+                                labels: { color: textColor }
                             }
                         },
                         scales: {
                             r: {
                                 angleLines: {
-                                    display: true
+                                    display: true,
+                                    color: 'rgba(200, 200, 200, 0.2)'
+                                },
+                                grid: {
+                                    color: 'rgba(200, 200, 200, 0.2)'
+                                },
+                                pointLabels: {
+                                    color: textColor,
+                                    font: { size: 12 }
                                 },
                                 suggestedMin: -3,
                                 suggestedMax: 3,
                                 ticks: {
-                                    stepSize: 1
+                                    stepSize: 1,
+                                    backdropColor: 'transparent',
+                                    color: gridColor
                                 }
                             }
                         }
@@ -3947,11 +4462,12 @@
             },
 
             getLuckColor(z) {
-                if (z >= 2) return 'rgba(124, 179, 66, 0.8)';
-                if (z >= 0.5) return 'rgba(46, 204, 113, 0.8)';
-                if (z >= -0.5) return 'rgba(160, 168, 176, 0.8)';
-                if (z >= -2) return 'rgba(243, 156, 18, 0.8)';
-                return 'rgba(230, 126, 34, 0.8)';
+                const style = getComputedStyle(document.body);
+                if (z >= 2) return style.getPropertyValue('--very-lucky').trim();
+                if (z >= 0.5) return style.getPropertyValue('--lucky').trim();
+                if (z >= -0.5) return style.getPropertyValue('--neutral').trim();
+                if (z >= -2) return style.getPropertyValue('--unlucky').trim();
+                return style.getPropertyValue('--very-unlucky').trim();
             }
         };
 
@@ -3992,35 +4508,41 @@
 
             renderStatistics(stats) {
                 const grid = document.getElementById('statGrid');
+                const getTrend = (dir) => {
+                    if (dir === 'improving') return `📈 ${TranslationManager.t('statsTrendImproving')}`;
+                    if (dir === 'declining') return `📉 ${TranslationManager.t('statsTrendDeclining')}`;
+                    return `➡️ ${TranslationManager.t('statsTrendStable')}`;
+                };
+
                 grid.innerHTML = `
                     <div class="stat-card">
-                        <h3>Berechnungen</h3>
+                        <h3>${TranslationManager.t('statsCalculations')}</h3>
                         <div class="stat-value">${stats.count}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Durchschnitt L</h3>
+                        <h3>${TranslationManager.t('statsAvgL')}</h3>
                         <div class="stat-value">${stats.totalL.mean.toFixed(2)}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Median L</h3>
+                        <h3>${TranslationManager.t('statsMedianL')}</h3>
                         <div class="stat-value">${stats.totalL.median.toFixed(2)}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Standardabweichung</h3>
+                        <h3>${TranslationManager.t('statsStdDev')}</h3>
                         <div class="stat-value">${stats.totalL.stdDev.toFixed(2)}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Minimum L</h3>
+                        <h3>${TranslationManager.t('statsMinL')}</h3>
                         <div class="stat-value">${stats.totalL.min.toFixed(2)}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Maximum L</h3>
+                        <h3>${TranslationManager.t('statsMaxL')}</h3>
                         <div class="stat-value">${stats.totalL.max.toFixed(2)}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Trend</h3>
+                        <h3>${TranslationManager.t('statsTrend')}</h3>
                         <div class="stat-value trend">
-                            ${stats.totalL.trend.direction === 'improving' ? '📈 Verbessernd' : stats.totalL.trend.direction === 'declining' ? '📉 Rückläufig' : '➡️ Stabil'}
+                            ${getTrend(stats.totalL.trend.direction)}
                         </div>
                     </div>
                 `;
@@ -4028,6 +4550,19 @@
 
             renderChart(data) {
                 const ctx = document.getElementById('trendChart').getContext('2d');
+                const style = getComputedStyle(document.body);
+                const textColor = style.getPropertyValue('--text-primary').trim();
+                const gridColor = style.getPropertyValue('--text-secondary').trim();
+                const primary = style.getPropertyValue('--primary').trim();
+
+                const hexToRgba = (hex, alpha) => {
+                    const r = parseInt(hex.slice(1, 3), 16);
+                    const g = parseInt(hex.slice(3, 5), 16);
+                    const b = parseInt(hex.slice(5, 7), 16);
+                    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                };
+
+                const bgColor = hexToRgba(primary, 0.25);
 
                 if (this.chart) {
                     this.chart.destroy();
@@ -4041,13 +4576,13 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Durchschnittlicher L-Score',
+                            label: TranslationManager.t('statsChartLabel'),
                             data: values,
-                            borderColor: '#1a5f2a',
-                            backgroundColor: 'rgba(26, 95, 42, 0.1)',
+                            borderColor: primary,
+                            backgroundColor: bgColor,
                             fill: true,
                             tension: 0.4,
-                            pointBackgroundColor: '#1a5f2a',
+                            pointBackgroundColor: primary,
                             pointBorderColor: '#fff',
                             pointBorderWidth: 2,
                             pointRadius: 4,
@@ -4062,7 +4597,7 @@
                                 display: true,
                                 position: 'top',
                                 labels: {
-                                    color: '#1a2f1a',
+                                    color: textColor,
                                     font: { family: 'Roboto', size: 14 }
                                 }
                             },
@@ -4076,11 +4611,11 @@
                         scales: {
                             x: {
                                 grid: { display: false },
-                                ticks: { color: '#4a5a4a', font: { family: 'Roboto', size: 10 } }
+                                ticks: { color: gridColor, font: { family: 'Roboto', size: 11 } }
                             },
                             y: {
-                                grid: { color: 'rgba(200, 200, 200, 0.3)' },
-                                ticks: { color: '#4a5a4a', font: { family: 'Roboto', size: 10 } }
+                                grid: { color: 'rgba(200, 200, 200, 0.15)' },
+                                ticks: { color: gridColor, font: { family: 'Roboto', size: 11 } }
                             }
                         }
                     }
@@ -4237,9 +4772,11 @@
                 if (!templateDropdown || !animalDropdown || !nameInput) return;
 
                 if (this.animals && this.animals.length > 0) {
-                    animalDropdown.innerHTML = this.animals.map(animal =>
-                        `<option value="${animal.id}">${animal.icon} ${animal.name}</option>`
-                    ).join('');
+                    const lang = SettingsManager.settings?.language || 'de';
+                    animalDropdown.innerHTML = this.animals.map(animal => {
+                        const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
+                        return `<option value="${animal.id}">${animal.icon} ${name}</option>`;
+                    }).join('');
                 }
 
                 templateDropdown.addEventListener('change', () => {
@@ -4273,7 +4810,9 @@
                 if (templateId === 'go-tier') {
                     const animal = this.animals.find(a => a.id === animalSelect.value);
                     if (animal) {
-                        nameInput.value = `GO ${animal.name}`;
+                        const lang = SettingsManager.settings?.language || 'de';
+                        const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
+                        nameInput.value = `GO ${name}`;
                     }
                 } else if (templateId && templateId !== '') {
                     const template = this.templates && this.templates.find(t => t.id === templateId);
@@ -4360,9 +4899,11 @@
                 const dropdown = document.getElementById('sim-animal');
                 if (!dropdown) return;
 
-                dropdown.innerHTML = this.animals.map(animal =>
-                    `<option value="${animal.id}">${animal.icon} ${animal.name} (p=${animal.spawnChance})</option>`
-                ).join('');
+                const lang = SettingsManager.settings?.language || 'de';
+                dropdown.innerHTML = this.animals.map(animal => {
+                    const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
+                    return `<option value="${animal.id}">${animal.icon} ${name} (p=${animal.spawnChance})</option>`;
+                }).join('');
 
                 dropdown.addEventListener('change', () => {
                     const selectedAnimal = this.animals.find(a => a.id === dropdown.value);
@@ -4370,6 +4911,38 @@
                         document.getElementById('sim-spawn-chance').value = selectedAnimal.spawnChance;
                     }
                 });
+            },
+
+            updateAnimalDropdowns() {
+                // Update session-animal dropdown
+                const sessionAnimal = document.getElementById('session-animal');
+                if (sessionAnimal && this.animals && this.animals.length > 0) {
+                    const currentValue = sessionAnimal.value;
+                    const lang = SettingsManager.settings?.language || 'de';
+                    sessionAnimal.innerHTML = this.animals.map(animal => {
+                        const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
+                        return `<option value="${animal.id}">${animal.icon} ${name}</option>`;
+                    }).join('');
+                    if (currentValue) sessionAnimal.value = currentValue;
+
+                    // Update session name if go-tier template is selected
+                    const templateDropdown = document.getElementById('session-template');
+                    if (templateDropdown && templateDropdown.value === 'go-tier') {
+                        this.updateSessionNameFromTemplate('go-tier');
+                    }
+                }
+
+                // Update sim-animal dropdown
+                const simAnimal = document.getElementById('sim-animal');
+                if (simAnimal && this.animals && this.animals.length > 0) {
+                    const currentValue = simAnimal.value;
+                    const lang = SettingsManager.settings?.language || 'de';
+                    simAnimal.innerHTML = this.animals.map(animal => {
+                        const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
+                        return `<option value="${animal.id}">${animal.icon} ${name} (p=${animal.spawnChance})</option>`;
+                    }).join('');
+                    if (currentValue) simAnimal.value = currentValue;
+                }
             },
 
             renderSessions(sessions) {
@@ -4502,14 +5075,14 @@
             getFallbackTips() {
                 return {
                     general: `
-                        <p><strong>📖 Grundlagen des Herd-Managements:</strong></p>
-                        <p>Herden in COTW verhalten sich wie echte Tierpopulationen. Wenn du eine Herd überjagst, kann es dauern, bis sie sich neu formiert.</p>
+                        <p><strong>📖 ${TranslationManager.t('tipsBasics')}:</strong></p>
+                        <p>${TranslationManager.t('tipsRespawnDesc')}</p>
                         <ul>
-                            <li><strong>Respawn-Time:</strong> Herden spawnen meist nach 2-4 Stunden neu</li>
-                            <li><strong>Qualität beeinflussen:</strong> Kills von niedriger Qualität (z.B. 2-5 Score) ziehen den Durchschnitt der Herde runter</li>
-                            <li><strong>High-Only:</strong> Fokussiere dich auf nur High-Scoring-Tiere für bessere Chancen</li>
+                            <li><strong>${TranslationManager.t('tipsRespawnTime')}:</strong> ${TranslationManager.t('tipsRespawnDesc')}</li>
+                            <li><strong>${TranslationManager.t('tipsQuality')}:</strong> ${TranslationManager.t('tipsQualityDesc')}</li>
+                            <li><strong>${TranslationManager.t('tipsHighOnly')}:</strong> ${TranslationManager.t('tipsHighOnlyDesc')}</li>
                         </ul>
-                        <p><strong>💡 Pro-Tipp:</strong> Überprüfe regelmäßig die Respawn-Zeiten deiner bevorzugten Zonen!</p>
+                        <p><strong>💡 ${TranslationManager.t('tipsProTip')}:</strong> ${TranslationManager.t('tipsProTipDesc')}</p>
                     `
                 };
             },
@@ -4614,7 +5187,7 @@
                 this.playKillAudio();
                 this.updateKPH();
 
-                ToastManager.show('Kill hinzugefügt!', 'info');
+                ToastManager.show(TranslationManager.t('toastKillAdded'), 'info');
             },
 
             removeKill() {
@@ -4624,7 +5197,7 @@
                 document.getElementById('session-kills').textContent = this.sessionKills;
 
                 this.updateKPH();
-                ToastManager.show('Kill entfernt', 'info');
+                ToastManager.show(TranslationManager.t('toastKillRemoved'), 'info');
             },
 
             playKillAudio() {
@@ -4754,8 +5327,11 @@
                     await window.electronAPI.grind.pauseSession(this.currentSessionId);
                 }
 
-                document.getElementById('btn-pause-session').textContent = '▶️ Fortsetzen';
-                ToastManager.show('Session pausiert', 'info');
+                const btnPause = document.getElementById('btn-pause-session');
+                const resumeText = TranslationManager.t('grindResume');
+                btnPause.textContent = '▶️ ' + resumeText;
+                btnPause.setAttribute('data-i18n', 'grindResume');
+                ToastManager.show(TranslationManager.t('toastSessionPaused'), 'info');
             },
 
             async resumeSession(sessionId = null) {
@@ -4818,14 +5394,18 @@
 
                 document.getElementById('session-start-container').style.display = 'none';
                 document.getElementById('session-controls-active').style.display = 'flex';
-                document.getElementById('btn-pause-session').textContent = '⏸️ Pause';
+                const btnPause = document.getElementById('btn-pause-session');
+                const pauseText = TranslationManager.t('grindPause');
+                btnPause.textContent = '⏸️ ' + pauseText;
+                btnPause.setAttribute('data-i18n', 'grindPause');
 
                 if (window.electronAPI && window.electronAPI.grind && this.currentSessionId) {
                     await window.electronAPI.grind.resumeSession(this.currentSessionId);
                     await window.electronAPI.grind.registerHotkeys();
                 }
 
-                ToastManager.show(`Session "${this.sessionName}" fortgesetzt!`, 'success');
+                const msg = TranslationManager.t('toastSessionResumed') + ': ' + this.sessionName;
+                ToastManager.show(msg, 'success');
             },
 
             async saveSession(session) {

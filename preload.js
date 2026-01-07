@@ -72,6 +72,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     updateHotkeys: (hotkeys) => ipcRenderer.invoke('grind:update-hotkeys', hotkeys)
   },
   setAlwaysOnTop: (alwaysOnTop) => ipcRenderer.invoke('window:set-always-on-top', alwaysOnTop),
+  setMinimizeToTray: (enabled) => ipcRenderer.invoke('window:set-minimize-to-tray', enabled),
   onGrindHotkey: (channel, callback) => {
     const validChannels = ['grind:add-kill', 'grind:remove-kill', 'grind:toggle-pause', 'grind:end-session'];
     if (validChannels.includes(channel)) {

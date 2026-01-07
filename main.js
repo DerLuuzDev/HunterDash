@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, globalShortcut } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, globalShortcut, Tray, Menu, nativeImage } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { WINDOW, API, STORAGE, APP_NAME, APP_VERSION, ICONS, DEV } = require('./build-config/constants');
@@ -11,10 +11,68 @@ const GrindService = require('./services/grind.service');
 const { validatePoissonInput, validateSettings } = require('./utils/validator');
 
 let mainWindow;
+let tray = null;
 let settings = { ...STORAGE.DEFAULT_SETTINGS };
 let accountService = null;
 let grindService = null;
 calculationService.setHistoryService(historyService);
+
+function createTray() {
+  if (tray) return;
+
+  const iconPath = process.platform === 'win32'
+    ? path.join(__dirname, ICONS.WINDOWS)
+    : path.join(__dirname, ICONS.LINUX);
+
+  let icon;
+  try {
+    icon = nativeImage.createFromPath(iconPath);
+    if (icon.isEmpty()) {
+      console.warn('Tray icon is empty, using default');
+      icon = nativeImage.createEmpty();
+    }
+    // Resize for tray (16x16 is standard)
+    icon = icon.resize({ width: 16, height: 16 });
+  } catch (error) {
+    console.error('Error loading tray icon:', error);
+    icon = nativeImage.createEmpty();
+  }
+
+  tray = new Tray(icon);
+  tray.setToolTip(APP_NAME);
+
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Öffnen / Open',
+      click: () => {
+        if (mainWindow) {
+          mainWindow.show();
+          mainWindow.focus();
+        }
+      }
+    },
+    { type: 'separator' },
+    {
+      label: 'Beenden / Quit',
+      click: () => {
+        app.isQuitting = true;
+        app.quit();
+      }
+    }
+  ]);
+
+  tray.setContextMenu(contextMenu);
+
+  // Click on tray icon to show window
+  tray.on('click', () => {
+    if (mainWindow) {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  });
+
+  console.log('Tray created successfully');
+}
 
 const hotkeyManager = {
   registered: {},
@@ -112,26 +170,46 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   }
 
+  // Handle close event - minimize to tray if enabled
+  mainWindow.on('close', (event) => {
+    if (settings.minimizeToTray && !app.isQuitting) {
+      event.preventDefault();
+      mainWindow.hide();
+      console.log('Window hidden to tray');
+    }
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 }
 
 app.whenReady().then(() => {
+  // Load settings first so we know if tray is enabled
+  loadSettingsFromFile();
+
   initializeHistoryService();
   initializeGrindService();
   initializeAccountService();
   createWindow();
   setupIpcHandlers();
 
+  // Create tray if minimize-to-tray is enabled
+  if (settings.minimizeToTray) {
+    createTray();
+  }
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
+    } else if (mainWindow) {
+      mainWindow.show();
     }
   });
 });
 
 app.on('before-quit', () => {
+  app.isQuitting = true;
   saveSettingsToFile();
   if (accountService) {
     accountService.checkAndCreateAutoBackup();
@@ -814,6 +892,26 @@ function setupIpcHandlers() {
       return { success: false, error: 'Hauptfenster nicht gefunden' };
     } catch (error) {
       console.error('Window-Set-Always-On-Top-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('window:set-minimize-to-tray', (event, enabled) => {
+    try {
+      settings.minimizeToTray = enabled;
+      saveSettingsToFile();
+
+      if (enabled) {
+        createTray();
+      } else if (tray) {
+        tray.destroy();
+        tray = null;
+        console.log('Tray destroyed');
+      }
+
+      return { success: true };
+    } catch (error) {
+      console.error('Window-Set-Minimize-To-Tray-Fehler:', error);
       return { success: false, error: error.message };
     }
   });
