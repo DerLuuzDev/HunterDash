@@ -822,71 +822,83 @@ function setupIpcHandlers() {
     }
   });
 
+  // Helper for hotkey conversion
+  const convertToElectronFormat = (key) => {
+    if (!key) return '';
+
+    // If already in Electron format, just handle special chars
+    if (key.includes('CommandOrControl') || key.includes('CmdOrCtrl')) {
+      // On Windows, ^ is often not recognized as ` (Backquote) correctly in all layouts
+      // But Electron usually expects literal characters for non-alphanumeric
+      // We try to map them to what works best on standard German layouts
+      let converted = key
+        .replace(/DeadCircumflex/g, '^') // Try literal ^ first
+        .replace(/°/g, '^')  // ° is Shift+^
+        .replace(/´/g, '=')
+        .replace(/ß/g, '-'); // ß is often where - is on US layout? No, - is _.
+
+      return converted;
+    }
+
+    // Convert from UI format
+    let converted = key
+      .replace(/Ctrl/g, 'CommandOrControl')
+      .replace(/ \+ /g, '+');
+
+    // Handle specific keys
+    if (converted.includes('DeadCircumflex') || converted.includes('^')) {
+      // Electron often has trouble with Dead keys. 
+      // For German layout: ^ is a dead key usually. 
+      // Best bet is often to allow the user to bind it, but Electron calls it '0' or 'Backquote' depending on layout?
+      // Actually, for global shortcuts on Windows, specific dead keys are tricky.
+      // Let's map it to "Grave" or just pass it through if supported.
+      // Experiment: Map ^ to ^
+      converted = converted.replace('DeadCircumflex', '^');
+    }
+
+    // Handle Minus / Hyphen
+    // In UI it might be "-"
+    // Electron Accelerator: "-" should work.
+
+    // Fix for specific German Layout oddities if needed:
+    converted = converted
+      .replace(/°/g, '^')
+      .replace(/´/g, '=');
+
+    console.log(`Converting hotkey: "${key}" -> "${converted}"`);
+    return converted;
+  };
+
+  const registerAllHotkeys = (hotkeyConfig) => {
+    hotkeyManager.unregisterAll();
+
+    const register = (uiKey, name, eventName) => {
+      if (!uiKey || uiKey.trim() === '') return;
+
+      const electronKey = convertToElectronFormat(uiKey);
+      if (!electronKey) return;
+
+      console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
+      hotkeyManager.register(electronKey, name, () => {
+        mainWindow.webContents.send(eventName);
+      });
+    };
+
+    register(hotkeyConfig.addKill, 'addKill', 'grind:add-kill');
+    register(hotkeyConfig.removeKill, 'removeKill', 'grind:remove-kill');
+    register(hotkeyConfig.togglePause, 'togglePause', 'grind:toggle-pause');
+    register(hotkeyConfig.endSession, 'endSession', 'grind:end-session');
+  };
+
   ipcMain.handle('grind:register-hotkeys', async (event, hotkeys) => {
     try {
-      hotkeyManager.unregisterAll();
-
       const currentSettings = await grindService.getSettings();
       const settingsHotkeys = (currentSettings.success && currentSettings.data?.sessionHotkeys)
         ? currentSettings.data.sessionHotkeys
         : STORAGE.DEFAULT_SETTINGS.sessionHotkeys;
 
-      console.log('Registriere Hotkeys:', settingsHotkeys);
-
-      // Convert UI format (e.g., "Ctrl + ^") to Electron format
-      const convertToElectronFormat = (key) => {
-        if (!key) return '';
-
-        // If already in Electron format, just handle special chars
-        if (key.includes('CommandOrControl')) {
-          let converted = key
-            .replace(/DeadCircumflex/g, '`')
-            .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
-            .replace(/°/g, '`');  // ° is Shift+^ on German keyboards
-          console.log(`Converting hotkey (already electron format): "${key}" -> "${converted}"`);
-          return converted;
-        }
-
-        // Convert from UI format
-        let converted = key
-          .replace(/Ctrl/g, 'CommandOrControl')
-          .replace(/ \+ /g, '+')
-          .replace(/DeadCircumflex/g, '`')
-          .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
-          .replace(/°/g, '`')   // ° is Shift+^ on German keyboards
-          .replace(/´/g, '=');  // ´ is on Equal key on German keyboards
-
-        // Don't convert standalone "Control" if it's part of "CommandOrControl"
-        if (!converted.includes('CommandOrControl')) {
-          converted = converted.replace(/Control/g, 'CommandOrControl');
-        }
-
-        console.log(`Converting hotkey: "${key}" -> "${converted}"`);
-        return converted;
-      };
-
-      const registerHotkey = (uiKey, name, eventName) => {
-        // Skip empty or undefined hotkeys
-        if (!uiKey || uiKey.trim() === '') {
-          console.log(`Skipping empty hotkey for ${name}`);
-          return;
-        }
-        const electronKey = convertToElectronFormat(uiKey);
-        if (!electronKey || electronKey.trim() === '') {
-          console.log(`Skipping invalid hotkey conversion for ${name}`);
-          return;
-        }
-        console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
-        hotkeyManager.register(electronKey, name, () => {
-          mainWindow.webContents.send(eventName);
-        });
-      };
-
-      registerHotkey(settingsHotkeys.addKill, 'addKill', 'grind:add-kill');
-      registerHotkey(settingsHotkeys.removeKill, 'removeKill', 'grind:remove-kill');
-      registerHotkey(settingsHotkeys.togglePause, 'togglePause', 'grind:toggle-pause');
-      registerHotkey(settingsHotkeys.endSession, 'endSession', 'grind:end-session');
-
+      console.log('Registriere Hotkeys (Initial):', settingsHotkeys);
+      registerAllHotkeys(settingsHotkeys);
       return { success: true };
     } catch (error) {
       console.error('Grind-Register-Hotkeys-Fehler:', error);
@@ -912,67 +924,11 @@ function setupIpcHandlers() {
         settings.sessionHotkeys = { ...settings.sessionHotkeys, ...newHotkeys };
         await grindService.saveSettings(settings);
 
-        // If hotkeys are currently active (session running), re-register them
+        // Re-register if we had any registered
         const hadActiveHotkeys = Object.keys(hotkeyManager.registered).length > 0;
         if (hadActiveHotkeys) {
-          hotkeyManager.unregisterAll();
-
-          const convertToElectronFormat = (key) => {
-            if (!key) return '';
-
-            // If already in Electron format, just handle special chars
-            if (key.includes('CommandOrControl')) {
-              let converted = key
-                .replace(/DeadCircumflex/g, '`')
-                .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
-                .replace(/°/g, '`');  // ° is Shift+^ on German keyboards
-              console.log(`Converting hotkey (already electron format): "${key}" -> "${converted}"`);
-              return converted;
-            }
-
-            // Convert from UI format
-            let converted = key
-              .replace(/Ctrl/g, 'CommandOrControl')
-              .replace(/ \+ /g, '+')
-              .replace(/DeadCircumflex/g, '`')
-              .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
-              .replace(/°/g, '`')   // ° is Shift+^ on German keyboards
-              .replace(/´/g, '=');  // ´ is on Equal key on German keyboards
-
-            // Don't convert standalone "Control" if it's part of "CommandOrControl"
-            if (!converted.includes('CommandOrControl')) {
-              converted = converted.replace(/Control/g, 'CommandOrControl');
-            }
-
-            console.log(`Converting hotkey: "${key}" -> "${converted}"`);
-            return converted;
-          };
-
-          const registerHotkey = (uiKey, name, eventName) => {
-            // Skip empty or undefined hotkeys
-            if (!uiKey || uiKey.trim() === '') {
-              console.log(`Skipping empty hotkey for ${name}`);
-              return;
-            }
-            const electronKey = convertToElectronFormat(uiKey);
-            if (!electronKey || electronKey.trim() === '') {
-              console.log(`Skipping invalid hotkey conversion for ${name}`);
-              return;
-            }
-            console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
-            hotkeyManager.register(electronKey, name, () => {
-              mainWindow.webContents.send(eventName);
-            });
-          };
-
-          registerHotkey(settings.sessionHotkeys.addKill, 'addKill', 'grind:add-kill');
-          registerHotkey(settings.sessionHotkeys.removeKill, 'removeKill', 'grind:remove-kill');
-          registerHotkey(settings.sessionHotkeys.togglePause, 'togglePause', 'grind:toggle-pause');
-          registerHotkey(settings.sessionHotkeys.endSession, 'endSession', 'grind:end-session');
-
-          console.log('Hotkeys wurden nach Update neu registriert');
-
-          console.log('Hotkeys wurden nach Update neu registriert');
+          console.log('Hotkeys werden nach Update neu registriert:', settings.sessionHotkeys);
+          registerAllHotkeys(settings.sessionHotkeys);
         }
 
         return { success: true };
