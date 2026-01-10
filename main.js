@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain, dialog, globalShortcut, Tray, Menu, nativeImage } = require('electron');
+const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const { WINDOW, API, STORAGE, APP_NAME, APP_VERSION, ICONS, DEV } = require('./build-config/constants');
@@ -16,6 +17,9 @@ let settings = { ...STORAGE.DEFAULT_SETTINGS };
 let accountService = null;
 let grindService = null;
 calculationService.setHistoryService(historyService);
+
+// Enable Wayland Global Shortcuts Portal support
+app.commandLine.appendSwitch('enable-features', 'GlobalShortcutsPortal');
 
 function createTray() {
   if (tray) return;
@@ -184,29 +188,95 @@ function createWindow() {
   });
 }
 
-app.whenReady().then(() => {
-  // Load settings first so we know if tray is enabled
-  loadSettingsFromFile();
+function startLocalServer() {
+  const SERVER_PORT = 35353;
+  const server = http.createServer((req, res) => {
+    // Set CORS headers just in case
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 
-  initializeHistoryService();
-  initializeGrindService();
-  initializeAccountService();
-  createWindow();
-  setupIpcHandlers();
+    if (req.method === 'OPTIONS') {
+      res.writeHead(200);
+      res.end();
+      return;
+    }
 
-  // Create tray if minimize-to-tray is enabled
-  if (settings.minimizeToTray) {
-    createTray();
-  }
+    const url = req.url; // e.g. /api/trigger/add-kill
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    } else if (mainWindow) {
-      mainWindow.show();
+    if (url.startsWith('/api/trigger/')) {
+      const action = url.split('/').pop(); // add-kill
+      const eventMap = {
+        'add-kill': 'grind:add-kill',
+        'remove-kill': 'grind:remove-kill',
+        'toggle-pause': 'grind:toggle-pause',
+        'end-session': 'grind:end-session'
+      };
+
+      const ipcEvent = eventMap[action];
+
+      if (ipcEvent && mainWindow) {
+        mainWindow.webContents.send(ipcEvent);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, action: action }));
+        console.log(`External trigger received: ${action}`);
+      } else {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: 'Invalid action or window not ready' }));
+      }
+    } else {
+      res.writeHead(404);
+      res.end();
     }
   });
-});
+
+  server.listen(SERVER_PORT, '127.0.0.1', () => {
+    console.log(`Local trigger server running on http://127.0.0.1:${SERVER_PORT}`);
+  });
+
+  server.on('error', (e) => {
+    console.error('Local server error:', e);
+  });
+}
+
+// Single Instance Lock
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+  });
+
+  app.whenReady().then(() => {
+    // Load settings first so we know if tray is enabled
+    loadSettingsFromFile();
+
+    initializeHistoryService();
+    initializeGrindService();
+    initializeAccountService();
+    createWindow();
+    setupIpcHandlers();
+    startLocalServer();
+
+    // Create tray if minimize-to-tray is enabled
+    if (settings.minimizeToTray) {
+      createTray();
+    }
+
+    app.on('activate', () => {
+      if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+      } else if (mainWindow) {
+        mainWindow.show();
+      }
+    });
+  });
+}
 
 app.on('before-quit', () => {
   app.isQuitting = true;
