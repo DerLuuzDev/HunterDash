@@ -6250,38 +6250,43 @@
                     window.electronAPI.onGrindHotkey('grind:toggle-pause', this.hotkeyListeners.togglePause);
                     window.electronAPI.onGrindHotkey('grind:end-session', this.hotkeyListeners.endSession);
 
-                    // IPC hotkeys registered - skip in-app handler to prevent double execution
-                    return;
-                } else {
-                    // In-app keyboard listener fallback (only used when IPC not available)
-                    this.inAppKeyHandler = (e) => {
-                        if (!this.isSessionRunning) return;
-
-                        // Ignoriere Modifier-Tasten alleine
-                        if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) return;
-
-                        const hotkeys = SettingsManager.settings?.sessionHotkeys || {};
-                        const pressedKey = this.formatKeyEvent(e);
-
-                        console.log('Hotkey pressed:', pressedKey, '| Expected addKill:', hotkeys.addKill);
-
-                        if (pressedKey === hotkeys.addKill) {
-                            e.preventDefault();
-                            this.addKill();
-                        } else if (pressedKey === hotkeys.removeKill) {
-                            e.preventDefault();
-                            this.removeKill();
-                        } else if (pressedKey === hotkeys.togglePause) {
-                            e.preventDefault();
-                            this.togglePause();
-                        } else if (pressedKey === hotkeys.endSession) {
-                            e.preventDefault();
-                            this.endSession();
-                        }
-                    };
-
-                    document.addEventListener('keydown', this.inAppKeyHandler);
+                    // IPC hotkeys registered
+                    // Remove the return to allow fallback to local listener if global shortcuts fail
                 }
+
+                // In-app keyboard listener (always active as fallback/primary)
+                // Remove existing listener to prevent duplicates
+                if (this.inAppKeyHandler) {
+                    document.removeEventListener('keydown', this.inAppKeyHandler);
+                }
+
+                this.inAppKeyHandler = (e) => {
+                    if (!this.isSessionRunning) return;
+
+                    // Ignoriere Modifier-Tasten alleine
+                    if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) return;
+
+                    const hotkeys = SettingsManager.settings?.sessionHotkeys || {};
+                    const pressedKey = this.formatKeyEvent(e);
+
+                    console.log('Hotkey pressed:', pressedKey, '| Expected addKill:', hotkeys.addKill);
+
+                    if (pressedKey === hotkeys.addKill) {
+                        e.preventDefault();
+                        this.addKill();
+                    } else if (pressedKey === hotkeys.removeKill) {
+                        e.preventDefault();
+                        this.removeKill();
+                    } else if (pressedKey === hotkeys.togglePause) {
+                        e.preventDefault();
+                        this.togglePause();
+                    } else if (pressedKey === hotkeys.endSession) {
+                        e.preventDefault();
+                        this.endSession();
+                    }
+                };
+
+                document.addEventListener('keydown', this.inAppKeyHandler);
             },
 
             formatKeyEvent(event) {
