@@ -5,15 +5,16 @@ module.exports = {
   productName: APP_NAME,
   copyright: `Copyright © ${new Date().getFullYear()} HunterDash Team`,
   artifactName: `${APP_NAME}-${APP_VERSION}-\${arch}.\${ext}`,
-  
+
   compression: 'maximum',
-  
+
   asar: true,
   asarUnpack: [
     'assets/icons/*',
     'build-config/**/*'
   ],
-  
+
+
   files: [
     'main.js',
     'preload.js',
@@ -25,10 +26,7 @@ module.exports = {
     'build-config/**/*',
     'assets/**/*'
   ],
-  
-  afterPack: './build-config/after-pack.js',
-  afterSign: './build-config/after-sign.js',
-  
+
   win: {
     target: [
       {
@@ -39,7 +37,7 @@ module.exports = {
     icon: ICONS.WINDOWS,
     artifactName: `${APP_NAME}-Setup-${APP_VERSION}-\${arch}.\${ext}`
   },
-  
+
   linux: {
     target: [
       'AppImage'
@@ -50,7 +48,7 @@ module.exports = {
     description: 'Berechne dein Glück in theHunter: Call of the Wild',
     maintainer: 'HunterDash Team <info@hunterdash.de>'
   },
-  
+
   nsis: {
     oneClick: false,
     allowToChangeInstallationDirectory: true,
@@ -58,20 +56,20 @@ module.exports = {
     createDesktopShortcut: true,
     createStartMenuShortcut: true,
     shortcutName: APP_NAME,
-    
+
     installerIcon: ICONS.WINDOWS,
     uninstallerIcon: ICONS.WINDOWS,
     installerHeaderIcon: ICONS.WINDOWS,
-    
+
     installerLanguages: ['de_DE', 'en_US'],
     language: '1031',
-    
+
     deleteAppDataOnUninstall: false,
     runAfterFinish: true,
-    
+
     license: 'LICENSE'
   },
-  
+
   publish: {
     provider: 'github',
     owner: 'hunterdash',
