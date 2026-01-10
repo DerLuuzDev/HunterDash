@@ -229,7 +229,7 @@ app.on('window-all-closed', () => {
 });
 
 function setupIpcHandlers() {
-  ipcMain.handle('api:calculate', async (event, data) => {
+  ipcMain.handle('api:calculate', async (event, data, options = {}) => {
     try {
       const validation = validatePoissonInput(data);
 
@@ -242,6 +242,8 @@ function setupIpcHandlers() {
       }
 
       let result;
+      // Determine if history should be saved: check option override first, then settings
+      const shouldSaveHistory = options.saveHistory !== undefined ? options.saveHistory : settings.autoHistory;
 
       if (settings.apiEnabled && API.ENABLE_BACKEND) {
         const apiService = require('./services/api.service');
@@ -253,10 +255,10 @@ function setupIpcHandlers() {
           result = apiResult.data;
         } else {
           console.log('API-Fallback: Berechne lokal');
-          result = await calculationService.calculatePoisson(validation.data, settings.autoHistory);
+          result = await calculationService.calculatePoisson(validation.data, shouldSaveHistory);
         }
       } else {
-        result = await calculationService.calculatePoisson(validation.data, settings.autoHistory);
+        result = await calculationService.calculatePoisson(validation.data, shouldSaveHistory);
       }
 
       return {
@@ -767,7 +769,10 @@ function setupIpcHandlers() {
 
         // If already in Electron format, just handle special chars
         if (key.includes('CommandOrControl')) {
-          let converted = key.replace(/DeadCircumflex/g, '^');
+          let converted = key
+            .replace(/DeadCircumflex/g, '`')
+            .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
+            .replace(/°/g, '`');  // ° is Shift+^ on German keyboards
           console.log(`Converting hotkey (already electron format): "${key}" -> "${converted}"`);
           return converted;
         }
@@ -776,7 +781,10 @@ function setupIpcHandlers() {
         let converted = key
           .replace(/Ctrl/g, 'CommandOrControl')
           .replace(/ \+ /g, '+')
-          .replace(/DeadCircumflex/g, '^');
+          .replace(/DeadCircumflex/g, '`')
+          .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
+          .replace(/°/g, '`')   // ° is Shift+^ on German keyboards
+          .replace(/´/g, '=');  // ´ is on Equal key on German keyboards
 
         // Don't convert standalone "Control" if it's part of "CommandOrControl"
         if (!converted.includes('CommandOrControl')) {
@@ -788,7 +796,16 @@ function setupIpcHandlers() {
       };
 
       const registerHotkey = (uiKey, name, eventName) => {
+        // Skip empty or undefined hotkeys
+        if (!uiKey || uiKey.trim() === '') {
+          console.log(`Skipping empty hotkey for ${name}`);
+          return;
+        }
         const electronKey = convertToElectronFormat(uiKey);
+        if (!electronKey || electronKey.trim() === '') {
+          console.log(`Skipping invalid hotkey conversion for ${name}`);
+          return;
+        }
         console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
         hotkeyManager.register(electronKey, name, () => {
           mainWindow.webContents.send(eventName);
@@ -835,7 +852,10 @@ function setupIpcHandlers() {
 
             // If already in Electron format, just handle special chars
             if (key.includes('CommandOrControl')) {
-              let converted = key.replace(/DeadCircumflex/g, '^');
+              let converted = key
+                .replace(/DeadCircumflex/g, '`')
+                .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
+                .replace(/°/g, '`');  // ° is Shift+^ on German keyboards
               console.log(`Converting hotkey (already electron format): "${key}" -> "${converted}"`);
               return converted;
             }
@@ -844,7 +864,10 @@ function setupIpcHandlers() {
             let converted = key
               .replace(/Ctrl/g, 'CommandOrControl')
               .replace(/ \+ /g, '+')
-              .replace(/DeadCircumflex/g, '^');
+              .replace(/DeadCircumflex/g, '`')
+              .replace(/\^/g, '`')  // ^ is on Backquote key on German keyboards
+              .replace(/°/g, '`')   // ° is Shift+^ on German keyboards
+              .replace(/´/g, '=');  // ´ is on Equal key on German keyboards
 
             // Don't convert standalone "Control" if it's part of "CommandOrControl"
             if (!converted.includes('CommandOrControl')) {
@@ -856,7 +879,16 @@ function setupIpcHandlers() {
           };
 
           const registerHotkey = (uiKey, name, eventName) => {
+            // Skip empty or undefined hotkeys
+            if (!uiKey || uiKey.trim() === '') {
+              console.log(`Skipping empty hotkey for ${name}`);
+              return;
+            }
             const electronKey = convertToElectronFormat(uiKey);
+            if (!electronKey || electronKey.trim() === '') {
+              console.log(`Skipping invalid hotkey conversion for ${name}`);
+              return;
+            }
             console.log(`Versuche Hotkey zu registrieren: ${electronKey} (${name})`);
             hotkeyManager.register(electronKey, name, () => {
               mainWindow.webContents.send(eventName);

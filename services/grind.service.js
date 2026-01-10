@@ -6,9 +6,10 @@ class GrindService {
   constructor(storageService, userDataPath = null) {
     this.storage = storageService;
     this.customTips = {};
-    this.settings = GRIND.DEFAULT_SETTINGS;
+    this.settings = { ...GRIND.DEFAULT_SETTINGS };
     this.userDataPath = userDataPath;
     this.sessionsFilePath = null;
+    this.settingsFilePath = null;
     this.backupDir = null;
     this.memorySessions = [];
 
@@ -19,6 +20,7 @@ class GrindService {
 
   initializeFileSystem() {
     this.sessionsFilePath = path.join(this.userDataPath, GRIND.FILENAME);
+    this.settingsFilePath = path.join(this.userDataPath, 'grind-settings.json');
     this.backupDir = path.join(this.userDataPath, GRIND.BACKUP_DIR);
 
     try {
@@ -31,6 +33,7 @@ class GrindService {
       }
 
       this.loadFromFile();
+      this.loadSettingsFromFile();
     } catch (error) {
       console.error('GrindService: Fehler beim Initialisieren des Dateisystems:', error);
     }
@@ -38,10 +41,7 @@ class GrindService {
 
   async getSettings() {
     try {
-      const storedSettings = await this.storage.get(STORAGE.KEYS.GRIND_SETTINGS);
-      if (storedSettings) {
-        this.settings = { ...GRIND.DEFAULT_SETTINGS, ...storedSettings };
-      }
+      // Always return the in-memory settings (loaded from file on init)
       return { success: true, data: this.settings };
     } catch (error) {
       console.error('GrindService: Fehler beim Laden der Einstellungen:', error);
@@ -64,12 +64,43 @@ class GrindService {
       });
 
       this.settings = mergedSettings;
-      await this.storage.set(STORAGE.KEYS.GRIND_SETTINGS, mergedSettings);
+
+      // Save to file system (persistent across restarts)
+      this.saveSettingsToFile();
+
       console.log('GrindService: Settings gespeichert:', JSON.stringify(mergedSettings.sessionHotkeys));
       return { success: true };
     } catch (error) {
       console.error('GrindService: Fehler beim Speichern der Einstellungen:', error);
       return { success: false, error: error.message };
+    }
+  }
+
+  loadSettingsFromFile() {
+    if (!this.settingsFilePath || !fs.existsSync(this.settingsFilePath)) {
+      console.log('GrindService: Keine Settings-Datei gefunden, verwende Defaults');
+      return;
+    }
+
+    try {
+      const fileContent = fs.readFileSync(this.settingsFilePath, 'utf-8');
+      const storedSettings = JSON.parse(fileContent);
+      this.settings = { ...GRIND.DEFAULT_SETTINGS, ...storedSettings };
+      console.log('GrindService: Settings aus Datei geladen:', this.settingsFilePath);
+      console.log('GrindService: Hotkeys:', JSON.stringify(this.settings.sessionHotkeys));
+    } catch (error) {
+      console.error('GrindService: Fehler beim Laden der Settings aus Datei:', error);
+    }
+  }
+
+  saveSettingsToFile() {
+    if (!this.settingsFilePath) return;
+
+    try {
+      fs.writeFileSync(this.settingsFilePath, JSON.stringify(this.settings, null, 2));
+      console.log('GrindService: Settings gespeichert:', this.settingsFilePath);
+    } catch (error) {
+      console.error('GrindService: Fehler beim Speichern der Settings in Datei:', error);
     }
   }
 

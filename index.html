@@ -11,79 +11,177 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         :root {
-            --primary: #1a5f2a;
-            --primary-dark: #0f421d;
-            --primary-light: #2d8f42;
-            --secondary: #4a7c35;
-            --accent: #8b6914;
-            --background: linear-gradient(135deg, #e8f5e9 0%, #c5e1a5 100%);
-            --surface: rgba(255, 255, 255, 0.92);
-            --text-primary: #1a2f1a;
-            --text-secondary: #4a5a4a;
-            --very-lucky: #7cb342;
-            --lucky: #2ecc71;
-            --neutral: #a0a8b0;
-            --unlucky: #f39c12;
-            --very-unlucky: #e67e22;
-            /* Adaptive Colors */
-            --input-bg: rgba(255, 255, 255, 0.75);
-            --input-bg-focus: rgba(255, 255, 255, 0.95);
-            --input-border: rgba(200, 200, 200, 0.6);
-            --card-border: rgba(255, 255, 255, 0.6);
-            --legend-bg: rgba(245, 247, 250, 0.6);
-            --border-light: rgba(200, 200, 200, 0.4);
-            --mini-hint-bg: rgba(200, 200, 200, 0.25);
-            --settings-btn-bg: var(--surface);
-            --bar-bg: rgba(232, 232, 232, 0.7);
-            --legend-item-bg: rgba(255, 255, 255, 0.5);
-            --form-select-bg: rgba(255, 255, 255, 0.75);
+            /* Light Mode - Modern & Premium */
+            --background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --background-solid: #f8fafc;
+            --surface: #ffffff;
+            --surface-elevated: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+
+            /* Hunter Accents (Light) - More Vibrant */
+            --primary: #16a34a;
+            --primary-light: rgba(22, 163, 74, 0.12);
+            --secondary: #22c55e;
+            --accent: #f97316;
+
+            /* Components - Cleaner, More Defined */
+            --card-border: rgba(0, 0, 0, 0.08);
+            --border-light: rgba(0, 0, 0, 0.06);
+            --border-strong: rgba(0, 0, 0, 0.15);
+
+            /* Inputs - Clean & Modern */
+            --input-bg: #ffffff;
+            --input-border: #cbd5e1;
+            --form-select-bg: #ffffff;
+
+            /* Navigation - Modern */
             --nav-bg: rgba(255, 255, 255, 0.8);
-            --nav-hover-bg: rgba(255, 255, 255, 0.95);
-            --setting-item-bg: rgba(245, 247, 250, 0.5);
-            --nav-active-text: #ffffff;
+            --nav-hover-bg: rgba(22, 163, 74, 0.08);
+            --nav-active-text: #16a34a;
+            --nav-item-active-bg: rgba(22, 163, 74, 0.1);
+            --nav-item-active-border: rgba(22, 163, 74, 0.4);
+            --sidebar-bg: rgba(255, 255, 255, 0.95);
+
+            /* Steam-style Tab Variables (Light Mode) - More Contrast */
+            --tab-container-bg: rgba(15, 23, 42, 0.04);
+            --tab-hover-bg: rgba(15, 23, 42, 0.06);
+            --tab-hover-border: rgba(15, 23, 42, 0.1);
+
+            /* Logic Colors - Vibrant */
+            --very-lucky: #22c55e;
+            --lucky: #84cc16;
+            --neutral: #94a3b8;
+            --unlucky: #f97316;
+            --very-unlucky: #ef4444;
+
+            --ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .dark-mode {
-            --primary: #81c784;
-            --primary-dark: #2e7d32;
-            --primary-light: #4caf50;
-            --secondary: #a5d6a7;
-            --accent: #ffd54f;
-            --background: #121212;
-            --surface: #1e1e1e;
-            --text-primary: #e0e0e0;
-            --text-secondary: #b0b0b0;
+            /* COTW-Inspired "Night Hunt" - Solid & Premium */
+            --background: #0a0f0c;
+            --background-solid: #0a0f0c;
+            --surface: #141a16;
+            --surface-elevated: #1a211c;
+            --text-primary: #f0fdf4;
+            --text-secondary: #86efac;
 
-            --input-bg: #2c2c2c;
-            --input-bg-focus: #383838;
-            --input-border: #424242;
-            --card-border: #333333;
-            --legend-bg: #262626;
-            --border-light: #333333;
-            --mini-hint-bg: #2c2c2c;
-            --settings-btn-bg: #2c2c2c;
-            --bar-bg: #2c2c2c;
-            --legend-item-bg: #333333;
-            --form-select-bg: #2c2c2c;
-            --nav-bg: #2c2c2c;
-            --nav-hover-bg: #383838;
-            --setting-item-bg: #2c2c2c;
-            --nav-active-text: rgba(0, 0, 0, 0.85);
+            /* Hunter Colors - Neon Accents */
+            --primary: #22c55e;
+            --primary-light: rgba(34, 197, 94, 0.15);
+            --secondary: #16a34a;
+            --accent: #fb923c;
+
+            /* Logic Colors - Neon Style */
+            --very-lucky: #4ade80;
+            --lucky: #86efac;
+            --neutral: #94a3b8;
+            --unlucky: #fb923c;
+            --very-unlucky: #f87171;
+
+            /* Components - Solid, No Veil */
+            --card-border: rgba(34, 197, 94, 0.2);
+            --border-light: rgba(34, 197, 94, 0.1);
+            --border-strong: rgba(255, 255, 255, 0.15);
+            --input-bg: #1a211c;
+            --nav-bg: #141a16;
+            --nav-hover-bg: rgba(34, 197, 94, 0.12);
+            --nav-active-text: #ffffff;
+            --nav-item-active-bg: rgba(34, 197, 94, 0.15);
+            --nav-item-active-border: rgba(34, 197, 94, 0.4);
+            --sidebar-bg: #0f1512;
+
+            /* Steam-style Tab Variables (Dark Mode) - Solid */
+            --tab-container-bg: rgba(0, 0, 0, 0.3);
+            --tab-hover-bg: rgba(34, 197, 94, 0.1);
+            --tab-hover-border: rgba(34, 197, 94, 0.2);
+            --form-select-bg: #1a211c;
+
+            --ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Dark mode dropdown option styling */
+        .dark-mode select,
+        .dark-mode .form-select,
+        .dark-mode .compare-select {
+            background-color: #1a211c;
+            color: var(--text-primary);
+        }
+
+        .dark-mode select option,
+        .dark-mode .form-select option,
+        .dark-mode .compare-select option {
+            background-color: #141a16;
+            color: #f0fdf4;
+        }
+
+        /* Dark mode solid backgrounds - Remove all veil effects */
+        .dark-mode .card,
+        .dark-mode .setting-item,
+        .dark-mode .account-card,
+        .dark-mode .template-card,
+        .dark-mode .session-card,
+        .dark-mode .settings-content,
+        .dark-mode .toast {
+            background: #141a16;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .dark-mode .settings-modal {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .dark-mode .action-button.secondary {
+            background: #1a211c;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .dark-mode .action-button.secondary:hover {
+            background: #212a24;
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+
+        .dark-mode .toggle-switch {
+            background: #1a211c;
+        }
+
+        .dark-mode .toggle-switch:hover {
+            background: #212a24;
+        }
+
+        .dark-mode .setting-item:hover {
+            background: #1a211c;
+        }
+
+        .dark-mode .legend {
+            background: #141a16;
+        }
+
+        .dark-mode .legend-item {
+            background: #1a211c;
+        }
+
+        .dark-mode .legend-item:hover {
+            background: #212a24;
         }
 
         * {
             margin: 0;
-            padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            /* Apple font smoothing */
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
             background: var(--background);
             color: var(--text-primary);
+            transition: background 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
             min-height: 100vh;
-            padding: 40px 20px;
-            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -250,6 +348,73 @@
             background: transparent;
         }
 
+        .p-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100px;
+            /* specific width for prob input area */
+            justify-content: flex-end;
+        }
+
+        .mini-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            padding: 0;
+        }
+
+        .mini-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .widget-slider {
+            width: 100%;
+            accent-color: var(--primary);
+            cursor: pointer;
+            height: 6px;
+            border-radius: 3px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border-light);
+            margin: 8px 0;
+        }
+
+        .widget-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+            margin-top: -5px;
+        }
+
+        .widget-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px var(--primary-light);
+        }
+
+        .widget-slider::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-light);
+        }
+
         .legend::-webkit-scrollbar-thumb {
             background: rgba(200, 200, 200, 0.6);
             border-radius: 3px;
@@ -318,20 +483,32 @@
             transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 0 16px;
             font-weight: 700;
             font-size: 1rem;
             color: rgba(0, 0, 0, 0.85);
             text-shadow: none;
             border-radius: 12px;
-            overflow: hidden;
+            overflow: visible;
             white-space: nowrap;
+            position: relative;
         }
 
         .luck-bar-fill.small {
-            color: rgba(0, 0, 0, 0.85);
-            text-shadow: none;
+            color: var(--text-primary);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            justify-content: flex-end;
+            padding-right: 0;
+        }
+
+        .luck-bar-fill.small::after {
+            content: attr(data-text);
+            position: absolute;
+            left: calc(100% + 8px);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
         }
 
         .very-lucky {
@@ -703,7 +880,7 @@
             height: 6px;
             -webkit-appearance: none;
             appearance: none;
-            background: rgba(200, 200, 200, 0.5);
+            background: var(--border-light);
             border-radius: 3px;
             outline: none;
             cursor: pointer;
@@ -788,7 +965,7 @@
         .hotkey-item input[type="text"] {
             flex: 1;
             padding: 10px 14px;
-            background: white;
+            background: var(--input-bg);
             border: 2px solid transparent;
             border-radius: 8px;
             font-family: 'Roboto Mono', 'Courier New', monospace;
@@ -858,49 +1035,179 @@
             color: white;
         }
 
+        /* Dashboard Grid System - Strict 2 Columns with Mobile Stack */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Always 2 columns on Desktop */
+            width: 100%;
+            gap: 24px;
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 1100px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+
+                /* Stack on smaller screens/windows */
+                /* Stack on smaller screens/windows */
+            }
+        }
+
+        .stat-widget {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-strong);
+            /* Stronger Border */
+            border-radius: 24px;
+            /* Back to squircle */
+            padding: 24px;
+            backdrop-filter: blur(20px);
+            transition: transform 0.3s var(--ease-spring), border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Make widgets Horizontal internally on large screens to save space? 
+           Optional, but user said "weirdly large", maybe vertical list is enough. */
+
+        .stat-widget:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            /* Use Primary color for visible hover */
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .large-widget {
+            grid-column: 1 / -1;
+            /* Header/Total always full width */
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.1), rgba(10, 132, 255, 0.02));
+            border: 1px solid rgba(10, 132, 255, 0.2);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+            /* Keep, implicitly true for 1 col */
+            flex-direction: row;
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            padding: 0;
+        }
+
+        .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .widget-icon {
+            font-size: 1.2rem;
+        }
+
+        .widget-input-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            padding: 0;
+            width: 100%;
+        }
+
+        .widget-input-large:focus {
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .input-row {
+            display: flex;
+            flex-direction: column;
+            /* Stack label and input for "one line" text space */
+            align-items: flex-start;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .input-row label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            /* Prevent wrapping in weird ways */
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .prob-ratio {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .input-row input {
+            text-align: left;
+            /* Better for editing numbers */
+            width: 100%;
+            /* Full width */
+            padding: 8px 12px;
+            font-size: 0.95rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        .p-input-wrapper {
+            position: relative;
+            /* Anchor for absolute preset list */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            /* Full width for scalable probability */
+        }
+
+        .p-input-wrapper input {
+            flex: 1;
+            /* Scalable input */
+        }
+
+        input[type="number"],
+        .form-input,
         .form-select {
             width: 100%;
-            padding: 14px 18px;
-            background: var(--form-select-bg);
-            border: 2px solid var(--input-border);
+            padding: 14px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-light);
             border-radius: 12px;
-            font-size: 1rem;
             color: var(--text-primary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s var(--ease-spring);
+            backdrop-filter: blur(10px);
+            font-family: inherit;
         }
 
-        .form-select:hover {
-            border-color: rgba(200, 200, 200, 0.5);
+        div.input-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            display: block;
+            color: var(--text-secondary);
         }
 
+        input[type="number"]:focus,
+        .form-input:focus,
         .form-select:focus {
             outline: none;
+            background: rgba(255, 255, 255, 0.1);
             border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            background: var(--input-bg);
-            border: 2px solid var(--input-border);
-            border-radius: 12px;
-            font-size: 1rem;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .form-input:hover {
-            border-color: rgba(200, 200, 200, 0.5);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+            box-shadow: 0 0 0 4px var(--primary-light);
+            transform: scale(1.01);
         }
 
         @media (max-width: 768px) {
@@ -1055,38 +1362,51 @@
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             margin-bottom: 24px;
             flex-wrap: wrap;
+            background: var(--tab-container-bg);
+            padding: 6px;
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .nav-tab {
-            padding: 12px 24px;
-            background: var(--surface);
-            border: 2px solid rgba(200, 200, 200, 0.4);
-            border-radius: 12px;
+            padding: 10px 22px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 999px;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--text-primary);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-secondary);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-tab:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: var(--secondary);
-            transform: translateY(-2px);
+            background: var(--tab-hover-bg);
+            border-color: var(--tab-hover-border);
+            color: var(--text-primary);
         }
 
         .nav-tab.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--nav-active-text);
+            background: var(--primary);
+            color: #ffffff;
             border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-light);
+            font-weight: 600;
         }
 
         .nav-tab.disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
+            pointer-events: none;
         }
 
         .tab-content {
@@ -1095,6 +1415,7 @@
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.4s ease-out;
         }
 
         .toast-container {
@@ -1181,7 +1502,7 @@
             height: 6px;
             -webkit-appearance: none;
             appearance: none;
-            background: rgba(200, 200, 200, 0.5);
+            background: var(--border-light);
             border-radius: 3px;
             outline: none;
         }
@@ -1211,8 +1532,8 @@
         }
 
         .preset-button {
-            background: var(--primary);
-            border: 2px solid var(--primary);
+            background: linear-gradient(135deg, #a4d007 0%, #689f38 100%);
+            border: none;
             border-radius: 8px;
             padding: 8px 16px;
             font-size: 0.9rem;
@@ -1226,27 +1547,55 @@
         }
 
         .preset-button:hover {
-            background: var(--secondary);
-            border-color: var(--secondary);
+            background: linear-gradient(135deg, #b2e20b 0%, #7cb342 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(164, 208, 7, 0.4);
         }
 
         .preset-list {
             position: absolute;
             top: 100%;
-            left: 0;
+            right: 0;
+            /* Align to right edge of button */
+            left: auto;
+            /* Override left alignment */
             background: var(--surface);
-            border: 2px solid rgba(200, 200, 200, 0.4);
-            border-radius: 8px;
-            margin-top: 4px;
+            /* Adaptive background */
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin-top: 8px;
             padding: 8px;
             display: none;
             flex-direction: column;
             gap: 4px;
-            z-index: 100;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-            min-width: 200px;
+            z-index: 9999;
+            /* Critical Boost */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            min-width: 220px;
+        }
+
+        .preset-item {
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preset-item:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Class to boost parent z-index when list is open */
+        .z-boost {
+            z-index: 100 !important;
+            position: relative;
         }
 
         .preset-list.show {
@@ -1277,33 +1626,45 @@
         .account-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 6px;
             margin-bottom: 24px;
             flex-wrap: wrap;
+            background: var(--tab-container-bg);
+            padding: 5px;
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .account-tab {
-            padding: 10px 20px;
-            background: var(--surface);
-            border: 2px solid rgba(200, 200, 200, 0.4);
-            border-radius: 10px;
+            padding: 8px 18px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 999px;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--text-primary);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-secondary);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
         }
 
         .account-tab:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: var(--secondary);
-            transform: translateY(-2px);
+            background: var(--tab-hover-bg);
+            border-color: var(--tab-hover-border);
+            color: var(--text-primary);
         }
 
         .account-tab.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
+            background: var(--primary);
+            color: #ffffff;
             border-color: var(--primary);
+            box-shadow: 0 0 12px var(--primary-light);
+            font-weight: 600;
         }
 
         .subtab-content {
@@ -1312,6 +1673,7 @@
 
         .subtab-content.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
 
         .stat-grid {
@@ -1321,12 +1683,31 @@
             margin-bottom: 32px;
         }
 
+        .card {
+            background: var(--surface);
+            border-radius: 24px;
+            /* Squircle */
+            padding: 32px;
+            border: 1px solid var(--card-border);
+            margin-bottom: 24px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
         .stat-card {
             background: var(--setting-item-bg);
             border-radius: 16px;
             padding: 24px;
-            border: 2px solid var(--border-light);
+            border: 1px solid var(--border-light);
             transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
         }
 
         .stat-card:hover {
@@ -1371,30 +1752,57 @@
         .action-button {
             flex: 1;
             min-width: 150px;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 14px 24px;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 0.95rem;
+            border-radius: 99px;
+            /* Pill Shape */
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), filter 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .action-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.4);
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px var(--primary-light);
+            filter: brightness(1.1);
+        }
+
+        .action-button:hover::after {
+            opacity: 1;
+        }
+
+        .action-button:active {
+            transform: scale(0.96);
         }
 
         .action-button.secondary {
-            background: var(--surface);
-            border: 2px solid var(--border-light);
+            background: rgba(255, 255, 255, 0.1);
             color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+        }
+
+        .action-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
         .action-button.active {
@@ -1406,6 +1814,24 @@
         .action-button.active:hover {
             transform: translateY(1px);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ripple Effect Animation */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(0);
+            animation: ripple-animation 0.5s ease-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
 
         .account-list {
@@ -1551,6 +1977,441 @@
             font-weight: 500;
         }
 
+        /* Modern Account Compare UI */
+        .compare-result-container {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .compare-vs-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 900px) {
+            .compare-vs-container {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-vs-indicator {
+                order: -1;
+            }
+        }
+
+        .compare-account-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 24px;
+            border: 2px solid var(--border-light);
+            transition: all 0.4s ease;
+            animation: slideInCard 0.6s ease-out backwards;
+        }
+
+        .compare-account-card:first-child {
+            animation-delay: 0.1s;
+        }
+
+        .compare-account-card:last-child {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideInCard {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .compare-account-card.winner {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px var(--primary-light);
+        }
+
+        .compare-account-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .compare-account-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .compare-winner-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: pulseBadge 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseBadge {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .compare-total-score {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.05));
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .compare-total-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .compare-total-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .compare-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .compare-category-item {
+            animation: fadeInCategory 0.4s ease-out backwards;
+        }
+
+        @keyframes fadeInCategory {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .compare-category-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .compare-category-name {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .compare-category-value {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .compare-progress-bar {
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .compare-progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        .compare-vs-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .compare-vs-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: white;
+            box-shadow: 0 8px 24px var(--primary-light);
+            animation: vsGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes vsGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 8px 24px var(--primary-light);
+            }
+
+            50% {
+                box-shadow: 0 8px 40px var(--primary-light);
+            }
+        }
+
+        .compare-diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .compare-diff-card {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            animation: fadeInUp 0.5s ease-out backwards;
+        }
+
+        .compare-diff-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .compare-diff-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .compare-diff-value.positive {
+            color: var(--very-lucky);
+        }
+
+        .compare-diff-value.negative {
+            color: var(--very-unlucky);
+        }
+
+        .compare-diff-value.neutral {
+            color: var(--neutral);
+        }
+
+        /* Side-by-Side Z-Score Comparison Bars */
+        .compare-zscore-section {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 24px 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .compare-zscore-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .compare-zscore-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 60px 1fr 60px;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            animation: fadeInRow 0.4s ease-out backwards;
+        }
+
+        .compare-zscore-row:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeInRow {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .compare-zscore-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .compare-zscore-bar-container {
+            height: 24px;
+            background: var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .compare-zscore-bar {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            min-width: 20px;
+        }
+
+        .compare-zscore-value {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .compare-zscore-legend {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .compare-zscore-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .compare-zscore-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .compare-zscore-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+
+        /* Account Save Preview Styles */
+        .save-preview-section {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.05));
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .save-preview-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .save-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .save-preview-item {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .save-preview-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .save-preview-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .save-preview-value {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .save-form-section {
+            margin-top: 24px;
+        }
+
+        .input-hint {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .save-account-btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 16px 24px;
+            font-size: 1.05rem;
+        }
+
+        .save-account-btn .btn-icon {
+            margin-right: 8px;
+        }
+
         .history-list {
             display: grid;
             gap: 12px;
@@ -1595,6 +2456,7 @@
         }
 
         @media (max-width: 768px) {
+
             .toast-container {
                 left: 12px;
                 right: 12px;
@@ -1615,46 +2477,57 @@
             }
         }
 
+        /* Override for smaller screens */
         .account-tabs {
-            gap: 8px;
+            gap: 5px;
+            padding: 4px;
         }
 
         .account-tab {
-            padding: 8px 16px;
+            padding: 6px 14px;
             font-size: 0.8rem;
         }
-        }
 
+        /* Steam-style main navigation tabs */
         .nav-tabs {
             display: flex;
-            gap: 12px;
+            justify-content: center;
+            gap: 6px;
             margin-bottom: 24px;
             flex-wrap: wrap;
+            background: var(--tab-container-bg);
+            padding: 6px;
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .nav-tab {
-            flex: 1;
-            min-width: 120px;
-            padding: 12px 20px;
-            background: var(--nav-bg);
-            border: 2px solid var(--border-light);
-            border-radius: 12px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 999px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--text-secondary);
+            white-space: nowrap;
         }
 
         .nav-tab:hover {
-            background: var(--nav-hover-bg);
-            border-color: var(--secondary);
+            background: var(--tab-hover-bg);
+            border-color: var(--tab-hover-border);
+            color: var(--text-primary);
         }
 
         .nav-tab.active {
             background: var(--primary);
-            color: white;
-            border-color: var(--primary-dark);
-            box-shadow: 0 4px 12px rgba(26, 95, 42, 0.3);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--primary-light);
+            font-weight: 600;
         }
 
         .tab-content {
@@ -1665,40 +2538,54 @@
             display: block;
         }
 
+        /* Steam-style subtabs (account, grind) */
         .account-tabs,
         .grind-tabs {
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
             margin-bottom: 24px;
-            border-bottom: 2px solid rgba(200, 200, 200, 0.3);
-            padding-bottom: 12px;
+            background: var(--tab-container-bg);
+            padding: 5px;
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: none;
         }
 
         .account-tab,
         .grind-tab {
-            padding: 10px 18px;
-            background: var(--nav-bg);
-            border: 2px solid var(--border-light);
-            border-radius: 8px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 999px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-primary);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
         }
 
         .account-tab:hover,
         .grind-tab:hover {
-            background: var(--nav-hover-bg);
-            border-color: var(--secondary);
+            background: var(--tab-hover-bg);
+            border-color: var(--tab-hover-border);
+            color: var(--text-primary);
         }
 
         .account-tab.active,
         .grind-tab.active {
-            background: var(--primary-light);
-            color: var(--nav-active-text);
+            background: var(--primary);
+            color: #ffffff;
             border-color: var(--primary);
-            box-shadow: 0 2px 8px rgba(45, 143, 66, 0.3);
+            box-shadow: 0 0 12px var(--primary-light);
+            font-weight: 600;
         }
 
         .subtab-content,
@@ -1937,11 +2824,7 @@
             border-color: var(--secondary);
         }
 
-        .form-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 95, 42, 0.1);
-        }
+        /* Duplicate input focus removed */
 
         .simulation-result {
             background: var(--surface);
@@ -1999,6 +2882,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .grind-session-item:hover {
+            background: var(--nav-hover-bg);
+            border-color: var(--primary);
         }
 
         .grind-session-info {
@@ -2093,11 +2981,224 @@
                 flex: 1;
             }
         }
+
+        /* Sidebar Layout - Structural CSS */
+        body {
+            overflow: hidden !important;
+            /* Prevent body scroll */
+        }
+
+        .app-wrapper {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            height: 100vh;
+            width: 100vw;
+            background: var(--background);
+            /* Use Variable, removed hardcoded gradient */
+            color: var(--text-primary);
+        }
+
+        .app-sidebar {
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            margin-bottom: 48px;
+            /* More space like in reference */
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-left: 8px;
+        }
+
+        .app-logo-small {
+            width: 32px;
+            height: 32px;
+            /* SVG mask or image */
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 16px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            gap: 16px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-strong);
+            /* Permanent Border */
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border-color: var(--primary);
+            /* Hover Border fixes "disappearing" */
+        }
+
+        .nav-item.active {
+            background: var(--nav-item-active-bg);
+            color: var(--nav-active-text);
+            font-weight: 700;
+            position: relative;
+            border: 1px solid var(--nav-item-active-border);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 12px var(--primary);
+        }
+
+        .app-content {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-header {
+            height: 90px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            /* Right align actions */
+            border-bottom: none;
+            background: transparent;
+            /* Cleaner floating look */
+            flex-shrink: 0;
+            z-index: 50;
+        }
+
+        .header-search {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 24px;
+            border-radius: 99px;
+            /* Pill */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            width: 400px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .header-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .content-scroll {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            padding-bottom: 100px;
+            /* Space for bottom elements */
+        }
+
+        /* Utility to hide old container styles if needed */
+        .container {
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .app-wrapper {
+                grid-template-columns: 80px 1fr;
+                /* Slim sidebar */
+            }
+
+            .sidebar-title {
+                display: none;
+            }
+
+            .nav-text {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 16px 0;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <button class="settings-button" onclick="SettingsManager.open()">⚙️</button>
+    <!-- Legacy Settings Button Removed -->
     <div class="toast-container" id="toastContainer"></div>
     <div id="tooltip" class="tooltip"></div>
 
@@ -2295,436 +3396,462 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="logo-container">
-            <img src="assets/icons/HunterDash.png" alt="HunterDash Logo" class="app-logo">
-        </div>
-        <h1>HunterDash</h1>
-        <p class="subtitle" data-i18n="appSubtitle">Berechne dein Glück basierend auf dataminierten Werten aus COTW
-            2025/2026</p>
-
-        <nav class="nav-tabs">
-            <button class="nav-tab active" onclick="NavigationManager.switchTab('calculator')" data-tab="calculator">🧮
-                <span data-i18n="navCalculator">Berechner</span></button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('grind')" data-tab="grind">🔧 <span
-                    data-i18n="navGrindHelper">Grind Helper</span></button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('history')" data-tab="history">📜 <span
-                    data-i18n="navHistory">Historie</span></button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('templates')" data-tab="templates">📋 <span
-                    data-i18n="navTemplates">Templates</span></button>
-            <button class="nav-tab" onclick="NavigationManager.switchTab('accounts')" data-tab="accounts">👤 <span
-                    data-i18n="navAccounts">Accounts</span></button>
-        </nav>
-
-        <div id="tab-calculator" class="tab-content active">
-            <form id="form" class="card">
-                <div class="input-group">
-                    <label for="n" data-i18n="calcTotalHarvests">Total Harvests:</label>
-                    <p class="mini-hint" id="hint-text">
-                        <span data-i18n="calcHintN">n = Total Harvests (alle verwerteten Tiere Account-weit)</span><br>
-                        <span data-i18n="calcHintGame">Aus Spiel: Career > Statistics > Total Harvests</span>
-                    </p>
-                    <input type="number" id="n" value="15000" min="1" required>
-                </div>
-
-                <h3>🔥 <span data-i18n="calcRares">Rares (Albino/Piebald/Melanistic)</span></h3>
-                <div class="input-group">
-                    <label for="k_rare" data-i18n="calcYourRares">Deine Rare Harvests:</label>
-                    <input type="number" id="k_rare" value="45" min="0" required>
-                </div>
-                <div class="input-group">
-                    <label for="p_rare">p (Avg: 0.003 / 1:333):</label>
-                    <div class="p-input-group">
-                        <input type="range" id="p_rare_slider" min="0" max="0.01" step="0.0001" value="0.003">
-                        <input type="number" id="p_rare" value="0.003" step="0.0001" min="0" max="1" required>
-                        <div class="p-preset-dropdown">
-                            <button class="preset-button" onclick="TemplateManager?.showPresets?.('rare')">📋</button>
-                            <ul class="preset-list" id="presets_rare"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>💎 <span data-i18n="calcDiamonds">Diamonds (Top Rating)</span></h3>
-                <div class="input-group">
-                    <label for="k_diamond" data-i18n="calcYourDiamonds">Deine Diamonds:</label>
-                    <input type="number" id="k_diamond" value="150" min="0" required>
-                </div>
-                <div class="input-group">
-                    <label for="p_diamond">p (Avg: 0.01 / 1:100):</label>
-                    <div class="p-input-group">
-                        <input type="range" id="p_diamond_slider" min="0" max="0.05" step="0.0001" value="0.01">
-                        <input type="number" id="p_diamond" value="0.01" step="0.0001" min="0" max="1" required>
-                        <div class="p-preset-dropdown">
-                            <button class="preset-button"
-                                onclick="TemplateManager?.showPresets?.('diamond')">📋</button>
-                            <ul class="preset-list" id="presets_diamond"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>⭐ <span data-i18n="calcSuperRares">Super Rares (Rare Fur + Diamond)</span></h3>
-                <div class="input-group">
-                    <label for="k_super" data-i18n="calcYourSuperRares">Deine Super Rares:</label>
-                    <input type="number" id="k_super" value="1" min="0" required>
-                </div>
-                <div class="input-group">
-                    <label for="p_super">p (Avg: 0.00003 / 1:33.000):</label>
-                    <div class="p-input-group">
-                        <input type="range" id="p_super_slider" min="0" max="0.0001" step="0.000001" value="0.00003">
-                        <input type="number" id="p_super" value="0.00003" step="0.000001" min="0" max="1" required>
-                        <div class="p-preset-dropdown">
-                            <button class="preset-button" onclick="TemplateManager?.showPresets?.('super')">📋</button>
-                            <ul class="preset-list" id="presets_super"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>👑 <span data-i18n="calcGreatOnes">Great Ones (Top 0.05% Größe)</span></h3>
-                <div class="input-group">
-                    <label for="k_go" data-i18n="calcYourGreatOnes">Deine Great Ones:</label>
-                    <input type="number" id="k_go" value="1" min="0" required>
-                </div>
-                <div class="input-group">
-                    <label for="p_go">p (Avg: 0.00005 / 1:20.000):</label>
-                    <div class="p-input-group">
-                        <input type="range" id="p_go_slider" min="0" max="0.0001" step="0.000001" value="0.00005">
-                        <input type="number" id="p_go" value="0.00005" step="0.000001" min="0" max="1" required>
-                        <div class="p-preset-dropdown">
-                            <button class="preset-button" onclick="TemplateManager?.showPresets?.('go')">📋</button>
-                            <ul class="preset-list" id="presets_go"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button type="button" class="action-button secondary" onclick="UndoRedoManager?.undo?.()">↩️ <span
-                            data-i18n="calcUndo">Undo</span></button>
-                    <button type="button" class="action-button secondary" onclick="UndoRedoManager?.redo?.()">↪️
-                        Redo</button>
-                </div>
-            </form>
-
-            <div id="result"></div>
-        </div>
-
-        <div id="tab-templates" class="tab-content">
-            <div class="card">
-                <h2>📋 <span data-i18n="templatesTitle">Vorlagen</span></h2>
-                <p class="note" data-i18n="templatesDesc">Wähle eine Vorlage aus, um schnell die Eingabewerte zu füllen.
-                </p>
-                <div class="template-grid" id="templateGrid"></div>
+    <div class="app-wrapper">
+        <aside class="app-sidebar">
+            <div class="sidebar-header">
+                <img src="assets/icons/HunterDash.png" alt="Logo" class="app-logo-small">
+                <span class="sidebar-title">HunterDash</span>
             </div>
-        </div>
-
-        <div id="tab-history" class="tab-content">
-            <div class="card">
-                <h2>📜 <span data-i18n="historyTitle">Berechnungshistorie</span></h2>
-                <div class="action-buttons">
-                    <button class="action-button" onclick="HistoryManager.exportCSV()">📄 <span
-                            data-i18n="historyExportCSV">CSV Export</span></button>
-                    <button class="action-button" onclick="HistoryManager.exportJSON()">📦 <span
-                            data-i18n="historyExportJSON">JSON Export</span></button>
-                    <button class="action-button secondary" onclick="HistoryManager.clearHistory()">🗑️ <span
-                            data-i18n="historyDelete">Historie löschen</span></button>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" onclick="NavigationManager.switchTab('calculator', this)">
+                    <span>🧮</span> <span class="nav-text" data-i18n="navCalculator">Berechner</span>
                 </div>
-                <div class="history-list" id="historyList"></div>
-            </div>
-        </div>
-
-        <div id="tab-accounts" class="tab-content">
-            <nav class="account-tabs">
-                <button class="account-tab active" onclick="AccountManager.switchSubTab('statistics')"
-                    data-subtab="statistics">
-                    📊 <span data-i18n="accountsStatistics">Statistiken</span>
-                </button>
-                <button class="account-tab" onclick="AccountManager.switchSubTab('compare')" data-subtab="compare">
-                    🆎 <span data-i18n="accountsCompare">Account-Vergleich</span>
-                </button>
-                <button class="account-tab" onclick="AccountManager.switchSubTab('save')" data-subtab="save">
-                    💾 <span data-i18n="accountsSave">Account speichern</span>
-                </button>
-                <button class="account-tab" onclick="AccountManager.switchSubTab('list')" data-subtab="list">
-                    📋 <span data-i18n="accountsList">Accounts</span>
-                </button>
+                <div class="nav-item" onclick="NavigationManager.switchTab('grind', this)">
+                    <span>🔧</span> <span class="nav-text" data-i18n="navGrindHelper">Grind Helper</span>
+                </div>
+                <div class="nav-item" onclick="NavigationManager.switchTab('history', this)">
+                    <span>📜</span> <span class="nav-text" data-i18n="navHistory">Historie</span>
+                </div>
+                <div class="nav-item" onclick="NavigationManager.switchTab('templates', this)">
+                    <span>📋</span> <span class="nav-text" data-i18n="navTemplates">Templates</span>
+                </div>
+                <div class="nav-item" onclick="NavigationManager.switchTab('accounts', this)">
+                    <span>👤</span> <span class="nav-text" data-i18n="navAccounts">Accounts</span>
+                </div>
             </nav>
-
-            <div id="subtab-statistics" class="subtab-content active">
-                <div class="card">
-                    <h2>📊 <span data-i18n="accountsStatisticsTitle">Statistiken</span></h2>
-                    <p class="note" data-i18n="accountsStatisticsDesc">Analysiere deinen Glück-Verlauf über die Zeit.
-                    </p>
-
-                    <div class="action-buttons" id="stats-period-buttons">
-                        <button class="action-button" data-period="week"
-                            onclick="StatisticsManager.loadStatistics('week')">📅 <span
-                                data-i18n="accountsWeek">Woche</span></button>
-                        <button class="action-button" data-period="month"
-                            onclick="StatisticsManager.loadStatistics('month')">📆 <span
-                                data-i18n="accountsMonth">Monat</span></button>
-                        <button class="action-button" data-period="quarter"
-                            onclick="StatisticsManager.loadStatistics('quarter')">📋 <span
-                                data-i18n="accountsQuarter">Quartal</span></button>
-                        <button class="action-button active" data-period="all"
-                            onclick="StatisticsManager.loadStatistics('all')">📊 <span
-                                data-i18n="accountsAll">Alle</span></button>
-                    </div>
-
-                    <div class="stat-grid" id="statGrid"></div>
-                    <div class="chart-container">
-                        <canvas id="trendChart"></canvas>
-                    </div>
+            <div class="sidebar-footer">
+                <div class="nav-item" onclick="SettingsManager.open()">
+                    <span>⚙️</span> <span class="nav-text" data-i18n="settings">Settings</span>
                 </div>
             </div>
+        </aside>
 
-            <div id="subtab-compare" class="subtab-content">
-                <div class="card">
-                    <h2>🆎 <span data-i18n="accountsCompareTitle">Account-Vergleich</span></h2>
-                    <p class="note" data-i18n="accountsCompareDesc">Vergleiche zwei Accounts gegeneinander.</p>
-
-                    <div class="compare-controls">
-                        <select class="compare-select" id="compareAccount1">
-                            <option value="" data-i18n="accountsSelect1">Account 1 auswählen...</option>
-                        </select>
-                        <span>vs</span>
-                        <select class="compare-select" id="compareAccount2">
-                            <option value="" data-i18n="accountsSelect2">Account 2 auswählen...</option>
-                        </select>
-                        <button class="action-button" onclick="AccountManager.compare()">🔄 <span
-                                data-i18n="accountsCompareBtn">Vergleichen</span></button>
-                    </div>
-                    <div id="comparisonResult"></div>
-                </div>
-            </div>
-
-            <div id="subtab-save" class="subtab-content">
-                <div class="card">
-                    <h2>💾 <span data-i18n="accountsSaveTitle">Account speichern</span></h2>
-                    <p class="note" data-i18n="accountsSaveDesc">Speichere deine aktuellen Eingabewerte als Account.</p>
-
-                    <div class="input-group">
-                        <label for="accountName" data-i18n="accountsNameLabel">Account-Name:</label>
-                        <input type="text" id="accountName" placeholder="z.B. Mein Main Account"
-                            data-i18n-placeholder="accountsNamePlaceholder">
-                    </div>
-                    <button class="action-button" onclick="AccountManager.saveCurrentAsAccount()">
-                        💾 <span data-i18n="accountsSaveBtn">Als Account speichern</span>
-                    </button>
-                </div>
-            </div>
-
-            <div id="subtab-list" class="subtab-content">
-                <div class="card">
-                    <h2>📋 <span data-i18n="accountsListTitle">Gespeicherte Accounts</span></h2>
-                    <p class="note" data-i18n="accountsListDesc">Verwalte deine gespeicherten Accounts.</p>
-                    <div class="account-list" id="accountList"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="tab-grind" class="tab-content">
-            <nav class="grind-tabs">
-                <button class="grind-tab active" onclick="GrindManager.switchSubTab('tips')" data-subtab="tips">
-                    🐗 <span data-i18n="grindTips">Herd-Tipps</span>
-                </button>
-                <button class="grind-tab" onclick="GrindManager.switchSubTab('timer')" data-subtab="timer">
-                    ⏱️ <span data-i18n="grindTimer">Session-Timer</span>
-                </button>
-                <button class="grind-tab" onclick="GrindManager.switchSubTab('simulator')" data-subtab="simulator">
-                    🎲 <span data-i18n="grindSimulator">Simulator</span>
-                </button>
-                <button class="grind-tab" onclick="GrindManager.switchSubTab('sessions')" data-subtab="sessions">
-                    📊 <span data-i18n="grindSessions">Sessions</span>
-                </button>
-            </nav>
-
-            <div id="subtab-tips" class="grind-subtab-content active">
-                <div class="card">
-                    <h2>🐗 <span data-i18n="grindTipsTitle">Herd-Management-Tipps</span></h2>
-                    <p class="note" data-i18n="grindTipsDesc">Strategien für effizientes Farmen von Great Ones.</p>
-                    <div class="grind-tips-section">
-                        <div class="grind-tip" data-tip="general">
-                            <button class="tip-toggle" onclick="GrindManager.toggleTip('general')">
-                                <span class="tip-icon">📖</span>
-                                <span class="tip-title" data-i18n="grindTipGeneral">Allgemeines Herd-Management</span>
-                                <span class="tip-arrow">▼</span>
-                            </button>
-                            <div class="tip-content" id="tip-content-general"></div>
-                        </div>
+        <main class="app-content">
+            <header class="app-header">
+                <div class="header-actions">
+                    <div class="header-icon-btn">🔔</div>
+                    <div class="user-profile-mock">
+                        <div class="user-avatar" style="background: linear-gradient(135deg, #FF375F, #FF9F0A);">HD</div>
                     </div>
                 </div>
-            </div>
+            </header>
+            <div class="content-scroll">
 
-            <div id="subtab-timer" class="grind-subtab-content">
-                <div class="card">
-                    <h2>⏱️ <span data-i18n="grindTimerTitle">Session-Timer & Kill-Counter</span></h2>
-                    <p class="note" data-i18n="grindTimerDesc">Verfolge deine Grind-Sessions für bessere Statistiken.
-                    </p>
-
-                    <div class="input-group">
-                        <label for="session-template" data-i18n="grindTemplateLabel">Session-Template:</label>
-                        <select id="session-template" class="form-select">
-                            <option value="" data-i18n="grindTemplateNone">-- Kein Template --</option>
-                            <option value="go-tier" data-i18n="grindTemplateGO">🏆 GO [Tier]</option>
-                            <option value="general" data-i18n="grindTemplateGeneral">🎯 General Grind</option>
-                            <option value="practice" data-i18n="grindTemplatePractice">🎮 Practice</option>
-                            <option value="speedrun" data-i18n="grindTemplateSpeedrun">⚡ Speedrun</option>
-                            <option value="custom" data-i18n="grindTemplateCustom">✏️ Eigene Templates...</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group" id="animal-select-group" style="display: none;">
-                        <label for="session-animal" data-i18n="grindAnimalLabel">Tier:</label>
-                        <select id="session-animal" class="form-select"></select>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="session-name" data-i18n="grindSessionNameLabel">Session-Name:</label>
-                        <input type="text" id="session-name" class="form-input" placeholder="z.B. GO Wolf"
-                            maxlength="50" data-i18n="grindSessionNamePlaceholder">
-                        <span class="mini-hint" id="session-name-hint"></span>
-                    </div>
-
-                    <div class="session-display">
-                        <div class="session-metric">
-                            <span class="metric-label" data-i18n="grindDuration">Dauer</span>
-                            <span class="metric-value" id="session-duration">00:00:00</span>
+                <div id="tab-calculator" class="tab-content active">
+                    <!-- Dashboard Grid Layout -->
+                    <form id="form" class="dashboard-grid">
+                        <!-- Main Stat Widget -->
+                        <div class="stat-widget large-widget">
+                            <div class="widget-header">
+                                <span class="widget-icon">🦌</span>
+                                <span class="widget-title" data-i18n="calcTotalHarvests">Total Harvests</span>
+                            </div>
+                            <div class="widget-body">
+                                <input type="number" id="n" value="15000" min="1" required class="widget-input-large">
+                                <p class="mini-hint" data-i18n="calcHintGame">Career > Statistics > Total Harvests</p>
+                            </div>
                         </div>
-                        <div class="session-metric">
-                            <span class="metric-label" data-i18n="grindKills">Kills</span>
-                            <span class="metric-value" id="session-kills">0</span>
-                        </div>
-                        <div class="session-metric">
-                            <span class="metric-label" data-i18n="grindKillsPerHour">Kills/Stunde</span>
-                            <span class="metric-value" id="session-kph">0.0</span>
-                        </div>
-                    </div>
 
-                    <!-- Start Button (nur sichtbar wenn keine Session läuft) -->
-                    <div class="session-start-container" id="session-start-container">
-                        <button class="action-button start-session-btn" id="btn-start-session"
-                            onclick="GrindManager.startSession()" data-i18n="grindStartSession">
-                            ▶️ Session starten
-                        </button>
-                    </div>
+                        <!-- Rares -->
+                        <div class="stat-widget">
+                            <div class="widget-header">
+                                <span class="widget-icon">🔥</span>
+                                <span class="widget-title" data-i18n="catRares">Rares</span>
+                            </div>
+                            <div class="widget-content">
+                                <div class="input-row">
+                                    <label data-i18n="calcYourRares">Count</label>
+                                    <input type="number" id="k_rare" value="45" min="0" required>
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        <span data-i18n="calcProbability">Wahrscheinlichkeit</span>
+                                        <span id="ratio_rare" class="prob-ratio">(1:333)</span>
+                                    </label>
+                                    <div class="p-input-wrapper">
+                                        <input type="number" id="p_rare" value="0.003" step="0.0001" min="0" max="1"
+                                            required oninput="updateRatio('rare', this.value)">
+                                        <button type="button" class="mini-btn"
+                                            onclick="TemplateManager?.showPresets?.('rare')">📋</button>
+                                        <ul class="preset-list" id="presets_rare"></ul>
+                                    </div>
+                                </div>
+                                <input type="range" id="p_rare_slider" min="0" max="0.01" step="0.0001" value="0.003"
+                                    class="widget-slider">
+                            </div>
+                        </div>
 
-                    <!-- Session Controls (nur sichtbar wenn Session läuft) -->
-                    <div class="session-controls-active" id="session-controls-active" style="display: none;">
-                        <div class="session-controls-row primary-row">
-                            <button class="action-button kill-btn" id="btn-add-kill" onclick="GrindManager.addKill()"
-                                data-i18n="grindAddKill">
-                                💀 +1 Kill
+                        <!-- Diamonds -->
+                        <div class="stat-widget">
+                            <div class="widget-header">
+                                <span class="widget-icon">💎</span>
+                                <span class="widget-title" data-i18n="catDiamonds">Diamonds</span>
+                            </div>
+                            <div class="widget-content">
+                                <div class="input-row">
+                                    <label data-i18n="calcYourDiamonds">Count</label>
+                                    <input type="number" id="k_diamond" value="130" min="0" required>
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        <span data-i18n="calcProbability">Wahrscheinlichkeit</span>
+                                        <span id="ratio_diamond" class="prob-ratio">(1:100)</span>
+                                    </label>
+                                    <div class="p-input-wrapper">
+                                        <input type="number" id="p_diamond" value="0.01" step="0.0001" min="0" max="1"
+                                            required oninput="updateRatio('diamond', this.value)">
+                                        <button type="button" class="mini-btn"
+                                            onclick="TemplateManager?.showPresets?.('diamond')">📋</button>
+                                        <ul class="preset-list" id="presets_diamond"></ul>
+                                    </div>
+                                </div>
+                                <input type="range" id="p_diamond_slider" min="0" max="0.05" step="0.0001" value="0.01"
+                                    class="widget-slider">
+                            </div>
+                        </div>
+
+                        <!-- Super Rares -->
+                        <div class="stat-widget">
+                            <div class="widget-header">
+                                <span class="widget-icon">🦄</span>
+                                <span class="widget-title" data-i18n="catSuperRares">Super Rares</span>
+                            </div>
+                            <div class="widget-content">
+                                <div class="input-row">
+                                    <label data-i18n="calcYourSuperRares">Count</label>
+                                    <input type="number" id="k_super" value="1" min="0" required>
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        <span data-i18n="calcProbability">Wahrscheinlichkeit</span>
+                                        <span id="ratio_super" class="prob-ratio">(1:33.333)</span>
+                                    </label>
+                                    <div class="p-input-wrapper">
+                                        <input type="number" id="p_super" value="0.00003" step="0.000001" min="0"
+                                            max="1" required oninput="updateRatio('super', this.value)">
+                                        <button type="button" class="mini-btn"
+                                            onclick="TemplateManager?.showPresets?.('super')">📋</button>
+                                        <ul class="preset-list" id="presets_super"></ul>
+                                    </div>
+                                </div>
+                                <input type="range" id="p_super_slider" min="0" max="0.0001" step="0.000001"
+                                    value="0.00003" class="widget-slider">
+                            </div>
+                        </div>
+
+                        <!-- Great Ones -->
+                        <div class="stat-widget">
+                            <div class="widget-header">
+                                <span class="widget-icon">👑</span>
+                                <span class="widget-title" data-i18n="catGreatOnes">Great Ones</span>
+                            </div>
+                            <div class="widget-content">
+                                <div class="input-row">
+                                    <label data-i18n="calcYourGreatOnes">Count</label>
+                                    <input type="number" id="k_go" value="1" min="0" required>
+                                </div>
+                                <div class="input-row">
+                                    <label>
+                                        <span data-i18n="calcProbability">Wahrscheinlichkeit</span>
+                                        <span id="ratio_go" class="prob-ratio">(1:20.000)</span>
+                                    </label>
+                                    <div class="p-input-wrapper">
+                                        <input type="number" id="p_go" value="0.00005" step="0.000001" min="0" max="1"
+                                            required oninput="updateRatio('go', this.value)">
+                                        <button type="button" class="mini-btn"
+                                            onclick="TemplateManager?.showPresets?.('go')">📋</button>
+                                        <ul class="preset-list" id="presets_go"></ul>
+                                    </div>
+                                </div>
+                                <input type="range" id="p_go_slider" min="0" max="0.0001" step="0.000001"
+                                    value="0.00005" class="widget-slider">
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="stat-widget actions-widget full-width">
+                            <button type="button" class="action-button secondary" onclick="UndoRedoManager?.undo?.()">
+                                <span>↩️</span> <span data-i18n="calcUndo">Undo</span>
                             </button>
-                            <button class="action-button secondary kill-btn" id="btn-remove-kill"
-                                onclick="GrindManager.removeKill()" data-i18n="grindRemoveKill">
-                                ↩️ -1 Kill
+                            <button type="button" class="action-button secondary" onclick="UndoRedoManager?.redo?.()">
+                                <span>↪️</span> <span data-i18n="calcRedo">Redo</span>
                             </button>
                         </div>
-                        <div class="session-controls-row secondary-row">
-                            <button class="action-button secondary" id="btn-pause-session"
-                                onclick="GrindManager.togglePause()" data-i18n="grindPause">
-                                ⏸️ Pause
-                            </button>
-                            <button class="action-button secondary danger" id="btn-end-session"
-                                onclick="GrindManager.endSession()" data-i18n="grindEndSession">
-                                ⏹️ Beenden
-                            </button>
-                        </div>
-                    </div>
+                    </form>
 
-                    <div class="session-info" id="session-info" style="display: none;">
-                        <p class="note">
-                            <strong data-i18n="grindLastSession">🎯 Letzte Session:</strong> <span
-                                id="last-session">-</span>
+                    <div id="result"></div>
+                </div>
+
+                <div id="tab-templates" class="tab-content">
+                    <div class="card">
+                        <h2>📋 <span data-i18n="templatesTitle">Vorlagen</span></h2>
+                        <p class="note" data-i18n="templatesDesc">Wähle eine Vorlage aus, um schnell die Eingabewerte zu
+                            füllen.
                         </p>
+                        <div class="template-grid" id="templateGrid"></div>
                     </div>
                 </div>
-            </div>
 
-            <div id="subtab-simulator" class="grind-subtab-content">
-                <div class="card">
-                    <h2>🎲 <span data-i18n="grindSimulatorTitle">Expected Kills bis GO-Simulator</span></h2>
-                    <p class="note" data-i18n="grindSimulatorDesc">Schätze, wie viele Kills du bis zum nächsten Great
-                        One brauchst.</p>
-                    <div class="simulation-form">
-                        <div class="input-group">
-                            <label for="sim-animal" data-i18n="grindAnimalType">Tierart:</label>
-                            <select id="sim-animal" class="form-select"></select>
+                <div id="tab-history" class="tab-content">
+                    <div class="card">
+                        <h2>📜 <span data-i18n="historyTitle">Berechnungshistorie</span></h2>
+                        <div class="action-buttons">
+                            <button class="action-button" onclick="HistoryManager.exportCSV()">📄 <span
+                                    data-i18n="historyExportCSV">CSV Export</span></button>
+                            <button class="action-button" onclick="HistoryManager.exportJSON()">📦 <span
+                                    data-i18n="historyExportJSON">JSON Export</span></button>
+                            <button class="action-button secondary" onclick="HistoryManager.clearHistory()">🗑️ <span
+                                    data-i18n="historyDelete">Historie löschen</span></button>
                         </div>
-                        <div class="input-group">
-                            <label for="sim-current-kills" data-i18n="grindCurrentKills">Aktuelle Kills:</label>
-                            <input type="number" id="sim-current-kills" value="0" min="0" step="1">
-                            <p class="mini-hint" data-i18n="grindCurrentKillsHint">Anzahl der Kills seit dem letzten GO
-                                für dieses Tier</p>
-                        </div>
-                        <div class="input-group">
-                            <label for="sim-spawn-chance" data-i18n="grindSpawnChance">Spawn-Chance (p):</label>
-                            <input type="number" id="sim-spawn-chance" value="0.00005" min="0" max="1" step="0.00001">
-                            <p class="mini-hint">
-                                <span data-i18n="grindSpawnChanceHint">Durchschnittliche Spawn-Chance aus Datamines (z.
-                                    B. 0.00005 für 1:20.000)</span><br>
-                                <strong>⚠️</strong> <span data-i18n="grindSpawnChanceNote">Dies ist eine statistische
-                                    Annäherung, keine Garantie!</span>
+                        <div class="history-list" id="historyList"></div>
+                    </div>
+                </div>
+
+                <div id="tab-accounts" class="tab-content">
+                    <nav class="account-tabs">
+                        <button class="account-tab active" onclick="AccountManager.switchSubTab('statistics')"
+                            data-subtab="statistics">
+                            📊 <span data-i18n="accountsStatistics">Statistiken</span>
+                        </button>
+                        <button class="account-tab" onclick="AccountManager.switchSubTab('compare')"
+                            data-subtab="compare">
+                            🆎 <span data-i18n="accountsCompare">Account-Vergleich</span>
+                        </button>
+                        <button class="account-tab"
+                            onclick="AccountManager.switchSubTab('save'); AccountManager.updateSavePreview();"
+                            data-subtab="save">
+                            💾 <span data-i18n="accountsSave">Account speichern</span>
+                        </button>
+                        <button class="account-tab" onclick="AccountManager.switchSubTab('list')" data-subtab="list">
+                            📋 <span data-i18n="accountsList">Accounts</span>
+                        </button>
+                    </nav>
+
+                    <div id="subtab-statistics" class="subtab-content active">
+                        <div class="card">
+                            <h2>📊 <span data-i18n="accountsStatisticsTitle">Statistiken</span></h2>
+                            <p class="note" data-i18n="accountsStatisticsDesc">Analysiere deinen Glück-Verlauf über die
+                                Zeit.
                             </p>
-                        </div>
-                        <div class="input-group">
-                            <label for="sim-confidence" data-i18n="grindConfidence">Konfidenz (95% / 99%):</label>
-                            <select id="sim-confidence" class="form-select">
-                                <option value="0.95" data-i18n="grindConfidence95">95% Konfidenz (Standard)</option>
-                                <option value="0.99" data-i18n="grindConfidence99">99% Konfidenz (Konservativ)</option>
-                            </select>
-                        </div>
-                        <button class="action-button" onclick="GrindManager.simulate()">
-                            🧮 <span data-i18n="grindSimulate">Simulieren</span>
-                        </button>
-                    </div>
-                    <div class="simulation-result" id="simulation-result" style="display: none;">
-                        <h3>📊 <span data-i18n="grindSimResultTitle">Simulationsergebnis</span></h3>
-                        <div class="result-grid">
-                            <div class="result-item">
-                                <span class="result-label" data-i18n="grindSimExpected">Erwartete Kills (Ø)</span>
-                                <span class="result-value" id="sim-expected">-</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-label" data-i18n="grindSimMin">Minimale Spanne (5%)</span>
-                                <span class="result-value" id="sim-min">-</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-label" data-i18n="grindSimMax">Maximale Spanne (95%)</span>
-                                <span class="result-value" id="sim-max">-</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-label" data-i18n="grindSimProbability">Wahrscheinlichkeit
-                                    (aktuell)</span>
-                                <span class="result-value" id="sim-probability">-</span>
-                            </div>
-                        </div>
-                        <div class="simulation-chart-container" id="sim-chart-container" style="display: none;">
-                            <canvas id="simulation-chart"></canvas>
-                        </div>
-                        <p class="note" data-i18n="grindSimNote">
-                            Diese Simulation basiert auf Poisson-Statistik und ist eine statistische Annäherung.
-                            RND-Zufallsgeneratoren in Spielen sind nicht perfekt zufällig. Nutze dies als groben
-                            Richtwert, nicht als Garantie!
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            <div id="subtab-sessions" class="grind-subtab-content">
-                <div class="card">
-                    <h2>📊 <span data-i18n="grindSessionsTitle">Grind-Sessions</span></h2>
-                    <p class="note" data-i18n="grindSessionsDesc">Verwalte deine vergangenen Grind-Sessions.</p>
-                    <div class="action-buttons">
-                        <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ <span
-                                data-i18n="grindSessionsDelete">Sessions löschen</span></button>
-                        <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 <span
-                                data-i18n="grindSessionsExport">Export CSV</span></button>
+                            <div class="action-buttons" id="stats-period-buttons">
+                                <button class="action-button" data-period="week"
+                                    onclick="StatisticsManager.loadStatistics('week')">📅 <span
+                                        data-i18n="accountsWeek">Woche</span></button>
+                                <button class="action-button" data-period="month"
+                                    onclick="StatisticsManager.loadStatistics('month')">📆 <span
+                                        data-i18n="accountsMonth">Monat</span></button>
+                                <button class="action-button" data-period="quarter"
+                                    onclick="StatisticsManager.loadStatistics('quarter')">📋 <span
+                                        data-i18n="accountsQuarter">Quartal</span></button>
+                                <button class="action-button active" data-period="all"
+                                    onclick="StatisticsManager.loadStatistics('all')">📊 <span
+                                        data-i18n="accountsAll">Alle</span></button>
+                            </div>
+
+                            <div class="stat-grid" id="statGrid"></div>
+                            <div class="chart-container">
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
                     </div>
-                    <div class="grind-sessions-list" id="grindSessionsList"></div>
+
+                    <div id="subtab-compare" class="subtab-content">
+                        <div class="card">
+                            <h2>🆎 <span data-i18n="accountsCompareTitle">Account-Vergleich</span></h2>
+                            <p class="note" data-i18n="accountsCompareDesc">Vergleiche zwei Accounts gegeneinander.</p>
+
+                            <div class="compare-controls">
+                                <select class="compare-select" id="compareAccount1">
+                                    <option value="" data-i18n="accountsSelect1">Account 1 auswählen...</option>
+                                </select>
+                                <span>vs</span>
+                                <select class="compare-select" id="compareAccount2">
+                                    <option value="" data-i18n="accountsSelect2">Account 2 auswählen...</option>
+                                </select>
+                                <button class="action-button" onclick="AccountManager.compare()">🔄 <span
+                                        data-i18n="accountsCompareBtn">Vergleichen</span></button>
+                            </div>
+                            <div id="comparisonResult"></div>
+                        </div>
+                    </div>
+
+                    <div id="subtab-save" class="subtab-content">
+                        <div class="card">
+                            <h2>💾 <span data-i18n="accountsSaveTitle">Account speichern</span></h2>
+                            <p class="note" data-i18n="accountsSaveDesc">Speichere deine aktuellen Eingabewerte als
+                                Account.</p>
+
+                            <!-- Current Values Preview -->
+                            <div class="save-preview-section">
+                                <div class="save-preview-title">📊 Aktuelle Werte (Vorschau)</div>
+                                <div class="save-preview-grid" id="savePreviewGrid">
+                                    <div class="save-preview-item">
+                                        <span class="save-preview-label">Total Harvests</span>
+                                        <span class="save-preview-value" id="previewN">-</span>
+                                    </div>
+                                    <div class="save-preview-item">
+                                        <span class="save-preview-label">Rares</span>
+                                        <span class="save-preview-value" id="previewRares">-</span>
+                                    </div>
+                                    <div class="save-preview-item">
+                                        <span class="save-preview-label">Diamonds</span>
+                                        <span class="save-preview-value" id="previewDiamonds">-</span>
+                                    </div>
+                                    <div class="save-preview-item">
+                                        <span class="save-preview-label">Super Rares</span>
+                                        <span class="save-preview-value" id="previewSuper">-</span>
+                                    </div>
+                                    <div class="save-preview-item">
+                                        <span class="save-preview-label">Great Ones</span>
+                                        <span class="save-preview-value" id="previewGO">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Account Name Input -->
+                            <div class="save-form-section">
+                                <div class="input-group">
+                                    <label for="accountName" data-i18n="accountsNameLabel">Account-Name:</label>
+                                    <input type="text" id="accountName" class="form-input"
+                                        placeholder="z.B. Mein Main Account"
+                                        data-i18n-placeholder="accountsNamePlaceholder" maxlength="50">
+                                    <span class="input-hint">Gib deinem Account einen eindeutigen Namen</span>
+                                </div>
+                                <button class="action-button save-account-btn"
+                                    onclick="AccountManager.saveCurrentAsAccount()">
+                                    <span class="btn-icon">💾</span>
+                                    <span data-i18n="accountsSaveBtn">Als Account speichern</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="subtab-list" class="subtab-content">
+                        <div class="card">
+                            <h2>📋 <span data-i18n="accountsListTitle">Gespeicherte Accounts</span></h2>
+                            <p class="note" data-i18n="accountsListDesc">Verwalte deine gespeicherten Accounts.</p>
+                            <div class="account-list" id="accountList"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+                <div id="tab-grind" class="tab-content">
+                    <nav class="grind-tabs">
+                        <button class="grind-tab active" onclick="GrindManager.switchSubTab('timer')"
+                            data-subtab="timer">
+                            ⏱️ <span data-i18n="grindTimer">Session-Timer</span>
+                        </button>
+                        <button class="grind-tab" onclick="GrindManager.switchSubTab('sessions')"
+                            data-subtab="sessions">
+                            📊 <span data-i18n="grindSessions">Sessions</span>
+                        </button>
+                    </nav>
+
+                    <div id="subtab-timer" class="grind-subtab-content active">
+                        <div class="card">
+                            <h2>⏱️ <span data-i18n="grindTimerTitle">Session-Timer & Kill-Counter</span></h2>
+                            <p class="note" data-i18n="grindTimerDesc">Verfolge deine Grind-Sessions für bessere
+                                Statistiken.
+                            </p>
+
+                            <div class="input-group">
+                                <label for="session-template" data-i18n="grindTemplateLabel">Session-Template:</label>
+                                <select id="session-template" class="form-select">
+                                    <option value="" data-i18n="grindTemplateNone">-- Kein Template --</option>
+                                    <option value="go-tier" data-i18n="grindTemplateGO">🏆 GO [Tier]</option>
+                                    <option value="general" data-i18n="grindTemplateGeneral">🎯 General Grind</option>
+                                    <option value="practice" data-i18n="grindTemplatePractice">🎮 Practice</option>
+                                    <option value="speedrun" data-i18n="grindTemplateSpeedrun">⚡ Speedrun</option>
+                                    <option value="custom" data-i18n="grindTemplateCustom">✏️ Eigene Templates...
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="input-group" id="animal-select-group" style="display: none;">
+                                <label for="session-animal" data-i18n="grindAnimalLabel">Tier:</label>
+                                <select id="session-animal" class="form-select"></select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="session-name" data-i18n="grindSessionNameLabel">Session-Name:</label>
+                                <input type="text" id="session-name" class="form-input" placeholder="z.B. GO Wolf"
+                                    maxlength="50" data-i18n="grindSessionNamePlaceholder">
+                            </div>
+
+                            <div class="session-display">
+                                <div class="session-metric">
+                                    <span class="metric-label" data-i18n="grindDuration">Dauer</span>
+                                    <span class="metric-value" id="session-duration">00:00:00</span>
+                                </div>
+                                <div class="session-metric">
+                                    <span class="metric-label" data-i18n="grindKills">Kills</span>
+                                    <span class="metric-value" id="session-kills">0</span>
+                                </div>
+                                <div class="session-metric">
+                                    <span class="metric-label" data-i18n="grindKillsPerHour">Kills/Stunde</span>
+                                    <span class="metric-value" id="session-kph">0.0</span>
+                                </div>
+                            </div>
+
+                            <!-- Start Button (nur sichtbar wenn keine Session läuft) -->
+                            <div class="session-start-container" id="session-start-container">
+                                <button class="action-button start-session-btn" id="btn-start-session"
+                                    onclick="GrindManager.startSession()" data-i18n="grindStartSession">
+                                    ▶️ Session starten
+                                </button>
+                            </div>
+
+                            <!-- Session Controls (nur sichtbar wenn Session läuft) -->
+                            <div class="session-controls-active" id="session-controls-active" style="display: none;">
+                                <div class="session-controls-row primary-row">
+                                    <button class="action-button kill-btn" id="btn-add-kill"
+                                        onclick="GrindManager.addKill()" data-i18n="grindAddKill">
+                                        💀 +1 Kill
+                                    </button>
+                                    <button class="action-button secondary kill-btn" id="btn-remove-kill"
+                                        onclick="GrindManager.removeKill()" data-i18n="grindRemoveKill">
+                                        ↩️ -1 Kill
+                                    </button>
+                                </div>
+                                <div class="session-controls-row secondary-row">
+                                    <button class="action-button secondary" id="btn-pause-session"
+                                        onclick="GrindManager.togglePause()" data-i18n="grindPause">
+                                        ⏸️ Pause
+                                    </button>
+                                    <button class="action-button secondary danger" id="btn-end-session"
+                                        onclick="GrindManager.endSession()" data-i18n="grindEndSession">
+                                        ⏹️ Beenden
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="session-info" id="session-info" style="display: none;">
+                                <p class="note">
+                                    <strong data-i18n="grindLastSession">🎯 Letzte Session:</strong> <span
+                                        id="last-session">-</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="subtab-sessions" class="grind-subtab-content">
+                        <div class="card">
+                            <h2>📊 <span data-i18n="grindSessionsTitle">Grind-Sessions</span></h2>
+                            <p class="note" data-i18n="grindSessionsDesc">Verwalte deine vergangenen Grind-Sessions.</p>
+                            <div class="action-buttons">
+                                <button class="action-button secondary" onclick="GrindManager.clearSessions()">🗑️ <span
+                                        data-i18n="grindSessionsDelete">Sessions löschen</span></button>
+                                <button class="action-button secondary" onclick="GrindManager.exportSessions()">📄 <span
+                                        data-i18n="grindSessionsExport">Export CSV</span></button>
+                            </div>
+                            <div class="grind-sessions-list" id="grindSessionsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End content-scroll -->
+        </main> <!-- End app-content -->
+    </div> <!-- End app-wrapper -->
 
     <script>
         // ========================================
@@ -2761,6 +3888,7 @@
                     calcDiamonds: 'Diamonds (Top Rating)', calcYourDiamonds: 'Deine Diamonds:',
                     calcSuperRares: 'Super Rares (Rare Fur + Diamond)', calcYourSuperRares: 'Deine Super Rares:',
                     calcGreatOnes: 'Great Ones (Top 0.05% Größe)', calcYourGreatOnes: 'Deine Great Ones:',
+                    calcProbability: 'Wahrscheinlichkeit',
                     calcUndo: 'Undo', calcRedo: 'Redo',
                     templatesTitle: 'Vorlagen', templatesDesc: 'Wähle eine Vorlage aus, um schnell die Eingabewerte zu füllen.',
                     templateApply: 'Anwenden',
@@ -2867,7 +3995,7 @@
                     toastTrayEnabled: 'Minimize-to-Tray aktiviert', toastTrayDisabled: 'Minimize-to-Tray deaktiviert',
                     grindSessionNamePlaceholder: 'z.B. GO Wolf', grindStartSession: 'Session starten',
                     grindAddKill: '+1 Kill', grindRemoveKill: '-1 Kill',
-                    grindPause: 'Pause', grindResume: 'Fortsetzen', grindEndSession: 'Beenden',
+                    grindPause: 'Pause', grindResume: 'Fortfahren', grindEndSession: 'Beenden',
                     grindLastSession: 'Letzte Session:',
                     german: 'Deutsch', english: 'English'
                 },
@@ -2900,6 +4028,7 @@
                     calcDiamonds: 'Diamonds (Top Rating)', calcYourDiamonds: 'Your Diamonds:',
                     calcSuperRares: 'Super Rares (Rare Fur + Diamond)', calcYourSuperRares: 'Your Super Rares:',
                     calcGreatOnes: 'Great Ones (Top 0.05% Size)', calcYourGreatOnes: 'Your Great Ones:',
+                    calcProbability: 'Probability',
                     calcUndo: 'Undo', calcRedo: 'Redo',
                     templatesTitle: 'Templates', templatesDesc: 'Choose a template to quickly fill in input values.',
                     templateApply: 'Apply',
@@ -3076,7 +4205,41 @@
                 this.settings.ripple = !this.settings.ripple;
                 const toggle = document.getElementById('rippleToggle');
                 toggle.classList.toggle('active');
+                this.initRippleEffect();
                 this.save();
+            },
+
+            initRippleEffect() {
+                // Add ripple effect to all action buttons
+                const buttons = document.querySelectorAll('.action-button, .nav-tab, .account-tab, .grind-tab');
+
+                buttons.forEach(button => {
+                    // Remove existing listener to avoid duplicates
+                    button.removeEventListener('click', this.createRipple);
+
+                    if (this.settings.ripple) {
+                        button.addEventListener('click', this.createRipple);
+                    }
+                });
+            },
+
+            createRipple(event) {
+                const button = event.currentTarget;
+                const ripple = document.createElement('span');
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.className = 'ripple-effect';
+
+                button.appendChild(ripple);
+
+                // Remove ripple after animation
+                setTimeout(() => ripple.remove(), 600);
             },
 
             toggleDarkMode() {
@@ -3174,6 +4337,7 @@
 
                 if (animToggle) animToggle.classList.toggle('active', this.settings.animations);
                 if (rippleToggle) rippleToggle.classList.toggle('active', this.settings.ripple);
+                this.initRippleEffect(); // Initialize ripple effect on load
                 if (darkToggle) darkToggle.classList.toggle('active', this.settings.darkMode);
                 if (overlayToggle) overlayToggle.classList.toggle('active', this.settings.overlayMode);
                 if (audioToggle) audioToggle.classList.toggle('active', this.settings.audioFeedback);
@@ -3354,10 +4518,60 @@
                 // Debug output for raw input analysis
                 console.log(`🔍 RAW INPUT: Key: "${event.key}", Code: "${code}", Modifiers: [Ctrl:${event.ctrlKey}, Alt:${event.altKey}, Shift:${event.shiftKey}]`);
 
-                // Map common codes to readable names
-                if (code === 'Space') parts.push('Space');
-                else if (code) parts.push(code);
-                else parts.push(event.key || 'Unknown');
+                // Convert event.code to Electron-compatible key name
+                let keyName = '';
+
+                // Function keys (F1-F12) - keep as-is
+                if (/^F([1-9]|1[0-2])$/.test(code)) {
+                    keyName = code;
+                }
+                // Letter keys (KeyA-KeyZ) → A-Z
+                else if (/^Key([A-Z])$/.test(code)) {
+                    keyName = code.replace('Key', '');
+                }
+                // Digit keys (Digit0-Digit9) → 0-9
+                else if (/^Digit([0-9])$/.test(code)) {
+                    keyName = code.replace('Digit', '');
+                }
+                // Numpad keys (Numpad0-Numpad9) → num0-num9
+                else if (/^Numpad([0-9])$/.test(code)) {
+                    keyName = 'num' + code.replace('Numpad', '');
+                }
+                // Special keys mapping
+                else if (code === 'Space') keyName = 'Space';
+                else if (code === 'Enter') keyName = 'Enter';
+                else if (code === 'Escape') keyName = 'Escape';
+                else if (code === 'Backspace') keyName = 'Backspace';
+                else if (code === 'Tab') keyName = 'Tab';
+                else if (code === 'Delete') keyName = 'Delete';
+                else if (code === 'Insert') keyName = 'Insert';
+                else if (code === 'Home') keyName = 'Home';
+                else if (code === 'End') keyName = 'End';
+                else if (code === 'PageUp') keyName = 'PageUp';
+                else if (code === 'PageDown') keyName = 'PageDown';
+                else if (code === 'ArrowUp') keyName = 'Up';
+                else if (code === 'ArrowDown') keyName = 'Down';
+                else if (code === 'ArrowLeft') keyName = 'Left';
+                else if (code === 'ArrowRight') keyName = 'Right';
+                // Punctuation keys
+                else if (code === 'Minus') keyName = '-';
+                else if (code === 'Equal') keyName = '=';
+                else if (code === 'BracketLeft') keyName = '[';
+                else if (code === 'BracketRight') keyName = ']';
+                else if (code === 'Semicolon') keyName = ';';
+                else if (code === 'Quote') keyName = "'";
+                else if (code === 'Backquote') keyName = '`';
+                else if (code === 'Backslash') keyName = '\\';
+                else if (code === 'Comma') keyName = ',';
+                else if (code === 'Period') keyName = '.';
+                else if (code === 'Slash') keyName = '/';
+                // Dead keys (German keyboard layout)
+                else if (code === 'IntlBackslash') keyName = '<';
+                else if (code.startsWith('Dead')) keyName = '^';
+                // Fallback: use the code directly
+                else keyName = code || event.key || 'Unknown';
+
+                parts.push(keyName);
 
                 const result = parts.join(' + ');
                 console.log('formatHotkey result:', result);
@@ -3392,9 +4606,9 @@
                     audioVolume: 0.5,
                     sessionHotkeys: {
                         addKill: 'F7',
-                        removeKill: 'F8',
+                        removeKill: 'F10',
                         togglePause: 'F9',
-                        endSession: 'F10'
+                        endSession: 'F8'
                     }
                 };
 
@@ -3473,7 +4687,7 @@
                     let result;
 
                     if (window.electronAPI && window.electronAPI.isElectron()) {
-                        const response = await window.electronAPI.calculate(data);
+                        const response = await window.electronAPI.calculate(data, { saveHistory });
                         if (response.success) {
                             result = response.data;
                         } else {
@@ -3569,8 +4783,8 @@
                         <div class="luck-bar-container">
                             <div class="luck-label">${cat.name}</div>
                             <div class="luck-bar">
-                                <div class="luck-bar-fill ${luckColor} ${isSmall ? 'small' : ''}" style="width: ${initialWidth}" data-width="${barWidth}%">
-                                    ${luckLabel} Z: ${cat.z.toFixed(2)}
+                                <div class="luck-bar-fill ${luckColor} ${isSmall ? 'small' : ''}" style="width: ${initialWidth}" data-width="${barWidth}%" data-text="${luckLabel} Z: ${cat.z.toFixed(2)}">
+                                    ${isSmall ? '' : `${luckLabel} Z: ${cat.z.toFixed(2)}`}
                                 </div>
                             </div>
                         </div>
@@ -3683,17 +4897,43 @@
         const NavigationManager = {
             currentTab: 'calculator',
 
-            switchTab(tabName) {
+            switchTab(tabName, element) {
                 try {
-                    document.querySelectorAll('.nav-tab').forEach(tab => {
-                        tab.classList.toggle('active', tab.dataset.tab === tabName);
-                    });
+                    // Handle Active State for Sidebar
+                    if (element) {
+                        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                        element.classList.add('active');
+                    } else {
+                        // Fallback if no element passed (e.g. internal call)
+                        // This might need data-tab attributes on nav-items to work fully
+                    }
+
+                    // Map 'statistics' to 'accounts' tab container
+                    let targetTabId = tabName;
+                    if (tabName === 'statistics') {
+                        targetTabId = 'accounts';
+                    }
 
                     document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.toggle('active', content.id === `tab-${tabName}`);
+                        content.classList.toggle('active', content.id === `tab-${targetTabId}`);
                     });
 
                     this.currentTab = tabName;
+                    const headerTitle = document.getElementById('header-title-text');
+                    if (headerTitle) {
+                        // Simple map or get text from element
+                        const titleMap = {
+                            'calculator': 'navCalculator',
+                            'grind': 'navGrindHelper',
+                            'history': 'navHistory',
+                            'templates': 'navTemplates',
+                            'accounts': 'navAccounts',
+                            'statistics': 'navStatistics'
+                        };
+                        const key = titleMap[tabName] || 'appSubtitle';
+                        headerTitle.setAttribute('data-i18n', key);
+                        if (TranslationManager) TranslationManager.translatePage();
+                    }
 
                     if (tabName === 'templates') {
                         TemplateManager?.loadTemplates?.();
@@ -3701,13 +4941,16 @@
                         HistoryManager?.loadHistory?.();
                     } else if (tabName === 'accounts') {
                         AccountManager?.loadAccounts?.();
+                        // Default to list if not specified? Or keep last?
+                    } else if (tabName === 'statistics') {
+                        AccountManager?.loadAccounts?.();
                         AccountManager?.switchSubTab?.('statistics');
                     } else if (tabName === 'grind') {
                         if (!GrindManager) {
                             throw new Error('GrindManager nicht initialisiert');
                         }
                         GrindManager.init();
-                        GrindManager.switchSubTab('tips');
+                        GrindManager.switchSubTab('timer');
                     }
                 } catch (error) {
                     console.error('Navigation error:', error);
@@ -3786,7 +5029,7 @@
                 ],
                 go: [
                     { label: 'Durchschnitt (1:20.000)', value: 0.00005 },
-                    { label: 'Glücklich (1:15.000)', value: 0.000067 }
+                    { label: 'Glücklich (1:15.000)', value: 0.000066667 }
                 ]
             },
 
@@ -3833,32 +5076,44 @@
 
             showPresets(category) {
                 const dropdown = document.getElementById(`presets_${category}`);
+                const widget = dropdown.closest('.stat-widget'); // Get parent widget
                 const existingList = document.querySelector('.preset-list.show');
 
-                if (existingList && existingList !== dropdown) {
-                    existingList.classList.remove('show');
-                }
+                // Close others and reset z-index
+                closeAllDropdowns();
 
-                if (dropdown.innerHTML === '') {
-                    const presets = this.presets[category] || [];
-                    dropdown.innerHTML = presets.map(p => `
-                        <li class="preset-item" onclick="TemplateManager.applyPreset('${category}', ${p.value}, '${category}')">
-                            ${p.label}
-                        </li>
-                    `).join('');
-                }
+                if (existingList !== dropdown) {
+                    dropdown.classList.add('show');
+                    if (widget) widget.style.zIndex = '100'; // Boost z-index of active widget
 
-                dropdown.classList.toggle('show');
+                    if (dropdown.innerHTML === '') {
+                        const presets = this.presets[category] || [];
+                        dropdown.innerHTML = presets.map(p => `
+                            <li class="preset-item" onclick="TemplateManager.applyPreset('${category}', ${p.value}, '${category}')">
+                                <span>${p.label}</span>
+                            </li>
+                        `).join('');
+                    }
+                }
             },
 
             applyPreset(category, value, id) {
                 const input = document.getElementById(`p_${category}`);
                 const slider = document.getElementById(`p_${category}_slider`);
-                if (input) input.value = value;
+
+                if (input) {
+                    input.value = value;
+                    // Trigger input event or manually update ratio
+                    if (typeof updateRatio === 'function') {
+                        updateRatio(category, value);
+                    }
+                }
+
                 if (slider) slider.value = value;
+
                 Calculator.calculate();
-                closeAllDropdowns();
-                ToastManager.show(`Preset angewendet`, 'info');
+                closeAllDropdowns(); // Now defined globally
+                ToastManager.show(TranslationManager.t('toastPresetApplied'), 'info');
             }
         };
 
@@ -3970,6 +5225,49 @@
         // ========================================
         const AccountManager = {
             accounts: [],
+
+            switchSubTab(subtabName) {
+                // Update active state of tabs
+                const tabs = document.querySelectorAll('.account-tab');
+                tabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.subtab === subtabName ||
+                        (subtabName === 'statistics' && tab.onclick.toString().includes('statistics')) ||
+                        (subtabName === 'compare' && tab.onclick.toString().includes('compare')));
+                });
+
+                // Hide all subtab content
+                const contents = document.querySelectorAll('#tab-accounts .subtab-content');
+                contents.forEach(content => content.classList.remove('active'));
+
+                // Show selected subtab content
+                const target = document.getElementById(`subtab-${subtabName}`);
+                if (target) {
+                    target.classList.add('active');
+                }
+
+                // Special handling for save tab
+                if (subtabName === 'save') {
+                    this.updateSavePreview();
+                }
+            },
+
+            updateSavePreview() {
+                const data = getCurrentFormData();
+
+                const setText = (id, value) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        const displayValue = (value !== undefined && !isNaN(value)) ? value : 0;
+                        el.textContent = displayValue;
+                    }
+                };
+
+                setText('previewN', data.n);
+                setText('previewRares', data.k_rare);
+                setText('previewDiamonds', data.k_diamond);
+                setText('previewSuper', data.k_super);
+                setText('previewGO', data.k_go);
+            },
 
             async loadAccounts() {
                 if (window.electronAPI && window.electronAPI.accounts) {
@@ -4247,66 +5545,129 @@
 
             renderComparison(data) {
                 const container = document.getElementById('comparisonResult');
-                const winner = data.winner === 'account1' ? data.account1.name : data.winner === 'account2' ? data.account2.name : 'Gleichstand';
+                const isAccount1Winner = data.winner === 'account1';
+                const isAccount2Winner = data.winner === 'account2';
+                const winnerName = isAccount1Winner ? data.account1.name : isAccount2Winner ? data.account2.name : 'Gleichstand';
 
-                // Create chart containers
-                const chartId1 = 'comparisonChart1_' + Date.now();
-                const chartId2 = 'comparisonChart2_' + Date.now();
+                // Chart container
                 const radarChartId = 'comparisonRadar_' + Date.now();
 
+                // Helper to get color based on z-score
+                const getBarColor = (z) => {
+                    if (z >= 2) return 'var(--very-lucky)';
+                    if (z >= 1) return 'var(--lucky)';
+                    if (z >= -1) return 'var(--neutral)';
+                    if (z >= -2) return 'var(--unlucky)';
+                    return 'var(--very-unlucky)';
+                };
+
+                // Helper to calculate progress width (normalize z to 0-100%)
+                const getProgressWidth = (z) => Math.min(100, Math.max(5, ((z + 3) / 6) * 100));
+
+                // Generate category HTML for each account
+                const generateCategoryHTML = (categories) => categories.map((cat, i) => `
+                    <div class="compare-category-item" style="animation-delay: ${0.3 + i * 0.1}s">
+                        <div class="compare-category-header">
+                            <span class="compare-category-name">${cat.name}</span>
+                            <span class="compare-category-value" style="color: ${getBarColor(cat.z)}">${cat.z >= 0 ? '+' : ''}${cat.z.toFixed(2)}</span>
+                        </div>
+                        <div class="compare-progress-bar">
+                            <div class="compare-progress-fill" style="width: ${getProgressWidth(cat.z)}%; background: ${getBarColor(cat.z)}"></div>
+                        </div>
+                    </div>
+            `).join('');
+
                 container.innerHTML = `
-                    <div class="card" style="margin-top:24px">
-                        <h3>🆎 ${data.account1.name} vs ${data.account2.name}</h3>
-                        <p><strong>Gewinner:</strong> ${winner}</p>
-
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px">
-                            <div>
-                                <h4>${data.account1.name}</h4>
-                                <p>Total L: <strong>${data.account1.result.totalL.toFixed(2)}</strong></p>
-                                <div class="chart-container" style="height: 250px; margin: 16px 0;">
-                                    <canvas id="${chartId1}"></canvas>
+                    <div class="compare-result-container" style="margin-top: 24px;">
+                        <div class="compare-vs-container">
+                            <!-- Account 1 Card -->
+                            <div class="compare-account-card ${isAccount1Winner ? 'winner' : ''}">
+                                <div class="compare-account-header">
+                                    <span class="compare-account-name">${data.account1.name}</span>
+                                    ${isAccount1Winner ? '<span class="compare-winner-badge">🏆 Gewinner</span>' : ''}
                                 </div>
-                                ${data.account1.result.categories.map(cat => `
-                                    <p style="font-size:0.85rem">${cat.name}: ${cat.z.toFixed(2)}</p>
-                                `).join('')}
+                                <div class="compare-total-score">
+                                    <div class="compare-total-label">Total L Score</div>
+                                    <div class="compare-total-value">${data.account1.result.totalL.toFixed(2)}</div>
+                                </div>
+                                <div class="compare-categories">
+                                    ${generateCategoryHTML(data.account1.result.categories)}
+                                </div>
                             </div>
-                            <div>
-                                <h4>${data.account2.name}</h4>
-                                <p>Total L: <strong>${data.account2.result.totalL.toFixed(2)}</strong></p>
-                                <div class="chart-container" style="height: 250px; margin: 16px 0;">
-                                    <canvas id="${chartId2}"></canvas>
+
+                            <!-- VS Indicator -->
+                            <div class="compare-vs-indicator">
+                                <div class="compare-vs-circle">VS</div>
+                            </div>
+
+                            <!-- Account 2 Card -->
+                            <div class="compare-account-card ${isAccount2Winner ? 'winner' : ''}">
+                                <div class="compare-account-header">
+                                    <span class="compare-account-name">${data.account2.name}</span>
+                                    ${isAccount2Winner ? '<span class="compare-winner-badge">🏆 Gewinner</span>' : ''}
                                 </div>
-                                ${data.account2.result.categories.map(cat => `
-                                    <p style="font-size:0.85rem">${cat.name}: ${cat.z.toFixed(2)}</p>
-                                `).join('')}
+                                <div class="compare-total-score">
+                                    <div class="compare-total-label">Total L Score</div>
+                                    <div class="compare-total-value">${data.account2.result.totalL.toFixed(2)}</div>
+                                </div>
+                                <div class="compare-categories">
+                                    ${generateCategoryHTML(data.account2.result.categories)}
+                                </div>
                             </div>
                         </div>
 
-                        <div class="chart-container" style="height: 350px; margin: 24px 0;">
-                            <canvas id="${radarChartId}"></canvas>
+                        <!-- Side-by-Side Z-Score Comparison -->
+                        <div class="compare-zscore-section">
+                            <div class="compare-zscore-title">📊 Z-Score Vergleich</div>
+                            ${data.account1.result.categories.map((cat1, i) => {
+                    const cat2 = data.account2.result.categories[i];
+                    const width1 = Math.min(100, Math.max(5, ((cat1.z + 3) / 6) * 100));
+                    const width2 = Math.min(100, Math.max(5, ((cat2.z + 3) / 6) * 100));
+                    return `
+                                <div class="compare-zscore-row" style="animation-delay: ${0.2 + i * 0.1}s">
+                                    <div class="compare-zscore-label">${cat1.name}</div>
+                                    <div class="compare-zscore-bar-container">
+                                        <div class="compare-zscore-bar" style="width: ${width1}%; background: ${getBarColor(cat1.z)}"></div>
+                                    </div>
+                                    <div class="compare-zscore-value" style="color: ${getBarColor(cat1.z)}">${cat1.z >= 0 ? '+' : ''}${cat1.z.toFixed(2)}</div>
+                                    <div class="compare-zscore-bar-container">
+                                        <div class="compare-zscore-bar" style="width: ${width2}%; background: ${getBarColor(cat2.z)}"></div>
+                                    </div>
+                                    <div class="compare-zscore-value" style="color: ${getBarColor(cat2.z)}">${cat2.z >= 0 ? '+' : ''}${cat2.z.toFixed(2)}</div>
+                                </div>
+                                `;
+                }).join('')}
+                            <div class="compare-zscore-legend">
+                                <div class="compare-zscore-legend-item">
+                                    <div class="compare-zscore-legend-dot" style="background: var(--primary)"></div>
+                                    ${data.account1.name}
+                                </div>
+                                <div class="compare-zscore-legend-item">
+                                    <div class="compare-zscore-legend-dot" style="background: var(--secondary)"></div>
+                                    ${data.account2.name}
+                                </div>
+                            </div>
                         </div>
 
-                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px;">
-                            <div class="stat-card">
-                                <h3>Total L Unterschied</h3>
-                                <div class="stat-value">${data.difference.totalL.toFixed(2)}</div>
-                            </div>
-                            ${data.difference.categories.map(cat => `
-                                <div class="stat-card">
-                                    <h3>${cat.name}</h3>
-                                    <div class="stat-value trend">${cat.zDifference > 0 ? '+' : ''}${cat.zDifference.toFixed(2)}</div>
+                        <!-- Difference Grid -->
+            <div class="compare-diff-grid">
+                <div class="compare-diff-card" style="animation-delay: 0.4s">
+                    <div class="compare-diff-label">Total L Unterschied</div>
+                    <div class="compare-diff-value ${data.difference.totalL > 0 ? 'positive' : data.difference.totalL < 0 ? 'negative' : 'neutral'}">
+                        ${data.difference.totalL >= 0 ? '+' : ''}${data.difference.totalL.toFixed(2)}
+                    </div>
+                </div>
+                ${data.difference.categories.map((cat, i) => `
+                                <div class="compare-diff-card" style="animation-delay: ${0.5 + i * 0.1}s">
+                                    <div class="compare-diff-label">${cat.name}</div>
+                                    <div class="compare-diff-value ${cat.zDifference > 0 ? 'positive' : cat.zDifference < 0 ? 'negative' : 'neutral'}">
+                                        ${cat.zDifference >= 0 ? '+' : ''}${cat.zDifference.toFixed(2)}
+                                    </div>
                                 </div>
                             `).join('')}
                         </div>
-
-                        <p style="margin-top:16px"><strong>Unterschied:</strong> ${data.difference.totalL.toFixed(2)} Total L</p>
                     </div>
-                `;
-
-                // Create charts
-                this.createComparisonBarCharts(chartId1, data.account1.result, data.account1.name);
-                this.createComparisonBarCharts(chartId2, data.account2.result, data.account2.name);
-                this.createRadarComparisonChart(radarChartId, data);
+            `;
             },
 
             createComparisonBarCharts(chartId, result, accountName) {
@@ -4342,7 +5703,7 @@
                             },
                             title: {
                                 display: true,
-                                text: `${accountName} - Z-Scores`,
+                                text: `${accountName} - Z - Scores`,
                                 font: { size: 14 },
                                 color: textColor
                             }
@@ -4509,9 +5870,9 @@
             renderStatistics(stats) {
                 const grid = document.getElementById('statGrid');
                 const getTrend = (dir) => {
-                    if (dir === 'improving') return `📈 ${TranslationManager.t('statsTrendImproving')}`;
-                    if (dir === 'declining') return `📉 ${TranslationManager.t('statsTrendDeclining')}`;
-                    return `➡️ ${TranslationManager.t('statsTrendStable')}`;
+                    if (dir === 'improving') return `📈 ${TranslationManager.t('statsTrendImproving')} `;
+                    if (dir === 'declining') return `📉 ${TranslationManager.t('statsTrendDeclining')} `;
+                    return `➡️ ${TranslationManager.t('statsTrendStable')} `;
                 };
 
                 grid.innerHTML = `
@@ -4545,17 +5906,24 @@
                             ${getTrend(stats.totalL.trend.direction)}
                         </div>
                     </div>
-                `;
+        `;
             },
 
             renderChart(data) {
-                const ctx = document.getElementById('trendChart').getContext('2d');
+                const canvas = document.getElementById('trendChart');
+                if (!canvas) {
+                    console.error('trendChart canvas not found');
+                    return;
+                }
+
+                const ctx = canvas.getContext('2d');
                 const style = getComputedStyle(document.body);
                 const textColor = style.getPropertyValue('--text-primary').trim();
                 const gridColor = style.getPropertyValue('--text-secondary').trim();
                 const primary = style.getPropertyValue('--primary').trim();
 
                 const hexToRgba = (hex, alpha) => {
+                    if (!hex || hex.length < 7) return `rgba(76, 175, 80, ${alpha})`;
                     const r = parseInt(hex.slice(1, 3), 16);
                     const g = parseInt(hex.slice(3, 5), 16);
                     const b = parseInt(hex.slice(5, 7), 16);
@@ -4568,54 +5936,86 @@
                     this.chart.destroy();
                 }
 
-                const labels = data.aggregated.map(p => p.timestamp);
-                const values = data.aggregated.map(p => p.avgL);
+                // Check for valid data
+                if (!data || !data.aggregated || data.aggregated.length === 0) {
+                    // Show empty state message on canvas
+                    ctx.font = '16px Roboto, sans-serif';
+                    ctx.fillStyle = textColor || '#666';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('Keine Daten für diesen Zeitraum vorhanden', canvas.width / 2, canvas.height / 2);
+                    return;
+                }
+
+                const labels = data.aggregated.map(p => {
+                    // Format timestamp for display
+                    if (p.timestamp) {
+                        const date = new Date(p.timestamp);
+                        return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' });
+                    }
+                    return p.date || 'N/A';
+                });
+                const values = data.aggregated.map(p => p.avgL || p.value || 0);
 
                 this.chart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: TranslationManager.t('statsChartLabel'),
+                            label: TranslationManager.t('statsChartLabel') || 'Durchschnittliches L',
                             data: values,
-                            borderColor: primary,
+                            borderColor: primary || '#4CAF50',
                             backgroundColor: bgColor,
                             fill: true,
                             tension: 0.4,
-                            pointBackgroundColor: primary,
+                            pointBackgroundColor: primary || '#4CAF50',
                             pointBorderColor: '#fff',
                             pointBorderWidth: 2,
-                            pointRadius: 4,
-                            pointHoverRadius: 6
+                            pointRadius: 5,
+                            pointHoverRadius: 8
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        },
                         plugins: {
                             legend: {
                                 display: true,
                                 position: 'top',
                                 labels: {
-                                    color: textColor,
+                                    color: textColor || '#333',
                                     font: { family: 'Roboto', size: 14 }
                                 }
                             },
                             tooltip: {
                                 backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                                padding: 12,
-                                titleFont: { family: 'Roboto', size: 14 },
-                                bodyFont: { family: 'Roboto', size: 12 }
+                                padding: 16,
+                                titleFont: { family: 'Roboto', size: 14, weight: 'bold' },
+                                bodyFont: { family: 'Roboto', size: 13 },
+                                callbacks: {
+                                    label: function (context) {
+                                        return `L-Score: ${context.raw.toFixed(2)}`;
+                                    }
+                                }
                             }
                         },
                         scales: {
                             x: {
                                 grid: { display: false },
-                                ticks: { color: gridColor, font: { family: 'Roboto', size: 11 } }
+                                ticks: { color: gridColor || '#666', font: { family: 'Roboto', size: 11 } }
                             },
                             y: {
                                 grid: { color: 'rgba(200, 200, 200, 0.15)' },
-                                ticks: { color: gridColor, font: { family: 'Roboto', size: 11 } }
+                                ticks: {
+                                    color: gridColor || '#666',
+                                    font: { family: 'Roboto', size: 11 },
+                                    callback: function (value) {
+                                        return value.toFixed(1);
+                                    }
+                                }
                             }
                         }
                     }
@@ -4630,7 +6030,7 @@
             show(message, type = 'info') {
                 const container = document.getElementById('toastContainer');
                 const toast = document.createElement('div');
-                toast.className = `toast toast-${type}`;
+                toast.className = `toast toast - ${type} `;
                 toast.textContent = message;
 
                 container.appendChild(toast);
@@ -4665,6 +6065,7 @@
             settings: {},
             animals: [],
             hotkeyListeners: {},
+            openGroups: new Set(),
 
             async init() {
                 await this.loadSettings();
@@ -4812,7 +6213,7 @@
                     if (animal) {
                         const lang = SettingsManager.settings?.language || 'de';
                         const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
-                        nameInput.value = `GO ${name}`;
+                        nameInput.value = `GO ${name} `;
                     }
                 } else if (templateId && templateId !== '') {
                     const template = this.templates && this.templates.find(t => t.id === templateId);
@@ -4825,6 +6226,20 @@
             setupHotkeyListeners() {
                 // IPC listeners for global shortcuts (X11)
                 if (window.electronAPI && window.electronAPI.onGrindHotkey) {
+                    // Falls bereits Listener existieren, diese zuerst entfernen
+                    if (this.hotkeyListeners.addKill) {
+                        window.electronAPI.removeGrindHotkeyListener('grind:add-kill', this.hotkeyListeners.addKill);
+                    }
+                    if (this.hotkeyListeners.removeKill) {
+                        window.electronAPI.removeGrindHotkeyListener('grind:remove-kill', this.hotkeyListeners.removeKill);
+                    }
+                    if (this.hotkeyListeners.togglePause) {
+                        window.electronAPI.removeGrindHotkeyListener('grind:toggle-pause', this.hotkeyListeners.togglePause);
+                    }
+                    if (this.hotkeyListeners.endSession) {
+                        window.electronAPI.removeGrindHotkeyListener('grind:end-session', this.hotkeyListeners.endSession);
+                    }
+
                     this.hotkeyListeners.addKill = () => this.addKill();
                     this.hotkeyListeners.removeKill = () => this.removeKill();
                     this.hotkeyListeners.togglePause = () => this.togglePause();
@@ -4834,36 +6249,39 @@
                     window.electronAPI.onGrindHotkey('grind:remove-kill', this.hotkeyListeners.removeKill);
                     window.electronAPI.onGrindHotkey('grind:toggle-pause', this.hotkeyListeners.togglePause);
                     window.electronAPI.onGrindHotkey('grind:end-session', this.hotkeyListeners.endSession);
+
+                    // IPC hotkeys registered - skip in-app handler to prevent double execution
+                    return;
+                } else {
+                    // In-app keyboard listener fallback (only used when IPC not available)
+                    this.inAppKeyHandler = (e) => {
+                        if (!this.isSessionRunning) return;
+
+                        // Ignoriere Modifier-Tasten alleine
+                        if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) return;
+
+                        const hotkeys = SettingsManager.settings?.sessionHotkeys || {};
+                        const pressedKey = this.formatKeyEvent(e);
+
+                        console.log('Hotkey pressed:', pressedKey, '| Expected addKill:', hotkeys.addKill);
+
+                        if (pressedKey === hotkeys.addKill) {
+                            e.preventDefault();
+                            this.addKill();
+                        } else if (pressedKey === hotkeys.removeKill) {
+                            e.preventDefault();
+                            this.removeKill();
+                        } else if (pressedKey === hotkeys.togglePause) {
+                            e.preventDefault();
+                            this.togglePause();
+                        } else if (pressedKey === hotkeys.endSession) {
+                            e.preventDefault();
+                            this.endSession();
+                        }
+                    };
+
+                    document.addEventListener('keydown', this.inAppKeyHandler);
                 }
-
-                // In-app keyboard listener fallback (works on Wayland/Hyprland when window is focused)
-                this.inAppKeyHandler = (e) => {
-                    if (!this.isSessionRunning) return;
-
-                    // Ignoriere Modifier-Tasten alleine
-                    if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) return;
-
-                    const hotkeys = SettingsManager.settings?.sessionHotkeys || {};
-                    const pressedKey = this.formatKeyEvent(e);
-
-                    console.log('Hotkey pressed:', pressedKey, '| Expected addKill:', hotkeys.addKill);
-
-                    if (pressedKey === hotkeys.addKill) {
-                        e.preventDefault();
-                        this.addKill();
-                    } else if (pressedKey === hotkeys.removeKill) {
-                        e.preventDefault();
-                        this.removeKill();
-                    } else if (pressedKey === hotkeys.togglePause) {
-                        e.preventDefault();
-                        this.togglePause();
-                    } else if (pressedKey === hotkeys.endSession) {
-                        e.preventDefault();
-                        this.endSession();
-                    }
-                };
-
-                document.addEventListener('keydown', this.inAppKeyHandler);
             },
 
             formatKeyEvent(event) {
@@ -4888,7 +6306,7 @@
 
             renderTips() {
                 Object.keys(this.tips).forEach(key => {
-                    const contentDiv = document.getElementById(`tip-content-${key}`);
+                    const contentDiv = document.getElementById(`tip - content - ${key} `);
                     if (contentDiv) {
                         contentDiv.innerHTML = this.customTips[key] || this.tips[key];
                     }
@@ -4902,7 +6320,7 @@
                 const lang = SettingsManager.settings?.language || 'de';
                 dropdown.innerHTML = this.animals.map(animal => {
                     const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
-                    return `<option value="${animal.id}">${animal.icon} ${name} (p=${animal.spawnChance})</option>`;
+                    return `<option value="${animal.id}">${animal.icon} ${name} (p = ${animal.spawnChance})</option>`;
                 }).join('');
 
                 dropdown.addEventListener('change', () => {
@@ -4939,7 +6357,7 @@
                     const lang = SettingsManager.settings?.language || 'de';
                     simAnimal.innerHTML = this.animals.map(animal => {
                         const name = lang === 'de' && animal.nameDe ? animal.nameDe : animal.name;
-                        return `<option value="${animal.id}">${animal.icon} ${name} (p=${animal.spawnChance})</option>`;
+                        return `<option value="${animal.id}">${animal.icon} ${name} (p = ${animal.spawnChance})</option>`;
                     }).join('');
                     if (currentValue) simAnimal.value = currentValue;
                 }
@@ -5002,11 +6420,11 @@
                                         <span class="toggle-icon">▼</span>
                                     </div>
                                 </div>
-                                <div class="grind-session-group-details" id="group-${name.replace(/\s+/g, '-')}" style="display: none;">
+                                <div class="grind-session-group-details" id="group-${name.replace(/\s+/g, '-')}" style="display: ${this.openGroups.has(name) ? 'block' : 'none'};">
                                     ${groupSessions.map(session => this.renderSingleSession(session, true)).join('')}
                                 </div>
                             </div>
-                        `;
+            `;
                     }
                 });
 
@@ -5034,14 +6452,21 @@
                             ` : ''}
                             <button class="action-button secondary" onclick="GrindManager.deleteSession('${session.id}')">🗑️</button>
                         </div>
-                    </div>
-                `;
+                    </div >
+            `;
             },
 
             toggleGroup(name) {
                 const details = document.getElementById(`group-${name.replace(/\s+/g, '-')}`);
                 if (details) {
-                    details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                    const isHidden = details.style.display === 'none';
+                    details.style.display = isHidden ? 'block' : 'none';
+
+                    if (isHidden) {
+                        this.openGroups.add(name);
+                    } else {
+                        this.openGroups.delete(name);
+                    }
                 }
             },
 
@@ -5069,13 +6494,31 @@
                     cancelled: '❌ Abgebrochen'
                 };
 
-                return `<span class="status-badge ${status}">${statusLabels[status] || status}</span>`;
+                return `< span class="status-badge ${status}" > ${statusLabels[status] || status}</span > `;
+            },
+
+            showSessionConflictDialog(name, session, statusText) {
+                return new Promise((resolve) => {
+                    // Einfache confirm-basierte Lösung
+                    const message =
+                        `Eine Session "${name}" ist bereits ${statusText}.\n\n` +
+                        `Kills: ${session.kills || 0}\n` +
+                        `Status: ${statusText}\n\n` +
+                        `[OK] = Session fortsetzen\n` +
+                        `[Abbrechen] = Anderen Namen wählen`;
+
+                    if (confirm(message)) {
+                        resolve('continue');
+                    } else {
+                        resolve('rename');
+                    }
+                });
             },
 
             getFallbackTips() {
                 return {
                     general: `
-                        <p><strong>📖 ${TranslationManager.t('tipsBasics')}:</strong></p>
+            < p > <strong>📖 ${TranslationManager.t('tipsBasics')}:</strong></p >
                         <p>${TranslationManager.t('tipsRespawnDesc')}</p>
                         <ul>
                             <li><strong>${TranslationManager.t('tipsRespawnTime')}:</strong> ${TranslationManager.t('tipsRespawnDesc')}</li>
@@ -5083,12 +6526,12 @@
                             <li><strong>${TranslationManager.t('tipsHighOnly')}:</strong> ${TranslationManager.t('tipsHighOnlyDesc')}</li>
                         </ul>
                         <p><strong>💡 ${TranslationManager.t('tipsProTip')}:</strong> ${TranslationManager.t('tipsProTipDesc')}</p>
-                    `
+        `
                 };
             },
 
             toggleTip(key) {
-                const tipElement = document.querySelector(`[data-tip="${key}"]`);
+                const tipElement = document.querySelector(`[data - tip= "${key}"]`);
                 if (tipElement) {
                     tipElement.classList.toggle('open');
                 }
@@ -5099,7 +6542,7 @@
                 const hours = Math.floor(seconds / 3600);
                 const minutes = Math.floor((seconds % 3600) / 60);
                 const secs = seconds % 60;
-                return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')} `;
             },
 
             async startSession() {
@@ -5112,23 +6555,26 @@
                 }
 
                 if (window.electronAPI && window.electronAPI.grind) {
-                    const validation = await window.electronAPI.grind.validateSessionName(name);
-                    if (!validation.valid) {
-                        ToastManager.show(validation.error, 'error');
-                        return;
-                    }
+                    // ZUERST prüfen ob Session mit diesem Namen existiert
+                    const existingResponse = await window.electronAPI.grind.getActiveSession(name);
 
-                    const response = await window.electronAPI.grind.getActiveSession(name);
-                    if (response.success && response.data) {
-                        const confirmed = confirm(
-                            `Eine Session mit dem Namen "${name}" ist bereits aktiv.\n` +
-                            `Möchtest du sie fortsetzen?`
-                        );
-                        if (confirmed) {
-                            await this.resumeSession(response.data.id);
+                    if (existingResponse.success && existingResponse.data) {
+                        // Session existiert → Auswahl anzeigen
+                        const session = existingResponse.data;
+                        const statusText = session.status === 'paused' ? 'pausiert' : 'aktiv';
+                        const choice = await this.showSessionConflictDialog(name, session, statusText);
+
+                        if (choice === 'continue') {
+                            // Option A: Vorhandene Session fortsetzen
+                            await this.resumeSession(session.id);
+                            return;
+                        } else {
+                            // Option B: Abbrechen / neuen Namen wählen
+                            document.getElementById('session-name').focus();
+                            document.getElementById('session-name').select();
+                            ToastManager.show('Bitte wähle einen anderen Namen', 'info');
                             return;
                         }
-                        return; // User declined to resume, don't start new session with same name
                     }
                 }
 
@@ -5196,22 +6642,66 @@
                 this.sessionKills = Math.max(0, this.sessionKills - 1);
                 document.getElementById('session-kills').textContent = this.sessionKills;
 
+                this.playRemoveKillAudio();
                 this.updateKPH();
                 ToastManager.show(TranslationManager.t('toastKillRemoved'), 'info');
             },
 
             playKillAudio() {
                 try {
-                    if (window.electronAPI && window.electronAPI.setAlwaysOnTop) {
-                        const settings = SettingsManager.settings || {};
-                        if (settings.audioFeedback && settings.audioVolume > 0) {
-                            const audio = new Audio('data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhAAAAAA==');
-                            audio.volume = settings.audioVolume || 0.5;
-                            audio.play();
-                        }
+                    const settings = SettingsManager.settings || {};
+                    if (settings.audioFeedback && settings.audioVolume > 0) {
+                        // Use Web Audio API for reliable cross-platform audio
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+
+                        // Bing sound: high frequency short beep
+                        oscillator.frequency.value = 880; // A5 note
+                        oscillator.type = 'sine';
+
+                        // Volume envelope for nice bing effect
+                        const volume = settings.audioVolume || 0.5;
+                        gainNode.gain.setValueAtTime(volume * 0.3, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.15);
                     }
                 } catch (error) {
                     console.error('Fehler beim Abspielen des Audio-Signals:', error);
+                }
+            },
+
+            playRemoveKillAudio() {
+                try {
+                    const settings = SettingsManager.settings || {};
+                    if (settings.audioFeedback && settings.audioVolume > 0) {
+                        // Use Web Audio API for reliable cross-platform audio
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+
+                        // Lower frequency "undo" sound (descending)
+                        oscillator.frequency.value = 440; // A4 note (lower than addKill's 880 Hz)
+                        oscillator.type = 'sine';
+
+                        // Volume envelope for descending effect
+                        const volume = settings.audioVolume || 0.5;
+                        gainNode.gain.setValueAtTime(volume * 0.25, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.12);
+
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.12);
+                    }
+                } catch (error) {
+                    console.error('Fehler beim Abspielen des Remove-Kill Audio-Signals:', error);
                 }
             },
 
@@ -5298,7 +6788,7 @@
                 document.getElementById('session-controls-active').style.display = 'none';
 
                 document.getElementById('last-session').textContent =
-                    `${session.kills} Kills in ${this.formatDuration(session.duration)}`;
+                    `${session.kills} Kills in ${this.formatDuration(session.duration)} `;
 
                 document.getElementById('session-info').style.display = 'block';
 
@@ -5477,14 +6967,14 @@
                     } else {
                         const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
                         const csv = 'Datum,Kills,Dauer,KPH\n' + sessions.map(s =>
-                            `${new Date(s.timestamp).toLocaleString('de-DE')},${s.kills},${Math.round(s.duration / 1000)},${s.kph.toFixed(1)}`
+                            `${new Date(s.timestamp).toLocaleString('de-DE')},${s.kills},${Math.round(s.duration / 1000)},${s.kph.toFixed(1)} `
                         ).join('\n');
 
                         const blob = new Blob([csv], { type: 'text/csv' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `grind-sessions-${new Date().toISOString().split('T')[0]}.csv`;
+                        a.download = `grind - sessions - ${new Date().toISOString().split('T')[0]}.csv`;
                         a.click();
                         URL.revokeObjectURL(url);
                     }
@@ -5612,8 +7102,8 @@
             const tooltip = document.getElementById('tooltip');
             if (tooltips[inputId]) {
                 tooltip.textContent = tooltips[inputId];
-                tooltip.style.left = `${element.getBoundingClientRect().right + 10}px`;
-                tooltip.style.top = `${element.getBoundingClientRect().top}px`;
+                tooltip.style.left = `${element.getBoundingClientRect().right + 10} px`;
+                tooltip.style.top = `${element.getBoundingClientRect().top} px`;
                 tooltip.classList.add('show');
             }
         }
@@ -5662,7 +7152,7 @@
             const helpModal = document.createElement('div');
             helpModal.className = 'settings-modal show';
             helpModal.innerHTML = `
-                <div class="settings-content">
+            < div class="settings-content" >
                     <div class="settings-header">
                         <h2 class="settings-title">⌨️ Tastaturkürzel</h2>
                         <button class="settings-close" onclick="this.closest('.settings-modal').remove()">✕</button>
@@ -5674,7 +7164,7 @@
                         <li><strong>Escape:</strong> Modals schließen</li>
                         <li><strong>F1:</strong> Hilfe anzeigen</li>
                     </ul>
-                </div>
+                </div >
             `;
             helpModal.onclick = (e) => {
                 if (e.target === helpModal) helpModal.remove();
@@ -5688,8 +7178,8 @@
         function setupPSliders() {
             const categories = ['rare', 'diamond', 'super', 'go'];
             categories.forEach(cat => {
-                const slider = document.getElementById(`p_${cat}_slider`);
-                const number = document.getElementById(`p_${cat}`);
+                const slider = document.getElementById(`p_${cat} _slider`);
+                const number = document.getElementById(`p_${cat} `);
 
                 if (slider && number) {
                     slider.addEventListener('input', () => {
@@ -5736,6 +7226,8 @@
         // ========================================
         // ENHANCED INITIALIZATION
         // ========================================
+        // Track if user has modified any values (to avoid saving history on initial load)
+        let userHasModifiedValues = false;
         document.addEventListener('DOMContentLoaded', async function () {
             console.log('DOM Content Loaded');
             console.log('Managers available:', {
@@ -5751,7 +7243,8 @@
                 setupTooltips();
 
                 console.log('Starting Calculator.calculate()...');
-                await Calculator.calculate();
+                // Initial calculation does NOT save to history
+                await Calculator.calculate(false);
                 console.log('Calculator.calculate() completed');
             } catch (error) {
                 console.error('Initialization error:', error);
@@ -5761,20 +7254,54 @@
             const inputFields = document.querySelectorAll('input[type="number"]');
             inputFields.forEach(input => {
                 input.addEventListener('input', function () {
+                    // User has modified values - now history should be saved
+                    userHasModifiedValues = true;
                     clearTimeout(debounceTimer);
                     debounceTimer = setTimeout(() => {
-                        Calculator.calculate();
+                        // Only save to history if user has modified values
+                        Calculator.calculate(userHasModifiedValues);
                     }, 200);
                 });
                 input.addEventListener('change', () => {
+                    userHasModifiedValues = true;
                     UndoRedoManager.saveState(getCurrentFormData());
                 });
             });
 
             window.addEventListener('click', (e) => {
-                if (!e.target.closest('.p-preset-dropdown')) {
+                // Close dropdowns if clicking outside (ignore clicks on the button or the list itself)
+                if (!e.target.closest('.mini-btn') && !e.target.closest('.preset-list')) {
                     closeAllDropdowns();
                 }
+            });
+        });
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.preset-list.show').forEach(list => {
+                list.classList.remove('show');
+                const widget = list.closest('.stat-widget');
+                if (widget) widget.style.zIndex = ''; // Reset z-index
+            });
+        }
+        function updateRatio(type, val) {
+            const p = parseFloat(val);
+            const el = document.getElementById('ratio_' + type);
+            if (!el) return;
+
+            if (!p || p <= 0) {
+                el.textContent = '(1:∞)';
+                return;
+            }
+
+            const ratio = Math.round(1 / p);
+            el.textContent = `(1: ${ratio.toLocaleString('de-DE')})`;
+        }
+
+        // Initial update on load
+        document.addEventListener('DOMContentLoaded', () => {
+            ['rare', 'diamond', 'super', 'go'].forEach(type => {
+                const val = document.getElementById('p_' + type)?.value;
+                if (val) updateRatio(type, val);
             });
         });
     </script>

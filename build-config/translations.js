@@ -60,6 +60,8 @@ const TRANSLATIONS = {
         calcYourSuperRares: 'Deine Super Rares:',
         calcGreatOnes: 'Great Ones (Top 0.05% Größe)',
         calcYourGreatOnes: 'Deine Great Ones:',
+        calcYourGreatOnes: 'Deine Great Ones:',
+        calcProbability: 'Wahrscheinlichkeit',
         calcUndo: 'Undo',
         calcRedo: 'Redo',
 
@@ -251,6 +253,8 @@ const TRANSLATIONS = {
         calcYourSuperRares: 'Your Super Rares:',
         calcGreatOnes: 'Great Ones (Top 0.05% Size)',
         calcYourGreatOnes: 'Your Great Ones:',
+        calcYourGreatOnes: 'Your Great Ones:',
+        calcProbability: 'Probability',
         calcUndo: 'Undo',
         calcRedo: 'Redo',
 

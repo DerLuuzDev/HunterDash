@@ -128,6 +128,13 @@ class HistoryService {
   async clearHistory() {
     try {
       await this.storage.set(STORAGE.KEYS.CALCULATION_HISTORY, []);
+
+      // Also clear in-memory history and file system
+      this.memoryHistory = [];
+      if (this.userDataPath) {
+        await this.saveToFile([]);
+      }
+
       return { success: true };
     } catch (error) {
       console.error('HistoryService: Fehler beim Leeren:', error);
@@ -289,10 +296,10 @@ class HistoryService {
         entries: history
       };
 
-      return { 
-        success: true, 
-        data: JSON.stringify(data, null, 2), 
-        filename: `hunterdash-export-${Date.now()}.json` 
+      return {
+        success: true,
+        data: JSON.stringify(data, null, 2),
+        filename: `hunterdash-export-${Date.now()}.json`
       };
     } catch (error) {
       console.error('HistoryService: Fehler beim JSON-Export:', error);
@@ -372,7 +379,7 @@ class HistoryService {
 
   calculateCategoryStatistics(history) {
     const categories = {};
-    
+
     POISSON.CATEGORIES.forEach(cat => {
       const zScores = history.map(entry => {
         const category = entry.output.categories.find(c => c.name === cat.name);

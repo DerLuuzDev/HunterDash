@@ -67,9 +67,10 @@ module.exports = {
       animalLanguage: 'de',
       sessionHotkeys: {
         addKill: 'F7',
-        removeKill: 'F8',
+        addKill: 'F7',
+        removeKill: 'F10', // Changed from F8
         togglePause: 'F9',
-        endSession: 'F10'
+        endSession: 'F8'   // Changed from F10
       }
     },
     HISTORY: {
@@ -216,9 +217,10 @@ module.exports = {
     ],
     DEFAULT_HOTKEYS: {
       addKill: 'F7',
-      removeKill: 'F8',
+      addKill: 'F7',
+      removeKill: 'F10', // Changed from F8
       togglePause: 'F9',
-      endSession: 'F10'
+      endSession: 'F8'   // Changed from F10
     },
     SESSION_STATUS: {
       RUNNING: 'running',

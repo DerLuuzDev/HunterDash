@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  calculate: (data) => ipcRenderer.invoke('api:calculate', data),
+  calculate: (data, options) => ipcRenderer.invoke('api:calculate', data, options),
 
   saveSettings: (settings) => ipcRenderer.invoke('storage:save-settings', settings),
 

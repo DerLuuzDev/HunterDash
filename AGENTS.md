@@ -301,6 +301,18 @@ YYYY-MM-DD: [Feature Name] [added/updated/removed]
   - `session-controls-active` wird bei aktiver Session angezeigt
 ```
 
+```
+2026-01-07: HTML-Malformation Fixes & UI Improvements
+- Grind switchSubTab() Bug behoben: ID-Matching hatte Leerzeichen (`subtab - ${name}` → `subtab-${name}`)
+- Account Compare HTML-Tags korrigiert: Leerzeichen in div/comment Tags entfernt
+- Animal Option-Tags in 4 Stellen korrigiert: `< option >` → `<option>`
+- Ripple Effect subtiler gemacht: 25% opacity, scale 2.5 statt 4
+- Luck-Bar Text-Overflow behoben: Text wird bei kleinen Balken außerhalb angezeigt (via ::after)
+- calcButton und Reset-Button aus Rechner entfernt
+- Statistics HTML-Tags korrigiert
+- Web Audio API für Kill-Sound implementiert (statt stilles WAV)
+```
+
 ### Common Pitfalls & Prevention
 
 **⚠️ Bug: Manager-Navigation bricht nach AI-Änderungen**
