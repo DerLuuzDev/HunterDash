@@ -8495,7 +8495,7 @@
                     return periods.map(period => {
                         const isActive = this.isTimeInPeriod(this.currentTime, period.start, period.end);
                         const timeStr = this.formatTimeRange(period.start, period.end);
-                        
+
                         // Handle overnight periods (e.g., 21-5) by splitting into two blocks
                         if (period.start > period.end) {
                             // Block 1: start to 24 (end of day)
@@ -8504,7 +8504,7 @@
                             // Block 2: 0 to end (start of day)
                             const left2 = 0;
                             const width2 = (period.end / 24) * 100;
-                            
+
                             return `
                                 <div class="time-block ${type} ${isActive ? 'active-zone' : ''}" style="left: ${left1}%; width: ${width1}%;">
                                     <div class="time-block-tooltip">${label}: ${timeStr}</div>
@@ -8514,7 +8514,7 @@
                                 </div>
                             `;
                         }
-                        
+
                         const style = this.getBlockStyle(period.start, period.end);
                         return `
                             <div class="time-block ${type} ${isActive ? 'active-zone' : ''}" style="${style}">
