@@ -1,138 +1,99 @@
 # HunterDash 🦌
 
-COTW Glück-Rechner für Desktop & Mobile - Berechne dein Glück in theHunter: Call of the Wild!
+**Der ultimative Begleiter für theHunter: Call of the Wild**
 
-📦 **Download für Windows**: [GitHub Releases](https://github.com/DerLuuz/HunterDash/releases) | 🌐 **Repository**: [DerLuuz/HunterDash](https://github.com/DerLuuz/HunterDash)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/DerLuuz/HunterDash?style=for-the-badge&color=22c55e)](https://github.com/DerLuuz/HunterDash/releases)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-blue?style=for-the-badge)](https://github.com/DerLuuz/HunterDash/releases)
+[![License](https://img.shields.io/github/license/DerLuuz/HunterDash?style=for-the-badge)](LICENSE)
 
-## Features
+HunterDash ist ein modernes Overlay- und Tracking-Tool für *theHunter: Call of the Wild*. Es hilft dir, deinen Grind zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – alles in einer App.
 
-- ✅ **Poisson Z-Score Berechnung** für Rares, Diamonds, Super Rares & Great Ones
-- 🎨 **Modernes UI** mit animierten Charts (vertikal für Mobile, horizontal für Desktop)
-- 💾 **Lokale Datenspeicherung** (Eingaben & Einstellungen)
-- 🌓 **Light/Dark Mode** Unterstützung
-- 🖥️ **Cross-Platform**: Windows & Linux (Android in Vorbereitung)
-- 🔌 **Backend-fertig**: REST API & WebSocket vorbereitet
-- 🧩 **Modular & Erweiterbar** - Einfaches Hinzufügen neuer Features
+![HunterDash Screenshot](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/icons/swappy-20260112-190600.png?raw=true)
 
-## Windows Installation
+## ✨ Hauptfunktionen
 
-1. Lade die neueste Version von den [GitHub Releases](https://github.com/DerLuuz/HunterDash/releases) herunter
-2. Führe den `.exe` Installer aus
-3. Folge den Installationsanweisungen
-4. Starte HunterDash aus dem Startmenü oder Desktop
+### 🧮 Glücks-Rechner
+Berechne die Wahrscheinlichkeit deiner Spawns!
+- **Z-Score Berechnung**: Analysiere Rares, Diamonds, Super Rares & Great Ones.
+- **Detaillierte Interpretation**: Erfahre, ob du "Pech" oder "Glück" hast.
+- **Account-Vergleich**: Vergleiche deine Stats mit denen von Freunden.
 
-**Systemanforderungen:**
-- Windows 10 oder höher
-- 100 MB freier Speicherplatz
+### ⏱️ Grind Tracker & Overlay
+Optimiere deine Sessions mit dem integrierten Tracker.
+- **Session Timer**: Erfasse deine Spielzeit automatisch.
+- **Kills/h Berechnung**: Live-Tracking deiner Effizienz.
+- **Pausen-Funktion**: Pausiere den Timer automatisch oder manuell.
+- **Overlay-Modus**: Pinne HunterDash über dein Spiel ("Always on Top").
 
-## Development & Builds
+### 📈 Statistiken & Historie
+- **Interaktive Charts**: Kombinierte Ansicht von **L-Score (Glück)** und **Grind-Effizienz (Kills/h)**.
+- **Detail-Analyse**: Stündliche Auflösung für detaillierte Trends.
+- **Export**: Speichere deine Daten als CSV oder JSON.
 
+### ⌨️ Globale Hotkeys
+Steuere die App, ohne das Spiel zu verlassen:
+- `F7`: **Kill hinzufügen** (+1)
+- `F8`: **Session beenden / speichern**
+- `F9`: **Timer pausieren / fortsetzen**
+- `F10`: **Letzten Kill entfernen** (Korrektur)
+*(Hotkeys sind in den Einstellungen anpassbar)*
+
+---
+
+## 🚀 Installation
+
+### Windows
+1. Lade den neuesten Installer von den [Releases](https://github.com/DerLuuz/HunterDash/releases) herunter.
+2. Führe die `.exe` aus.
+3. HunterDash startet automatisch.
+
+### Linux
+1. Lade das `.AppImage` herunter.
+2. Mache die Datei ausführbar: `chmod +x HunterDash-*.AppImage`.
+3. Starte die App.
+
+---
+
+## 🛠️ Für Entwickler
+
+### Setup
 ```bash
+# Repository klonen
+git clone https://github.com/DerLuuz/HunterDash.git
+cd HunterDash
+
 # Abhängigkeiten installieren
 npm install
 
-# App starten
-npm start
-
-# Entwicklung mit DevTools
+# Starten (Dev Mode)
 npm run dev
-
-# Windows Installer (NSIS)
-npm run build:win
-
-# Linux AppImage
-npm run build:linux
-
-# Alle Builds
-npm run build:all
 ```
 
-## Projektstruktur
-
-```
-COTW-Begleiter/
-├── main.js                      # Electron Hauptprozess
-├── preload.js                   # Context Bridge (IPC)
-├── renderer.js                  # UI-Logik
-├── index.html                   # UI & CSS
-├── services/
-│   ├── calculation.service.js   # Poisson-Berechnung
-│   ├── api.service.js           # Backend-Kommunikation
-│   └── storage.service.js       # Daten-Speicherung
-├── utils/
-│   ├── icons.js                 # SVG→PNG Konvertierung
-│   └── validator.js             # Eingabe-Validierung
-├── build-config/
-│   ├── constants.js             # App-Konstanten
-│   └── electron-builder.js      # Build-Konfiguration
-└── assets/icons/                # Icons
-```
-
-## API Integration
-
-Für Backend-Integration:
-
-1. **REST API** (`services/api.service.js`):
-   - Setze `API.ENABLE_BACKEND = true` in `build-config/constants.js`
-   - Passe `API.BASE_URL` an
-   - Endpunkte:
-     - `POST /api/calculate` - Berechnungs-Request
-     - `GET /api/health` - Health Check
-
-2. **WebSocket** (Optional):
-   - Setze `WEBSOCKET.ENABLED = true`
-   - Passe `WEBSOCKET.URL` an
-   - Nachrichtformat: `{ id, type, data }`
-
-## Android-Migration
-
-### Tauri (Empfohlen)
-- `renderer.js` + `index.html` direkt übernehmbar
-- `services/` → Rust-Module umschreiben
-- `main.js` → `src-tauri/src/main.rs` ersetzen
-
-### Capacitor
-- Web-App aus `index.html` + `renderer.js`
-- Native Plugins für Android
-- `npm run prepare:mobile` vorbereitet Assets
-
-## Konfiguration
-
-### Umgebungsvariablen
+### Build Commands
 ```bash
-API_BASE_URL=http://localhost:3000
-WS_URL=ws://localhost:3000/ws
+npm run build:win   # Windows Installer
+npm run build:linux # Linux AppImage
+npm run build:all   # Alle Plattformen
 ```
 
-### App-Einstellungen
-Speicherort: `<UserDir>/HunterDash/settings.json`
+### Tech Stack
+- **Core**: Electron, Node.js
+- **Frontend**: HTML5, Vanilla CSS (Glassmorphism UI), Chart.js
+- **Data**: Lokales Dateisystem (JSON), keine Cloud-Cloud-Abhängigkeit
 
-```json
-{
-  "theme": "light",
-  "autoSave": true,
-  "apiEnabled": false,
-  "apiEndpoint": "http://localhost:3000"
-}
-```
+---
 
-## Development
+## 🗺️ Roadmap & Pläne
+- [x] Grind Session Tracker
+- [x] Overlay Mode
+- [x] Statistiken & Charts
+- [ ] Android Companion App (via Tauri)
+- [ ] WebSocket API für Streamer
 
-```bash
-# DevTools öffnen
-Strg+Shift+I (Windows/Linux)
-Cmd+Option+I (macOS)
+## ❤️ Credits
+- **Idee & Entwicklung**: [DerLuuz](https://github.com/DerLuuz)
+- **Datenbasis**: Basierend auf aktuellen COTW Datamines (2025/2026)
+- **Design Inspiration**: Modern Glassmorphism & Gaming UIs
 
-# oder via IPC API
-await window.electronAPI.openDevTools()
-```
-
-## License
-
-MIT
-
-## Credits
-
-- Poisson Z-Score Berechnung basierend on COTW Datamines 2025/2026
-- Icon: Hirsch-Emoji 🦌
-- UI: Inter Font Family
+---
+*HunterDash steht in keiner Verbindung zu Expansive Worlds oder Avalanche Studios.*
