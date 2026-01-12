@@ -1,0 +1,5951 @@
+{
+  "_comment": "Konsolidierte Tier-Daten für HunterDash - Daten von espis.de und COTW Wiki",
+  "_format": {
+    "animals": "Tier-ID → Stats + need_zones pro Map",
+    "need_zones": "Map-ID → {drink, feed, rest} Arrays mit {start, end}",
+    "stats": "class, difficulty, max_level, max_score, diamond, gold, silver, fur_common, fur_rare, lures"
+  },
+  "_maps": [
+    {
+      "id": "hirschfelden",
+      "animals": [
+        "red_deer",
+        "roe_deer",
+        "fallow_deer",
+        "wild_boar",
+        "european_rabbit",
+        "red_fox",
+        "ring_necked_pheasant",
+        "canada_goose",
+        "european_bison"
+      ]
+    },
+    {
+      "id": "layton",
+      "animals": [
+        "whitetail",
+        "blacktail",
+        "moose",
+        "roosevelt_elk",
+        "black_bear",
+        "coyote",
+        "jackrabbit",
+        "mallard",
+        "turkey"
+      ]
+    },
+    {
+      "id": "medved",
+      "animals": [
+        "brown_bear",
+        "moose",
+        "reindeer",
+        "wild_boar",
+        "musk_deer",
+        "eurasian_lynx",
+        "western_capercaillie",
+        "gray_wolf"
+      ]
+    },
+    {
+      "id": "vurhonga",
+      "animals": [
+        "lion",
+        "cape_buffalo",
+        "gemsbok",
+        "springbok",
+        "blue_wildebeest",
+        "lesser_kudu",
+        "scrub_hare",
+        "warthog",
+        "side_striped_jackal"
+      ]
+    },
+    {
+      "id": "parque",
+      "animals": [
+        "red_deer",
+        "water_buffalo",
+        "axis_deer",
+        "cinnamon_teal",
+        "blackbuck",
+        "puma",
+        "collared_peccary",
+        "mule_deer"
+      ]
+    },
+    {
+      "id": "yukon",
+      "animals": [
+        "grizzly_bear",
+        "moose",
+        "plains_bison",
+        "caribou",
+        "gray_wolf",
+        "red_fox",
+        "canada_goose"
+      ]
+    },
+    {
+      "id": "cuatro",
+      "animals": [
+        "iberian_wolf",
+        "iberian_mouflon",
+        "red_deer",
+        "roe_deer",
+        "wild_boar",
+        "beceite_ibex",
+        "ronda_ibex",
+        "european_hare",
+        "ring_necked_pheasant"
+      ]
+    },
+    {
+      "id": "silver_ridge",
+      "animals": [
+        "rocky_mountain_elk",
+        "mule_deer",
+        "mountain_lion",
+        "mountain_goat",
+        "bighorn_sheep",
+        "pronghorn",
+        "black_bear",
+        "plains_bison",
+        "turkey"
+      ]
+    },
+    {
+      "id": "te_awaroa",
+      "animals": [
+        "red_deer",
+        "feral_goat",
+        "feral_pig",
+        "sika_deer",
+        "fallow_deer",
+        "chamois",
+        "turkey"
+      ]
+    },
+    {
+      "id": "rancho",
+      "animals": [
+        "whitetail",
+        "mule_deer",
+        "rio_grande_turkey",
+        "ring_necked_pheasant",
+        "antelope_jackrabbit",
+        "collared_peccary",
+        "bighorn_sheep",
+        "coyote",
+        "mexican_bobcat",
+        "pronghorn"
+      ]
+    },
+    {
+      "id": "mississippi",
+      "animals": [
+        "whitetail",
+        "eastern_wild_turkey",
+        "bobwhite_quail",
+        "eastern_cottontail",
+        "gray_fox",
+        "raccoon",
+        "wild_hog",
+        "american_alligator",
+        "black_bear"
+      ]
+    },
+    {
+      "id": "revontuli",
+      "animals": [
+        "whitetail",
+        "moose",
+        "brown_bear",
+        "eurasian_lynx",
+        "rock_ptarmigan",
+        "willow_ptarmigan",
+        "black_grouse",
+        "hazel_grouse",
+        "western_capercaillie",
+        "raccoon_dog",
+        "mountain_hare"
+      ]
+    },
+    {
+      "id": "new_england",
+      "animals": [
+        "whitetail",
+        "black_bear",
+        "moose",
+        "bobcat",
+        "eastern_wild_turkey",
+        "eastern_cottontail",
+        "gray_fox",
+        "red_fox",
+        "coyote",
+        "ring_necked_pheasant",
+        "bobwhite_quail",
+        "raccoon"
+      ]
+    },
+    {
+      "id": "emerald",
+      "animals": [
+        "red_deer",
+        "sambar_deer",
+        "javan_rusa",
+        "axis_deer",
+        "fallow_deer",
+        "banteng",
+        "feral_pig",
+        "feral_goat",
+        "hog_deer",
+        "red_fox",
+        "saltwater_crocodile",
+        "stubble_quail"
+      ]
+    },
+    {
+      "id": "sundarpatan",
+      "animals": [
+        "bengal_tiger",
+        "water_buffalo",
+        "himalayan_tahr",
+        "nilgai",
+        "blackbuck",
+        "indian_muntjac",
+        "blue_sheep",
+        "barasingha",
+        "snow_leopard",
+        "tibetan_fox",
+        "woolly_hare",
+        "wild_yak"
+      ]
+    },
+    {
+      "id": "salzwiesen",
+      "animals": [
+        "greylag_goose",
+        "tundra_bean_goose",
+        "ring_necked_pheasant",
+        "black_grouse",
+        "european_rabbit",
+        "raccoon",
+        "raccoon_dog",
+        "red_fox",
+        "goldeneye",
+        "eurasian_teal",
+        "mallard"
+      ]
+    },
+    {
+      "id": "askiy",
+      "animals": [
+        "black_bear",
+        "bighorn_sheep",
+        "gray_wolf",
+        "manitoban_elk",
+        "moose",
+        "mule_deer",
+        "pronghorn",
+        "whitetail",
+        "wood_bison",
+        "woodland_caribou",
+        "mountain_goat",
+        "beaver"
+      ]
+    },
+    {
+      "id": "scotland",
+      "animals": [
+        "red_deer",
+        "roe_deer",
+        "fallow_deer",
+        "sika_deer",
+        "wild_boar",
+        "red_fox",
+        "feral_goat",
+        "mountain_hare",
+        "european_badger",
+        "black_grouse",
+        "ring_necked_pheasant"
+      ]
+    }
+  ],
+  "animals": {
+    "red_deer": {
+      "name_de": "Rothirsch",
+      "name_en": "Red Deer",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Leicht - Legendär",
+      "max_level": 9,
+      "max_score": 276.9,
+      "diamond": 251.07,
+      "gold": 182.25,
+      "silver": 90.5,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "hellbraun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)",
+        "erythristisch (selten)"
+      ],
+      "lures": [
+        "Rothirsch-Lockpfeife (Caller)",
+        "Rothirschduft (Duft)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "cuatro": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "te_awaroa": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "parque": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "emerald": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "scotland": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "roe_deer": {
+      "name_de": "Reh",
+      "name_en": "Roe Deer",
+      "icon": "🦌",
+      "class": 3,
+      "difficulty": "Extrem leicht",
+      "max_level": 3,
+      "max_score": 95,
+      "diamond": 81.8,
+      "gold": 64.3,
+      "silver": 41,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "dunkelgrau",
+        "hellbraun",
+        "orange"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)"
+      ],
+      "lures": [
+        "Rehwild-Lockpfeife (Caller)",
+        "Rehduft (Duft)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 14,
+              "end": 17
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "cuatro": {
+          "drink": [
+            {
+              "start": 14,
+              "end": 17
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "scotland": {
+          "drink": [
+            {
+              "start": 14,
+              "end": 17
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 11
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            }
+          ]
+        }
+      }
+    },
+    "fallow_deer": {
+      "name_de": "Damhirsch",
+      "name_en": "Fallow Deer",
+      "icon": "🦌",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 275,
+      "diamond": 251.72,
+      "gold": 172.98,
+      "silver": 67.98,
+      "fur_common": [
+        "gefleckt",
+        "braun",
+        "dunkelbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)"
+      ],
+      "lures": [
+        "Damhirsch-Lockpfeife (Caller)",
+        "Damhirschduft (Duft)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 10,
+              "end": 13
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "te_awaroa": {
+          "drink": [
+            {
+              "start": 10,
+              "end": 13
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "emerald": {
+          "drink": [
+            {
+              "start": 10,
+              "end": 13
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "scotland": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "feed": [
+            {
+              "start": 14,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "wild_boar": {
+      "name_de": "Wildschwein",
+      "name_en": "Wild Boar",
+      "icon": "🐗",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 162,
+      "diamond": 144.25,
+      "gold": 98.5,
+      "silver": 37.5,
+      "fur_common": [
+        "dunkelbraun",
+        "braun",
+        "schwarz"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Wildschwein-Lockpfeife (Caller)",
+        "Wildschweinduft (Duft)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 17,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        },
+        "medved": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 17,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        },
+        "cuatro": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 17,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        },
+        "parque": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 17,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        },
+        "emerald": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 0
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            }
+          ],
+          "rest": [
+            {
+              "start": 4,
+              "end": 20
+            }
+          ]
+        },
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 19,
+              "end": 23
+            }
+          ],
+          "feed": [
+            {
+              "start": 23,
+              "end": 3
+            }
+          ],
+          "rest": [
+            {
+              "start": 3,
+              "end": 19
+            }
+          ]
+        },
+        "scotland": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            }
+          ],
+          "rest": [
+            {
+              "start": 9,
+              "end": 12
+            }
+          ]
+        }
+      }
+    },
+    "european_rabbit": {
+      "name_de": "Wildkaninchen",
+      "name_en": "European Rabbit",
+      "icon": "🐇",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 3,
+      "diamond": 2.42,
+      "gold": 1.92,
+      "silver": 1.24,
+      "fur_common": [
+        "braun",
+        "grau",
+        "dunkelbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 22
+            }
+          ],
+          "feed": [
+            {
+              "start": 5,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 22,
+              "end": 24
+            },
+            {
+              "start": 0,
+              "end": 5
+            }
+          ]
+        },
+        "cuatro": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ]
+        }
+      }
+    },
+    "red_fox": {
+      "name_de": "Rotfuchs",
+      "name_en": "Red Fox",
+      "icon": "🦊",
+      "class": 2,
+      "difficulty": "Trivial",
+      "max_level": 3,
+      "max_score": 14.2,
+      "diamond": 14.1,
+      "gold": 10,
+      "silver": 4.7,
+      "fur_common": [
+        "rot",
+        "dunkelrot",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Fuchslockpfeife (Caller)",
+        "Fuchsduft (Duft)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 17
+            }
+          ]
+        },
+        "yukon": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 17
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 17
+            }
+          ]
+        },
+        "emerald": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 17
+            }
+          ]
+        },
+        "salzwiesen": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 17
+            }
+          ]
+        },
+        "scotland": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 1,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 19,
+              "end": 22
+            }
+          ],
+          "rest": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 14,
+              "end": 19
+            }
+          ]
+        }
+      }
+    },
+    "ring_necked_pheasant": {
+      "name_de": "Fasan",
+      "name_en": "Ring-necked Pheasant",
+      "icon": "🐦",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 2,
+      "diamond": 20.3,
+      "gold": 15.5,
+      "silver": 9.1,
+      "fur_common": [
+        "klassisch",
+        "melanistisch"
+      ],
+      "fur_rare": [
+        "leuzistisch (sehr selten)",
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [
+        "Fasanlockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "rancho": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "cuatro": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "salzwiesen": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "scotland": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "canada_goose": {
+      "name_de": "Kanadagans",
+      "name_en": "Canada Goose",
+      "icon": "🦆",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 13,
+      "diamond": 8.59,
+      "gold": 6.8,
+      "silver": 4.4,
+      "fur_common": [
+        "klassisch"
+      ],
+      "fur_rare": [
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [
+        "Gänseruf (Caller)",
+        "Gänselockvögel (Decoys)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 10,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 16,
+              "end": 19
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 6
+            },
+            {
+              "start": 19,
+              "end": 24
+            }
+          ]
+        },
+        "yukon": {
+          "drink": [
+            {
+              "start": 5,
+              "end": 9
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 9,
+              "end": 17
+            }
+          ],
+          "rest": [
+            {
+              "start": 21,
+              "end": 5
+            }
+          ]
+        }
+      }
+    },
+    "european_bison": {
+      "name_de": "Wisent",
+      "name_en": "European Bison",
+      "icon": "🦬",
+      "class": 9,
+      "difficulty": "Schwer - Legendär",
+      "max_level": 9,
+      "max_score": 348,
+      "diamond": 270.4,
+      "gold": 181.6,
+      "silver": 63.2,
+      "fur_common": [
+        "dunkelbraun",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Wisentduft (Duft)"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 10,
+              "end": 14
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 14,
+              "end": 17
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "whitetail": {
+      "name_de": "Weißwedelhirsch",
+      "name_en": "White-tailed Deer",
+      "icon": "🦌",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 283,
+      "diamond": 255.09,
+      "gold": 193.39,
+      "silver": 112.05,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "hellbraun",
+        "tan"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)"
+      ],
+      "lures": [
+        "Weißwedelhirsch-Lockpfeife (Caller)",
+        "Weißwedelhirschduft (Duft)"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "rancho": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 11
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "mississippi": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 11
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "revontuli": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "blacktail": {
+      "name_de": "Schwarzwedelhirsch",
+      "name_en": "Blacktail Deer",
+      "icon": "🦌",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 180,
+      "diamond": 177.58,
+      "gold": 134.44,
+      "silver": 76.92,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)"
+      ],
+      "lures": [
+        "Schwarzwedelhirsch-Lockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "roosevelt_elk": {
+      "name_de": "Roosevelt-Wapiti",
+      "name_en": "Roosevelt Elk",
+      "icon": "🫎",
+      "class": 8,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 450,
+      "diamond": 380.84,
+      "gold": 272.78,
+      "silver": 128.7,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "hellbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Wapiti-Lockpfeife (Caller)",
+        "Wapiti-Duft (Duft)"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 8.5
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            },
+            {
+              "start": 0,
+              "end": 4
+            }
+          ]
+        }
+      }
+    },
+    "moose": {
+      "name_de": "Elch",
+      "name_en": "Moose",
+      "icon": "🫎",
+      "class": 8,
+      "difficulty": "Mittel - Legendär",
+      "max_level": 9,
+      "max_score": 310,
+      "diamond": 274.99,
+      "gold": 194.09,
+      "silver": 86.22,
+      "fur_common": [
+        "dunkelbraun",
+        "braun",
+        "hellbraun",
+        "tan"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)",
+        "akromelanistisch (selten)"
+      ],
+      "lures": [
+        "Elch-Lockpfeife (Caller)",
+        "Elchduft (Duft)"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "medved": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "yukon": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "revontuli": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "askiy": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 8,
+              "end": 12
+            }
+          ]
+        }
+      }
+    },
+    "black_bear": {
+      "name_de": "Schwarzbär",
+      "name_en": "Black Bear",
+      "icon": "🐻",
+      "class": 7,
+      "difficulty": "Mittel - Legendär",
+      "max_level": 9,
+      "max_score": 28,
+      "diamond": 22.8,
+      "gold": 19.2,
+      "silver": 14.4,
+      "fur_common": [
+        "schwarz",
+        "braun",
+        "dunkel",
+        "dusky"
+      ],
+      "fur_rare": [
+        "zimtfarben (selten)",
+        "blond (selten)",
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [
+        "Bärenruf (Caller)",
+        "Bärenköder"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        },
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        },
+        "mississippi": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        },
+        "askiy": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        }
+      }
+    },
+    "coyote": {
+      "name_de": "Kojote",
+      "name_en": "Coyote",
+      "icon": "🐺",
+      "class": 2,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 28,
+      "diamond": 56.87,
+      "gold": 48.94,
+      "silver": 38.36,
+      "fur_common": [
+        "graubraun",
+        "braun",
+        "hellbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Kojotenlockpfeife (Caller)",
+        "Fleischköder"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 4
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 17,
+              "end": 20
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        },
+        "rancho": {
+          "drink": [
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 11
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 17,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 11
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 17
+            }
+          ]
+        }
+      }
+    },
+    "jackrabbit": {
+      "name_de": "Eselhase",
+      "name_en": "Jackrabbit",
+      "icon": "🐇",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 1.7,
+      "diamond": 6.33,
+      "gold": 4.85,
+      "silver": 2.88,
+      "fur_common": [
+        "grau",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "layton": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ]
+        }
+      }
+    },
+    "mallard": {
+      "name_de": "Stockente",
+      "name_en": "Mallard",
+      "icon": "🦆",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 1.8,
+      "diamond": 19.61,
+      "gold": 15.48,
+      "silver": 9.96,
+      "fur_common": [
+        "klassisch männlich",
+        "klassisch weiblich"
+      ],
+      "fur_rare": [
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [
+        "Entenlockpfeife (Caller)",
+        "Entenlockvögel (Decoys)"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 5,
+              "end": 7
+            },
+            {
+              "start": 9,
+              "end": 11
+            },
+            {
+              "start": 13,
+              "end": 15
+            },
+            {
+              "start": 17,
+              "end": 19
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 5
+            },
+            {
+              "start": 7,
+              "end": 9
+            },
+            {
+              "start": 11,
+              "end": 13
+            },
+            {
+              "start": 15,
+              "end": 17
+            },
+            {
+              "start": 19,
+              "end": 24
+            }
+          ]
+        },
+        "new_england": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 6
+            },
+            {
+              "start": 10,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "turkey": {
+      "name_de": "Truthahn",
+      "name_en": "Wild Turkey",
+      "icon": "🦃",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 3,
+      "max_score": 13,
+      "diamond": 4.62,
+      "gold": 4.08,
+      "silver": 3.36,
+      "fur_common": [
+        "klassisch"
+      ],
+      "fur_rare": [
+        "leuzistisch (sehr selten)",
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [
+        "Truthahnlockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "layton": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "silver_ridge": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "te_awaroa": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 17
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "brown_bear": {
+      "name_de": "Braunbär",
+      "name_en": "Brown Bear",
+      "icon": "🐻",
+      "class": 7,
+      "difficulty": "Mittel - Legendär",
+      "max_level": 9,
+      "max_score": 32,
+      "diamond": 27.7,
+      "gold": 23.8,
+      "silver": 18.6,
+      "fur_common": [
+        "hellbraun",
+        "rotbraun"
+      ],
+      "fur_rare": [
+        "blond (selten)",
+        "zimtfarben (selten)",
+        "dunkelbraun (selten)",
+        "gold (selten)",
+        "grau (selten)",
+        "spirit (selten)",
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Braunbär-Lockpfeife (Caller)",
+        "Bärenköder"
+      ],
+      "need_zones": {
+        "medved": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        },
+        "revontuli": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        }
+      }
+    },
+    "reindeer": {
+      "name_de": "Rentier",
+      "name_en": "Reindeer",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Leicht - Mittel",
+      "max_level": 5,
+      "max_score": 440,
+      "diamond": 430.23,
+      "gold": 311.21,
+      "silver": 152.53,
+      "fur_common": [
+        "graubraun",
+        "braun",
+        "hellbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Rentier-Lockpfeife (Caller)",
+        "Rentierduft (Duft)"
+      ],
+      "need_zones": {
+        "medved": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 12.5
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "gray_wolf": {
+      "name_de": "Grauwolf",
+      "name_en": "Gray Wolf",
+      "icon": "🐺",
+      "class": 5,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 35,
+      "diamond": 39,
+      "gold": 36,
+      "silver": 32,
+      "fur_common": [
+        "grau",
+        "dunkelgrau",
+        "hellgrau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Wolfslockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "medved": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [],
+          "rest": []
+        },
+        "yukon": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ]
+        },
+        "revontuli": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 22
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 22,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 4,
+              "end": 18
+            }
+          ]
+        },
+        "askiy": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            }
+          ]
+        }
+      }
+    },
+    "eurasian_lynx": {
+      "name_de": "Eurasischer Luchs",
+      "name_en": "Eurasian Lynx",
+      "icon": "🐱",
+      "class": 3,
+      "difficulty": "Leicht - Mittel",
+      "max_level": 5,
+      "max_score": 30,
+      "diamond": 27.68,
+      "gold": 23.78,
+      "silver": 18.58,
+      "fur_common": [
+        "grau",
+        "braun",
+        "tan"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Luchslockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "medved": {
+          "drink": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        },
+        "revontuli": {
+          "drink": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        }
+      }
+    },
+    "musk_deer": {
+      "name_de": "Moschushirsch",
+      "name_en": "Musk Deer",
+      "icon": "🦌",
+      "class": 2,
+      "difficulty": "Leicht",
+      "max_level": 3,
+      "max_score": 4,
+      "diamond": 249,
+      "gold": 168,
+      "silver": 60,
+      "fur_common": [
+        "braun",
+        "dunkelbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "medved": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "western_capercaillie": {
+      "name_de": "Auerhuhn",
+      "name_en": "Western Capercaillie",
+      "icon": "🐦",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 3,
+      "max_score": 7,
+      "diamond": 4.64,
+      "gold": 3.6,
+      "silver": 2.2,
+      "fur_common": [
+        "klassisch männlich",
+        "klassisch weiblich"
+      ],
+      "fur_rare": [
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "medved": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "revontuli": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "lion": {
+      "name_de": "Löwe",
+      "name_en": "Lion",
+      "icon": "🦁",
+      "class": 9,
+      "difficulty": "Schwer - Legendär",
+      "max_level": 9,
+      "max_score": 58,
+      "diamond": 48.5,
+      "gold": 44,
+      "silver": 38,
+      "fur_common": [
+        "braun",
+        "hellbraun",
+        "dunkelbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Löwenlockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 15
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "cape_buffalo": {
+      "name_de": "Kaffernbüffel",
+      "name_en": "Cape Buffalo",
+      "icon": "🐃",
+      "class": 8,
+      "difficulty": "Schwer - Legendär",
+      "max_level": 9,
+      "max_score": 182,
+      "diamond": 151.35,
+      "gold": 117.9,
+      "silver": 73.3,
+      "fur_common": [
+        "schwarz",
+        "dunkelbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [
+        "Büffelduft (Duft)"
+      ],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [
+            {
+              "start": 9,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "blue_wildebeest": {
+      "name_de": "Streifengnu",
+      "name_en": "Blue Wildebeest",
+      "icon": "🦬",
+      "class": 4,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 34,
+      "diamond": 37.69,
+      "gold": 30.8,
+      "silver": 21.6,
+      "fur_common": [
+        "grau",
+        "dunkelgrau",
+        "blaugrau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [
+            {
+              "start": 6,
+              "end": 9
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "gemsbok": {
+      "name_de": "Oryx",
+      "name_en": "Gemsbok",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 44,
+      "diamond": 337.59,
+      "gold": 276.4,
+      "silver": 194.8,
+      "fur_common": [
+        "klassisch",
+        "hellbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [
+        "Oryxduft (Duft)"
+      ],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        }
+      }
+    },
+    "springbok": {
+      "name_de": "Springbock",
+      "name_en": "Springbok",
+      "icon": "🦌",
+      "class": 3,
+      "difficulty": "Leicht",
+      "max_level": 3,
+      "max_score": 51,
+      "diamond": 110.7,
+      "gold": 93,
+      "silver": 69.4,
+      "fur_common": [
+        "klassisch",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 8,
+              "end": 11
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ]
+        }
+      }
+    },
+    "lesser_kudu": {
+      "name_de": "Kleiner Kudu",
+      "name_en": "Lesser Kudu",
+      "icon": "🦌",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 33,
+      "diamond": 151.64,
+      "gold": 132.86,
+      "silver": 107.83,
+      "fur_common": [
+        "klassisch",
+        "braun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 7
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ]
+        }
+      }
+    },
+    "warthog": {
+      "name_de": "Warzenschwein",
+      "name_en": "Warthog",
+      "icon": "🐗",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 38,
+      "diamond": 58.19,
+      "gold": 43.8,
+      "silver": 24.6,
+      "fur_common": [
+        "grau",
+        "dunkelgrau",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "side_striped_jackal": {
+      "name_de": "Streifenschakal",
+      "name_en": "Side-striped Jackal",
+      "icon": "🐺",
+      "class": 2,
+      "difficulty": "Trivial",
+      "max_level": 3,
+      "max_score": 16,
+      "diamond": 29.1,
+      "gold": 23.8,
+      "silver": 16.75,
+      "fur_common": [
+        "grau",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ]
+        }
+      }
+    },
+    "scrub_hare": {
+      "name_de": "Buschhase",
+      "name_en": "Scrub Hare",
+      "icon": "🐇",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 8,
+      "diamond": 5.37,
+      "gold": 4.08,
+      "silver": 2.36,
+      "fur_common": [
+        "braun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "vurhonga": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ]
+        }
+      }
+    },
+    "grizzly_bear": {
+      "name_de": "Grizzlybär",
+      "name_en": "Grizzly Bear",
+      "icon": "🐻",
+      "class": 7,
+      "difficulty": "Mittel - Legendär",
+      "max_level": 9,
+      "max_score": 32,
+      "diamond": 66.94,
+      "gold": 60.8,
+      "silver": 52.6,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "hellbraun"
+      ],
+      "fur_rare": [
+        "blond (selten)",
+        "silber (selten)",
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Bärenruf (Caller)",
+        "Bärenköder"
+      ],
+      "need_zones": {
+        "yukon": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "rest": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ]
+        }
+      }
+    },
+    "plains_bison": {
+      "name_de": "Präriebison",
+      "name_en": "Plains Bison",
+      "icon": "🦬",
+      "class": 9,
+      "difficulty": "Schwer - Legendär",
+      "max_level": 9,
+      "max_score": 310,
+      "diamond": 221.15,
+      "gold": 148.1,
+      "silver": 50.7,
+      "fur_common": [
+        "dunkelbraun",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Bisonduft (Duft)"
+      ],
+      "need_zones": {
+        "yukon": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "caribou": {
+      "name_de": "Karibu",
+      "name_en": "Caribou",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 600,
+      "diamond": 420.23,
+      "gold": 311.21,
+      "silver": 152.53,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Karibu-Lockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "yukon": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "mule_deer": {
+      "name_de": "Maultierhirsch",
+      "name_en": "Mule Deer",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 340,
+      "diamond": 312.17,
+      "gold": 220.54,
+      "silver": 98.36,
+      "fur_common": [
+        "braun",
+        "grau",
+        "tan"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)",
+        "gescheckt (selten)"
+      ],
+      "lures": [
+        "Maultierhirsch-Lockpfeife (Caller)",
+        "Maultierhirschduft (Duft)"
+      ],
+      "need_zones": {
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        },
+        "rancho": {
+          "drink": [
+            {
+              "start": 14,
+              "end": 17
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 7,
+              "end": 11
+            },
+            {
+              "start": 11,
+              "end": 14
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ]
+        },
+        "parque": {
+          "drink": [
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        },
+        "askiy": {
+          "drink": [
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        }
+      }
+    },
+    "rocky_mountain_elk": {
+      "name_de": "Rocky Mountain Wapiti",
+      "name_en": "Rocky Mountain Elk",
+      "icon": "🫎",
+      "class": 8,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 500,
+      "diamond": 481.41,
+      "gold": 351.32,
+      "silver": 177.83,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "hellbraun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Wapiti-Lockpfeife (Caller)",
+        "Wapiti-Duft (Duft)"
+      ],
+      "need_zones": {
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            },
+            {
+              "start": 0,
+              "end": 4
+            }
+          ]
+        }
+      }
+    },
+    "mountain_lion": {
+      "name_de": "Puma",
+      "name_en": "Mountain Lion",
+      "icon": "🐱",
+      "class": 5,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 240,
+      "diamond": 39,
+      "gold": 36,
+      "silver": 32,
+      "fur_common": [
+        "tan",
+        "braun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Pumalockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 0,
+              "end": 3
+            }
+          ],
+          "feed": [
+            {
+              "start": 21,
+              "end": 24
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        }
+      }
+    },
+    "mountain_goat": {
+      "name_de": "Schneeziege",
+      "name_en": "Mountain Goat",
+      "icon": "🐐",
+      "class": 4,
+      "difficulty": "Leicht - Mittel",
+      "max_level": 5,
+      "max_score": 12.5,
+      "diamond": 107.34,
+      "gold": 84.12,
+      "silver": 52.72,
+      "fur_common": [
+        "weiß",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "silver_ridge": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "askiy": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 10,
+              "end": 13
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 13,
+              "end": 17
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "bighorn_sheep": {
+      "name_de": "Dickhornschaf",
+      "name_en": "Bighorn Sheep",
+      "icon": "🐑",
+      "class": 4,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 210,
+      "diamond": 164.63,
+      "gold": 132.78,
+      "silver": 90.31,
+      "fur_common": [
+        "braun",
+        "grau",
+        "tan"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        },
+        "rancho": {
+          "drink": [
+            {
+              "start": 11,
+              "end": 14
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 11
+            },
+            {
+              "start": 14,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "askiy": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "pronghorn": {
+      "name_de": "Gabelbock",
+      "name_en": "Pronghorn",
+      "icon": "🦌",
+      "class": 4,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 110,
+      "diamond": 98.02,
+      "gold": 75.77,
+      "silver": 46.09,
+      "fur_common": [
+        "tan",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Gabelbock-Lockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "silver_ridge": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 21,
+              "end": 24
+            },
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            }
+          ]
+        },
+        "rancho": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 21,
+              "end": 24
+            },
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            }
+          ]
+        }
+      }
+    },
+    "puma": {
+      "name_de": "Puma",
+      "name_en": "Puma",
+      "icon": "🐱",
+      "class": 5,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 240,
+      "diamond": 39,
+      "gold": 36,
+      "silver": 32,
+      "fur_common": [
+        "tan",
+        "braun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Pumalockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "parque": {
+          "drink": [
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        }
+      }
+    },
+    "water_buffalo": {
+      "name_de": "Wasserbüffel",
+      "name_en": "Water Buffalo",
+      "icon": "🐃",
+      "class": 9,
+      "difficulty": "Schwer - Legendär",
+      "max_level": 9,
+      "max_score": 182,
+      "diamond": 167.54,
+      "gold": 131.85,
+      "silver": 84.27,
+      "fur_common": [
+        "schwarz",
+        "dunkelgrau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "parque": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 15
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "emerald": {
+          "drink": [
+            {
+              "start": 5,
+              "end": 9
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ],
+          "feed": [
+            {
+              "start": 9,
+              "end": 14
+            }
+          ],
+          "rest": [
+            {
+              "start": 18,
+              "end": 5
+            }
+          ]
+        },
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 12,
+              "end": 15
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 18,
+              "end": 21
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "axis_deer": {
+      "name_de": "Axishirsch",
+      "name_en": "Axis Deer",
+      "icon": "🦌",
+      "class": 3,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 101,
+      "diamond": 217.29,
+      "gold": 155.38,
+      "silver": 72.83,
+      "fur_common": [
+        "gefleckt",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Axishirsch-Lockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "parque": {
+          "drink": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 15,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        },
+        "emerald": {
+          "drink": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 15,
+              "end": 18
+            },
+            {
+              "start": 18,
+              "end": 21
+            }
+          ]
+        },
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ],
+          "rest": [
+            {
+              "start": 20,
+              "end": 8
+            }
+          ]
+        }
+      }
+    },
+    "blackbuck": {
+      "name_de": "Hirschziegenantilope",
+      "name_en": "Blackbuck",
+      "icon": "🦌",
+      "class": 3,
+      "difficulty": "Leicht",
+      "max_level": 5,
+      "max_score": 32,
+      "diamond": 132.26,
+      "gold": 106.35,
+      "silver": 71.8,
+      "fur_common": [
+        "klassisch männlich",
+        "klassisch weiblich"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "parque": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        },
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 18,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 9,
+              "end": 12
+            },
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 12,
+              "end": 15
+            },
+            {
+              "start": 21,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "cinnamon_teal": {
+      "name_de": "Zimtente",
+      "name_en": "Cinnamon Teal",
+      "icon": "🦆",
+      "class": 1,
+      "difficulty": "Trivial",
+      "max_level": 1,
+      "max_score": 0.8,
+      "diamond": 4.62,
+      "gold": 4.08,
+      "silver": 3.36,
+      "fur_common": [
+        "klassisch männlich",
+        "klassisch weiblich"
+      ],
+      "fur_rare": [
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [
+        "Entenlockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "parque": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 5,
+              "end": 9
+            },
+            {
+              "start": 15,
+              "end": 19
+            }
+          ],
+          "rest": [
+            {
+              "start": 9,
+              "end": 15
+            },
+            {
+              "start": 19,
+              "end": 5
+            }
+          ]
+        }
+      }
+    },
+    "bengal_tiger": {
+      "name_de": "Bengalischer Tiger",
+      "name_en": "Bengal Tiger",
+      "icon": "🐅",
+      "class": 9,
+      "difficulty": "Schwer - Legendär",
+      "max_level": 9,
+      "max_score": 330,
+      "diamond": 57,
+      "gold": 48,
+      "silver": 36,
+      "fur_common": [
+        "orange gestreift"
+      ],
+      "fur_rare": [
+        "weiß (selten)",
+        "melanistisch (sehr selten)",
+        "albinistisch (sehr selten)"
+      ],
+      "lures": [
+        "Tigerlockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 7
+            }
+          ],
+          "feed": [
+            {
+              "start": 7,
+              "end": 10
+            }
+          ],
+          "rest": [
+            {
+              "start": 10,
+              "end": 14
+            }
+          ]
+        }
+      }
+    },
+    "himalayan_tahr": {
+      "name_de": "Himalaya-Tahr",
+      "name_en": "Himalayan Tahr",
+      "icon": "🐐",
+      "class": 4,
+      "difficulty": "Leicht - Mittel",
+      "max_level": 5,
+      "max_score": 54,
+      "diamond": 101.87,
+      "gold": 84.46,
+      "silver": 61.23,
+      "fur_common": [
+        "braun",
+        "dunkelbraun"
+      ],
+      "fur_rare": [
+        "blond (selten)",
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "sundarpatan": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 11
+            }
+          ],
+          "rest": [
+            {
+              "start": 11,
+              "end": 14
+            }
+          ]
+        }
+      }
+    },
+    "sambar_deer": {
+      "name_de": "Sambarhirsch",
+      "name_en": "Sambar Deer",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 130,
+      "diamond": 166.43,
+      "gold": 124.21,
+      "silver": 67.92,
+      "fur_common": [
+        "braun",
+        "dunkelbraun",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [
+        "Sambarhirsch-Lockpfeife (Caller)"
+      ],
+      "need_zones": {
+        "emerald": {
+          "drink": [
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "feed": [
+            {
+              "start": 0,
+              "end": 3
+            },
+            {
+              "start": 6,
+              "end": 9
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "rest": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 9,
+              "end": 13
+            },
+            {
+              "start": 13,
+              "end": 17
+            }
+          ]
+        },
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 7,
+              "end": 11
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 11,
+              "end": 17
+            }
+          ],
+          "rest": [
+            {
+              "start": 21,
+              "end": 7
+            }
+          ]
+        }
+      }
+    },
+    "nilgai": {
+      "name_de": "Nilgauantilope",
+      "name_en": "Nilgai",
+      "icon": "🦌",
+      "class": 6,
+      "difficulty": "Mittel",
+      "max_level": 9,
+      "max_score": 390,
+      "diamond": 94.89,
+      "gold": 83.87,
+      "silver": 69.17,
+      "fur_common": [
+        "grau",
+        "blaugrau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "leuzistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 12,
+              "end": 16
+            }
+          ]
+        }
+      }
+    },
+    "blue_sheep": {
+      "name_de": "Blauschaf",
+      "name_en": "Blue Sheep",
+      "icon": "🐑",
+      "class": 4,
+      "difficulty": "Leicht - Mittel",
+      "max_level": 5,
+      "max_score": 75,
+      "diamond": 154.08,
+      "gold": 116.92,
+      "silver": 67.37,
+      "fur_common": [
+        "blaugrau",
+        "grau"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 14,
+              "end": 17
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 11
+            }
+          ],
+          "rest": [
+            {
+              "start": 11,
+              "end": 14
+            }
+          ]
+        }
+      }
+    },
+    "indian_muntjac": {
+      "name_de": "Indischer Muntjak",
+      "name_en": "Indian Muntjac",
+      "icon": "🦌",
+      "class": 2,
+      "difficulty": "Trivial",
+      "max_level": 3,
+      "max_score": 4,
+      "diamond": 35.24,
+      "gold": 30.96,
+      "silver": 25.25,
+      "fur_common": [
+        "rotbraun",
+        "braun"
+      ],
+      "fur_rare": [
+        "albinistisch (sehr selten)",
+        "melanistisch (sehr selten)"
+      ],
+      "lures": [],
+      "need_zones": {
+        "emerald": {
+          "drink": [
+            {
+              "start": 5,
+              "end": 9
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 9,
+              "end": 17
+            }
+          ],
+          "rest": [
+            {
+              "start": 21,
+              "end": 5
+            }
+          ]
+        },
+        "sundarpatan": {
+          "drink": [
+            {
+              "start": 15,
+              "end": 18
+            }
+          ],
+          "feed": [
+            {
+              "start": 3,
+              "end": 6
+            },
+            {
+              "start": 6,
+              "end": 9
+            }
+          ],
+          "rest": [
+            {
+              "start": 12,
+              "end": 15
+            }
+          ]
+        }
+      }
+    },
+    "european_hare": {
+      "name_de": "Feldhase",
+      "name_en": "European Hare",
+      "icon": "🐰",
+      "class": 1,
+      "silver": 3,
+      "gold": 5,
+      "diamond": 6.5,
+      "need_zones": {}
+    },
+    "willow_ptarmigan": {
+      "name_de": "Moorschneehuhn",
+      "name_en": "Willow Ptarmigan",
+      "icon": "🐦",
+      "class": 1,
+      "silver": 506,
+      "gold": 658,
+      "diamond": 772,
+      "need_zones": {}
+    },
+    "stubble_quail": {
+      "name_de": "Schwarzbrustwachtel",
+      "name_en": "Stubble Quail",
+      "icon": "🐦",
+      "class": 1,
+      "silver": 154,
+      "gold": 202,
+      "diamond": 238,
+      "need_zones": {}
+    },
+    "woolly_hare": {
+      "name_de": "Tibetanischer Wollhase",
+      "name_en": "Woolly Hare",
+      "icon": "🐰",
+      "class": 1,
+      "silver": 1.74,
+      "gold": 2.62,
+      "diamond": 3.28,
+      "need_zones": {}
+    },
+    "barasingha": {
+      "name_de": "Barasingha",
+      "name_en": "Barasingha",
+      "icon": "🦌",
+      "class": 6,
+      "silver": 95.88,
+      "gold": 170.26,
+      "diamond": 226.05,
+      "need_zones": {}
+    },
+    "snow_leopard": {
+      "name_de": "Schneeleopard",
+      "name_en": "Snow Leopard",
+      "icon": "🐆",
+      "class": 4,
+      "silver": 22,
+      "gold": 26,
+      "diamond": 29,
+      "need_zones": {}
+    },
+    "tibetan_fox": {
+      "name_de": "Tibetfuchs",
+      "name_en": "Tibetan Fox",
+      "icon": "🦊",
+      "class": 2,
+      "silver": 3.36,
+      "gold": 5.08,
+      "diamond": 6.36,
+      "need_zones": {}
+    },
+    "wild_yak": {
+      "name_de": "Wildyak",
+      "name_en": "Wild Yak",
+      "icon": "🦬",
+      "class": 9,
+      "silver": 174.6,
+      "gold": 230.96,
+      "diamond": 273.23,
+      "need_zones": {}
+    },
+    "saltwater_crocodile": {
+      "name_de": "Salzwasserkrokodil",
+      "name_en": "Saltwater Crocodile",
+      "icon": "🐊",
+      "class": 7,
+      "silver": 420,
+      "gold": 760,
+      "diamond": 1015,
+      "need_zones": {}
+    },
+    "collared_peccary": {
+      "name_de": "Halsbandpekari",
+      "name_en": "Collared Peccary",
+      "icon": "🐗",
+      "class": 4,
+      "silver": 37.5,
+      "gold": 98.5,
+      "diamond": 144.25,
+      "need_zones": {}
+    },
+    "greylag_goose": {
+      "name_de": "Graugans",
+      "name_en": "Greylag Goose",
+      "icon": "🦆",
+      "class": 1,
+      "silver": 2.8,
+      "gold": 3.4,
+      "diamond": 3.85,
+      "need_zones": {}
+    },
+    "tundra_bean_goose": {
+      "name_de": "Tundrasaatgans",
+      "name_en": "Tundra Bean Goose",
+      "icon": "🦆",
+      "class": 1,
+      "silver": 2.18,
+      "gold": 2.74,
+      "diamond": 3.16,
+      "need_zones": {}
+    },
+    "goldeneye": {
+      "name_de": "Schellente",
+      "name_en": "Common Goldeneye",
+      "icon": "🦆",
+      "class": 1,
+      "silver": 740,
+      "gold": 1020,
+      "diamond": 1230,
+      "need_zones": {}
+    },
+    "eurasian_teal": {
+      "name_de": "Eurasische Krickente",
+      "name_en": "Eurasian Teal",
+      "icon": "🦆",
+      "class": 1,
+      "silver": 312,
+      "gold": 336,
+      "diamond": 354,
+      "need_zones": {}
+    },
+    "beaver": {
+      "name_de": "Biber",
+      "name_en": "North American Beaver",
+      "icon": "🦫",
+      "class": 2,
+      "silver": 10,
+      "gold": 15,
+      "diamond": 20,
+      "need_zones": {}
+    },
+    "manitoban_elk": {
+      "name_de": "Manitoba-Wapiti",
+      "name_en": "Manitoban Elk",
+      "icon": "🦌",
+      "class": 8,
+      "silver": 177.83,
+      "gold": 351.32,
+      "diamond": 481.41,
+      "need_zones": {
+        "askiy": {
+          "drink": [
+            {
+              "start": 4,
+              "end": 8
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "wood_bison": {
+      "name_de": "Waldbison",
+      "name_en": "Wood Bison",
+      "icon": "🦬",
+      "class": 9,
+      "silver": 50.7,
+      "gold": 148.1,
+      "diamond": 221.15,
+      "need_zones": {
+        "askiy": {
+          "drink": [
+            {
+              "start": 8,
+              "end": 12
+            }
+          ],
+          "feed": [
+            {
+              "start": 4,
+              "end": 8
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            },
+            {
+              "start": 20,
+              "end": 24
+            }
+          ]
+        }
+      }
+    },
+    "woodland_caribou": {
+      "name_de": "Waldkaribu",
+      "name_en": "Woodland Caribou",
+      "icon": "🦌",
+      "class": 6,
+      "silver": 152.53,
+      "gold": 311.21,
+      "diamond": 420.23,
+      "need_zones": {
+        "askiy": {
+          "drink": [
+            {
+              "start": 20,
+              "end": 24
+            }
+          ],
+          "feed": [
+            {
+              "start": 8,
+              "end": 12
+            },
+            {
+              "start": 16,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 12,
+              "end": 16
+            }
+          ]
+        }
+      }
+    },
+    "european_badger": {
+      "name_de": "Europäischer Dachs",
+      "name_en": "European Badger",
+      "icon": "🦡",
+      "class": 2,
+      "silver": 8,
+      "gold": 12,
+      "diamond": 16,
+      "need_zones": {
+        "scotland": {
+          "drink": [],
+          "feed": [
+            {
+              "start": 6,
+              "end": 10
+            }
+          ],
+          "rest": [
+            {
+              "start": 10,
+              "end": 14
+            },
+            {
+              "start": 14,
+              "end": 18
+            }
+          ]
+        }
+      }
+    }
+  }
+}

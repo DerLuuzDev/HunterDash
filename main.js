@@ -9,6 +9,7 @@ const historyService = require('./services/history.service');
 const templateService = require('./services/template.service');
 const accountServiceFactory = require('./services/account.service');
 const GrindService = require('./services/grind.service');
+const referenceService = require('./services/reference.service');
 const { validatePoissonInput, validateSettings } = require('./utils/validator');
 
 let mainWindow;
@@ -970,6 +971,54 @@ function setupIpcHandlers() {
       return { success: true };
     } catch (error) {
       console.error('Window-Set-Minimize-To-Tray-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  // Reference Tab IPC Handlers
+  ipcMain.handle('reference:get-maps', async () => {
+    try {
+      return referenceService.getMaps();
+    } catch (error) {
+      console.error('Reference-GetMaps-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('reference:get-animals-for-map', async (event, mapId) => {
+    try {
+      return referenceService.getAnimalsForMap(mapId);
+    } catch (error) {
+      console.error('Reference-GetAnimalsForMap-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('reference:get-zones-for-animal', async (event, animalId) => {
+    try {
+      return referenceService.getZonesForAnimal(animalId);
+    } catch (error) {
+      console.error('Reference-GetZonesForAnimal-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('reference:get-active-animals', async (event, options) => {
+    try {
+      const { time, zoneType, mapId } = options || {};
+      return referenceService.getActiveAnimals(time, zoneType, mapId);
+    } catch (error) {
+      console.error('Reference-GetActiveAnimals-Fehler:', error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('reference:search-animals', async (event, options) => {
+    try {
+      const { query, language } = options || {};
+      return referenceService.searchAnimals(query, language);
+    } catch (error) {
+      console.error('Reference-SearchAnimals-Fehler:', error);
       return { success: false, error: error.message };
     }
   });

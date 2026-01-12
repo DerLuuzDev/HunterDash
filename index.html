@@ -1210,6 +1210,63 @@
             transform: scale(1.01);
         }
 
+        /* Modern Select/Dropdown Styling */
+        select,
+        select.form-input,
+        .form-select {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            background-color: var(--input-bg);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 14px center !important;
+            background-size: 10px !important;
+            padding-right: 40px;
+            padding: 12px 40px 12px 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        select:hover,
+        select.form-input:hover,
+        .form-select:hover {
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        select:focus,
+        select.form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        select option {
+            background: #fff;
+            color: #333;
+            padding: 10px 14px;
+        }
+
+        .dark-mode select option {
+            background: #2a2a2a;
+            color: #eee;
+        }
+
+        /* Dark mode arrow color */
+        .dark-mode select,
+        .dark-mode select.form-input,
+        .dark-mode .form-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23bbb' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 20px 12px;
@@ -1555,12 +1612,9 @@
         .preset-list {
             position: absolute;
             top: 100%;
-            right: 0;
-            /* Align to right edge of button */
-            left: auto;
-            /* Override left alignment */
+            left: 0;
+            right: auto;
             background: var(--surface);
-            /* Adaptive background */
             backdrop-filter: blur(16px);
             border: 1px solid var(--border-light);
             border-radius: 12px;
@@ -1569,10 +1623,31 @@
             display: none;
             flex-direction: column;
             gap: 4px;
-            z-index: 9999;
-            /* Critical Boost */
+            z-index: 99999;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            min-width: 220px;
+            min-width: 200px;
+            max-width: 100%;
+        }
+
+        /* Template modal specific - ensure dropdowns show above modal */
+        #templateModal .preset-list {
+            z-index: 999999;
+        }
+
+        /* Compact styling for template modal */
+        #templateModal .setting-item {
+            margin-bottom: 0;
+        }
+
+        #templateModal input.form-input,
+        #templateModal select.form-input {
+            padding: 10px 12px;
+            font-size: 0.95rem;
+        }
+
+        #templateModal .setting-label {
+            margin-bottom: 4px;
+            font-size: 0.9rem;
         }
 
         .preset-item {
@@ -1603,16 +1678,57 @@
         }
 
         .preset-item {
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            list-style: none;
+            pointer-events: auto;
         }
 
         .preset-item:hover {
             background: var(--primary);
             color: white;
+        }
+
+        /* Preset Trigger Button (for template modal dropdowns) */
+        .preset-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .preset-trigger:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .preset-trigger:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .preset-arrow {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            transition: transform 0.2s ease;
+        }
+
+        .preset-trigger.active .preset-arrow {
+            transform: rotate(180deg);
         }
 
         .input-valid {
@@ -1926,55 +2042,250 @@
 
         .template-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
             margin: 24px 0;
         }
 
-        .template-card {
-            background: var(--setting-item-bg);
+        .template-section {
+            margin-bottom: 32px;
+        }
+
+        .template-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .template-section-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .template-section-header .section-icon {
+            font-size: 1.4rem;
+        }
+
+        .template-section-header .section-count {
+            background: var(--primary);
+            color: white;
+            padding: 2px 10px;
             border-radius: 12px;
-            padding: 20px;
-            border: 2px solid var(--border-light);
-            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .template-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--lucky));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .template-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             border-color: var(--primary);
         }
 
+        .template-card:hover::before {
+            opacity: 1;
+        }
+
         .template-card.preset {
-            border-left: 4px solid var(--primary);
+            background: linear-gradient(135deg, rgba(26, 95, 42, 0.1) 0%, rgba(26, 95, 42, 0.05) 100%);
         }
 
         .template-card.custom {
-            border-left: 4px solid var(--lucky);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+        }
+
+        .template-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .template-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .template-name {
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
         }
 
         .template-description {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .template-values {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .template-value-item {
+            display: flex;
+            flex-direction: column;
+            padding: 6px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        .template-value-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+
+        .template-value-data {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        .template-badges {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
         }
 
         .template-badge {
-            display: inline-block;
-            padding: 4px 8px;
-            background: #6c757d;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .template-badge.standard {
+            background: linear-gradient(135deg, var(--primary), #2d8a47);
             color: white;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 500;
+        }
+
+        .template-badge.custom {
+            background: linear-gradient(135deg, var(--lucky), #d97706);
+            color: white;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .template-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .template-btn.primary {
+            background: linear-gradient(135deg, var(--primary), #2d8a47);
+            color: white;
+        }
+
+        .template-btn.primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(26, 95, 42, 0.4);
+        }
+
+        .template-btn.secondary {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .template-btn.secondary:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .template-btn.delete {
+            flex: 0;
+            padding: 10px;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .template-btn.delete:hover {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .template-empty {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-secondary);
+        }
+
+        .template-empty-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .template-empty-text {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .template-empty-hint {
+            font-size: 0.85rem;
+            opacity: 0.7;
         }
 
         /* Modern Account Compare UI */
@@ -2597,6 +2908,309 @@
         .grind-subtab-content.active {
             display: block;
             animation: fadeIn 0.3s ease;
+        }
+
+        /* ========================================
+           REFERENCE TAB - Need Zone Visualizer
+           ======================================== */
+        .reference-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-end;
+        }
+
+        .reference-control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .reference-control-group.search-group {
+            flex: 2;
+        }
+
+        .reference-control-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .reference-search-input {
+            padding: 10px 14px;
+            border: 2px solid var(--input-border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: var(--input-bg);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .reference-search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .time-scrubber-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .time-slider {
+            flex: 1;
+        }
+
+        .time-display {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .reference-legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            padding: 12px;
+            background: var(--tab-container-bg);
+            border-radius: 12px;
+        }
+
+        .reference-legend .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+        }
+
+        .legend-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .legend-dot.drink {
+            background: #2196F3;
+            box-shadow: 0 0 8px rgba(33, 150, 243, 0.5);
+        }
+
+        .legend-dot.feed {
+            background: #00BFA5;
+            box-shadow: 0 0 8px rgba(0, 191, 165, 0.5);
+        }
+
+        .legend-dot.rest {
+            background: #FDD835;
+            box-shadow: 0 0 8px rgba(253, 216, 53, 0.4);
+        }
+
+        .reference-timeline-container {
+            position: relative;
+            padding-top: 0 !important;
+        }
+
+        .timeline-header {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            z-index: 10;
+        }
+
+        .timeline-label-placeholder {
+            width: 140px;
+            flex-shrink: 0;
+        }
+
+        .timeline-hours {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding-right: 8px;
+        }
+
+        .timeline-current-indicator {
+            position: absolute;
+            top: 50px;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            z-index: 5;
+            cursor: ew-resize;
+            left: 180px;
+            transition: none;
+        }
+
+        .timeline-current-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -10px;
+            width: 23px;
+            cursor: ew-resize;
+        }
+
+        .timeline-current-indicator::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .reference-animal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .reference-empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .animal-row {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.2s ease;
+        }
+
+        .animal-row:hover {
+            background: var(--nav-hover-bg);
+        }
+
+        .animal-row.active-now {
+            background: rgba(59, 130, 246, 0.08);
+        }
+
+        .animal-label {
+            width: 160px;
+            min-width: 160px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        .animal-label span:last-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .animal-icon {
+            font-size: 1.2rem;
+        }
+
+        .timeline-bar {
+            flex: 1;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .timeline-bar {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .time-block {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            border-radius: 4px;
+            transition: opacity 0.2s ease;
+            cursor: pointer;
+        }
+
+        .time-block:hover {
+            filter: brightness(1.1);
+        }
+
+        .time-block.drink {
+            background: #2196F3;
+            z-index: 3;
+            opacity: 0.35;
+        }
+
+        .time-block.feed {
+            background: #00BFA5;
+            z-index: 2;
+            opacity: 0.35;
+        }
+
+        .time-block.rest {
+            background: #FDD835;
+            z-index: 1;
+            opacity: 0.25;
+        }
+
+        /* Highlight zones that current time indicator is over */
+        .time-block.active-zone {
+            opacity: 1 !important;
+            box-shadow: 0 0 8px currentColor;
+        }
+
+        .time-block.drink.active-zone {
+            box-shadow: 0 0 12px rgba(33, 150, 243, 0.6);
+        }
+
+        .time-block.feed.active-zone {
+            box-shadow: 0 0 12px rgba(0, 191, 165, 0.6);
+        }
+
+        .time-block.rest.active-zone {
+            box-shadow: 0 0 12px rgba(253, 216, 53, 0.5);
+        }
+
+        .time-block-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 100;
+        }
+
+        .time-block:hover .time-block-tooltip {
+            opacity: 1;
         }
 
         @keyframes fadeIn {
@@ -3396,6 +4010,103 @@
         </div>
     </div>
 
+    <!-- Template Creation Modal -->
+    <div class="settings-modal" id="templateModal">
+        <div class="settings-content" style="max-width: 600px;">
+            <div class="settings-header">
+                <h2 class="settings-title">📋 <span data-i18n="templateCreateTitle">Vorlage erstellen</span></h2>
+                <button class="settings-close" onclick="TemplateManager.closeModal()">✕</button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label class="setting-label" for="template-name">
+                        <span class="setting-icon">📝</span>
+                        <span data-i18n="templateNameLabel">Name</span>
+                    </label>
+                    <input type="text" id="template-name" class="form-input" placeholder="z.B. Mein Account" required>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="template-description">
+                        <span class="setting-icon">📄</span>
+                        <span data-i18n="templateDescLabel">Beschreibung (optional)</span>
+                    </label>
+                    <input type="text" id="template-description" class="form-input" placeholder="Kurze Beschreibung...">
+                </div>
+
+                <div class="settings-section" style="margin-top: 16px;">
+                    <div class="settings-section-header">
+                        <span class="settings-section-icon">📊</span>
+                        <span class="settings-section-title" data-i18n="templateValuesSection">Werte</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="setting-item">
+                            <label class="setting-label">Harvests (n)</label>
+                            <input type="number" id="tpl-n" class="form-input" value="15000" min="0">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Rares (k)</label>
+                            <input type="number" id="tpl-k_rare" class="form-input" value="45" min="0">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">p(Rare)</label>
+                            <select id="tpl-p_rare" class="form-input">
+                                <option value="0.003">Durchschnitt (1:333)</option>
+                                <option value="0.004">Glücklich (1:250)</option>
+                                <option value="0.002">Pech (1:500)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Diamonds (k)</label>
+                            <input type="number" id="tpl-k_diamond" class="form-input" value="150" min="0">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">p(Diamond)</label>
+                            <select id="tpl-p_diamond" class="form-input">
+                                <option value="0.01">Durchschnitt (1:100)</option>
+                                <option value="0.0125">Glücklich (1:80)</option>
+                                <option value="0.0067">Pech (1:150)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Super Rares (k)</label>
+                            <input type="number" id="tpl-k_super" class="form-input" value="1" min="0">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">p(Super)</label>
+                            <select id="tpl-p_super" class="form-input">
+                                <option value="0.00003">Durchschnitt (1:33.000)</option>
+                                <option value="0.00004">Glücklich (1:25.000)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Great Ones (k)</label>
+                            <input type="number" id="tpl-k_go" class="form-input" value="1" min="0">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">p(GO)</label>
+                            <select id="tpl-p_go" class="form-input">
+                                <option value="0.00005">Durchschnitt (1:20.000)</option>
+                                <option value="0.000066667">Glücklich (1:15.000)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons" style="margin-top: 24px; justify-content: flex-end;">
+            <button class="action-button secondary" onclick="TemplateManager.closeModal()">
+                ❌ <span data-i18n="cancel">Abbrechen</span>
+            </button>
+            <button class="action-button primary" onclick="TemplateManager.saveNewTemplate()">
+                💾 <span data-i18n="save">Speichern</span>
+            </button>
+        </div>
+    </div>
+    </div>
+    </div>
+
     <div class="app-wrapper">
         <aside class="app-sidebar">
             <div class="sidebar-header">
@@ -3408,6 +4119,9 @@
                 </div>
                 <div class="nav-item" onclick="NavigationManager.switchTab('grind', this)">
                     <span>🔧</span> <span class="nav-text" data-i18n="navGrindHelper">Grind Helper</span>
+                </div>
+                <div class="nav-item" onclick="NavigationManager.switchTab('reference', this)">
+                    <span>📖</span> <span class="nav-text">Need Zones</span>
                 </div>
                 <div class="nav-item" onclick="NavigationManager.switchTab('history', this)">
                     <span>📜</span> <span class="nav-text" data-i18n="navHistory">Historie</span>
@@ -3588,7 +4302,15 @@
                         <p class="note" data-i18n="templatesDesc">Wähle eine Vorlage aus, um schnell die Eingabewerte zu
                             füllen.
                         </p>
-                        <div class="template-grid" id="templateGrid"></div>
+                        <div class="action-buttons" style="margin-bottom: 24px;">
+                            <button class="action-button primary" onclick="TemplateManager.showCreateModal()">
+                                ➕ <span data-i18n="templateCreate">Eigene Vorlage erstellen</span>
+                            </button>
+                            <button class="action-button" onclick="TemplateManager.createFromCurrent()">
+                                💾 <span data-i18n="templateSaveCurrent">Aktuelle Werte speichern</span>
+                            </button>
+                        </div>
+                        <div id="templateGrid"></div>
                     </div>
                 </div>
 
@@ -3849,6 +4571,74 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Reference Tab - Need Zone Visualizer -->
+                <div id="tab-reference" class="tab-content">
+                    <div class="card">
+                        <h2>📖 Need Zones Übersicht</h2>
+                        <p class="note">Finde die besten Jagdzeiten für deine Zieltiere.</p>
+
+                        <!-- Controls -->
+                        <div class="reference-controls">
+                            <div class="reference-control-group">
+                                <label>Karte auswählen:</label>
+                                <select id="reference-map-select" class="form-select"
+                                    onchange="ReferenceManager.onMapChange()">
+                                    <option value="">-- Karte auswählen --</option>
+                                </select>
+                            </div>
+                            <div class="reference-control-group">
+                                <label>Ingame-Zeit:</label>
+                                <span class="time-display" id="reference-time-display"
+                                    style="font-size: 1.2rem; font-weight: 600; color: var(--primary);">12:00</span>
+                            </div>
+                            <div class="reference-control-group search-group">
+                                <label>Tier suchen:</label>
+                                <input type="text" id="reference-search" class="reference-search-input"
+                                    placeholder="z.B. Rothirsch..." oninput="ReferenceManager.onSearch(this.value)">
+                            </div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="reference-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot drink">💧</span>
+                                <span>Trinken</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot feed">🍴</span>
+                                <span>Fressen</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot rest">🕐</span>
+                                <span>Ruhen</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Container -->
+                    <div class="card reference-timeline-container">
+                        <!-- Timeline Header (Hour markers) -->
+                        <div class="timeline-header">
+                            <div class="timeline-label-placeholder"></div>
+                            <div class="timeline-hours">
+                                <span>00</span><span>04</span><span>08</span><span>12</span><span>16</span><span>20</span><span>24</span>
+                            </div>
+                        </div>
+
+                        <!-- Current Time Indicator Line -->
+                        <div class="timeline-current-indicator" id="timeline-current-indicator" style="left: 50%;">
+                        </div>
+
+                        <!-- Animal Rows (populated by JS) -->
+                        <div class="reference-animal-list" id="reference-animal-list">
+                            <div class="reference-empty-state" data-i18n="refSelectMapHint">
+                                👆 Select a map above to see animal need zones
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div> <!-- End content-scroll -->
         </main> <!-- End app-content -->
     </div> <!-- End app-wrapper -->
@@ -3862,7 +4652,7 @@
                 de: {
                     appSubtitle: 'Berechne dein Glück basierend auf dataminierten Werten aus COTW 2025/2026',
                     navCalculator: 'Berechner', navGrindHelper: 'Grind Helper', navHistory: 'Historie',
-                    navTemplates: 'Templates', navAccounts: 'Accounts',
+                    navTemplates: 'Vorlagen', navAccounts: 'Accounts',
                     settings: 'Einstellungen', settingsAppearance: 'Darstellung',
                     settingsAnimations: 'Animationen', settingsAnimationsDesc: 'Balken-Animationen und Übergänge aktivieren.',
                     settingsRipple: 'Ripple-Effekte', settingsRippleDesc: 'Welleneffekte beim Klicken auf Buttons.',
@@ -3891,7 +4681,13 @@
                     calcProbability: 'Wahrscheinlichkeit',
                     calcUndo: 'Undo', calcRedo: 'Redo',
                     templatesTitle: 'Vorlagen', templatesDesc: 'Wähle eine Vorlage aus, um schnell die Eingabewerte zu füllen.',
-                    templateApply: 'Anwenden',
+                    templateApply: 'Anwenden', templateStandard: 'Standard', templateCustom: 'Eigene',
+                    templateCreate: 'Eigene Vorlage erstellen', templateSaveCurrent: 'Aktuelle Werte speichern',
+                    templateCreateTitle: 'Vorlage erstellen', templateNameLabel: 'Name',
+                    templateDescLabel: 'Beschreibung (optional)', templateValuesSection: 'Werte',
+                    templatePresets: 'Standard-Vorlagen', templatesEmpty: 'Keine Vorlagen verfügbar',
+                    templatesEmptyHint: 'Erstelle eine eigene Vorlage oder warte auf das Laden.',
+                    cancel: 'Abbrechen', save: 'Speichern',
                     historyTitle: 'Berechnungshistorie', historyExportCSV: 'CSV Export', historyExportJSON: 'JSON Export',
                     historyDelete: 'Historie löschen', historyEmpty: 'Keine Berechnungen vorhanden',
                     historyDeleteConfirm: 'Möchtest du wirklich die gesamte Historie löschen?',
@@ -4031,7 +4827,13 @@
                     calcProbability: 'Probability',
                     calcUndo: 'Undo', calcRedo: 'Redo',
                     templatesTitle: 'Templates', templatesDesc: 'Choose a template to quickly fill in input values.',
-                    templateApply: 'Apply',
+                    templateApply: 'Apply', templateStandard: 'Standard', templateCustom: 'Custom',
+                    templateCreate: 'Create Custom Template', templateSaveCurrent: 'Save Current Values',
+                    templateCreateTitle: 'Create Template', templateNameLabel: 'Name',
+                    templateDescLabel: 'Description (optional)', templateValuesSection: 'Values',
+                    templatePresets: 'Standard Templates', templatesEmpty: 'No templates available',
+                    templatesEmptyHint: 'Create a custom template or wait for loading.',
+                    cancel: 'Cancel', save: 'Save',
                     historyTitle: 'Calculation History', historyExportCSV: 'CSV Export', historyExportJSON: 'JSON Export',
                     historyDelete: 'Delete History', historyEmpty: 'No calculations available',
                     historyDeleteConfirm: 'Do you really want to delete the entire history?',
@@ -4835,6 +5637,7 @@
             },
 
             resetDefaults() {
+                // Reset number inputs
                 document.getElementById('n').value = this.DEFAULTS.n;
                 document.getElementById('k_rare').value = this.DEFAULTS.k_rare;
                 document.getElementById('p_rare').value = this.DEFAULTS.p_rare;
@@ -4844,7 +5647,27 @@
                 document.getElementById('p_super').value = this.DEFAULTS.p_super;
                 document.getElementById('k_go').value = this.DEFAULTS.k_go;
                 document.getElementById('p_go').value = this.DEFAULTS.p_go;
+
+                // Reset sliders to match p-values
+                const sliderDefaults = {
+                    p_rare_slider: this.DEFAULTS.p_rare,
+                    p_diamond_slider: this.DEFAULTS.p_diamond,
+                    p_super_slider: this.DEFAULTS.p_super,
+                    p_go_slider: this.DEFAULTS.p_go
+                };
+
+                Object.entries(sliderDefaults).forEach(([id, value]) => {
+                    const slider = document.getElementById(id);
+                    if (slider) slider.value = value;
+                });
+
+                // Update ratio displays
+                ['rare', 'diamond', 'super', 'go'].forEach(type => {
+                    updateRatio(type, this.DEFAULTS[`p_${type}`]);
+                });
+
                 this.calculate();
+                ToastManager.show('Alle Werte zurückgesetzt', 'success');
             }
         };
 
@@ -4864,9 +5687,16 @@
             }
         });
 
+        document.getElementById('templateModal').addEventListener('click', function (event) {
+            if (event.target === this) {
+                TemplateManager.closeModal();
+            }
+        });
+
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 SettingsManager.close();
+                TemplateManager.closeModal();
                 closeAllDropdowns();
             }
 
@@ -4951,6 +5781,10 @@
                         }
                         GrindManager.init();
                         GrindManager.switchSubTab('timer');
+                    } else if (tabName === 'reference') {
+                        if (ReferenceManager) {
+                            ReferenceManager.init();
+                        }
                     }
                 } catch (error) {
                     console.error('Navigation error:', error);
@@ -5047,21 +5881,117 @@
                 const grid = document.getElementById('templateGrid');
                 grid.innerHTML = '';
 
-                this.templates.forEach(template => {
-                    const card = document.createElement('div');
-                    card.className = `template-card ${template.isCustom ? 'custom' : 'preset'}`;
-                    card.innerHTML = `
-                        <div class="template-name">${template.name}</div>
-                        <div class="template-description">${template.description}</div>
-                        ${template.isCustom ? '' : `<span class="template-badge">${TranslationManager.t('templateStandard')}</span>`}
-                        <div style="margin-top:12px">
-                            <button class="preset-button" onclick="TemplateManager.applyTemplate('${template.id}')">
-                                ${TranslationManager.t('templateApply')}
-                            </button>
+                if (this.templates.length === 0) {
+                    grid.innerHTML = `
+                        <div class="template-empty">
+                            <div class="template-empty-icon">📋</div>
+                            <div class="template-empty-text">${TranslationManager.t('templatesEmpty') || 'Keine Vorlagen verfügbar'}</div>
+                            <div class="template-empty-hint">${TranslationManager.t('templatesEmptyHint') || 'Vorlagen werden geladen...'}</div>
                         </div>
                     `;
-                    grid.appendChild(card);
-                });
+                    return;
+                }
+
+                const presetTemplates = this.templates.filter(t => !t.isCustom);
+                const customTemplates = this.templates.filter(t => t.isCustom);
+
+                // Helper to format probability as ratio
+                const formatRatio = (p) => {
+                    if (!p || p <= 0) return '∞';
+                    return Math.round(1 / p).toLocaleString('de-DE');
+                };
+
+                // Helper to create value preview
+                const createValuePreview = (data) => {
+                    if (!data) return '';
+                    return `
+                        <div class="template-values">
+                            <div class="template-value-item">
+                                <span class="template-value-label">Harvests</span>
+                                <span class="template-value-data">${(data.n || 0).toLocaleString('de-DE')}</span>
+                            </div>
+                            <div class="template-value-item">
+                                <span class="template-value-label">Rares</span>
+                                <span class="template-value-data">${data.k_rare || 0} (1:${formatRatio(data.p_rare)})</span>
+                            </div>
+                            <div class="template-value-item">
+                                <span class="template-value-label">Diamonds</span>
+                                <span class="template-value-data">${data.k_diamond || 0} (1:${formatRatio(data.p_diamond)})</span>
+                            </div>
+                            <div class="template-value-item">
+                                <span class="template-value-label">Great Ones</span>
+                                <span class="template-value-data">${data.k_go || 0} (1:${formatRatio(data.p_go)})</span>
+                            </div>
+                        </div>
+                    `;
+                };
+
+                // Helper to create template card
+                const createCard = (template) => {
+                    const icon = template.isCustom ? '⭐' : '📦';
+                    const badgeClass = template.isCustom ? 'custom' : 'standard';
+                    const badgeText = template.isCustom
+                        ? (TranslationManager.t('templateCustom') || 'Eigene')
+                        : (TranslationManager.t('templateStandard') || 'Standard');
+
+                    const deleteBtn = template.isCustom ? `
+                        <button class="template-btn delete" onclick="event.stopPropagation(); TemplateManager.deleteTemplate('${template.id}')" title="Löschen">
+                            🗑️
+                        </button>
+                    ` : '';
+
+                    return `
+                        <div class="template-card ${template.isCustom ? 'custom' : 'preset'}">
+                            <span class="template-icon">${icon}</span>
+                            <div class="template-name">${template.name}</div>
+                            <div class="template-badges">
+                                <span class="template-badge ${badgeClass}">${badgeText}</span>
+                            </div>
+                            <div class="template-description">${template.description || ''}</div>
+                            ${createValuePreview(template.data)}
+                            <div class="template-actions">
+                                <button class="template-btn primary" onclick="TemplateManager.applyTemplate('${template.id}')">
+                                    ✨ ${TranslationManager.t('templateApply') || 'Anwenden'}
+                                </button>
+                                ${deleteBtn}
+                            </div>
+                        </div>
+                    `;
+                };
+
+                // Render preset templates section
+                if (presetTemplates.length > 0) {
+                    const presetSection = document.createElement('div');
+                    presetSection.className = 'template-section';
+                    presetSection.innerHTML = `
+                        <div class="template-section-header">
+                            <span class="section-icon">📦</span>
+                            <h3>${TranslationManager.t('templatePresets') || 'Standard-Vorlagen'}</h3>
+                            <span class="section-count">${presetTemplates.length}</span>
+                        </div>
+                        <div class="template-grid">
+                            ${presetTemplates.map(createCard).join('')}
+                        </div>
+                    `;
+                    grid.appendChild(presetSection);
+                }
+
+                // Render custom templates section
+                if (customTemplates.length > 0) {
+                    const customSection = document.createElement('div');
+                    customSection.className = 'template-section';
+                    customSection.innerHTML = `
+                        <div class="template-section-header">
+                            <span class="section-icon">⭐</span>
+                            <h3>${TranslationManager.t('templateCustom') || 'Eigene Vorlagen'}</h3>
+                            <span class="section-count">${customTemplates.length}</span>
+                        </div>
+                        <div class="template-grid">
+                            ${customTemplates.map(createCard).join('')}
+                        </div>
+                    `;
+                    grid.appendChild(customSection);
+                }
             },
 
             async applyTemplate(id) {
@@ -5071,6 +6001,33 @@
                     NavigationManager.switchTab('calculator');
                     Calculator.calculate();
                     ToastManager.show(`Template "${template.name}" angewendet`, 'success');
+                }
+            },
+
+            async deleteTemplate(id) {
+                const template = this.templates.find(t => t.id === id);
+                if (!template) return;
+
+                if (!template.isCustom) {
+                    ToastManager.show('Standard-Vorlagen können nicht gelöscht werden', 'error');
+                    return;
+                }
+
+                if (!confirm(`Vorlage "${template.name}" wirklich löschen?`)) return;
+
+                try {
+                    if (window.electronAPI && window.electronAPI.templates) {
+                        const response = await window.electronAPI.templates.delete(id);
+                        if (response.success) {
+                            await this.loadTemplates();
+                            ToastManager.show(`Vorlage "${template.name}" gelöscht`, 'success');
+                        } else {
+                            throw new Error(response.error || 'Löschen fehlgeschlagen');
+                        }
+                    }
+                } catch (error) {
+                    console.error('TemplateManager: Fehler beim Löschen:', error);
+                    ToastManager.show('Fehler beim Löschen der Vorlage', 'error');
                 }
             },
 
@@ -5114,6 +6071,105 @@
                 Calculator.calculate();
                 closeAllDropdowns(); // Now defined globally
                 ToastManager.show(TranslationManager.t('toastPresetApplied'), 'info');
+            },
+
+            showCreateModal() {
+                const modal = document.getElementById('templateModal');
+                modal.classList.add('show');
+                // Reset form
+                document.getElementById('template-name').value = '';
+                document.getElementById('template-description').value = '';
+                // Set defaults
+                const defaults = Calculator.DEFAULTS;
+                document.getElementById('tpl-n').value = defaults.n;
+                document.getElementById('tpl-k_rare').value = defaults.k_rare;
+                document.getElementById('tpl-p_rare').value = defaults.p_rare;
+                document.getElementById('tpl-k_diamond').value = defaults.k_diamond;
+                document.getElementById('tpl-p_diamond').value = defaults.p_diamond;
+                document.getElementById('tpl-k_super').value = defaults.k_super;
+                document.getElementById('tpl-p_super').value = defaults.p_super;
+                document.getElementById('tpl-k_go').value = defaults.k_go;
+                document.getElementById('tpl-p_go').value = defaults.p_go;
+            },
+
+            closeModal() {
+                const modal = document.getElementById('templateModal');
+                modal.classList.remove('show');
+            },
+
+            createFromCurrent() {
+                const modal = document.getElementById('templateModal');
+                modal.classList.add('show');
+                // Reset name/description
+                document.getElementById('template-name').value = '';
+                document.getElementById('template-description').value = '';
+                // Fill with current calculator values
+                document.getElementById('tpl-n').value = document.getElementById('n').value;
+                document.getElementById('tpl-k_rare').value = document.getElementById('k_rare').value;
+                document.getElementById('tpl-p_rare').value = document.getElementById('p_rare').value;
+                document.getElementById('tpl-k_diamond').value = document.getElementById('k_diamond').value;
+                document.getElementById('tpl-p_diamond').value = document.getElementById('p_diamond').value;
+                document.getElementById('tpl-k_super').value = document.getElementById('k_super').value;
+                document.getElementById('tpl-p_super').value = document.getElementById('p_super').value;
+                document.getElementById('tpl-k_go').value = document.getElementById('k_go').value;
+                document.getElementById('tpl-p_go').value = document.getElementById('p_go').value;
+            },
+
+            async saveNewTemplate() {
+                const name = document.getElementById('template-name').value.trim();
+                const description = document.getElementById('template-description').value.trim();
+
+                if (!name) {
+                    ToastManager.show('Bitte gib einen Namen ein', 'error');
+                    return;
+                }
+
+                const data = {
+                    n: parseFloat(document.getElementById('tpl-n').value) || 0,
+                    k_rare: parseFloat(document.getElementById('tpl-k_rare').value) || 0,
+                    p_rare: parseFloat(document.getElementById('tpl-p_rare').value) || 0,
+                    k_diamond: parseFloat(document.getElementById('tpl-k_diamond').value) || 0,
+                    p_diamond: parseFloat(document.getElementById('tpl-p_diamond').value) || 0,
+                    k_super: parseFloat(document.getElementById('tpl-k_super').value) || 0,
+                    p_super: parseFloat(document.getElementById('tpl-p_super').value) || 0,
+                    k_go: parseFloat(document.getElementById('tpl-k_go').value) || 0,
+                    p_go: parseFloat(document.getElementById('tpl-p_go').value) || 0
+                };
+
+                try {
+                    if (window.electronAPI && window.electronAPI.templates) {
+                        const response = await window.electronAPI.templates.save(name, {
+                            description,
+                            data,
+                            isCustom: true
+                        });
+
+                        if (response.success) {
+                            this.closeModal();
+                            await this.loadTemplates();
+                            ToastManager.show(`Vorlage "${name}" erstellt`, 'success');
+                        } else {
+                            throw new Error(response.error || 'Speichern fehlgeschlagen');
+                        }
+                    } else {
+                        // Fallback: localStorage
+                        const templates = JSON.parse(localStorage.getItem('custom-templates') || '[]');
+                        templates.push({
+                            id: 'custom-' + Date.now(),
+                            name,
+                            description,
+                            data,
+                            isCustom: true
+                        });
+                        localStorage.setItem('custom-templates', JSON.stringify(templates));
+                        this.closeModal();
+                        await this.loadTemplates();
+                        ToastManager.show(`Vorlage "${name}" erstellt`, 'success');
+                    }
+                } catch (error) {
+                    console.error('TemplateManager: Fehler beim Speichern:', error);
+                    ToastManager.show('Fehler beim Speichern: ' + error.message, 'error');
+                }
             }
         };
 
@@ -6967,26 +8023,57 @@
 
             async exportSessions() {
                 try {
-                    if (window.electronAPI && window.electronAPI.grind) {
-                        await window.electronAPI.grind.exportSessions();
-                    } else {
-                        const sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
-                        const csv = 'Datum,Kills,Dauer,KPH\n' + sessions.map(s =>
-                            `${new Date(s.timestamp).toLocaleString('de-DE')},${s.kills},${Math.round(s.duration / 1000)},${s.kph.toFixed(1)} `
-                        ).join('\n');
+                    let sessions = [];
 
-                        const blob = new Blob([csv], { type: 'text/csv' });
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = `grind - sessions - ${new Date().toISOString().split('T')[0]}.csv`;
-                        a.click();
-                        URL.revokeObjectURL(url);
+                    if (window.electronAPI && window.electronAPI.grind) {
+                        // Fetch sessions via existing IPC endpoint
+                        const response = await window.electronAPI.grind.getSessions();
+                        if (response.success) {
+                            sessions = response.data || [];
+                        } else {
+                            throw new Error(response.error || 'Fehler beim Laden der Sessions');
+                        }
+                    } else {
+                        sessions = JSON.parse(localStorage.getItem('grind-sessions') || '[]');
                     }
-                    ToastManager.show('Sessions exportiert', 'success');
+
+                    if (sessions.length === 0) {
+                        ToastManager.show('Keine Sessions zum Exportieren vorhanden', 'info');
+                        return;
+                    }
+
+                    // Generate CSV with BOM for Excel compatibility
+                    const BOM = '\uFEFF';
+                    const header = 'Name,Datum,Status,Kills,Dauer (Sekunden),Dauer (Format),K/h';
+                    const rows = sessions.map(s => {
+                        const durationSec = Math.round((s.duration || 0) / 1000);
+                        const hours = Math.floor(durationSec / 3600);
+                        const minutes = Math.floor((durationSec % 3600) / 60);
+                        const secs = durationSec % 60;
+                        const durationFormatted = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                        const kph = s.kph ? s.kph.toFixed(2) : '0.00';
+                        const date = new Date(s.timestamp).toLocaleString('de-DE');
+                        const status = s.status || 'unknown';
+                        const name = (s.name || 'Unnamed').replace(/,/g, ';'); // Escape commas
+
+                        return `${name},${date},${status},${s.kills || 0},${durationSec},${durationFormatted},${kph}`;
+                    });
+
+                    const csv = BOM + header + '\n' + rows.join('\n');
+                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `grind-sessions-${new Date().toISOString().split('T')[0]}.csv`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    ToastManager.show(`${sessions.length} Sessions exportiert`, 'success');
                 } catch (error) {
                     console.error('GrindManager: Fehler beim Export:', error);
-                    ToastManager.show('Fehler beim Export', 'error');
+                    ToastManager.show('Fehler beim Export: ' + error.message, 'error');
                 }
             },
 
@@ -7183,8 +8270,8 @@
         function setupPSliders() {
             const categories = ['rare', 'diamond', 'super', 'go'];
             categories.forEach(cat => {
-                const slider = document.getElementById(`p_${cat} _slider`);
-                const number = document.getElementById(`p_${cat} `);
+                const slider = document.getElementById(`p_${cat}_slider`);
+                const number = document.getElementById(`p_${cat}`);
 
                 if (slider && number) {
                     slider.addEventListener('input', () => {
@@ -7216,6 +8303,715 @@
             });
         }
 
+        // ========================================
+        // REFERENCE MANAGER - Need Zone Visualizer
+        // ========================================
+        const ReferenceManager = {
+            currentMap: null,
+            currentTime: 12,
+            animals: [],
+            language: 'de',
+
+            async init() {
+                console.log('ReferenceManager: Initializing...');
+                await this.loadMaps();
+                this.updateTimeIndicator();
+                this.setupIndicatorDrag();
+                // Fix i18n - translate the page after content is loaded
+                if (typeof TranslationManager !== 'undefined') {
+                    TranslationManager.translatePage();
+                }
+            },
+
+            setupIndicatorDrag() {
+                const indicator = document.getElementById('timeline-current-indicator');
+                if (!indicator) return;
+
+                let isDragging = false;
+
+                const getTimeFromPosition = (clientX) => {
+                    const container = document.querySelector('.reference-timeline-container');
+                    const timelineBar = document.querySelector('.timeline-bar');
+                    if (!container || !timelineBar) return this.currentTime;
+
+                    const barRect = timelineBar.getBoundingClientRect();
+                    const relativeX = clientX - barRect.left;
+                    const percentage = Math.max(0, Math.min(1, relativeX / barRect.width));
+                    return Math.round(percentage * 24 * 2) / 2; // Round to 0.5 steps
+                };
+
+                const onMouseMove = (e) => {
+                    if (!isDragging) return;
+                    const newTime = getTimeFromPosition(e.clientX);
+                    this.onTimeChange(newTime);
+                };
+
+                const onMouseUp = () => {
+                    isDragging = false;
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                    document.body.style.cursor = '';
+                    document.body.style.userSelect = '';
+                };
+
+                indicator.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'ew-resize';
+                    document.body.style.userSelect = 'none';
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                // Also allow clicking on the timeline to jump to that time
+                const container = document.querySelector('.reference-timeline-container');
+                if (container) {
+                    container.addEventListener('click', (e) => {
+                        // Only if clicking on the timeline area, not on animal rows
+                        if (e.target.closest('.animal-row')) return;
+                        const timelineBar = document.querySelector('.timeline-bar');
+                        if (!timelineBar) return;
+                        const barRect = timelineBar.getBoundingClientRect();
+                        if (e.clientX >= barRect.left && e.clientX <= barRect.right) {
+                            const newTime = getTimeFromPosition(e.clientX);
+                            this.onTimeChange(newTime);
+                        }
+                    });
+                }
+            },
+
+            async loadMaps() {
+                if (!window.electronAPI?.reference) {
+                    console.log('ReferenceManager: Not in Electron, skipping');
+                    return;
+                }
+
+                try {
+                    const result = await window.electronAPI.reference.getMaps();
+                    if (result.success) {
+                        this.populateMapDropdown(result.data);
+                    }
+                } catch (error) {
+                    console.error('ReferenceManager: Error loading maps:', error);
+                }
+            },
+
+            populateMapDropdown(maps) {
+                const select = document.getElementById('reference-map-select');
+                if (!select) return;
+
+                // Keep the placeholder option
+                select.innerHTML = '<option value="">-- Karte auswählen --</option>';
+
+                maps.forEach(map => {
+                    const option = document.createElement('option');
+                    option.value = map.id;
+                    option.textContent = `${map.icon} ${map.name}`;
+                    select.appendChild(option);
+                });
+            },
+
+            async onMapChange() {
+                const select = document.getElementById('reference-map-select');
+                const mapId = select?.value;
+
+                if (!mapId) {
+                    this.showEmptyState();
+                    return;
+                }
+
+                this.currentMap = mapId;
+                await this.loadAnimalsForMap(mapId);
+            },
+
+            async loadAnimalsForMap(mapId) {
+                if (!window.electronAPI?.reference) return;
+
+                try {
+                    const result = await window.electronAPI.reference.getAnimalsForMap(mapId);
+                    if (result.success) {
+                        this.animals = result.data.animals;
+                        this.renderTimeline();
+                    }
+                } catch (error) {
+                    console.error('ReferenceManager: Error loading animals:', error);
+                }
+            },
+
+            showEmptyState() {
+                const container = document.getElementById('reference-animal-list');
+                if (!container) return;
+
+                container.innerHTML = `
+                    <div class="reference-empty-state">
+                        👆 Wähle oben eine Karte aus, um die Need Zones zu sehen
+                    </div>
+                `;
+            },
+
+            renderTimeline() {
+                const container = document.getElementById('reference-animal-list');
+                if (!container) return;
+
+                if (this.animals.length === 0) {
+                    this.showEmptyState();
+                    return;
+                }
+
+                container.innerHTML = '';
+
+                // Get language from settings
+                const lang = this.language || 'de';
+
+                this.animals.forEach(animal => {
+                    if (!animal.zones) return;
+
+                    const name = animal.name?.[lang] || animal.name?.en || animal.id;
+                    const icon = animal.icon || '🦌';
+                    const isActive = this.isAnimalDrinking(animal.zones);
+
+                    const row = document.createElement('div');
+                    row.className = `animal-row ${isActive ? 'active-now' : ''}`;
+                    row.style.cursor = 'pointer';
+                    row.onclick = () => this.showAnimalDetail(animal);
+                    row.innerHTML = `
+                        <div class="animal-label">
+                            <span class="animal-icon">${icon}</span>
+                            <span>${name}</span>
+                        </div>
+                        <div class="timeline-bar">
+                            ${this.renderTimeBlocks(animal.zones)}
+                        </div>
+                    `;
+                    container.appendChild(row);
+                });
+            },
+
+            renderTimeBlocks(zones) {
+                let html = '';
+
+                const renderPeriods = (periods, type, label) => {
+                    if (!periods) return '';
+                    return periods.map(period => {
+                        const isActive = this.isTimeInPeriod(this.currentTime, period.start, period.end);
+                        const timeStr = this.formatTimeRange(period.start, period.end);
+                        
+                        // Handle overnight periods (e.g., 21-5) by splitting into two blocks
+                        if (period.start > period.end) {
+                            // Block 1: start to 24 (end of day)
+                            const left1 = (period.start / 24) * 100;
+                            const width1 = ((24 - period.start) / 24) * 100;
+                            // Block 2: 0 to end (start of day)
+                            const left2 = 0;
+                            const width2 = (period.end / 24) * 100;
+                            
+                            return `
+                                <div class="time-block ${type} ${isActive ? 'active-zone' : ''}" style="left: ${left1}%; width: ${width1}%;">
+                                    <div class="time-block-tooltip">${label}: ${timeStr}</div>
+                                </div>
+                                <div class="time-block ${type} ${isActive ? 'active-zone' : ''}" style="left: ${left2}%; width: ${width2}%;">
+                                    <div class="time-block-tooltip">${label}: ${timeStr}</div>
+                                </div>
+                            `;
+                        }
+                        
+                        const style = this.getBlockStyle(period.start, period.end);
+                        return `
+                            <div class="time-block ${type} ${isActive ? 'active-zone' : ''}" style="${style}">
+                                <div class="time-block-tooltip">${label}: ${timeStr}</div>
+                            </div>
+                        `;
+                    }).join('');
+                };
+
+                html += renderPeriods(zones.rest, 'rest', 'Ruhe');
+                html += renderPeriods(zones.feed, 'feed', 'Futter');
+                html += renderPeriods(zones.drink, 'drink', 'Trinken');
+
+                return html;
+            },
+
+            getBlockStyle(start, end) {
+                const left = (start / 24) * 100;
+                const width = ((end - start) / 24) * 100;
+                return `left: ${left}%; width: ${width}%;`;
+            },
+
+            isTimeInPeriod(time, start, end) {
+                if (start <= end) {
+                    return time >= start && time < end;
+                } else {
+                    return time >= start || time < end;
+                }
+            },
+
+            isAnimalDrinking(zones) {
+                if (!zones?.drink) return false;
+                return zones.drink.some(period =>
+                    this.isTimeInPeriod(this.currentTime, period.start, period.end)
+                );
+            },
+
+            formatTimeRange(start, end) {
+                const formatHour = (h) => {
+                    const hour = Math.floor(h);
+                    const min = Math.round((h - hour) * 60);
+                    return `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
+                };
+                return `${formatHour(start)} - ${formatHour(end)}`;
+            },
+
+            onTimeChange(value) {
+                this.currentTime = parseFloat(value);
+                this.updateTimeDisplay();
+                this.updateTimeIndicator();
+                this.renderTimeline(); // Re-render to update active states
+            },
+
+            updateTimeDisplay() {
+                const display = document.getElementById('reference-time-display');
+                if (!display) return;
+
+                const hour = Math.floor(this.currentTime);
+                const min = Math.round((this.currentTime - hour) * 60);
+                display.textContent = `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
+            },
+
+            updateTimeIndicator() {
+                const indicator = document.getElementById('timeline-current-indicator');
+                if (!indicator) return;
+
+                // Get the first timeline bar to calculate exact position
+                const timelineBar = document.querySelector('.timeline-bar');
+                if (!timelineBar) return;
+
+                // Get the actual left position of the timeline bar relative to its container
+                const container = document.querySelector('.reference-timeline-container');
+                if (!container) return;
+
+                const containerRect = container.getBoundingClientRect();
+                const barRect = timelineBar.getBoundingClientRect();
+
+                // Calculate indicator position: bar start offset + time percentage of bar width
+                const barStartOffset = barRect.left - containerRect.left;
+                const barWidth = barRect.width;
+                const position = (this.currentTime / 24) * barWidth;
+                indicator.style.left = `${barStartOffset + position}px`;
+            },
+
+            async onSearch(query) {
+                if (!query || query.length < 2) {
+                    // Reset to current map
+                    if (this.currentMap) {
+                        await this.loadAnimalsForMap(this.currentMap);
+                    }
+                    return;
+                }
+
+                if (!window.electronAPI?.reference) return;
+
+                try {
+                    const result = await window.electronAPI.reference.searchAnimals({
+                        query: query,
+                        language: this.language
+                    });
+
+                    if (result.success) {
+                        this.animals = result.data;
+                        this.renderTimeline();
+                    }
+                } catch (error) {
+                    console.error('ReferenceManager: Error searching:', error);
+                }
+            },
+
+            setLanguage(lang) {
+                this.language = lang;
+                if (this.currentMap) {
+                    this.renderTimeline();
+                }
+            },
+
+            showAnimalDetail(animal) {
+                const lang = this.language || 'de';
+                const name = animal.name?.[lang] || animal.name?.en || animal.id;
+                const icon = animal.icon || '🦌';
+                const zones = animal.zones || {};
+                const stats = animal.stats || {};
+
+                // Create modal with premium design
+                const modal = document.createElement('div');
+                modal.className = 'settings-modal';
+                modal.id = 'animal-detail-modal';
+                modal.innerHTML = `
+                    <style>
+                        @keyframes modalSlideIn {
+                            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+                            to { opacity: 1; transform: scale(1) translateY(0); }
+                        }
+                        @keyframes fadeIn {
+                            from { opacity: 0; }
+                            to { opacity: 1; }
+                        }
+                        #animal-detail-modal {
+                            animation: fadeIn 0.2s ease;
+                        }
+                        #animal-detail-modal .animal-modal-content {
+                            max-width: 1600px;
+                            width: 99vw;
+                            max-height: 98vh;
+                            overflow-y: auto;
+                            background: var(--surface, #141a16);
+                            border: 1px solid var(--card-border, rgba(34, 197, 94, 0.2));
+                            border-radius: 20px;
+                            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+                            animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                        }
+                        #animal-detail-modal .animal-hero {
+                            background: linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(22, 163, 74, 0.08) 100%);
+                            padding: 28px 36px;
+                            display: flex;
+                            align-items: center;
+                            gap: 24px;
+                            border-bottom: 1px solid var(--border-light, rgba(34, 197, 94, 0.1));
+                            position: relative;
+                            border-radius: 20px 20px 0 0;
+                        }
+                        #animal-detail-modal .animal-hero::before {
+                            content: '';
+                            position: absolute;
+                            top: 0; left: 0; right: 0; bottom: 0;
+                            background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%);
+                        }
+                        #animal-detail-modal .hero-icon {
+                            font-size: 4.5rem;
+                            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+                            z-index: 1;
+                        }
+                        #animal-detail-modal .hero-info { z-index: 1; }
+                        #animal-detail-modal .hero-title {
+                            font-size: 2.2rem;
+                            font-weight: 800;
+                            margin: 0 0 6px 0;
+                            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                        }
+                        #animal-detail-modal .hero-meta {
+                            font-size: 1rem;
+                            color: rgba(255,255,255,0.6);
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                        }
+                        #animal-detail-modal .hero-badge {
+                            background: var(--primary-light, rgba(34, 197, 94, 0.15));
+                            color: var(--primary, #22c55e);
+                            padding: 4px 12px;
+                            border-radius: 20px;
+                            font-size: 0.85rem;
+                            font-weight: 600;
+                        }
+                        #animal-detail-modal .close-btn {
+                            position: absolute;
+                            top: 20px;
+                            right: 20px;
+                            width: 40px;
+                            height: 40px;
+                            border: none;
+                            background: rgba(255,255,255,0.1);
+                            border-radius: 12px;
+                            color: rgba(255,255,255,0.7);
+                            font-size: 1.2rem;
+                            cursor: pointer;
+                            transition: all 0.2s;
+                            z-index: 2;
+                        }
+                        #animal-detail-modal .close-btn:hover {
+                            background: rgba(239,68,68,0.2);
+                            color: #f87171;
+                            transform: rotate(90deg);
+                        }
+                        #animal-detail-modal .animal-body {
+                            padding: 28px 32px;
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 20px;
+                        }
+                        #animal-detail-modal .card {
+                            background: var(--surface-elevated, #1a211c);
+                            border: 1px solid var(--border-light, rgba(34, 197, 94, 0.1));
+                            border-radius: 16px;
+                            padding: 20px;
+                            transition: all 0.3s ease;
+                        }
+                        #animal-detail-modal .card:hover {
+                            background: var(--nav-hover-bg, rgba(34, 197, 94, 0.08));
+                            border-color: var(--card-border, rgba(34, 197, 94, 0.2));
+                            transform: translateY(-2px);
+                        }
+                        #animal-detail-modal .card-title {
+                            font-size: 0.85rem;
+                            font-weight: 600;
+                            color: rgba(255,255,255,0.5);
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            margin: 0 0 16px 0;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        }
+                        #animal-detail-modal .full-width { grid-column: 1 / -1; }
+                        #animal-detail-modal .trophy-grid {
+                            display: grid;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 12px;
+                        }
+                        #animal-detail-modal .trophy-card {
+                            padding: 18px 12px;
+                            border-radius: 14px;
+                            text-align: center;
+                            position: relative;
+                            overflow: hidden;
+                            transition: transform 0.2s, box-shadow 0.2s;
+                        }
+                        #animal-detail-modal .trophy-card:hover {
+                            transform: translateY(-3px);
+                        }
+                        #animal-detail-modal .trophy-card::before {
+                            content: '';
+                            position: absolute;
+                            top: 0; left: 0; right: 0; bottom: 0;
+                            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+                            pointer-events: none;
+                        }
+                        #animal-detail-modal .trophy-silver {
+                            background: linear-gradient(145deg, #6b7280 0%, #4b5563 100%);
+                            box-shadow: 0 4px 20px rgba(107,114,128,0.3);
+                        }
+                        #animal-detail-modal .trophy-gold {
+                            background: linear-gradient(145deg, #f59e0b 0%, #d97706 100%);
+                            box-shadow: 0 4px 20px rgba(245,158,11,0.3);
+                        }
+                        #animal-detail-modal .trophy-diamond {
+                            background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%);
+                            box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+                        }
+                        #animal-detail-modal .trophy-max {
+                            background: linear-gradient(145deg, #10b981 0%, #059669 100%);
+                            box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+                        }
+                        #animal-detail-modal .trophy-label {
+                            font-size: 0.75rem;
+                            font-weight: 600;
+                            opacity: 0.9;
+                            margin-bottom: 6px;
+                            color: white;
+                        }
+                        #animal-detail-modal .trophy-value {
+                            font-size: 1.5rem;
+                            font-weight: 800;
+                            color: white;
+                        }
+                        #animal-detail-modal .zone-row {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 8px;
+                            padding: 14px 0;
+                            border-bottom: 1px solid rgba(255,255,255,0.06);
+                        }
+                        #animal-detail-modal .zone-row:last-child { border-bottom: none; }
+                        #animal-detail-modal .zone-label {
+                            font-weight: 600;
+                            color: rgba(255,255,255,0.9);
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 0.95rem;
+                        }
+                        #animal-detail-modal .zone-label span {
+                            font-size: 1.2rem;
+                        }
+                        #animal-detail-modal .zone-times {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 6px;
+                            margin-left: 30px;
+                        }
+                        #animal-detail-modal .time-pill {
+                            background: rgba(34, 197, 94, 0.12);
+                            border: 1px solid rgba(34, 197, 94, 0.2);
+                            color: var(--primary, #22c55e);
+                            padding: 6px 12px;
+                            border-radius: 20px;
+                            font-size: 0.85rem;
+                            font-weight: 600;
+                            font-family: 'SF Mono', Monaco, monospace;
+                        }
+                        #animal-detail-modal .no-data {
+                            color: rgba(255,255,255,0.3);
+                            font-style: italic;
+                            font-size: 0.85rem;
+                        }
+                        #animal-detail-modal .map-container {
+                            background: var(--background, #0a0f0c);
+                            border: 2px dashed var(--border-light, rgba(34, 197, 94, 0.15));
+                            border-radius: 14px;
+                            min-height: 450px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            transition: all 0.3s;
+                        }
+                        #animal-detail-modal .map-container:hover {
+                            border-color: var(--primary, #22c55e);
+                            background: rgba(34, 197, 94, 0.03);
+                        }
+                        #animal-detail-modal .map-icon { font-size: 4rem; margin-bottom: 16px; opacity: 0.5; }
+                        #animal-detail-modal .map-hint { color: rgba(255,255,255,0.4); font-size: 0.95rem; margin-bottom: 8px; }
+                        #animal-detail-modal .map-path-box {
+                            background: var(--surface-elevated, #1a211c);
+                            padding: 10px 18px;
+                            border-radius: 8px;
+                            font-family: 'SF Mono', Monaco, monospace;
+                            font-size: 0.8rem;
+                            color: var(--primary, #22c55e);
+                            user-select: all;
+                            margin-top: 12px;
+                        }
+                        #animal-detail-modal .tag-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+                        }
+                        #animal-detail-modal .tag {
+                            padding: 8px 14px;
+                            border-radius: 10px;
+                            font-size: 0.85rem;
+                            font-weight: 500;
+                            transition: all 0.2s;
+                        }
+                        #animal-detail-modal .tag:hover {
+                            transform: translateY(-2px);
+                        }
+                        #animal-detail-modal .tag-rare {
+                            background: linear-gradient(135deg, rgba(139,92,246,0.25) 0%, rgba(168,85,247,0.15) 100%);
+                            border: 1px solid rgba(139,92,246,0.3);
+                            color: #c4b5fd;
+                        }
+                        #animal-detail-modal .tag-common {
+                            background: rgba(255,255,255,0.05);
+                            border: 1px solid rgba(255,255,255,0.1);
+                            color: rgba(255,255,255,0.7);
+                        }
+                        #animal-detail-modal .tag-lure {
+                            background: rgba(16,185,129,0.15);
+                            border: 1px solid rgba(16,185,129,0.25);
+                            color: #6ee7b7;
+                        }
+                        @media (max-width: 800px) {
+                            #animal-detail-modal .animal-body { grid-template-columns: 1fr; }
+                            #animal-detail-modal .trophy-grid { grid-template-columns: repeat(2, 1fr); }
+                            #animal-detail-modal .hero-icon { font-size: 3rem; }
+                            #animal-detail-modal .hero-title { font-size: 1.6rem; }
+                        }
+                    </style>
+                    <div class="settings-content animal-modal-content">
+                        <div class="animal-hero">
+                            <span class="hero-icon">${icon}</span>
+                            <div class="hero-info">
+                                <h2 class="hero-title">${name}</h2>
+                                <div class="hero-meta">
+                                    ${stats.class ? `<span class="hero-badge">Klasse ${stats.class}</span>` : ''}
+                                    ${stats.difficulty ? `<span>${stats.difficulty}</span>` : ''}
+                                </div>
+                            </div>
+                            <button class="close-btn" onclick="document.getElementById('animal-detail-modal').remove()">✕</button>
+                        </div>
+                        <div class="animal-body">
+                            ${stats.max_score ? `
+                            <div class="card full-width">
+                                <h3 class="card-title">🏆 Trophy-Wertung</h3>
+                                <div class="trophy-grid">
+                                    <div class="trophy-card trophy-silver">
+                                        <div class="trophy-label">🥈 Silber</div>
+                                        <div class="trophy-value">${stats.silver || '-'}</div>
+                                    </div>
+                                    <div class="trophy-card trophy-gold">
+                                        <div class="trophy-label">🥇 Gold</div>
+                                        <div class="trophy-value">${stats.gold || '-'}</div>
+                                    </div>
+                                    <div class="trophy-card trophy-diamond">
+                                        <div class="trophy-label">💎 Diamond</div>
+                                        <div class="trophy-value">${stats.diamond || '-'}</div>
+                                    </div>
+                                    <div class="trophy-card trophy-max">
+                                        <div class="trophy-label">⭐ Maximum</div>
+                                        <div class="trophy-value">${stats.max_score}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            ` : ''}
+                            
+                            <div class="card">
+                                <h3 class="card-title">⏰ Need Zone Zeiten</h3>
+                                <div class="zone-row">
+                                    <span class="zone-label"><span>💧</span> Trinken</span>
+                                    <div class="zone-times">${zones.drink?.length ? zones.drink.map(p => `<span class="time-pill">${this.formatTimeRange(p.start, p.end)}</span>`).join('') : '<span class="no-data">Keine Daten</span>'}</div>
+                                </div>
+                                <div class="zone-row">
+                                    <span class="zone-label"><span>🌿</span> Fressen</span>
+                                    <div class="zone-times">${zones.feed?.length ? zones.feed.map(p => `<span class="time-pill">${this.formatTimeRange(p.start, p.end)}</span>`).join('') : '<span class="no-data">Keine Daten</span>'}</div>
+                                </div>
+                                <div class="zone-row">
+                                    <span class="zone-label"><span>😴</span> Ruhen</span>
+                                    <div class="zone-times">${zones.rest?.length ? zones.rest.map(p => `<span class="time-pill">${this.formatTimeRange(p.start, p.end)}</span>`).join('') : '<span class="no-data">Keine Daten</span>'}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title">🗺️ Need Zone Karte — ${this.currentMap}</h3>
+                                <div class="map-container">
+                                    <span class="map-icon">🗺️</span>
+                                    <span class="map-hint">Karte für <strong>${name}</strong> auf <strong>${this.currentMap}</strong></span>
+                                    <div class="map-path-box">assets/maps/${this.currentMap}/${animal.id}.png</div>
+                                </div>
+                            </div>
+                            
+                            ${(stats.fur_rare?.length || stats.fur_common?.length) ? `
+                            <div class="card full-width">
+                                <h3 class="card-title">🎨 Fellfarben</h3>
+                                <div class="tag-container">
+                                    ${(stats.fur_rare || []).map(f => `<span class="tag tag-rare">✨ ${f}</span>`).join('')}
+                                    ${(stats.fur_common || []).map(f => `<span class="tag tag-common">${f}</span>`).join('')}
+                                </div>
+                            </div>
+                            ` : ''}
+                            
+                            ${stats.lures?.length ? `
+                            <div class="card full-width">
+                                <h3 class="card-title">🎯 Lockmittel</h3>
+                                <div class="tag-container">
+                                    ${stats.lures.map(l => `<span class="tag tag-lure">📯 ${l}</span>`).join('')}
+                                </div>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+
+                modal.onclick = (e) => {
+                    if (e.target === modal) modal.remove();
+                };
+
+                document.body.appendChild(modal);
+                // Trigger show animation
+                requestAnimationFrame(() => modal.classList.add('show'));
+            }
+        };
+
         // Expose core managers globally for inline handlers (set BEFORE DOMContentLoaded)
         window.SettingsManager = SettingsManager;
         window.Calculator = Calculator;
@@ -7225,6 +9021,7 @@
         window.HistoryManager = HistoryManager;
         window.AccountManager = AccountManager;
         window.GrindManager = GrindManager;
+        window.ReferenceManager = ReferenceManager;
         window.ToastManager = ToastManager;
         window.StatisticsManager = StatisticsManager;
 

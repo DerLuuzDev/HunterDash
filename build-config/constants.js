@@ -435,5 +435,660 @@ module.exports = {
       editableTips: false,
       showCharts: true
     }
+  },
+
+  // Need Zone Reference Data for the Reference Tab
+  REFERENCE: {
+    MAPS: [
+      // Base Game (Feb 2017)
+      { id: 'hirschfelden', name: 'Hirschfelden', icon: '🦌', animals: ['red_deer', 'roe_deer', 'fallow_deer', 'wild_boar', 'european_rabbit', 'red_fox', 'ring_necked_pheasant', 'canada_goose', 'european_bison'] },
+      { id: 'layton', name: 'Layton Lake District', icon: '🏕️', animals: ['whitetail', 'blacktail', 'moose', 'roosevelt_elk', 'black_bear', 'coyote', 'jackrabbit', 'mallard', 'turkey'] },
+      // DLC Maps (chronological release order)
+      { id: 'medved', name: 'Medved-Taiga', icon: '❄️', animals: ['brown_bear', 'moose', 'reindeer', 'wild_boar', 'musk_deer', 'eurasian_lynx', 'western_capercaillie', 'gray_wolf'] },
+      { id: 'vurhonga', name: 'Vurhonga Savanna', icon: '🦁', animals: ['lion', 'cape_buffalo', 'gemsbok', 'springbok', 'blue_wildebeest', 'lesser_kudu', 'scrub_hare', 'warthog', 'side_striped_jackal'] },
+      { id: 'parque', name: 'Parque Fernando', icon: '🌴', animals: ['red_deer', 'water_buffalo', 'axis_deer', 'cinnamon_teal', 'blackbuck', 'puma', 'collared_peccary', 'mule_deer'] },
+      { id: 'yukon', name: 'Yukon Valley', icon: '🐻', animals: ['grizzly_bear', 'moose', 'plains_bison', 'caribou', 'gray_wolf', 'red_fox', 'canada_goose'] },
+      { id: 'cuatro', name: 'Cuatro Colinas', icon: '🐗', animals: ['iberian_wolf', 'iberian_mouflon', 'red_deer', 'roe_deer', 'wild_boar', 'beceite_ibex', 'ronda_ibex', 'european_hare', 'ring_necked_pheasant'] },
+      { id: 'silver_ridge', name: 'Silver Ridge Peaks', icon: '🏔️', animals: ['rocky_mountain_elk', 'mule_deer', 'mountain_lion', 'mountain_goat', 'bighorn_sheep', 'pronghorn', 'black_bear', 'plains_bison', 'turkey'] },
+      { id: 'te_awaroa', name: 'Te Awaroa', icon: '🥝', animals: ['red_deer', 'feral_goat', 'feral_pig', 'sika_deer', 'fallow_deer', 'chamois', 'turkey'] },
+      { id: 'rancho', name: 'Rancho del Arroyo', icon: '🌵', animals: ['whitetail', 'mule_deer', 'rio_grande_turkey', 'ring_necked_pheasant', 'antelope_jackrabbit', 'collared_peccary', 'bighorn_sheep', 'coyote', 'mexican_bobcat', 'pronghorn'] },
+      { id: 'mississippi', name: 'Mississippi Acres', icon: '🐊', animals: ['whitetail', 'eastern_wild_turkey', 'bobwhite_quail', 'eastern_cottontail', 'gray_fox', 'raccoon', 'wild_hog', 'american_alligator', 'black_bear'] },
+      { id: 'revontuli', name: 'Revontuli Coast', icon: '🌲', animals: ['whitetail', 'moose', 'brown_bear', 'eurasian_lynx', 'rock_ptarmigan', 'willow_ptarmigan', 'black_grouse', 'hazel_grouse', 'western_capercaillie', 'raccoon_dog', 'mountain_hare'] },
+      { id: 'new_england', name: 'New England Mountains', icon: '🍂', animals: ['whitetail', 'black_bear', 'moose', 'bobcat', 'eastern_wild_turkey', 'eastern_cottontail', 'gray_fox', 'red_fox', 'coyote', 'ring_necked_pheasant', 'bobwhite_quail', 'raccoon'] },
+      { id: 'emerald', name: 'Emerald Coast (Australia)', icon: '🦘', animals: ['red_deer', 'sambar_deer', 'javan_rusa', 'axis_deer', 'fallow_deer', 'banteng', 'feral_pig', 'feral_goat', 'hog_deer', 'red_fox', 'saltwater_crocodile', 'stubble_quail'] },
+      { id: 'sundarpatan', name: 'Sundarpatan (Nepal)', icon: '🐅', animals: ['bengal_tiger', 'water_buffalo', 'himalayan_tahr', 'nilgai', 'blackbuck', 'indian_muntjac', 'blue_sheep', 'barasingha', 'snow_leopard', 'tibetan_fox', 'woolly_hare', 'wild_yak'] },
+      { id: 'salzwiesen', name: 'Salzwiesen Park', icon: '🦆', animals: ['greylag_goose', 'tundra_bean_goose', 'ring_necked_pheasant', 'black_grouse', 'european_rabbit', 'raccoon', 'raccoon_dog', 'red_fox', 'goldeneye', 'eurasian_teal', 'mallard'] },
+      { id: 'askiy', name: 'Askiy Ridge', icon: '🦬', animals: ['black_bear', 'bighorn_sheep', 'gray_wolf', 'manitoban_elk', 'moose', 'mule_deer', 'pronghorn', 'whitetail', 'wood_bison', 'woodland_caribou', 'mountain_goat', 'beaver'] },
+      { id: 'scotland', name: 'Tòrr nan Sithean', icon: '🏴', animals: ['red_deer', 'roe_deer', 'fallow_deer', 'sika_deer', 'wild_boar', 'red_fox', 'feral_goat', 'mountain_hare', 'european_badger', 'black_grouse', 'ring_necked_pheasant'] }
+    ],
+
+    // Need Zone times: Each array contains {start, end} in 24h format
+    // Times based on espis.de and community guides
+    NEED_ZONES: {
+      // Hirschfelden Animals (espis.de data)
+      red_deer: {
+        drink: [{ start: 5, end: 9 }],
+        feed: [{ start: 17, end: 21 }],
+        rest: [{ start: 9, end: 17 }, { start: 21, end: 5 }]
+      },
+      whitetail: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      mule_deer: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      blacktail: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      roe_deer: {
+        drink: [{ start: 13, end: 17 }],
+        feed: [{ start: 13, end: 17 }, { start: 17, end: 21 }],
+        rest: [{ start: 0, end: 3 }, { start: 3, end: 6 }, { start: 10, end: 13 }, { start: 21, end: 0 }]
+      },
+      fallow_deer: {
+        drink: [{ start: 10, end: 13 }],
+        feed: [{ start: 6, end: 10 }, { start: 17, end: 21 }],
+        rest: [{ start: 0, end: 3 }, { start: 0.5, end: 6 }, { start: 13, end: 17 }, { start: 21, end: 0 }]
+      },
+      axis_deer: {
+        drink: [{ start: 7, end: 11 }, { start: 15, end: 19 }],
+        feed: [{ start: 11, end: 15 }],
+        rest: [{ start: 19, end: 7 }]
+      },
+      sika_deer: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      sambar_deer: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      reindeer: {
+        drink: [{ start: 4, end: 8 }],
+        feed: [{ start: 8, end: 12 }, { start: 16, end: 20 }],
+        rest: [{ start: 0, end: 4 }, { start: 12, end: 16 }, { start: 20, end: 0 }]
+      },
+      caribou: {
+        drink: [{ start: 6, end: 12 }, { start: 18, end: 21 }],
+        feed: [{ start: 12, end: 18 }],
+        rest: [{ start: 21, end: 6 }]
+      },
+      // Elk Family (Layton Lake / espis.de data)
+      moose: {
+        drink: [{ start: 12, end: 16 }],
+        feed: [{ start: 4, end: 8 }, { start: 16, end: 20 }],
+        rest: [{ start: 0, end: 4 }, { start: 8, end: 12 }, { start: 20, end: 0 }]
+      },
+      roosevelt_elk: {
+        drink: [{ start: 4, end: 8 }],
+        feed: [{ start: 8, end: 12 }, { start: 16, end: 20 }],
+        rest: [{ start: 0, end: 4 }, { start: 12, end: 16 }, { start: 20, end: 0 }]
+      },
+      rocky_mountain_elk: {
+        drink: [{ start: 4, end: 9 }, { start: 16, end: 20 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 20, end: 4 }]
+      },
+      // Bears (Layton Lake / espis.de data)
+      black_bear: {
+        drink: [{ start: 4, end: 8 }],
+        feed: [{ start: 0, end: 4 }, { start: 20, end: 0 }],
+        rest: [{ start: 8, end: 12 }, { start: 12, end: 16 }, { start: 16, end: 20 }]
+      },
+      brown_bear: {
+        drink: [{ start: 20, end: 0 }],
+        feed: [{ start: 0, end: 4 }, { start: 4, end: 8 }],
+        rest: [{ start: 8, end: 12 }, { start: 12, end: 16 }, { start: 16, end: 20 }]
+      },
+      grizzly_bear: {
+        drink: [{ start: 5, end: 10 }, { start: 17, end: 21 }],
+        feed: [{ start: 10, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      // Wild Boar & Pigs
+      wild_boar: {
+        drink: [{ start: 23, end: 3.5 }],
+        feed: [{ start: 3, end: 7.5 }],
+        rest: [{ start: 7.5, end: 23 }]
+      },
+      feral_pig: {
+        drink: [{ start: 4, end: 8 }, { start: 20, end: 0 }],
+        feed: [{ start: 8, end: 20 }],
+        rest: [{ start: 0, end: 4 }]
+      },
+      wild_hog: {
+        drink: [{ start: 4, end: 8 }, { start: 20, end: 0 }],
+        feed: [{ start: 8, end: 20 }],
+        rest: [{ start: 0, end: 4 }]
+      },
+      // Wolves & Canines (Medved-Taiga / espis.de)
+      gray_wolf: {
+        drink: [{ start: 17, end: 20 }],
+        feed: [{ start: 0, end: 3 }, { start: 3, end: 6 }, { start: 20, end: 0 }],
+        rest: [{ start: 6, end: 10 }, { start: 10, end: 14 }, { start: 14, end: 17 }]
+      },
+      coyote: {
+        drink: [{ start: 0, end: 4 }],
+        feed: [{ start: 4, end: 7 }, { start: 17, end: 20 }, { start: 20, end: 0 }],
+        rest: [{ start: 7, end: 10 }, { start: 10, end: 14 }, { start: 14, end: 17 }]
+      },
+      red_fox: {
+        drink: [{ start: 17, end: 20.5 }],
+        feed: [{ start: 0, end: 7 }, { start: 20, end: 0 }],
+        rest: [{ start: 7, end: 10.5 }]
+      },
+      gray_fox: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      // Cats
+      mountain_lion: {
+        drink: [{ start: 4, end: 8 }, { start: 20, end: 0 }],
+        feed: [{ start: 8, end: 20 }],
+        rest: [{ start: 0, end: 4 }]
+      },
+      puma: {
+        drink: [{ start: 4, end: 8 }, { start: 20, end: 0 }],
+        feed: [{ start: 8, end: 20 }],
+        rest: [{ start: 0, end: 4 }]
+      },
+      lion: {
+        drink: [{ start: 4, end: 8 }, { start: 18, end: 22 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 22, end: 4 }]
+      },
+      lynx: {
+        drink: [{ start: 5, end: 9 }, { start: 20, end: 0 }],
+        feed: [{ start: 9, end: 20 }],
+        rest: [{ start: 0, end: 5 }]
+      },
+      bobcat: {
+        drink: [{ start: 5, end: 9 }, { start: 20, end: 0 }],
+        feed: [{ start: 9, end: 20 }],
+        rest: [{ start: 0, end: 5 }]
+      },
+      mexican_bobcat: {
+        drink: [{ start: 5, end: 9 }, { start: 20, end: 0 }],
+        feed: [{ start: 9, end: 20 }],
+        rest: [{ start: 0, end: 5 }]
+      },
+      eurasian_lynx: {
+        drink: [{ start: 5, end: 9 }, { start: 20, end: 0 }],
+        feed: [{ start: 9, end: 20 }],
+        rest: [{ start: 0, end: 5 }]
+      },
+      // Bison/Buffalo
+      plains_bison: {
+        drink: [{ start: 7, end: 11 }, { start: 16, end: 20 }],
+        feed: [{ start: 11, end: 16 }],
+        rest: [{ start: 20, end: 7 }]
+      },
+      european_bison: {
+        drink: [{ start: 6, end: 10 }],
+        feed: [{ start: 0, end: 5 }],
+        rest: [{ start: 10, end: 13 }]
+      },
+      water_buffalo: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      cape_buffalo: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      // Goats & Sheep
+      mountain_goat: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      bighorn_sheep: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      feral_goat: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      chamois: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      iberian_mouflon: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      beceite_ibex: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      ronda_ibex: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      // African Animals
+      gemsbok: {
+        drink: [{ start: 8, end: 12 }, { start: 16, end: 20 }],
+        feed: [{ start: 12, end: 16 }],
+        rest: [{ start: 20, end: 8 }]
+      },
+      springbok: {
+        drink: [{ start: 7, end: 11 }, { start: 15, end: 19 }],
+        feed: [{ start: 11, end: 15 }],
+        rest: [{ start: 19, end: 7 }]
+      },
+      blue_wildebeest: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      lesser_kudu: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      warthog: {
+        drink: [{ start: 6, end: 10 }, { start: 14, end: 18 }],
+        feed: [{ start: 10, end: 14 }],
+        rest: [{ start: 18, end: 6 }]
+      },
+      // American Birds
+      turkey: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      },
+      eastern_wild_turkey: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      },
+      rio_grande_turkey: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      },
+      mallard: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      canada_goose: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      pheasant: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 19 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      ring_necked_pheasant: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 19 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      // Small Mammals
+      european_rabbit: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      jackrabbit: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      antelope_jackrabbit: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      snowshoe_hare: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      mountain_hare: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      scrub_hare: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      eastern_cottontail: {
+        drink: [{ start: 5, end: 8 }, { start: 18, end: 21 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      // Pronghorn
+      pronghorn: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      blackbuck: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      // Misc
+      collared_peccary: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      raccoon: {
+        drink: [{ start: 20, end: 0 }, { start: 0, end: 4 }],
+        feed: [{ start: 4, end: 20 }],
+        rest: [{ start: 4, end: 20 }]
+      },
+      american_alligator: {
+        drink: [{ start: 10, end: 14 }],
+        feed: [{ start: 14, end: 20 }],
+        rest: [{ start: 20, end: 10 }]
+      },
+      musk_deer: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      iberian_wolf: {
+        drink: [{ start: 5, end: 9 }, { start: 19, end: 23 }],
+        feed: [{ start: 9, end: 19 }],
+        rest: [{ start: 23, end: 5 }]
+      },
+      side_striped_jackal: {
+        drink: [{ start: 5, end: 9 }, { start: 18, end: 22 }],
+        feed: [{ start: 9, end: 18 }],
+        rest: [{ start: 22, end: 5 }]
+      },
+      raccoon_dog: {
+        drink: [{ start: 5, end: 9 }, { start: 18, end: 22 }],
+        feed: [{ start: 9, end: 18 }],
+        rest: [{ start: 22, end: 5 }]
+      },
+      hog_deer: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      indian_muntjac: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 21 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 21, end: 5 }]
+      },
+      javan_rusa: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      banteng: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      western_capercaillie: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      },
+      bobwhite_quail: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 19 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      rock_ptarmigan: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 19 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      goldeneye: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 19 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      black_grouse: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      },
+      hazel_grouse: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      },
+      cinnamon_teal: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      harlequin_duck: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      // Salzwiesen Park Animals (Waterfowl & Small Game)
+      greylag_goose: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      tundra_bean_goose: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      eurasian_teal: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      eurasian_wigeon: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      tufted_duck: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 19 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      gadwall: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      ferruginous_duck: {
+        drink: [{ start: 5, end: 9 }, { start: 17, end: 20 }],
+        feed: [{ start: 9, end: 17 }],
+        rest: [{ start: 20, end: 5 }]
+      },
+      // Askiy Ridge Animals
+      manitoban_elk: {
+        drink: [{ start: 4, end: 8 }],
+        feed: [{ start: 8, end: 16 }],
+        rest: [{ start: 16, end: 4 }]
+      },
+      wood_bison: {
+        drink: [{ start: 8, end: 12 }],
+        feed: [{ start: 12, end: 20 }],
+        rest: [{ start: 20, end: 8 }]
+      },
+      woodland_caribou: {
+        drink: [{ start: 20, end: 0 }],
+        feed: [{ start: 0, end: 12 }],
+        rest: [{ start: 12, end: 20 }]
+      },
+      // Sundarpatan (Nepal) Animals
+      bengal_tiger: {
+        drink: [{ start: 4, end: 8 }, { start: 18, end: 22 }],
+        feed: [{ start: 8, end: 18 }],
+        rest: [{ start: 22, end: 4 }]
+      },
+      asian_water_buffalo: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      himalayan_tahr: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      nilgai: {
+        drink: [{ start: 6, end: 10 }, { start: 16, end: 20 }],
+        feed: [{ start: 10, end: 16 }],
+        rest: [{ start: 20, end: 6 }]
+      },
+      blue_sheep: {
+        drink: [{ start: 6, end: 10 }, { start: 15, end: 19 }],
+        feed: [{ start: 10, end: 15 }],
+        rest: [{ start: 19, end: 6 }]
+      },
+      // Scotland (Tòrr nan Sithean) Animals
+      red_grouse: {
+        drink: [{ start: 5, end: 9 }, { start: 16, end: 19 }],
+        feed: [{ start: 9, end: 16 }],
+        rest: [{ start: 19, end: 5 }]
+      }
+    },
+
+    // Animal display names (for UI) - with icons
+    ANIMAL_NAMES: {
+      // Deer Family
+      red_deer: { en: 'Red Deer', de: 'Rothirsch', icon: '🦌' },
+      whitetail: { en: 'Whitetail Deer', de: 'Weißwedelhirsch', icon: '🦌' },
+      mule_deer: { en: 'Mule Deer', de: 'Maultierhirsch', icon: '🦌' },
+      blacktail: { en: 'Blacktail Deer', de: 'Schwarzwedelhirsch', icon: '🦌' },
+      roe_deer: { en: 'Roe Deer', de: 'Reh', icon: '🦌' },
+      fallow_deer: { en: 'Fallow Deer', de: 'Damhirsch', icon: '🦌' },
+      axis_deer: { en: 'Axis Deer', de: 'Axishirsch', icon: '🦌' },
+      sika_deer: { en: 'Sika Deer', de: 'Sikahirsch', icon: '🦌' },
+      sambar_deer: { en: 'Sambar Deer', de: 'Sambarhirsch', icon: '🦌' },
+      reindeer: { en: 'Reindeer', de: 'Rentier', icon: '🦌' },
+      caribou: { en: 'Caribou', de: 'Karibu', icon: '🦌' },
+      musk_deer: { en: 'Musk Deer', de: 'Moschushirsch', icon: '🦌' },
+      hog_deer: { en: 'Hog Deer', de: 'Schweinshirsch', icon: '🦌' },
+      indian_muntjac: { en: 'Indian Muntjac', de: 'Muntjak', icon: '🦌' },
+      javan_rusa: { en: 'Javan Rusa', de: 'Rusa', icon: '🦌' },
+      // Elk/Moose
+      moose: { en: 'Moose', de: 'Elch', icon: '🫎' },
+      roosevelt_elk: { en: 'Roosevelt Elk', de: 'Roosevelt-Wapiti', icon: '🫎' },
+      rocky_mountain_elk: { en: 'Rocky Mountain Elk', de: 'Rocky-Mountain-Wapiti', icon: '🫎' },
+      manitoban_elk: { en: 'Manitoban Elk', de: 'Manitoba-Wapiti', icon: '🫎' },
+      // Bears
+      black_bear: { en: 'Black Bear', de: 'Schwarzbär', icon: '🐻' },
+      brown_bear: { en: 'Brown Bear', de: 'Braunbär', icon: '🐻' },
+      grizzly_bear: { en: 'Grizzly Bear', de: 'Grizzlybär', icon: '🐻' },
+      // Wild Pigs
+      wild_boar: { en: 'Wild Boar', de: 'Wildschwein', icon: '🐗' },
+      feral_pig: { en: 'Feral Pig', de: 'Wildes Schwein', icon: '🐗' },
+      wild_hog: { en: 'Wild Hog', de: 'Wild-Schwein', icon: '🐗' },
+      warthog: { en: 'Warthog', de: 'Warzenschwein', icon: '🐗' },
+      collared_peccary: { en: 'Collared Peccary', de: 'Halsbandpekari', icon: '🐗' },
+      // Wolves/Canids
+      gray_wolf: { en: 'Gray Wolf', de: 'Grauwolf', icon: '🐺' },
+      iberian_wolf: { en: 'Iberian Wolf', de: 'Iberischer Wolf', icon: '🐺' },
+      coyote: { en: 'Coyote', de: 'Kojote', icon: '🐺' },
+      side_striped_jackal: { en: 'Side-Striped Jackal', de: 'Streifenschakal', icon: '🐺' },
+      raccoon_dog: { en: 'Raccoon Dog', de: 'Marderhund', icon: '🦝' },
+      // Foxes
+      red_fox: { en: 'Red Fox', de: 'Rotfuchs', icon: '🦊' },
+      gray_fox: { en: 'Gray Fox', de: 'Graufuchs', icon: '🦊' },
+      // Big Cats
+      mountain_lion: { en: 'Mountain Lion', de: 'Puma', icon: '🦁' },
+      puma: { en: 'Puma', de: 'Puma', icon: '🦁' },
+      lion: { en: 'Lion', de: 'Löwe', icon: '🦁' },
+      bengal_tiger: { en: 'Bengal Tiger', de: 'Bengalischer Tiger', icon: '🐅' },
+      lynx: { en: 'Lynx', de: 'Luchs', icon: '🐱' },
+      bobcat: { en: 'Bobcat', de: 'Rotluchs', icon: '🐱' },
+      mexican_bobcat: { en: 'Mexican Bobcat', de: 'Mexikanischer Rotluchs', icon: '🐱' },
+      eurasian_lynx: { en: 'Eurasian Lynx', de: 'Eurasischer Luchs', icon: '🐱' },
+      // Bison/Buffalo
+      plains_bison: { en: 'Plains Bison', de: 'Präriebison', icon: '🦬' },
+      european_bison: { en: 'European Bison', de: 'Wisent', icon: '🦬' },
+      wood_bison: { en: 'Wood Bison', de: 'Waldbison', icon: '🦬' },
+      water_buffalo: { en: 'Water Buffalo', de: 'Wasserbüffel', icon: '🐃' },
+      asian_water_buffalo: { en: 'Asian Water Buffalo', de: 'Asiatischer Wasserbüffel', icon: '🐃' },
+      cape_buffalo: { en: 'Cape Buffalo', de: 'Kaffernbüffel', icon: '🐃' },
+      banteng: { en: 'Banteng', de: 'Banteng', icon: '🐃' },
+      // Goats/Sheep
+      mountain_goat: { en: 'Mountain Goat', de: 'Bergziege', icon: '🐐' },
+      bighorn_sheep: { en: 'Bighorn Sheep', de: 'Dickhornschaf', icon: '🐐' },
+      feral_goat: { en: 'Feral Goat', de: 'Wilde Ziege', icon: '🐐' },
+      chamois: { en: 'Chamois', de: 'Gämse', icon: '🐐' },
+      iberian_mouflon: { en: 'Iberian Mouflon', de: 'Iberischer Mufflon', icon: '🐐' },
+      beceite_ibex: { en: 'Beceite Ibex', de: 'Beceite-Steinbock', icon: '🐐' },
+      ronda_ibex: { en: 'Ronda Ibex', de: 'Ronda-Steinbock', icon: '🐐' },
+      himalayan_tahr: { en: 'Himalayan Tahr', de: 'Himalaya-Tahr', icon: '🐐' },
+      blue_sheep: { en: 'Blue Sheep', de: 'Blauschaf', icon: '🐐' },
+      // Antelope
+      gemsbok: { en: 'Gemsbok', de: 'Oryx', icon: '🦌' },
+      springbok: { en: 'Springbok', de: 'Springbock', icon: '🦌' },
+      blue_wildebeest: { en: 'Blue Wildebeest', de: 'Streifengnu', icon: '🦌' },
+      lesser_kudu: { en: 'Lesser Kudu', de: 'Kleiner Kudu', icon: '🦌' },
+      pronghorn: { en: 'Pronghorn', de: 'Gabelbock', icon: '🦌' },
+      blackbuck: { en: 'Blackbuck', de: 'Hirschziegenantilope', icon: '🦌' },
+      nilgai: { en: 'Nilgai', de: 'Nilgauantilope', icon: '🦌' },
+      woodland_caribou: { en: 'Woodland Caribou', de: 'Waldkaribu', icon: '🦌' },
+      // Birds - Turkey
+      turkey: { en: 'Turkey', de: 'Truthahn', icon: '🦃' },
+      eastern_wild_turkey: { en: 'Eastern Wild Turkey', de: 'Östlicher Wildtruthahn', icon: '🦃' },
+      rio_grande_turkey: { en: 'Rio Grande Turkey', de: 'Rio-Grande-Truthahn', icon: '🦃' },
+      // Birds - Ducks/Geese
+      mallard: { en: 'Mallard', de: 'Stockente', icon: '🦆' },
+      canada_goose: { en: 'Canada Goose', de: 'Kanadagans', icon: '🦆' },
+      goldeneye: { en: 'Goldeneye', de: 'Schellente', icon: '🦆' },
+      cinnamon_teal: { en: 'Cinnamon Teal', de: 'Zimtente', icon: '🦆' },
+      harlequin_duck: { en: 'Harlequin Duck', de: 'Kragenente', icon: '🦆' },
+      greylag_goose: { en: 'Greylag Goose', de: 'Graugans', icon: '🦆' },
+      tundra_bean_goose: { en: 'Tundra Bean Goose', de: 'Tundra-Saatgans', icon: '🦆' },
+      eurasian_teal: { en: 'Eurasian Teal', de: 'Krickente', icon: '🦆' },
+      eurasian_wigeon: { en: 'Eurasian Wigeon', de: 'Pfeifente', icon: '🦆' },
+      tufted_duck: { en: 'Tufted Duck', de: 'Reiherente', icon: '🦆' },
+      gadwall: { en: 'Gadwall', de: 'Schnatterente', icon: '🦆' },
+      ferruginous_duck: { en: 'Ferruginous Duck', de: 'Moorente', icon: '🦆' },
+      // Birds - Other
+      pheasant: { en: 'Pheasant', de: 'Fasan', icon: '🐦' },
+      ring_necked_pheasant: { en: 'Ring-Necked Pheasant', de: 'Ringfasan', icon: '🐦' },
+      western_capercaillie: { en: 'Western Capercaillie', de: 'Auerhuhn', icon: '🐦' },
+      bobwhite_quail: { en: 'Bobwhite Quail', de: 'Virginiawachtel', icon: '🐦' },
+      rock_ptarmigan: { en: 'Rock Ptarmigan', de: 'Alpenschneehuhn', icon: '🐦' },
+      black_grouse: { en: 'Black Grouse', de: 'Birkhuhn', icon: '🐦' },
+      hazel_grouse: { en: 'Hazel Grouse', de: 'Haselhuhn', icon: '🐦' },
+      red_grouse: { en: 'Red Grouse', de: 'Schottisches Moorschneehuhn', icon: '🐦' },
+      // Rabbits/Hares
+      european_rabbit: { en: 'European Rabbit', de: 'Wildkaninchen', icon: '🐇' },
+      jackrabbit: { en: 'Jackrabbit', de: 'Eselhase', icon: '🐇' },
+      antelope_jackrabbit: { en: 'Antelope Jackrabbit', de: 'Antilopenhase', icon: '🐇' },
+      snowshoe_hare: { en: 'Snowshoe Hare', de: 'Schneeschuhhase', icon: '🐇' },
+      mountain_hare: { en: 'Mountain Hare', de: 'Schneehase', icon: '🐇' },
+      scrub_hare: { en: 'Scrub Hare', de: 'Buschhase', icon: '🐇' },
+      eastern_cottontail: { en: 'Eastern Cottontail', de: 'Baumwollschwanz', icon: '🐇' },
+      // Other
+      raccoon: { en: 'Raccoon', de: 'Waschbär', icon: '🦝' },
+      american_alligator: { en: 'American Alligator', de: 'Mississippi-Alligator', icon: '🐊' }
+    }
   }
 };

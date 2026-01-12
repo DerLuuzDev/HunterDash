@@ -12,9 +12,24 @@ const TRANSLATIONS = {
         // Navigation
         navCalculator: 'Berechner',
         navGrindHelper: 'Grind Helper',
+        navReference: 'Need Zones',
         navHistory: 'Historie',
         navTemplates: 'Templates',
         navAccounts: 'Accounts',
+
+        // Reference Tab (Need Zone Visualizer)
+        refTitle: 'Need Zones Übersicht',
+        refDesc: 'Finde die besten Jagdzeiten für deine Zieltiere.',
+        refSelectMap: 'Karte auswählen:',
+        refSelectMapPlaceholder: '-- Karte wählen --',
+        refInGameTime: 'Ingame-Zeit:',
+        refSearch: 'Tier suchen:',
+        refSearchPlaceholder: 'z.B. Rothirsch...',
+        refDrink: 'Trinken',
+        refFeed: 'Fressen',
+        refRest: 'Ruhen',
+        refSelectMapHint: '👆 Wähle oben eine Karte aus, um die Need Zones zu sehen',
+        refActiveNow: 'Jetzt aktiv',
 
         // Settings
         settings: 'Einstellungen',
@@ -205,9 +220,24 @@ const TRANSLATIONS = {
         // Navigation
         navCalculator: 'Calculator',
         navGrindHelper: 'Grind Helper',
+        navReference: 'Need Zones',
         navHistory: 'History',
         navTemplates: 'Templates',
         navAccounts: 'Accounts',
+
+        // Reference Tab (Need Zone Visualizer)
+        refTitle: 'Need Zones Overview',
+        refDesc: 'Find the best hunting times for your target animals.',
+        refSelectMap: 'Select Map:',
+        refSelectMapPlaceholder: '-- Choose a map --',
+        refInGameTime: 'In-Game Time:',
+        refSearch: 'Search Animal:',
+        refSearchPlaceholder: 'e.g. Red Deer...',
+        refDrink: 'Drink',
+        refFeed: 'Feed',
+        refRest: 'Rest',
+        refSelectMapHint: '👆 Select a map above to see animal need zones',
+        refActiveNow: 'Active Now',
 
         // Settings
         settings: 'Settings',
