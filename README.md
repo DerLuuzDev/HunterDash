@@ -84,7 +84,19 @@ npm run build:all   # Alle Plattformen
 
 ---
 
-## 🗺️ Roadmap & Pläne
+## � Screenshots & Einblicke
+
+| **🎯 Glücks-Rechner** | **⏱️ Grind Session Tracker** |
+|:---:|:---:|
+| ![HunterDash Luck Calculator](assets/screenshots/hunterdash_calculator.png) | ![HunterDash Session Tracker](assets/screenshots/hunterdash_tracker.png) |
+
+| **📈 Statistics Dashboard** | **🎨 Dark Mode UI** |
+|:---:|:---:|
+| ![HunterDash Statistics](assets/screenshots/hunterdash_statistics.png) | *Modern Glassmorphism Design* |
+
+---
+
+## �🗺️ Roadmap & Pläne
 - [x] Grind Session Tracker
 - [x] Overlay Mode
 - [x] Statistiken & Charts
