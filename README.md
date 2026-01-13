@@ -32,10 +32,10 @@ Optimiere deine Sessions mit dem integrierten Tracker.
 
 ### ⌨️ Globale Hotkeys
 Steuere die App, ohne das Spiel zu verlassen:
-- `F7`: **Kill hinzufügen** (+1)
+- `F5`: **Kill hinzufügen** (+1)
+- `F6`: **Letzten Kill entfernen** (-1)
+- `F7`: **Timer pausieren / fortsetzen**
 - `F8`: **Session beenden / speichern**
-- `F9`: **Timer pausieren / fortsetzen**
-- `F10`: **Letzten Kill entfernen** (Korrektur)
 
 *(Hotkeys sind in den Einstellungen anpassbar)*
 
