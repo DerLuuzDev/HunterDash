@@ -8,7 +8,7 @@
 
 HunterDash ist ein modernes Overlay- und Tracking-Tool für *theHunter: Call of the Wild*. Es hilft dir, deinen Grind zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – alles in einer App.
 
-![HunterDash Screenshot](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/icons/swappy-20260112-190600.png?raw=true)
+![HunterDash Screenshot](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/icons/Grind-Helper-Screenshot.png?raw=true)
 
 ## ✨ Hauptfunktionen
 
