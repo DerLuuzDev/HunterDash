@@ -8,7 +8,7 @@
 
 HunterDash ist ein modernes Overlay- und Tracking-Tool für *theHunter: Call of the Wild*. Es hilft dir, deinen Grind zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – alles in einer App.
 
-![HunterDash Screenshot](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/icons/Grind-Helper-Screenshot.png?raw=true)
+![HunterDash Screenshot](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Grind-Helper-Screenshot.png?raw=true)
 
 ## ✨ Hauptfunktionen
 
@@ -32,10 +32,10 @@ Optimiere deine Sessions mit dem integrierten Tracker.
 
 ### ⌨️ Globale Hotkeys
 Steuere die App, ohne das Spiel zu verlassen:
-- `F5`: **Kill hinzufügen** (+1)
-- `F6`: **Letzten Kill entfernen** (-1)
-- `F7`: **Timer pausieren / fortsetzen**
+- `F7`: **Kill hinzufügen** (+1)
 - `F8`: **Session beenden / speichern**
+- `F9`: **Timer pausieren / fortsetzen**
+- `F10`: **Letzten Kill entfernen** (Korrektur)
 
 *(Hotkeys sind in den Einstellungen anpassbar)*
 
