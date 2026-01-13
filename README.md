@@ -88,11 +88,11 @@ npm run build:all   # Alle Plattformen
 
 | **🎯 Glücks-Rechner** | **⏱️ Grind Session Tracker** |
 |:---:|:---:|
-| ![HunterDash Luck Calculator](assets/screenshots/hunterdash_calculator.png) | ![HunterDash Session Tracker](assets/screenshots/hunterdash_tracker.png) |
+| ![HunterDash Luck Calculator](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Luck-Score.png?raw=true) | ![HunterDash Session Tracker](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Sessions.png?raw=true) |
 
-| **📈 Statistics Dashboard** | **🎨 Dark Mode UI** |
+| **📈 Statistics Dashboard** | **📃 Verlauf** |
 |:---:|:---:|
-| ![HunterDash Statistics](assets/screenshots/hunterdash_statistics.png) | *Modern Glassmorphism Design* |
+| ![HunterDash Statistics](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Statistiken.png?raw=true) | ![Modern Glassmorphism Design](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Historie.png?raw=true) |
 
 ---
 
