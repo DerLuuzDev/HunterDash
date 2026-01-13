@@ -53,7 +53,7 @@ module.exports = {
       GRIND_SETTINGS: 'grind-settings'
     },
     DEFAULT_SETTINGS: {
-      theme: 'light',
+      theme: 'dark',
       autoSave: true,
       apiEnabled: false,
       apiEndpoint: 'http://localhost:3000',
