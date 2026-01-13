@@ -1,4 +1,4 @@
-# HunterDash 🦌
+# HunterDash 🦌 - Der #1 COTW Grind Helper & Overlay
 
 **Der ultimative Begleiter für theHunter: Call of the Wild**
 
@@ -6,29 +6,29 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-blue?style=for-the-badge)](https://github.com/DerLuuz/HunterDash/releases)
 [![License](https://img.shields.io/github/license/DerLuuz/HunterDash?style=for-the-badge)](LICENSE)
 
-HunterDash ist ein modernes Overlay- und Tracking-Tool für *theHunter: Call of the Wild*. Es hilft dir, deinen Grind zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – alles in einer App.
+HunterDash ist ein modernes **Overlay- und Tracking-Tool** für *theHunter: Call of the Wild*. Es hilft dir, deinen **Great One Grind** zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – die perfekte Alternative zu Population Scanner, aber 100% sicher und ohne Game-Files-Modifikation.
 
-![HunterDash Screenshot](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Grind-Helper-Screenshot.png?raw=true)
+![HunterDash Grind Tracker Overlay - Dark Mode UI](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Grind-Helper-Screenshot.png?raw=true)
 
 ## ✨ Hauptfunktionen
 
-### 🧮 Glücks-Rechner
-Berechne die Wahrscheinlichkeit deiner Spawns!
+### 🧮 Luck Calculator & Spawn-Wahrscheinlichkeiten
+Berechne die Wahrscheinlichkeit deiner Spawns und vergleiche dein RNG!
 - **Z-Score Berechnung**: Analysiere Rares, Diamonds, Super Rares & Great Ones.
-- **Detaillierte Interpretation**: Erfahre, ob du "Pech" oder "Glück" hast.
-- **Account-Vergleich**: Vergleiche deine Stats mit denen von Freunden.
+- **Detaillierte Interpretation**: Erfahre, ob du "Pech" oder "Glück" hast (RNG-Analyse).
+- **Account-Vergleich**: Vergleiche deine Harvest-Stats mit denen von Freunden.
 
-### ⏱️ Grind Tracker & Overlay
-Optimiere deine Sessions mit dem integrierten Tracker.
-- **Session Timer**: Erfasse deine Spielzeit automatisch.
-- **Kills/h Berechnung**: Live-Tracking deiner Effizienz.
+### ⏱️ Grind Tracker, Session Timer & Overlay
+Optimiere deine Sessions mit dem integrierten **Grind Helper**.
+- **Session Timer**: Erfasse deine Spielzeit automatisch für effizientes **Great One Grinding**.
+- **Kills/h Berechnung**: Live-Tracking deiner Effizienz (Kills per Hour).
 - **Pausen-Funktion**: Pausiere den Timer automatisch oder manuell.
-- **Overlay-Modus**: Pinne HunterDash über dein Spiel ("Always on Top").
+- **Overlay-Modus**: Pinne HunterDash als **Overlay** über dein Spiel ("Always on Top").
 
-### 📈 Statistiken & Historie
-- **Interaktive Charts**: Kombinierte Ansicht von **L-Score (Glück)** und **Grind-Effizienz (Kills/h)**.
-- **Detail-Analyse**: Stündliche Auflösung für detaillierte Trends.
-- **Export**: Speichere deine Daten als CSV oder JSON.
+### 📈 Erweiterte Statistiken & Kills/h Analyse
+- **Interaktive Charts**: Kombinierte Ansicht von **L-Score (Glück)** und **Grind-Effizienz**.
+- **Detail-Analyse**: Stündliche Auflösung für detaillierte Trends und **Herd Management**.
+- **Export**: Speichere deine Daten als CSV oder JSON für Excel/Sheets.
 
 ### ⌨️ Globale Hotkeys
 Steuere die App, ohne das Spiel zu verlassen:
