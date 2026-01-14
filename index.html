@@ -10,6 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
+        /* Global scrollbar hiding - keeps scroll functionality but hides the bar */
+        * {
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari/Opera */
+        }
+
+        /* Re-enable styled scrollbars only where really needed */
+        .settings-body,
+        .legend {
+            scrollbar-width: thin;
+        }
+
+        .settings-body::-webkit-scrollbar,
+        .legend::-webkit-scrollbar {
+            display: block;
+            width: 6px;
+        }
+
         :root {
             /* Light Mode - Modern & Premium */
             --background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -99,6 +124,13 @@
             --form-select-bg: #1a211c;
 
             --ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Light mode - Remove blur effects that cause text blurriness */
+        body:not(.dark-mode) .settings-content,
+        body:not(.dark-mode) .settings-modal .animal-modal-content {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         /* Dark mode dropdown option styling */
@@ -4369,6 +4401,8 @@
                                 <button class="action-button active" data-period="all"
                                     onclick="StatisticsManager.loadStatistics('all')">📊 <span
                                         data-i18n="accountsAll">Alle</span></button>
+                                <button class="action-button danger" style="margin-left: auto;"
+                                    onclick="StatisticsManager.resetStatistics()">🗑️ Zurücksetzen</button>
                             </div>
 
                             <div class="stat-grid" id="statGrid"></div>
@@ -7076,6 +7110,36 @@
                         }
                     }
                 });
+            },
+
+            async resetStatistics() {
+                // Show confirmation dialog
+                const confirmed = confirm('⚠️ Statistiken zurücksetzen?\n\nAlle gespeicherten Berechnungen werden unwiderruflich gelöscht.\n\nFortfahren?');
+
+                if (!confirmed) {
+                    return;
+                }
+
+                try {
+                    if (window.electronAPI && window.electronAPI.history) {
+                        const result = await window.electronAPI.history.clear();
+                        if (result.success) {
+                            ToastManager.show('Statistiken erfolgreich zurückgesetzt!', 'success');
+                            // Reload empty statistics
+                            this.loadStatistics('all');
+                        } else {
+                            ToastManager.show('Fehler beim Zurücksetzen: ' + (result.error || 'Unbekannt'), 'error');
+                        }
+                    } else {
+                        // Fallback for localStorage
+                        localStorage.removeItem('hunterdash-history');
+                        ToastManager.show('Statistiken erfolgreich zurückgesetzt!', 'success');
+                        this.loadStatistics('all');
+                    }
+                } catch (error) {
+                    console.error('Reset error:', error);
+                    ToastManager.show('Fehler beim Zurücksetzen', 'error');
+                }
             }
         };
 
@@ -8666,6 +8730,12 @@
                             border-radius: 20px;
                             box-shadow: 0 25px 80px rgba(0,0,0,0.6);
                             animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                            /* Text rendering fixes */
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale;
+                            text-rendering: optimizeLegibility;
+                            transform: translateZ(0);
+                            backface-visibility: hidden;
                         }
                         #animal-detail-modal .animal-hero {
                             background: linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(22, 163, 74, 0.08) 100%);
@@ -8886,6 +8956,49 @@
                             flex-wrap: wrap;
                             gap: 8px;
                         }
+                        #animal-detail-modal .fur-groups {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 16px;
+                            width: 100%;
+                            margin-top: 8px;
+                        }
+                        #animal-detail-modal .fur-group {
+                            padding: 16px;
+                            border-radius: 12px;
+                            border: 1px solid transparent;
+                        }
+                        #animal-detail-modal .fur-group-rare {
+                            background: rgba(139,92,246,0.08);
+                            border-color: rgba(139,92,246,0.15);
+                        }
+                        #animal-detail-modal .fur-group-common {
+                            background: rgba(255,255,255,0.03);
+                            border-color: rgba(255,255,255,0.06);
+                        }
+                        #animal-detail-modal .fur-group-header {
+                            margin-bottom: 12px;
+                            font-weight: 700;
+                            font-size: 0.85rem;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        }
+                        #animal-detail-modal .fur-group-rare .fur-group-header {
+                            color: #c4b5fd;
+                        }
+                        #animal-detail-modal .fur-group-common .fur-group-header {
+                            color: #94a3b8;
+                        }
+                        #animal-detail-modal .tag-very-rare {
+                            background: linear-gradient(135deg, rgba(139,92,246,0.4) 0%, rgba(168,85,247,0.3) 100%) !important;
+                            border-color: rgba(139,92,246,0.6) !important;
+                            color: #fff !important;
+                            box-shadow: 0 4px 12px rgba(139,92,246,0.3);
+                            font-weight: 700 !important;
+                        }
                         #animal-detail-modal .tag {
                             padding: 8px 14px;
                             border-radius: 10px;
@@ -8911,11 +9024,127 @@
                             border: 1px solid rgba(16,185,129,0.25);
                             color: #6ee7b7;
                         }
+                        #animal-detail-modal .hero-badge-greatone {
+                            background: linear-gradient(135deg, #ffd700 0%, #ffb700 50%, #ff8c00 100%);
+                            color: #1a1a1a;
+                            font-weight: 700;
+                            padding: 4px 12px;
+                            border-radius: 8px;
+                            font-size: 0.85rem;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            box-shadow: 0 0 12px rgba(255,215,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+                            animation: greatone-glow 2s ease-in-out infinite alternate;
+                        }
+                        @keyframes greatone-glow {
+                            from { box-shadow: 0 0 8px rgba(255,215,0,0.3); }
+                            to { box-shadow: 0 0 16px rgba(255,215,0,0.6); }
+                        }
                         @media (max-width: 800px) {
                             #animal-detail-modal .animal-body { grid-template-columns: 1fr; }
                             #animal-detail-modal .trophy-grid { grid-template-columns: repeat(2, 1fr); }
                             #animal-detail-modal .hero-icon { font-size: 3rem; }
                             #animal-detail-modal .hero-title { font-size: 1.6rem; }
+                        }
+                        
+                        /* ========== LIGHT MODE OVERRIDES ========== */
+                        body:not(.dark-mode) #animal-detail-modal .animal-modal-content {
+                            background: #f8fafc;
+                            border-color: rgba(0,0,0,0.1);
+                            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .animal-hero {
+                            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.1) 100%);
+                            border-bottom-color: rgba(0,0,0,0.08);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .hero-title {
+                            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .hero-meta span {
+                            color: #374151;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .hero-badge {
+                            background: rgba(0,0,0,0.08);
+                            color: #1f2937;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .card {
+                            background: #ffffff;
+                            border-color: rgba(0,0,0,0.08);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .card-title {
+                            color: #1f2937;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .zone-label {
+                            color: #374151;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .zone-row {
+                            border-bottom-color: rgba(0,0,0,0.06);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .time-pill {
+                            background: rgba(34, 197, 94, 0.15);
+                            border-color: rgba(34, 197, 94, 0.3);
+                            color: #15803d;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .no-data {
+                            color: #9ca3af;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .map-container {
+                            background: #f1f5f9;
+                            border-color: rgba(0,0,0,0.08);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .map-hint {
+                            color: #6b7280;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .map-path-box {
+                            background: rgba(0,0,0,0.05);
+                            color: #374151;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .tag {
+                            color: #374151;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .tag-rare {
+                            background: rgba(139,92,246,0.12);
+                            border-color: rgba(139,92,246,0.25);
+                            color: #7c3aed;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .tag-common {
+                            background: rgba(0,0,0,0.05);
+                            border-color: rgba(0,0,0,0.1);
+                            color: #4b5563;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .tag-lure {
+                            background: rgba(16,185,129,0.12);
+                            border-color: rgba(16,185,129,0.25);
+                            color: #059669;
+                        }
+                        /* Fur Group overrides */
+                        body:not(.dark-mode) #animal-detail-modal .fur-group-rare {
+                            background: rgba(139,92,246,0.08);
+                            border-color: rgba(139,92,246,0.2);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .fur-group-common {
+                            background: rgba(0,0,0,0.03);
+                            border-color: rgba(0,0,0,0.06);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .fur-group-rare .fur-group-header {
+                            color: #7c3aed;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .fur-group-common .fur-group-header {
+                            color: #64748b;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .tag-very-rare {
+                            color: #fff !important;
+                            box-shadow: 0 4px 12px rgba(139,92,246,0.25);
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .close-btn {
+                            color: #6b7280;
+                        }
+                        body:not(.dark-mode) #animal-detail-modal .close-btn:hover {
+                            background: rgba(0,0,0,0.08);
+                            color: #1f2937;
                         }
                     </style>
                     <div class="settings-content animal-modal-content">
@@ -8925,6 +9154,8 @@
                                 <h2 class="hero-title">${name}</h2>
                                 <div class="hero-meta">
                                     ${stats.class ? `<span class="hero-badge">Klasse ${stats.class}</span>` : ''}
+                                    ${stats.max_weight_kg ? `<span class="hero-badge">⚖️ ${stats.max_weight_kg} kg</span>` : ''}
+                                    ${stats.great_one ? `<span class="hero-badge-greatone">👑 Great One</span>` : ''}
                                     ${stats.difficulty ? `<span>${stats.difficulty}</span>` : ''}
                                 </div>
                             </div>
@@ -8980,15 +9211,52 @@
                                 </div>
                             </div>
                             
-                            ${(stats.fur_rare?.length || stats.fur_common?.length) ? `
-                            <div class="card full-width">
-                                <h3 class="card-title">🎨 Fellfarben</h3>
-                                <div class="tag-container">
-                                    ${(stats.fur_rare || []).map(f => `<span class="tag tag-rare">✨ ${f}</span>`).join('')}
-                                    ${(stats.fur_common || []).map(f => `<span class="tag tag-common">${f}</span>`).join('')}
-                                </div>
-                            </div>
-                            ` : ''}
+                            ${(stats.fur_rare?.length || stats.fur_common?.length) ? (() => {
+                        // Sort furs by rarity level
+                        const sortByRarity = (furs) => {
+                            const rarityOrder = { 'sehr selten': 0, 'selten': 1, 'ungewöhnlich': 2 };
+                            return [...furs].sort((a, b) => {
+                                const getRarity = (f) => {
+                                    for (const key in rarityOrder) {
+                                        if (f.toLowerCase().includes(key)) return rarityOrder[key];
+                                    }
+                                    return 99;
+                                };
+                                const rA = getRarity(a), rB = getRarity(b);
+                                if (rA !== rB) return rA - rB;
+                                return a.localeCompare(b, 'de');
+                            });
+                        };
+                        const sortedRare = sortByRarity(stats.fur_rare || []);
+                        const sortedCommon = (stats.fur_common || []).sort((a, b) => a.localeCompare(b, 'de'));
+
+                        // Build HTML with groupings
+                        let furHtml = '<div class="card full-width"><h3 class="card-title">🎨 Fellfarben</h3><div class="fur-groups">';
+
+                        if (sortedRare.length) {
+                            furHtml += '<div class="fur-group fur-group-rare">';
+                            furHtml += '<div class="fur-group-header">✨ Seltene Varianten</div>';
+                            furHtml += '<div class="tag-container">';
+                            sortedRare.forEach(f => {
+                                const isVeryRare = f.toLowerCase().includes('sehr selten');
+                                furHtml += '<span class="tag tag-rare ' + (isVeryRare ? 'tag-very-rare' : '') + '">' + f + '</span>';
+                            });
+                            furHtml += '</div></div>';
+                        }
+
+                        if (sortedCommon.length) {
+                            furHtml += '<div class="fur-group fur-group-common">';
+                            furHtml += '<div class="fur-group-header">🎨 Gewöhnliche Varianten</div>';
+                            furHtml += '<div class="tag-container">';
+                            sortedCommon.forEach(f => {
+                                furHtml += '<span class="tag tag-common">' + f + '</span>';
+                            });
+                            furHtml += '</div></div>';
+                        }
+
+                        furHtml += '</div></div>';
+                        return furHtml;
+                    })() : ''}
                             
                             ${stats.lures?.length ? `
                             <div class="card full-width">

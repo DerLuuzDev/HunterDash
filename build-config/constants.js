@@ -74,7 +74,7 @@ module.exports = {
       }
     },
     HISTORY: {
-      MAX_ENTRIES: 180,
+      MAX_ENTRIES: 10000,
       AUTO_SAVE: true,
       FILENAME: 'history.json',
       BACKUP_DIR: 'backups/history',

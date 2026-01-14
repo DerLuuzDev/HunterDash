@@ -9,56 +9,56 @@
     {
       "id": "hirschfelden",
       "animals": [
-        "red_deer",
+        "canada_goose",
+        "ring_necked_pheasant",
+        "european_rabbit",
+        "red_fox",
         "roe_deer",
         "fallow_deer",
         "wild_boar",
-        "european_rabbit",
-        "red_fox",
-        "ring_necked_pheasant",
-        "canada_goose",
+        "red_deer",
         "european_bison"
       ]
     },
     {
       "id": "layton",
       "animals": [
-        "whitetail",
-        "blacktail",
-        "moose",
-        "roosevelt_elk",
-        "black_bear",
-        "coyote",
+        "merriam_turkey",
         "jackrabbit",
         "mallard",
-        "turkey"
+        "coyote",
+        "blacktail",
+        "whitetail",
+        "roosevelt_elk",
+        "black_bear",
+        "moose"
       ]
     },
     {
       "id": "medved",
       "animals": [
-        "brown_bear",
-        "moose",
-        "reindeer",
-        "wild_boar",
+        "western_capercaillie",
         "musk_deer",
         "eurasian_lynx",
-        "western_capercaillie",
-        "gray_wolf"
+        "wild_boar",
+        "reindeer",
+        "gray_wolf",
+        "brown_bear",
+        "moose"
       ]
     },
     {
       "id": "vurhonga",
       "animals": [
-        "lion",
-        "cape_buffalo",
-        "gemsbok",
-        "springbok",
-        "blue_wildebeest",
-        "lesser_kudu",
         "scrub_hare",
+        "side_striped_jackal",
+        "springbok",
+        "lesser_kudu",
         "warthog",
-        "side_striped_jackal"
+        "gemsbok",
+        "blue_wildebeest",
+        "cape_buffalo",
+        "lion"
       ]
     },
     {
@@ -111,7 +111,7 @@
         "pronghorn",
         "black_bear",
         "plains_bison",
-        "turkey"
+        "merriam_turkey"
       ]
     },
     {
@@ -123,7 +123,7 @@
         "sika_deer",
         "fallow_deer",
         "chamois",
-        "turkey"
+        "merriam_turkey"
       ]
     },
     {
@@ -277,10 +277,10 @@
       "name_de": "Rothirsch",
       "name_en": "Red Deer",
       "icon": "🦌",
-      "class": 6,
+      "class": 9,
       "difficulty": "Leicht - Legendär",
       "max_level": 9,
-      "max_score": 276.9,
+      "max_score": 271,
       "diamond": 251.07,
       "gold": 182.25,
       "silver": 90.5,
@@ -298,9 +298,11 @@
         "erythristisch (selten)"
       ],
       "lures": [
-        "Rothirsch-Lockpfeife (Caller)",
+        "Rothirsch-Lockhorn (Caller)",
         "Rothirschduft (Duft)"
       ],
+      "great_one": true,
+      "truRACS": true,
       "need_zones": {
         "hirschfelden": {
           "drink": [
@@ -312,20 +314,12 @@
           "feed": [
             {
               "start": 13,
-              "end": 17
-            },
-            {
-              "start": 17,
               "end": 21
             }
           ],
           "rest": [
             {
               "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
               "end": 6
             },
             {
@@ -518,7 +512,8 @@
             }
           ]
         }
-      }
+      },
+      "max_weight_kg": 240
     },
     "roe_deer": {
       "name_de": "Reh",
@@ -528,9 +523,9 @@
       "difficulty": "Extrem leicht",
       "max_level": 3,
       "max_score": 95,
-      "diamond": 81.8,
-      "gold": 64.3,
-      "silver": 41,
+      "diamond": 81.86,
+      "gold": 64.37,
+      "silver": 41.04,
       "fur_common": [
         "braun",
         "dunkelbraun",
@@ -559,10 +554,6 @@
           "feed": [
             {
               "start": 4,
-              "end": 7
-            },
-            {
-              "start": 7,
               "end": 10
             },
             {
@@ -645,19 +636,22 @@
             }
           ]
         }
-      }
+      },
+      "truRACS": true,
+      "great_one": false,
+      "max_weight_kg": 35
     },
     "fallow_deer": {
       "name_de": "Damhirsch",
       "name_en": "Fallow Deer",
       "icon": "🦌",
-      "class": 4,
+      "class": 5,
       "difficulty": "Leicht",
       "max_level": 5,
       "max_score": 275,
-      "diamond": 251.72,
-      "gold": 172.98,
-      "silver": 67.98,
+      "diamond": 249.99,
+      "gold": 187.81,
+      "silver": 104.89,
       "fur_common": [
         "gefleckt",
         "braun",
@@ -670,43 +664,38 @@
         "gescheckt (selten)"
       ],
       "lures": [
-        "Damhirsch-Lockpfeife (Caller)",
-        "Damhirschduft (Duft)"
+        "\"Antler Rattler"
       ],
       "need_zones": {
         "hirschfelden": {
-          "drink": [
-            {
-              "start": 10,
-              "end": 13
-            }
-          ],
           "feed": [
             {
-              "start": 6,
-              "end": 10
+              "start": 5,
+              "end": 9.5
             },
             {
               "start": 17,
-              "end": 21
+              "end": 21.5
+            }
+          ],
+          "drink": [
+            {
+              "start": 9,
+              "end": 13.5
             }
           ],
           "rest": [
             {
               "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
-              "end": 6
+              "end": 5.5
             },
             {
               "start": 13,
-              "end": 17
+              "end": 17.5
             },
             {
-              "start": 21,
-              "end": 24
+              "start": 21.5,
+              "end": 0.5
             }
           ]
         },
@@ -814,13 +803,16 @@
             }
           ]
         }
-      }
+      },
+      "truRACS": true,
+      "great_one": true,
+      "max_weight_kg": 100
     },
     "wild_boar": {
       "name_de": "Wildschwein",
       "name_en": "Wild Boar",
       "icon": "🐗",
-      "class": 4,
+      "class": 5,
       "difficulty": "Leicht",
       "max_level": 5,
       "max_score": 162,
@@ -837,43 +829,38 @@
         "melanistisch (sehr selten)"
       ],
       "lures": [
-        "Wildschwein-Lockpfeife (Caller)",
-        "Wildschweinduft (Duft)"
+        "\"Wild Boar"
       ],
       "need_zones": {
         "hirschfelden": {
-          "drink": [
-            {
-              "start": 0,
-              "end": 3
-            }
-          ],
           "feed": [
             {
               "start": 3,
-              "end": 6
+              "end": 7.5
             },
             {
-              "start": 17,
-              "end": 21
-            },
+              "start": 19,
+              "end": 23.5
+            }
+          ],
+          "drink": [
             {
-              "start": 21,
-              "end": 24
+              "start": 23,
+              "end": 3.5
             }
           ],
           "rest": [
             {
-              "start": 6,
-              "end": 10
+              "start": 7,
+              "end": 11.5
             },
             {
-              "start": 10,
-              "end": 14
+              "start": 11,
+              "end": 15.5
             },
             {
-              "start": 14,
-              "end": 17
+              "start": 15,
+              "end": 19.5
             }
           ]
         },
@@ -1045,65 +1032,49 @@
             }
           ]
         }
-      }
+      },
+      "truRACS": false,
+      "great_one": false,
+      "max_weight_kg": 240
     },
     "european_rabbit": {
       "name_de": "Wildkaninchen",
       "name_en": "European Rabbit",
       "icon": "🐇",
-      "class": 1,
+      "class": 3,
       "difficulty": "Trivial",
-      "max_level": 1,
+      "max_level": 3,
       "max_score": 3,
-      "diamond": 2.42,
-      "gold": 1.92,
-      "silver": 1.24,
+      "diamond": 2.4,
+      "gold": 1.9,
+      "silver": 1.2,
       "fur_common": [
         "braun",
         "grau",
         "dunkelbraun"
       ],
       "fur_rare": [
-        "albinistisch (sehr selten)",
-        "leuzistisch (sehr selten)"
+        "\"albino"
       ],
       "lures": [],
       "need_zones": {
         "hirschfelden": {
-          "drink": [
-            {
-              "start": 18,
-              "end": 22
-            }
-          ],
           "feed": [
             {
               "start": 5,
               "end": 9
             },
             {
-              "start": 9,
-              "end": 12
-            },
-            {
               "start": 12,
               "end": 16
             },
             {
-              "start": 16,
-              "end": 18
+              "start": 18,
+              "end": 22
             }
           ],
-          "rest": [
-            {
-              "start": 22,
-              "end": 24
-            },
-            {
-              "start": 0,
-              "end": 5
-            }
-          ]
+          "drink": [],
+          "rest": []
         },
         "cuatro": {
           "drink": [],
@@ -1144,19 +1115,22 @@
             }
           ]
         }
-      }
+      },
+      "truRACS": false,
+      "great_one": false,
+      "max_weight_kg": 5
     },
     "red_fox": {
       "name_de": "Rotfuchs",
       "name_en": "Red Fox",
       "icon": "🦊",
-      "class": 2,
+      "class": 9,
       "difficulty": "Trivial",
-      "max_level": 3,
+      "max_level": 9,
       "max_score": 14.2,
-      "diamond": 14.1,
+      "diamond": 14,
       "gold": 10,
-      "silver": 4.7,
+      "silver": 4.6,
       "fur_common": [
         "rot",
         "dunkelrot",
@@ -1168,43 +1142,38 @@
         "melanistisch (sehr selten)"
       ],
       "lures": [
-        "Fuchslockpfeife (Caller)",
-        "Fuchsduft (Duft)"
+        "\"Predator \"\"Jackrabbit\"\""
       ],
       "need_zones": {
         "hirschfelden": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
           "feed": [
             {
               "start": 0,
-              "end": 4
+              "end": 3.5
             },
             {
-              "start": 4,
-              "end": 7
-            },
+              "start": 3,
+              "end": 7.5
+            }
+          ],
+          "drink": [
             {
-              "start": 20,
-              "end": 24
+              "start": 19,
+              "end": 0.5
             }
           ],
           "rest": [
             {
               "start": 7,
-              "end": 10
+              "end": 11.5
             },
             {
-              "start": 10,
-              "end": 13
+              "start": 11,
+              "end": 15.5
             },
             {
-              "start": 13,
-              "end": 17
+              "start": 15,
+              "end": 19.5
             }
           ]
         },
@@ -1388,7 +1357,10 @@
             }
           ]
         }
-      }
+      },
+      "truRACS": false,
+      "great_one": true,
+      "max_weight_kg": 15
     },
     "ring_necked_pheasant": {
       "name_de": "Fasan",
@@ -1396,9 +1368,9 @@
       "icon": "🐦",
       "class": 1,
       "difficulty": "Trivial",
-      "max_level": 1,
+      "max_level": 3,
       "max_score": 2,
-      "diamond": 20.3,
+      "diamond": 20.29,
       "gold": 15.5,
       "silver": 9.1,
       "fur_common": [
@@ -1406,8 +1378,7 @@
         "melanistisch"
       ],
       "fur_rare": [
-        "leuzistisch (sehr selten)",
-        "albinistisch (sehr selten)"
+        "\"albino"
       ],
       "lures": [
         "Fasanlockpfeife (Caller)"
@@ -1444,7 +1415,7 @@
             },
             {
               "start": 21,
-              "end": 24
+              "end": 0
             }
           ]
         },
@@ -1623,21 +1594,147 @@
             }
           ]
         }
-      }
+      },
+      "truRACS": false,
+      "great_one": true,
+      "max_weight_kg": 3
     },
     "canada_goose": {
       "name_de": "Kanadagans",
       "name_en": "Canada Goose",
       "icon": "🦆",
-      "class": 1,
+      "class": 5,
       "difficulty": "Trivial",
-      "max_level": 1,
+      "max_level": 5,
       "max_score": 13,
-      "diamond": 8.59,
+      "diamond": 8.5,
       "gold": 6.8,
       "silver": 4.4,
       "fur_common": [
         "klassisch"
+      ],
+      "fur_rare": [
+        "\"albino"
+      ],
+      "lures": [
+        "\"Short Reed Canada Goose"
+      ],
+      "need_zones": {
+        "hirschfelden": {
+          "drink": [
+            {
+              "start": 10,
+              "end": 14
+            }
+          ],
+          "feed": [
+            {
+              "start": 5,
+              "end": 7
+            },
+            {
+              "start": 9,
+              "end": 11
+            },
+            {
+              "start": 13,
+              "end": 15
+            },
+            {
+              "start": 17,
+              "end": 19
+            },
+            {
+              "start": 4,
+              "end": 7
+            },
+            {
+              "start": 7,
+              "end": 10
+            },
+            {
+              "start": 17,
+              "end": 20
+            }
+          ],
+          "rest": [
+            {
+              "start": 0,
+              "end": 5
+            },
+            {
+              "start": 7,
+              "end": 9
+            },
+            {
+              "start": 11,
+              "end": 13
+            },
+            {
+              "start": 15,
+              "end": 17
+            },
+            {
+              "start": 19,
+              "end": 0
+            },
+            {
+              "start": 0,
+              "end": 4
+            },
+            {
+              "start": 14,
+              "end": 17
+            },
+            {
+              "start": 20,
+              "end": 0
+            }
+          ]
+        },
+        "yukon": {
+          "drink": [
+            {
+              "start": 5,
+              "end": 9
+            },
+            {
+              "start": 17,
+              "end": 21
+            }
+          ],
+          "feed": [
+            {
+              "start": 9,
+              "end": 17
+            }
+          ],
+          "rest": [
+            {
+              "start": 21,
+              "end": 5
+            }
+          ]
+        }
+      },
+      "truRACS": true,
+      "great_one": false,
+      "max_weight_kg": 9
+    },
+    "eurasian_wigeon": {
+      "name_de": "Eurasische Pfeifente",
+      "name_en": "Eurasian Wigeon",
+      "icon": "🦆",
+      "class": 1,
+      "difficulty": "Sehr leicht",
+      "max_level": 3,
+      "max_score": 13,
+      "diamond": 905,
+      "gold": 770,
+      "silver": 590,
+      "fur_common": [
+        "grau (gewöhnlich)",
+        "braun (gewöhnlich)"
       ],
       "fur_rare": [
         "leuzistisch (sehr selten)"
@@ -1705,63 +1802,60 @@
       "name_de": "Wisent",
       "name_en": "European Bison",
       "icon": "🦬",
-      "class": 9,
+      "class": 5,
       "difficulty": "Schwer - Legendär",
-      "max_level": 9,
+      "max_level": 5,
       "max_score": 348,
-      "diamond": 270.4,
-      "gold": 181.6,
-      "silver": 63.2,
+      "diamond": 127.62,
+      "gold": 110.01,
+      "silver": 86.53,
       "fur_common": [
         "dunkelbraun",
         "braun"
       ],
       "fur_rare": [
-        "albinistisch (sehr selten)",
-        "leuzistisch (sehr selten)",
-        "melanistisch (sehr selten)"
+        "albino"
       ],
       "lures": [
         "Wisentduft (Duft)"
       ],
       "need_zones": {
         "hirschfelden": {
-          "drink": [
-            {
-              "start": 10,
-              "end": 14
-            }
-          ],
           "feed": [
             {
-              "start": 4,
-              "end": 7
+              "start": 0,
+              "end": 3.5
             },
             {
-              "start": 7,
-              "end": 10
-            },
+              "start": 19,
+              "end": 23.5
+            }
+          ],
+          "drink": [
             {
-              "start": 17,
-              "end": 20
+              "start": 3,
+              "end": 7.5
             }
           ],
           "rest": [
             {
-              "start": 0,
-              "end": 4
+              "start": 7,
+              "end": 11.5
             },
             {
-              "start": 14,
-              "end": 17
+              "start": 11,
+              "end": 15.5
             },
             {
-              "start": 20,
-              "end": 24
+              "start": 15,
+              "end": 19.5
             }
           ]
         }
-      }
+      },
+      "truRACS": true,
+      "great_one": false,
+      "max_weight_kg": 920
     },
     "whitetail": {
       "name_de": "Weißwedelhirsch",
@@ -2634,8 +2728,8 @@
       }
     },
     "jackrabbit": {
-      "name_de": "Eselhase",
-      "name_en": "Jackrabbit",
+      "name_de": "Präriehase",
+      "name_en": "White-tailed Jackrabbit",
       "icon": "🐇",
       "class": 1,
       "difficulty": "Trivial",
@@ -2785,9 +2879,9 @@
         }
       }
     },
-    "turkey": {
-      "name_de": "Truthahn",
-      "name_en": "Wild Turkey",
+    "merriam_turkey": {
+      "name_de": "Merriam-Truthahn",
+      "name_en": "Merriam Turkey",
       "icon": "🦃",
       "class": 1,
       "difficulty": "Trivial",
@@ -3011,8 +3105,8 @@
       }
     },
     "reindeer": {
-      "name_de": "Rentier",
-      "name_en": "Reindeer",
+      "name_de": "Eurasisches Tundraren",
+      "name_en": "Mountain Reindeer",
       "icon": "🦌",
       "class": 6,
       "difficulty": "Leicht - Mittel",
@@ -3628,7 +3722,7 @@
       }
     },
     "gemsbok": {
-      "name_de": "Oryx",
+      "name_de": "Spießbock",
       "name_en": "Gemsbok",
       "icon": "🦌",
       "class": 6,
@@ -5946,6 +6040,408 @@
           ]
         }
       }
+    },
+    "history": {
+      "name_en": "History: Animals",
+      "class": null,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": []
+    },
+    "purge": {
+      "name_en": "Animals",
+      "class": null,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": []
+    },
+    "reserve": {
+      "name_en": "Reserves",
+      "class": 1,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [
+        "canada goose",
+        "ring-necked pheasant",
+        "european rabbit",
+        "red fox",
+        "roe deer",
+        "fallow deer",
+        "wild boar",
+        "red deer",
+        "european bison",
+        "mallard",
+        "merriam turkey",
+        "white-tailed jackrabbit",
+        "coyote",
+        "blacktail deer",
+        "whitetail deer",
+        "black bear",
+        "roosevelt elk",
+        "moose",
+        "western capercaillie",
+        "siberian musk deer",
+        "eurasian lynx",
+        "gray wolf",
+        "mountain reindeer",
+        "eurasian brown bear",
+        "eurasian wigeon",
+        "scrub hare",
+        "side-striped jackal",
+        "springbok",
+        "warthog",
+        "lesser kudu",
+        "blue wildebeest",
+        "gemsbok",
+        "cape buffalo",
+        "lion",
+        "cinnamon teal",
+        "blackbuck",
+        "axis deer",
+        "collared peccary",
+        "puma",
+        "mule deer",
+        "water buffalo",
+        "harlequin duck",
+        "grant caribou",
+        "grizzly bear",
+        "plains bison",
+        "european hare",
+        "ronda ibex",
+        "beceite ibex",
+        "gredos ibex",
+        "southeastern spanish ibex",
+        "iberian mouflon",
+        "iberian wolf",
+        "pronghorn",
+        "mountain goat",
+        "rocky mountain bighorn sheep",
+        "mountain lion",
+        "rocky mountain elk",
+        "chamois",
+        "feral goat",
+        "sika deer",
+        "tahr",
+        "feral pig",
+        "rio grande turkey",
+        "antelope jackrabbit",
+        "mexican bobcat",
+        "desert bighorn sheep",
+        "bobwhite quail",
+        "eastern wild turkey",
+        "green winged teal",
+        "eastern cottontail rabbit",
+        "gray fox",
+        "common raccoon",
+        "wild hog",
+        "american alligator",
+        "eurasian widgeon",
+        "eurasian teal",
+        "black grouse",
+        "goldeneye",
+        "hazel grouse",
+        "tufted duck",
+        "rock ptarmigan",
+        "willow ptarmigan",
+        "tundra bean goose",
+        "mountain hare",
+        "greylag goose",
+        "raccoon dog",
+        "bobcat",
+        "magpie goose",
+        "stubble quail",
+        "hog deer",
+        "eastern gray kangaroo",
+        "javan rusa",
+        "sambar",
+        "saltwater crocodile",
+        "banteng",
+        "woolly hare",
+        "northern red muntjac",
+        "tibetan fox",
+        "blue sheep",
+        "snow leopard",
+        "barasingha",
+        "nilgai",
+        "bengal tiger",
+        "wild yak",
+        "ferruginous duck",
+        "gadwall",
+        "snow goose",
+        "dusky grouse",
+        "wood duck",
+        "northern pintail",
+        "north american beaver",
+        "woodland caribou",
+        "manitoban elk",
+        "wood bison"
+      ],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": [
+        "hirschfelden",
+        "layton",
+        "medved",
+        "yukon",
+        "cuatro",
+        "silver_ridge",
+        "te_awaroa",
+        "mississippi",
+        "revontuli",
+        "new_england",
+        "emerald",
+        "askiy_ridge_hunting_preserve",
+        "2_6_yukon_valley_animals_8_total_3_unique_3_great_ones_",
+        "2_8_silver_ridge_peaks_animals_9_total_2_unique_2_great_ones_",
+        "2_12_revontuli_coast_19_total_4_unique_2_great_ones_",
+        "2_13_new_england_mountains_15_total_1_unique_5_great_ones_",
+        "2_14_emerald_coast_14_total_8_unique_3_great_ones_",
+        "2_17_askiy_ridge_hunting_preserve_19_total_8_unique_5_great_ones_"
+      ]
+    },
+    "here": {
+      "name_en": "Game Animals/Real Animals (Picture)",
+      "class": null,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": []
+    },
+    "ammunition": {
+      "name_en": "Ammunition",
+      "class": 1,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": []
+    },
+    "integrity": {
+      "name_en": "Integrity",
+      "class": 1,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [
+        "canada goose",
+        "greylag goose",
+        "magpie goose",
+        "tundra bean goose",
+        "snow goose",
+        "eurasian wigeon",
+        "goldeneye",
+        "green winged teal",
+        "wood duck",
+        "harlequin duck",
+        "cinnamon teal",
+        "mallard",
+        "tufted duck",
+        "ferruginous duck",
+        "gadwall",
+        "eurasian teal",
+        "northern pintail",
+        "black grouse",
+        "hazel grouse",
+        "dusky grouse",
+        "red grouse",
+        "bobwhite quail",
+        "stubble quail",
+        "rock ptarmigan",
+        "willow ptarmigan",
+        "eastern wild turkey",
+        "merriam turkey",
+        "rio grande turkey",
+        "ring-necked pheasant",
+        "western capercaillie",
+        "eurasian woodcock",
+        "antelope jackrabbit",
+        "eastern cottontail rabbit",
+        "european hare",
+        "european rabbit",
+        "mountain hare",
+        "scrub hare",
+        "white-tailed jackrabbit",
+        "woolly hare",
+        "american mink",
+        "eurasian pine marten",
+        "northern red muntjac",
+        "siberian musk deer",
+        "raccoon dog",
+        "coyote",
+        "side-striped jackal",
+        "gray fox",
+        "red fox",
+        "tibetan fox",
+        "common raccoon",
+        "european badger",
+        "north american beaver",
+        "bobcat",
+        "mexican bobcat",
+        "axis deer",
+        "hog deer",
+        "roe deer",
+        "blackbuck",
+        "springbok",
+        "pronghorn",
+        "feral goat",
+        "chamois",
+        "eurasian lynx",
+        "collared peccary",
+        "blacktail deer",
+        "whitetail deer",
+        "fallow deer",
+        "sika deer",
+        "lesser kudu",
+        "mountain goat",
+        "beceite ibex",
+        "ronda ibex",
+        "gredos ibex",
+        "southeastern spanish ibex",
+        "iberian mouflon",
+        "blue sheep",
+        "tahr",
+        "snow leopard",
+        "warthog",
+        "eastern gray kangaroo",
+        "javan rusa",
+        "mule deer",
+        "desert bighorn sheep",
+        "rocky mountain bighorn sheep",
+        "mountain lion",
+        "puma",
+        "wild boar",
+        "feral pig",
+        "wild hog",
+        "red deer",
+        "mountain reindeer",
+        "grant caribou",
+        "woodland caribou",
+        "blue wildebeest",
+        "gemsbok",
+        "barasingha",
+        "nilgai",
+        "gray wolf",
+        "iberian wolf",
+        "sambar",
+        "rocky mountain elk",
+        "roosevelt elk",
+        "manitoban elk",
+        "black bear",
+        "eurasian brown bear",
+        "american alligator",
+        "moose",
+        "grizzly bear",
+        "saltwater crocodile",
+        "banteng",
+        "cape buffalo",
+        "european bison",
+        "plains bison",
+        "wood bison",
+        "water buffalo",
+        "wild yak",
+        "lion",
+        "bengal tiger"
+      ],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": []
+    },
+    "harvest_screen": {
+      "name_en": "Harvest Screen",
+      "class": null,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers"
+      ],
+      "need_zones": {},
+      "locations": []
+    },
+    "local_sitemap": {
+      "name_en": "Local Sitemap",
+      "class": null,
+      "diamond": null,
+      "gold": null,
+      "silver": null,
+      "max_score": null,
+      "fur_common": [],
+      "fur_rare": [],
+      "lures": [
+        "Scents",
+        "Callers",
+        "Axis Deer \"Screamer\" Caller",
+        "Beacon Deluxe Bean Goose Caller",
+        "Beacon Deluxe Duck Caller",
+        "Beacon Deluxe Eurasian Teal Caller",
+        "Beacon Deluxe Eurasian Wigeon Caller",
+        "Beacon Deluxe Greylag Goose Caller",
+        "Blacktail Deer Scent",
+        "Buck \"Snort Wheeze\" Caller",
+        "Deer \"Bleat\" Caller",
+        "Deer \"Grunt\" Caller",
+        "Elk Caller",
+        "Elk Scent",
+        "Gadwall Caller",
+        "Hazel Grouse Caller"
+      ],
+      "need_zones": {},
+      "locations": [
+        "askiy_ridge_hunting_preserve",
+        "bush_valley",
+        "cuatro",
+        "darrah_valley",
+        "dikiy_coast",
+        "emerald"
+      ]
     }
   }
 }

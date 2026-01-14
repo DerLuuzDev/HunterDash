@@ -1,0 +1,199 @@
+Canada Goose						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+1	5	4.4	6.8	8.59	"Short Reed Canada Goose
+Fox Pro"	"Bald Leucistic
+Brown Hybrid
+Grey
+Grey Brown
+Light Grey Leucistic
+Melanistic"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+20	9.2	FALSE	FALSE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	00:00	05:00	Resting		
+Trophy Type	Trophy Organ	05:00	07:00	Feeding		
+Weight	None	07:00	09:00	Resting		
+Plaques	Platforms	09:00	11:00	Feeding		
+Medium	Extra Small	11:00	13:00	Resting		
+Scent	Decoy	13:00	15:00	Feeding		
+	Canada Goose	15:00	17:00	Resting		
+		17:00	19:00	Feeding		
+		19:00	00:00	Resting		
+European Bison						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+9	5	86.53	110.01	127.62		"Albino
+Brown
+Dark Brown
+Light Brown
+Melanistic
+Piebald"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+2028	920	TRUE	FALSE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	00:00	04:00	Resting		
+Trophy Type	Trophy Organ	04:00	07:00	Feeding		
+Horns	Skull	07:00	10:00	Feeding		
+Plaques	Platforms	10:00	14:00	Drinking		
+Extra Large	Extra Large	14:00	17:00	Resting		
+Scent	Decoy	17:00	20:00	Feeding		
+		20:00	00:00	Resting		
+						
+						
+European Rabbit						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+1	3	1.24	1.92	2.42		"Albino
+Brown
+Dark Brown
+Leucistic
+Light Brown
+Light Grey
+Melanistic
+Tan"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+5	2.6	FALSE	FALSE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	05:00	09:00	Feeding		
+Trophy Type	Trophy Organ	12:00	16:00	Feeding		
+Weight	None	19:00	23:00	Feeding		
+Plaques	Platforms					
+Small	Extra Small					
+Scent	Decoy					
+						
+						
+						
+Fallow Deer						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+4	5	104.89	187.81	249.99	"Antler Rattler
+Fox Pro"	"Albino
+Chocolate
+Dark
+Dark Spotted
+Fabled Golden
+Fabled Hooded
+Fabled Mocha
+Fabled Painted
+Fabled Silver
+Melanistic
+Piebald (x2)
+Red Spotted
+Spotted
+White"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+220	100	TRUE	TRUE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+308.65	140.00	00:00	03:00	Resting		
+Trophy Type	Trophy Organ	03:00	06:00	Resting		
+Antlers	Skull	06:00	10:00	Feeding		
+Plaques	Platforms	10:00	13:00	Drinking		
+Large	Large	13:00	17:00	Resting		
+Scent	Decoy	17:00	21:00	Feeding		
+		21:00	00:00	Resting		
+						
+						
+Red Deer						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+6	9	90.5	182.25	251.07	"Red Deer
+Fox Pro"	"Albino
+Brown
+Dark Brown
+Fabled Spotted
+Grey
+Light Brown
+Melanistic
+Piebald"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+529	240	TRUE	TRUE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+573.20	260.00	00:00	03:00	Resting		
+Trophy Type	Trophy Organ	03:00	06:00	Resting		
+Antlers	Skull	06:00	10:00	Drinking		
+Plaques	Platforms	10:00	13:00	Resting		
+Large	Extra Large	13:00	17:00	Feeding		
+Scent	Decoy	17:00	21:00	Feeding		
+Red Deer		21:00	00:00	Resting		
+						
+						
+Red Fox						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+2	9	4.66	10.03	14.05	"Predator ""Jackrabbit""
+Fox Pro"	"Albino
+Dark Red
+Melanistic
+Orange
+Piebald
+Red"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+33	15.4	FALSE	TRUE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	00:00	04:00	Feeding		
+Trophy Type	Trophy Organ	04:00	07:00	Feeding		
+Weight	Skull	07:00	10:00	Resting		
+Plaques	Platforms	10:00	13:00	Resting		
+Small	Small	13:00	17:00	Resting		
+Scent	Decoy	17:00	20:00	Drinking		
+		20:00	00:00	Feeding		
+						
+						
+Ring-Necked Pheasant						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+1	3	9.1	15.5	20.29		"Albino
+Brown
+Grey
+Leucistic
+Melanistic
+Molting
+White Brown"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+6	3	FALSE	TRUE	TRUE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	00:00	04:00	Resting		
+Trophy Type	Trophy Organ	04:00	08:00	Feeding		
+Combined	None	08:00	11:00	Feeding		
+Plaques	Platforms	11:00	14:00	Resting		
+Small	Extra Small	14:00	18:00	Feeding		
+Scent	Decoy	18:00	21:00	Feeding		
+		21:00	00:00	Resting		
+						
+						
+Roe Deer						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+3	3	41.04	64.37	81.86	"Roe Deer
+Fox Pro"	"Albino
+Brown
+Dark Brown
+Dark Grey
+Melanistic
+Orange
+Piebald
+Tan"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+77	35	TRUE	FALSE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	00:00	04:00	Resting		
+Trophy Type	Trophy Organ	04:00	07:00	Feeding		
+Antlers	Skull	07:00	10:00	Feeding		
+Plaques	Platforms	10:00	14:00	Resting		
+Medium	Small	14:00	17:00	Drinking		
+Scent	Decoy	17:00	20:00	Feeding		
+Roe Deer		20:00	00:00	Resting		
+						
+						
+Wild Boar						
+Class	Level	Silver	Gold	Diamond	Callers	Fur
+5	5	37.5	98.5	144.25	"Wild Boar
+Fox Pro"	"Albino
+Blackgold
+Brown
+Dark Brown
+Light Brown
+Melanistic"
+Max LBS	Max KG	TruRACS	Great One	Grounded		
+529	240	FALSE	FALSE	FALSE		
+G1 LBS	G1 KG	Zone Times				
+0.00	0.00	00:00	03:00	Drinking		
+Trophy Type	Trophy Organ	03:00	06:00	Feeding		
+Tusks	Skull	06:00	10:00	Resting		
+Plaques	Platforms	10:00	14:00	Resting		
+Medium	Small	14:00	17:00	Resting		
+Scent	Decoy	17:00	21:00	Feeding		
+Wild Boar		21:00	00:00	Feeding
