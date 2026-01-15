@@ -3062,7 +3062,7 @@
         }
 
         .timeline-label-placeholder {
-            width: 140px;
+            width: 160px;
             flex-shrink: 0;
         }
 
@@ -3073,7 +3073,7 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 500;
-            padding-right: 8px;
+            padding-right: 0;
         }
 
         .timeline-current-indicator {
@@ -8394,13 +8394,12 @@
                 let isDragging = false;
 
                 const getTimeFromPosition = (clientX) => {
-                    const container = document.querySelector('.reference-timeline-container');
-                    const timelineBar = document.querySelector('.timeline-bar');
-                    if (!container || !timelineBar) return this.currentTime;
+                    const timelineHours = document.querySelector('.timeline-hours');
+                    if (!timelineHours) return this.currentTime;
 
-                    const barRect = timelineBar.getBoundingClientRect();
-                    const relativeX = clientX - barRect.left;
-                    const percentage = Math.max(0, Math.min(1, relativeX / barRect.width));
+                    const hoursRect = timelineHours.getBoundingClientRect();
+                    const relativeX = clientX - hoursRect.left;
+                    const percentage = Math.max(0, Math.min(1, relativeX / hoursRect.width));
                     return Math.round(percentage * 24 * 2) / 2; // Round to 0.5 steps
                 };
 
@@ -8433,10 +8432,10 @@
                     container.addEventListener('click', (e) => {
                         // Only if clicking on the timeline area, not on animal rows
                         if (e.target.closest('.animal-row')) return;
-                        const timelineBar = document.querySelector('.timeline-bar');
-                        if (!timelineBar) return;
-                        const barRect = timelineBar.getBoundingClientRect();
-                        if (e.clientX >= barRect.left && e.clientX <= barRect.right) {
+                        const timelineHours = document.querySelector('.timeline-hours');
+                        if (!timelineHours) return;
+                        const hoursRect = timelineHours.getBoundingClientRect();
+                        if (e.clientX >= hoursRect.left && e.clientX <= hoursRect.right) {
                             const newTime = getTimeFromPosition(e.clientX);
                             this.onTimeChange(newTime);
                         }
@@ -8528,25 +8527,37 @@
                 const lang = this.language || 'de';
 
                 this.animals.forEach(animal => {
-                    if (!animal.zones) return;
-
                     const name = animal.name?.[lang] || animal.name?.en || animal.id;
                     const icon = animal.icon || '🦌';
-                    const isActive = this.isAnimalDrinking(animal.zones);
+                    const hasZones = animal.zones && (animal.zones.drink?.length || animal.zones.feed?.length || animal.zones.rest?.length);
+                    const isActive = hasZones ? this.isAnimalDrinking(animal.zones) : false;
 
                     const row = document.createElement('div');
                     row.className = `animal-row ${isActive ? 'active-now' : ''}`;
                     row.style.cursor = 'pointer';
                     row.onclick = () => this.showAnimalDetail(animal);
-                    row.innerHTML = `
-                        <div class="animal-label">
-                            <span class="animal-icon">${icon}</span>
-                            <span>${name}</span>
-                        </div>
-                        <div class="timeline-bar">
-                            ${this.renderTimeBlocks(animal.zones)}
-                        </div>
-                    `;
+
+                    if (hasZones) {
+                        row.innerHTML = `
+                            <div class="animal-label">
+                                <span class="animal-icon">${icon}</span>
+                                <span>${name}</span>
+                            </div>
+                            <div class="timeline-bar">
+                                ${this.renderTimeBlocks(animal.zones)}
+                            </div>
+                        `;
+                    } else {
+                        row.innerHTML = `
+                            <div class="animal-label">
+                                <span class="animal-icon">${icon}</span>
+                                <span>${name}</span>
+                            </div>
+                            <div class="timeline-bar" style="opacity: 0.5;">
+                                <span style="color: var(--text-muted); font-size: 0.85rem;">Keine Zeitzonen-Daten verfügbar</span>
+                            </div>
+                        `;
+                    }
                     container.appendChild(row);
                 });
             },
@@ -8645,22 +8656,22 @@
                 const indicator = document.getElementById('timeline-current-indicator');
                 if (!indicator) return;
 
-                // Get the first timeline bar to calculate exact position
-                const timelineBar = document.querySelector('.timeline-bar');
-                if (!timelineBar) return;
+                // Use timeline-hours as reference for consistent alignment with header
+                const timelineHours = document.querySelector('.timeline-hours');
+                if (!timelineHours) return;
 
-                // Get the actual left position of the timeline bar relative to its container
+                // Get the actual left position of the timeline hours relative to its container
                 const container = document.querySelector('.reference-timeline-container');
                 if (!container) return;
 
                 const containerRect = container.getBoundingClientRect();
-                const barRect = timelineBar.getBoundingClientRect();
+                const hoursRect = timelineHours.getBoundingClientRect();
 
-                // Calculate indicator position: bar start offset + time percentage of bar width
-                const barStartOffset = barRect.left - containerRect.left;
-                const barWidth = barRect.width;
-                const position = (this.currentTime / 24) * barWidth;
-                indicator.style.left = `${barStartOffset + position}px`;
+                // Calculate indicator position: hours start offset + time percentage of hours width
+                const hoursStartOffset = hoursRect.left - containerRect.left;
+                const hoursWidth = hoursRect.width;
+                const position = (this.currentTime / 24) * hoursWidth;
+                indicator.style.left = `${hoursStartOffset + position}px`;
             },
 
             async onSearch(query) {

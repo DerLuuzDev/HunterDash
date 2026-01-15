@@ -64,7 +64,11 @@ class ReferenceService {
             return { success: false, error: 'Map not found' };
         }
 
-        const animals = map.animals.map(animalId => {
+        // Use animal order from animal-data.json if available, otherwise fallback to constants.js
+        const mapDataFromJson = this.animalData?._maps?.find(m => m.id === mapId);
+        const animalOrder = mapDataFromJson?.animals || map.animals;
+
+        const animals = animalOrder.map(animalId => {
             const animalData = this.animalNames[animalId] || { en: animalId, de: animalId, icon: '🦌' };
 
             // Check if we have consolidated JSON data for this animal
@@ -76,13 +80,13 @@ class ReferenceService {
             let stats = null;
 
             if (jsonAnimal) {
-                // Get need zones for this specific map
-                const mapZones = jsonAnimal.need_zones?.[mapId];
-                if (mapZones) {
+                // Get need zones - now they are flat (not per-map)
+                const animalZones = jsonAnimal.need_zones;
+                if (animalZones && (animalZones.drink || animalZones.feed || animalZones.rest)) {
                     zones = {
-                        drink: mapZones.drink || [],
-                        feed: mapZones.feed || [],
-                        rest: mapZones.rest || []
+                        drink: animalZones.drink || [],
+                        feed: animalZones.feed || [],
+                        rest: animalZones.rest || []
                     };
                 }
                 icon = jsonAnimal.icon || icon;
