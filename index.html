@@ -3161,6 +3161,15 @@
             font-size: 1.2rem;
         }
 
+        .animal-icon-img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+
         .timeline-bar {
             flex: 1;
             height: 32px;
@@ -8529,8 +8538,14 @@
                 this.animals.forEach(animal => {
                     const name = animal.name?.[lang] || animal.name?.en || animal.id;
                     const icon = animal.icon || '🦌';
+                    const image = animal.image || null;
                     const hasZones = animal.zones && (animal.zones.drink?.length || animal.zones.feed?.length || animal.zones.rest?.length);
                     const isActive = hasZones ? this.isAnimalDrinking(animal.zones) : false;
+
+                    // Render icon: prefer image, fallback to emoji
+                    const iconHtml = image
+                        ? `<img class="animal-icon-img" src="assets/animals/${image}" alt="${name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'"><span class="animal-icon" style="display:none">${icon}</span>`
+                        : `<span class="animal-icon">${icon}</span>`;
 
                     const row = document.createElement('div');
                     row.className = `animal-row ${isActive ? 'active-now' : ''}`;
@@ -8540,7 +8555,7 @@
                     if (hasZones) {
                         row.innerHTML = `
                             <div class="animal-label">
-                                <span class="animal-icon">${icon}</span>
+                                ${iconHtml}
                                 <span>${name}</span>
                             </div>
                             <div class="timeline-bar">
@@ -8550,7 +8565,7 @@
                     } else {
                         row.innerHTML = `
                             <div class="animal-label">
-                                <span class="animal-icon">${icon}</span>
+                                ${iconHtml}
                                 <span>${name}</span>
                             </div>
                             <div class="timeline-bar" style="opacity: 0.5;">
@@ -8561,6 +8576,7 @@
                     container.appendChild(row);
                 });
             },
+
 
             renderTimeBlocks(zones) {
                 let html = '';

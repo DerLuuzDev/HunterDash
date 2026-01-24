@@ -76,20 +76,29 @@ class ReferenceService {
 
             let zones = null;
             let icon = animalData.icon || '🦌';
+            let image = null;
             let name = animalData;
             let stats = null;
 
             if (jsonAnimal) {
-                // Get need zones - now they are flat (not per-map)
+                // Get need zones - NEW: map-specific with _default fallback
                 const animalZones = jsonAnimal.need_zones;
-                if (animalZones && (animalZones.drink || animalZones.feed || animalZones.rest)) {
-                    zones = {
-                        drink: animalZones.drink || [],
-                        feed: animalZones.feed || [],
-                        rest: animalZones.rest || []
-                    };
+                if (animalZones) {
+                    // Priority: map-specific zones > _default zones > null
+                    const mapZones = animalZones[mapId] || animalZones._default || null;
+                    if (mapZones) {
+                        zones = {
+                            drink: mapZones.drink || [],
+                            feed: mapZones.feed || [],
+                            rest: mapZones.rest || []
+                        };
+                    }
                 }
+
+                // Use image field if available, otherwise fallback to icon emoji
+                image = jsonAnimal.image || null;
                 icon = jsonAnimal.icon || icon;
+
                 // Merge name from JSON if available
                 name = {
                     ...animalData,
@@ -108,6 +117,7 @@ class ReferenceService {
                 id: animalId,
                 name: name,
                 icon: icon,
+                image: image,
                 zones: zones,
                 stats: stats
             };
@@ -121,6 +131,7 @@ class ReferenceService {
             }
         };
     }
+
 
     /**
      * Get need zones for a specific animal
