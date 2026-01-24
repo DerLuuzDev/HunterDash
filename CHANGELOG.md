@@ -8,46 +8,41 @@ Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
 ## [1.2.0] - 2026-01-24
 
-### ✨ Neu (Features)
+Dieses Update bringt ein komplettes Tier-Daten Overhaul, den neuen Need Zone Visualizer und poliert die Benutzeroberfläche.
+*This update brings a complete animal data overhaul, the new Need Zone Visualizer, and polishes the UI.*
 
-#### 🦌 COTW Tier-Daten Overhaul
-- **Kartenspezifische Need Zones**: Jedes Tier hat jetzt eigene Need Zone-Zeiten pro Karte mit `_default` Fallback
-- **Vollständige Tierstatistiken**: Trophy Ratings (Bronze bis Diamond/Great One), Klassen, Levels, Fellfarben und Köder für alle Tiere
-- **SVG Tier-Icons**: Moderne, skalierbare Icons für alle Tierarten anstelle von Emojis
-- **Neue Reservate**: Salzwiesen, Askiy Ridge und Tòrr nan Sithean vollständig hinzugefügt
+## ✨ Highlights
 
-#### 🗺️ Need Zone Visualizer
-- **Interaktiver Timeline-View**: Visuelle Darstellung aller Need Zones pro Karte
-- **Echtzeit-Indikator**: Zeigt aktuelle Spielzeit im Timeline-View
-- **Tier-Detail-Modal**: Klicke auf ein Tier für detaillierte Statistiken, Fellfarben und empfohlene Köder
-- **Kartenauswahl**: Schneller Wechsel zwischen allen COTW-Reservaten
+### 🦌 COTW Tier-Daten Overhaul
+- **Kartenspezifische Need Zones:** Jedes Tier hat jetzt eigene Need Zone-Zeiten pro Karte – endlich akkurate Daten für jedes Reservat!
+- **Vollständige Statistiken:** Trophy Ratings, Klassen, Levels, Fellfarben und Köder für alle Tiere auf einen Blick.
+- **Moderne SVG-Icons:** Schönere, skalierbare Tier-Icons ersetzen die alten Emojis.
+- **Neue Reservate:** Salzwiesen, Askiy Ridge und Tòrr nan Sithean vollständig hinzugefügt.
 
-#### 📊 Verbesserte Statistiken
-- **Dual-Axis Charts**: L-Score und Kills/h Effizienz in kombinierter Ansicht
-- **Dynamische Aggregation**: Automatische stündliche/tägliche Auflösung basierend auf Datenmenge
-- **Grind Session Progress**: Visualisierung der Session-Effizienz über Zeit
+### 🗺️ Need Zone Visualizer
+- **Interaktive Timeline:** Alle Need Zones einer Karte als visuelle Zeitleiste – ideal für die Jagdplanung.
+- **Echtzeit-Indikator:** Zeigt die aktuelle Ingame-Uhrzeit direkt in der Timeline an.
+- **Tier-Details auf Klick:** Klicke ein Tier an für Trophy-Scores, Fellfarben und empfohlene Köder.
 
-### 🔧 Verbesserungen
+### 🐛 Bugfixes & Improvements
+- **Timeline-Alignment:** Der Zeitindikator ist jetzt exakt mit dem Slider synchron.
+- **Modernisierte Dropdowns:** Template-Auswahl mit schickem Custom-Dropdown statt Browser-Standard.
+- **Performance:** Schnelleres Laden der Tier-Daten durch optimierte JSON-Struktur.
+- **Statistik-Charts:** Leere States und Datenformatierung korrigiert.
 
-- **Modernisierte Dropdowns**: Template-Auswahl jetzt mit Custom-Dropdown statt nativen Selects
-- **Timeline-Alignment Fix**: Zeitindikator exakt synchron mit Timeline-Slider
-- **Bessere Touch-Unterstützung**: Optimierte Interaktionen für Touch-Geräte
-- **Performance**: Schnelleres Laden der Tier-Daten durch optimierte JSON-Struktur
+---
 
-### 🐛 Bugfixes
+## 📥 Installation
 
-- **Navigation Timing**: Manager-Exposur vor DOMContentLoaded behebt Race Conditions
-- **Timer UI**: Kill-Buttons und Session-Controls korrekt positioniert
-- **Session-Fortsetzung**: `continueGroup()` wechselt automatisch zum Timer-Tab
-- **Hotkey-Mapping**: F8 beendet Session, F10 für Kill-Entfernung (korrigiert)
-- **Statistik-Chart**: Leere States und Datenformatierung korrigiert
+**Windows:**
+Lade die `HunterDash Setup 1.2.0.exe` herunter und führe sie aus. Deine alten Daten bleiben erhalten.
 
-### 📦 Technisch
+**Linux:**
+Lade das `.AppImage` herunter, mache es ausführbar (`chmod +x HunterDash-1.2.0.AppImage`) und starte es.
 
-- **Neue Datenstruktur**: `animal-data.json` mit `needZones[mapKey]._default` Pattern
-- **Reference Service**: Neuer `reference.service.js` für Tier-Daten und Bildpfade
-- **Translations**: `build-config/translations.js` für mehrsprachige Tier- und Kartennamen
-- **Batch-Scripts**: Automatisierte Daten-Migration und Validierung
+---
+
+**Full Changelog**: https://github.com/DerLuuz/HunterDash/compare/v1.1.0-beta.1...v1.2.0
 
 ---
 
