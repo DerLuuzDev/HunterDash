@@ -1,12 +1,7 @@
 /**
  * SettingsManager
  * 
- * Handles all application settings including:
- * - UI preferences (animations, ripple effects, dark mode)
- * - Overlay mode
- * - Audio settings
- * - Language selection
- * - Hotkey configuration
+ * Handles application settings including theme, animations, hotkeys, and language.
  */
 
 const SettingsManager = {
@@ -78,6 +73,7 @@ const SettingsManager = {
         ripple.className = 'ripple-effect';
 
         button.appendChild(ripple);
+
         setTimeout(() => ripple.remove(), 600);
     },
 
@@ -96,7 +92,6 @@ const SettingsManager = {
             document.body.classList.remove('dark-mode');
         }
 
-        // Update statistics if available
         if (window.StatisticsManager && typeof window.StatisticsManager.loadStatistics === 'function') {
             const currentPeriod = document.querySelector('.action-buttons .action-button.active[data-period]')?.dataset.period || 'all';
             window.StatisticsManager.loadStatistics(currentPeriod);
@@ -113,7 +108,6 @@ const SettingsManager = {
             this.settings = JSON.parse(saved);
         }
 
-        // Sync minimizeToTray from main process
         if (window.electronAPI && window.electronAPI.getSettings) {
             try {
                 const mainSettings = await window.electronAPI.getSettings();
@@ -125,7 +119,6 @@ const SettingsManager = {
             }
         }
 
-        // Initialize sessionHotkeys with defaults
         if (!this.settings.sessionHotkeys) {
             this.settings.sessionHotkeys = {
                 addKill: 'F7',
@@ -135,16 +128,15 @@ const SettingsManager = {
             };
         }
 
-        // Load individual hotkeys from localStorage
         const hotkeyIds = ['addKill', 'removeKill', 'togglePause', 'endSession'];
         hotkeyIds.forEach(id => {
             const stored = localStorage.getItem(`hotkey-${id}`);
             if (stored) {
                 this.settings.sessionHotkeys[id] = stored;
+                console.log(`Loaded hotkey ${id} from localStorage:`, stored);
             }
         });
 
-        // GrindService as fallback
         if (window.electronAPI && window.electronAPI.grind) {
             try {
                 const grindSettings = await window.electronAPI.grind.getSettings();
@@ -160,7 +152,8 @@ const SettingsManager = {
             }
         }
 
-        // Apply UI state
+        console.log('Final sessionHotkeys:', JSON.stringify(this.settings.sessionHotkeys));
+
         const animToggle = document.getElementById('animToggle');
         const rippleToggle = document.getElementById('rippleToggle');
         const darkToggle = document.getElementById('darkToggle');
@@ -189,7 +182,6 @@ const SettingsManager = {
             }
         }
 
-        // Language buttons
         const langDe = document.getElementById('langDe');
         const langEn = document.getElementById('langEn');
         const lang = this.settings.language || 'de';
@@ -199,10 +191,7 @@ const SettingsManager = {
         this.applyDarkMode();
         this.updateHotkeyInputs();
 
-        // Apply saved language
-        if (window.TranslationManager) {
-            window.TranslationManager.updateAll();
-        }
+        window.TranslationManager.updateAll();
     },
 
     toggleOverlayMode() {
@@ -232,9 +221,9 @@ const SettingsManager = {
 
         this.save();
         const msg = this.settings.minimizeToTray
-            ? (window.TranslationManager?.t('toastTrayEnabled') || 'Tray aktiviert')
-            : (window.TranslationManager?.t('toastTrayDisabled') || 'Tray deaktiviert');
-        window.ToastManager?.show(msg, 'success');
+            ? window.TranslationManager.t('toastTrayEnabled')
+            : window.TranslationManager.t('toastTrayDisabled');
+        window.ToastManager.show(msg, 'success');
     },
 
     setAudioVolume(volume) {
@@ -250,32 +239,28 @@ const SettingsManager = {
         if (langDe) langDe.classList.toggle('active', lang === 'de');
         if (langEn) langEn.classList.toggle('active', lang === 'en');
 
-        if (window.TranslationManager) {
-            window.TranslationManager.updateAll();
-        }
+        window.TranslationManager.updateAll();
 
-        // Update dependent managers
-        if (window.GrindManager?.updateAnimalDropdowns) {
+        if (typeof window.GrindManager !== 'undefined' && window.GrindManager.updateAnimalDropdowns) {
             window.GrindManager.updateAnimalDropdowns();
         }
-        if (window.StatisticsManager?.loadStatistics) {
+
+        if (typeof window.StatisticsManager !== 'undefined' && window.StatisticsManager.loadStatistics) {
             window.StatisticsManager.loadStatistics('all');
         }
-        if (window.Calculator?.calculate) {
+
+        if (typeof window.Calculator !== 'undefined' && window.Calculator.calculate) {
             window.Calculator.calculate(false);
         }
-        if (window.AccountManager?.renderAccounts) {
+        if (typeof window.AccountManager !== 'undefined' && window.AccountManager.renderAccounts) {
             window.AccountManager.renderAccounts();
         }
-        if (window.TemplateManager?.renderTemplates) {
+        if (typeof window.TemplateManager !== 'undefined' && window.TemplateManager.renderTemplates) {
             window.TemplateManager.renderTemplates();
         }
 
         this.save();
-        const msg = lang === 'de'
-            ? (window.TranslationManager?.t('toastLanguageDe') || 'Sprache: Deutsch')
-            : (window.TranslationManager?.t('toastLanguageEn') || 'Language: English');
-        window.ToastManager?.show(msg, 'success');
+        window.ToastManager.show(lang === 'de' ? window.TranslationManager.t('toastLanguageDe') : window.TranslationManager.t('toastLanguageEn'), 'success');
     },
 
     recordHotkey(hotkeyId) {
@@ -286,17 +271,18 @@ const SettingsManager = {
         input.classList.add('recording');
         input.disabled = true;
 
-        const self = this;
-
         const handleKeyDown = async (e) => {
             e.preventDefault();
             e.stopPropagation();
 
             if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) {
+                console.log('Modifier-Taste ignoriert:', e.key);
                 return;
             }
 
-            const hotkeyString = self.formatHotkey(e);
+            const hotkeyString = this.formatHotkey(e);
+            console.log('=== HOTKEY CHANGE ===');
+            console.log('hotkeyId:', hotkeyId, '| new value:', hotkeyString);
 
             input.value = hotkeyString;
             input.classList.remove('recording');
@@ -304,15 +290,16 @@ const SettingsManager = {
 
             localStorage.setItem(`hotkey-${hotkeyId}`, hotkeyString);
 
-            if (!self.settings.sessionHotkeys) {
-                self.settings.sessionHotkeys = {};
+            if (!this.settings.sessionHotkeys) {
+                this.settings.sessionHotkeys = {};
             }
-            self.settings.sessionHotkeys[hotkeyId] = hotkeyString;
+            this.settings.sessionHotkeys[hotkeyId] = hotkeyString;
 
             if (window.electronAPI && window.electronAPI.grind) {
+                console.log('Sending single hotkey update:', hotkeyId, '=', hotkeyString);
                 await window.electronAPI.grind.updateHotkeys({ [hotkeyId]: hotkeyString });
 
-                if (window.GrindManager?.isSessionRunning) {
+                if (window.GrindManager && window.GrindManager.isSessionRunning) {
                     await window.electronAPI.grind.registerHotkeys();
                 }
             }
@@ -339,17 +326,24 @@ const SettingsManager = {
         if (event.shiftKey) parts.push('Shift');
 
         const code = event.code;
+
+        console.log(`🔍 RAW INPUT: Key: "${event.key}", Code: "${code}", Modifiers: [Ctrl:${event.ctrlKey}, Alt:${event.altKey}, Shift:${event.shiftKey}]`);
+
         let keyName = '';
 
         if (/^F([1-9]|1[0-2])$/.test(code)) {
             keyName = code;
-        } else if (/^Key([A-Z])$/.test(code)) {
+        }
+        else if (/^Key([A-Z])$/.test(code)) {
             keyName = code.replace('Key', '');
-        } else if (/^Digit([0-9])$/.test(code)) {
+        }
+        else if (/^Digit([0-9])$/.test(code)) {
             keyName = code.replace('Digit', '');
-        } else if (/^Numpad([0-9])$/.test(code)) {
+        }
+        else if (/^Numpad([0-9])$/.test(code)) {
             keyName = 'num' + code.replace('Numpad', '');
-        } else if (code === 'Space') keyName = 'Space';
+        }
+        else if (code === 'Space') keyName = 'Space';
         else if (code === 'Enter') keyName = 'Enter';
         else if (code === 'Escape') keyName = 'Escape';
         else if (code === 'Backspace') keyName = 'Backspace';
@@ -380,7 +374,10 @@ const SettingsManager = {
         else keyName = code || event.key || 'Unknown';
 
         parts.push(keyName);
-        return parts.join(' + ');
+
+        const result = parts.join(' + ');
+        console.log('formatHotkey result:', result);
+        return result;
     },
 
     updateHotkeyInputs() {
@@ -429,9 +426,16 @@ const SettingsManager = {
             }
         }
 
-        const msg = window.TranslationManager?.t('toastSettingsReset') || 'Einstellungen zurückgesetzt';
-        window.ToastManager?.show(msg, 'success');
+        window.ToastManager.show(window.TranslationManager.t('toastSettingsReset'), 'success');
     }
 };
 
-export default SettingsManager;
+// Helper function for resetting all defaults
+function resetAllDefaults() {
+    SettingsManager.resetToDefaults();
+    window.Calculator?.resetDefaults?.();
+}
+
+// Expose globally for compatibility
+window.SettingsManager = SettingsManager;
+window.resetAllDefaults = resetAllDefaults;

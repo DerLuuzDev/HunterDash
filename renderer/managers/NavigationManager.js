@@ -1,11 +1,11 @@
 /**
  * NavigationManager
  * 
- * Handles tab navigation and routing between app sections.
+ * Handles navigation between application tabs.
  */
 
 const NavigationManager = {
-    currentTab: 'dashboard',
+    currentTab: 'calculator',
 
     switchTab(tabName, element) {
         try {
@@ -26,31 +26,22 @@ const NavigationManager = {
             });
 
             this.currentTab = tabName;
-
-            // Update header title
             const headerTitle = document.getElementById('header-title-text');
             if (headerTitle) {
                 const titleMap = {
-                    'dashboard': 'navDashboard',
                     'calculator': 'navCalculator',
                     'grind': 'navGrindHelper',
                     'history': 'navHistory',
                     'templates': 'navTemplates',
                     'accounts': 'navAccounts',
-                    'statistics': 'navStatistics',
-                    'reference': 'navReference'
+                    'statistics': 'navStatistics'
                 };
                 const key = titleMap[tabName] || 'appSubtitle';
                 headerTitle.setAttribute('data-i18n', key);
-                if (window.TranslationManager) {
-                    window.TranslationManager.translatePage();
-                }
+                if (window.TranslationManager) window.TranslationManager.updateAll();
             }
 
-            // Tab-specific initialization
-            if (tabName === 'dashboard') {
-                window.DashboardManager?.update?.();
-            } else if (tabName === 'templates') {
+            if (tabName === 'templates') {
                 window.TemplateManager?.loadTemplates?.();
             } else if (tabName === 'history') {
                 window.HistoryManager?.loadHistory?.();
@@ -65,10 +56,6 @@ const NavigationManager = {
                 }
                 window.GrindManager.init();
                 window.GrindManager.switchSubTab('timer');
-            } else if (tabName === 'reference') {
-                if (window.ReferenceManager) {
-                    window.ReferenceManager.init();
-                }
             }
         } catch (error) {
             console.error('Navigation error:', error);
@@ -77,4 +64,5 @@ const NavigationManager = {
     }
 };
 
-export default NavigationManager;
+// Expose globally for compatibility
+window.NavigationManager = NavigationManager;

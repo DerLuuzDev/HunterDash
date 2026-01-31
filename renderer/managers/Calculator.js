@@ -26,12 +26,11 @@ const Calculator = {
     },
 
     getLuckLabel(z) {
-        const t = window.TranslationManager?.t || (key => key);
-        if (z >= 2) return t('luckLabelVeryLucky');
-        if (z >= 0.5) return t('luckLabelLucky');
-        if (z >= -0.5) return t('luckLabelNeutral');
-        if (z >= -2) return t('luckLabelUnlucky');
-        return t('luckLabelVeryUnlucky');
+        if (z >= 2) return window.TranslationManager.t('luckLabelVeryLucky');
+        if (z >= 0.5) return window.TranslationManager.t('luckLabelLucky');
+        if (z >= -0.5) return window.TranslationManager.t('luckLabelNeutral');
+        if (z >= -2) return window.TranslationManager.t('luckLabelUnlucky');
+        return window.TranslationManager.t('luckLabelVeryUnlucky');
     },
 
     calculateBarWidth(z) {
@@ -39,23 +38,22 @@ const Calculator = {
     },
 
     getInterpretation(totalL) {
-        const t = window.TranslationManager?.t || (key => key);
-        if (totalL > 3) return t('luckVeryLucky');
-        if (totalL > 2) return t('luckLucky');
-        if (totalL > 0) return t('luckSlightlyLucky');
-        if (totalL > -2) return t('luckAverage');
-        if (totalL > -3) return t('luckUnlucky');
-        return t('luckVeryUnlucky');
+        if (totalL > 3) return window.TranslationManager.t('luckVeryLucky');
+        if (totalL > 2) return window.TranslationManager.t('luckLucky');
+        if (totalL > 0) return window.TranslationManager.t('luckSlightlyLucky');
+        if (totalL > -2) return window.TranslationManager.t('luckAverage');
+        if (totalL > -3) return window.TranslationManager.t('luckUnlucky');
+        return window.TranslationManager.t('luckVeryUnlucky');
     },
 
     async calculate(saveHistory = true) {
         // getCurrentFormData should be available globally
-        if (typeof getCurrentFormData !== 'function') {
+        if (typeof window.getCurrentFormData !== 'function') {
             console.error('getCurrentFormData not available');
             return;
         }
 
-        const data = getCurrentFormData();
+        const data = window.getCurrentFormData();
 
         try {
             let result;
@@ -73,7 +71,7 @@ const Calculator = {
 
             this.displayResults(result);
 
-            if (window.SettingsManager?.settings?.animations) {
+            if (window.SettingsManager.settings.animations) {
                 this.animateBars();
             } else {
                 document.querySelectorAll('.luck-bar-fill').forEach(bar => {
@@ -83,18 +81,17 @@ const Calculator = {
 
         } catch (error) {
             console.error('Berechnungsfehler:', error);
-            window.ToastManager?.show('Berechnungsfehler: ' + error.message, 'error');
+            window.ToastManager.show('Berechnungsfehler: ' + error.message, 'error');
         }
     },
 
     calculatePoissonLocal(data) {
-        const t = window.TranslationManager?.t || (key => key);
         const n = parseFloat(data.n);
         const categories = [
-            { k: parseFloat(data.k_rare), p: parseFloat(data.p_rare), name: t('catRares') },
-            { k: parseFloat(data.k_diamond), p: parseFloat(data.p_diamond), name: t('catDiamonds') },
-            { k: parseFloat(data.k_super), p: parseFloat(data.p_super), name: t('catSuperRares') },
-            { k: parseFloat(data.k_go), p: parseFloat(data.p_go), name: t('catGreatOnes') }
+            { k: parseFloat(data.k_rare), p: parseFloat(data.p_rare), name: window.TranslationManager.t('catRares') },
+            { k: parseFloat(data.k_diamond), p: parseFloat(data.p_diamond), name: window.TranslationManager.t('catDiamonds') },
+            { k: parseFloat(data.k_super), p: parseFloat(data.p_super), name: window.TranslationManager.t('catSuperRares') },
+            { k: parseFloat(data.k_go), p: parseFloat(data.p_go), name: window.TranslationManager.t('catGreatOnes') }
         ];
 
         let totalL = 0;
@@ -113,10 +110,14 @@ const Calculator = {
             const z = sqrtLambda > 0 ? (cat.k - lambda) / sqrtLambda : 0;
             totalL += z;
 
+            const luckColor = this.getLuckColorClass(z);
+            const luckLabel = this.getLuckLabel(z);
+            const barWidth = this.calculateBarWidth(z);
+
             cat.z = z;
-            cat.barWidth = this.calculateBarWidth(z);
-            cat.luckColor = this.getLuckColorClass(z);
-            cat.luckLabel = this.getLuckLabel(z);
+            cat.barWidth = barWidth;
+            cat.luckColor = luckColor;
+            cat.luckLabel = luckLabel;
         });
 
         const interpretation = this.getInterpretation(totalL);
@@ -130,7 +131,6 @@ const Calculator = {
     },
 
     displayResults(result) {
-        const t = window.TranslationManager?.t || (key => key);
         const totalLColorClass = this.getLuckColorClass(result.totalL);
         const totalLColor = getComputedStyle(document.documentElement).getPropertyValue(`--${totalLColorClass}`).trim();
 
@@ -163,38 +163,35 @@ const Calculator = {
         const legend = `
             <div class="legend">
                 <div class="legend-item">
-                    <div class="legend-color very-unlucky"></div>${t('legendVeryUnlucky')}
+                    <div class="legend-color very-unlucky"></div>${window.TranslationManager.t('legendVeryUnlucky')}
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color unlucky"></div>${t('legendUnlucky')} Z&lt;-0.5
+                    <div class="legend-color unlucky"></div>${window.TranslationManager.t('legendUnlucky')} Z&lt;-0.5
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color neutral"></div>${t('legendAverage')} -0.5~0.5
+                    <div class="legend-color neutral"></div>${window.TranslationManager.t('legendAverage')} -0.5~0.5
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color lucky"></div>${t('legendLucky')} Z≥0.5
+                    <div class="legend-color lucky"></div>${window.TranslationManager.t('legendLucky')} Z≥0.5
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color very-lucky"></div>${t('legendVeryLucky')}
+                    <div class="legend-color very-lucky"></div>${window.TranslationManager.t('legendVeryLucky')}
                 </div>
             </div>
         `;
 
-        const resultEl = document.getElementById('result');
-        if (resultEl) {
-            resultEl.innerHTML = `
-                <div class="card">
-                    <div class="luck-title">${t('luckScoreTitle')}</div>
-                    ${legend}
-                    ${bars}
-                    <div class="total-score" style="background: ${totalLColor};">
-                        <strong>${t('luckTotalL')}: ${result.totalL.toFixed(2)}</strong>
-                        ${result.interpretation}
-                    </div>
-                    <p class="note">${t('luckNote')}</p>
+        document.getElementById('result').innerHTML = `
+            <div class="card">
+                <div class="luck-title">${window.TranslationManager.t('luckScoreTitle')}</div>
+                ${legend}
+                ${bars}
+                <div class="total-score" style="background: ${totalLColor};">
+                    <strong>${window.TranslationManager.t('luckTotalL')}: ${result.totalL.toFixed(2)}</strong>
+                    ${result.interpretation}
                 </div>
-            `;
-        }
+                <p class="note">${window.TranslationManager.t('luckNote')}</p>
+            </div>
+        `;
     },
 
     animateBars() {
@@ -207,14 +204,16 @@ const Calculator = {
     },
 
     resetDefaults() {
-        // Reset number inputs
-        const fields = ['n', 'k_rare', 'p_rare', 'k_diamond', 'p_diamond', 'k_super', 'p_super', 'k_go', 'p_go'];
-        fields.forEach(field => {
-            const el = document.getElementById(field);
-            if (el) el.value = this.DEFAULTS[field];
-        });
+        document.getElementById('n').value = this.DEFAULTS.n;
+        document.getElementById('k_rare').value = this.DEFAULTS.k_rare;
+        document.getElementById('p_rare').value = this.DEFAULTS.p_rare;
+        document.getElementById('k_diamond').value = this.DEFAULTS.k_diamond;
+        document.getElementById('p_diamond').value = this.DEFAULTS.p_diamond;
+        document.getElementById('k_super').value = this.DEFAULTS.k_super;
+        document.getElementById('p_super').value = this.DEFAULTS.p_super;
+        document.getElementById('k_go').value = this.DEFAULTS.k_go;
+        document.getElementById('p_go').value = this.DEFAULTS.p_go;
 
-        // Reset sliders
         const sliderDefaults = {
             p_rare_slider: this.DEFAULTS.p_rare,
             p_diamond_slider: this.DEFAULTS.p_diamond,
@@ -228,15 +227,16 @@ const Calculator = {
         });
 
         // Update ratio displays
-        if (typeof updateRatio === 'function') {
+        if (typeof window.updateRatio === 'function') {
             ['rare', 'diamond', 'super', 'go'].forEach(type => {
-                updateRatio(type, this.DEFAULTS[`p_${type}`]);
+                window.updateRatio(type, this.DEFAULTS[`p_${type}`]);
             });
         }
 
         this.calculate();
-        window.ToastManager?.show('Alle Werte zurückgesetzt', 'success');
+        window.ToastManager.show('Alle Werte zurückgesetzt', 'success');
     }
 };
 
-export default Calculator;
+// Expose globally for compatibility
+window.Calculator = Calculator;

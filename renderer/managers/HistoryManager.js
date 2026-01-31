@@ -1,14 +1,14 @@
 /**
  * HistoryManager
  * 
- * Manages calculation history storage and export.
+ * Handles calculation history loading, rendering, and export.
  */
 
 const HistoryManager = {
     history: [],
 
     async loadHistory() {
-        if (window.electronAPI?.history) {
+        if (window.electronAPI && window.electronAPI.history) {
             const response = await window.electronAPI.history.get();
             if (response.success) {
                 this.history = response.data;
@@ -19,8 +19,6 @@ const HistoryManager = {
 
     renderHistory() {
         const list = document.getElementById('historyList');
-        if (!list) return;
-
         list.innerHTML = '';
 
         if (this.history.length === 0) {
@@ -33,20 +31,15 @@ const HistoryManager = {
             item.className = 'history-item';
             item.innerHTML = `
                 <div>
-                    <div class="history-date">${new Date(entry.timestamp).toLocaleDateString('de-DE', {
-                day: 'numeric', month: 'short', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            })}</div>
+                    <div class="history-date">${new Date(entry.timestamp).toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</div>
                     <div class="history-meta">Total Harvests: ${entry.input.n}</div>
                 </div>
                 <div class="history-l">${entry.output.totalL.toFixed(2)}</div>
             `;
             item.onclick = () => {
-                if (typeof applyFormData === 'function') {
-                    applyFormData(this.flattenInput(entry.input));
-                }
-                window.NavigationManager?.switchTab('calculator');
-                window.Calculator?.calculate(false);
+                window.applyFormData(this.flattenInput(entry.input));
+                window.NavigationManager.switchTab('calculator');
+                window.Calculator.calculate(false);
             };
             list.appendChild(item);
         });
@@ -54,50 +47,48 @@ const HistoryManager = {
 
     flattenInput(input) {
         const flat = { n: input.n };
-        if (input.categories) {
-            input.categories.forEach(cat => {
-                flat[`k_${cat.key}`] = cat.k;
-                flat[`p_${cat.key}`] = cat.p;
-            });
-        }
+        input.categories.forEach(cat => {
+            flat[`k_${cat.key}`] = cat.k;
+            flat[`p_${cat.key}`] = cat.p;
+        });
         return flat;
     },
 
     async clearHistory() {
         if (!confirm('Möchtest du wirklich die gesamte Historie löschen?')) return;
 
-        if (window.electronAPI?.history) {
+        if (window.electronAPI && window.electronAPI.history) {
             const response = await window.electronAPI.history.clear();
             if (response.success) {
                 this.history = [];
                 this.renderHistory();
-                window.ToastManager?.show('Historie geleert', 'success');
+                window.ToastManager.show('Historie geleert', 'success');
             } else {
-                window.ToastManager?.show('Fehler beim Löschen', 'error');
+                window.ToastManager.show('Fehler beim Löschen', 'error');
             }
         }
     },
 
     async exportCSV() {
-        if (window.electronAPI?.history) {
+        if (window.electronAPI && window.electronAPI.history) {
             const response = await window.electronAPI.history.exportCSV();
             if (response.success) {
                 this.downloadFile(response.data, response.filename, 'text/csv');
-                window.ToastManager?.show('CSV exportiert', 'success');
+                window.ToastManager.show('CSV exportiert', 'success');
             } else {
-                window.ToastManager?.show(response.error, 'error');
+                window.ToastManager.show(response.error, 'error');
             }
         }
     },
 
     async exportJSON() {
-        if (window.electronAPI?.history) {
+        if (window.electronAPI && window.electronAPI.history) {
             const response = await window.electronAPI.history.exportJSON();
             if (response.success) {
                 this.downloadFile(response.data, response.filename, 'application/json');
-                window.ToastManager?.show('JSON exportiert', 'success');
+                window.ToastManager.show('JSON exportiert', 'success');
             } else {
-                window.ToastManager?.show(response.error, 'error');
+                window.ToastManager.show(response.error, 'error');
             }
         }
     },
@@ -113,4 +104,5 @@ const HistoryManager = {
     }
 };
 
-export default HistoryManager;
+// Expose globally for compatibility
+window.HistoryManager = HistoryManager;
