@@ -550,6 +550,22 @@ ${result.interpretation}  // ❌ ohne 't'
 
 ---
 
+### Upcoming Features & Architecture Changes (Planned)
+
+**Wiki Auto-Sync System**
+- **Goal:** Automate data updates from theHunter: COTW Fandom Wiki.
+- **New Script:** `scripts/sync-wiki-data.js` (fetching via axios/cheerio).
+- **Target:** Updates `build-config/animal-data.json` with latest scores and weights.
+- **Safety:** Logs changes and creates backups before overwriting.
+
+**App "Lightweight" Optimization**
+- **Goal:** Modularize monolithic `index.html` and improve startup performance.
+- **Strategy:**
+  - Extract Inline CSS/JS to `assets/` and `renderer/`.
+  - Lazy Load images (`loading="lazy"`).
+  - Use WebP for assets.
+  - Fix excessive event listeners (debouncing).
+
 ### Concrete Triggers for HunterDash
 
 **Update AGENTS.md when:**

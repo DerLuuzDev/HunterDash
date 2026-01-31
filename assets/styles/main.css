@@ -1,0 +1,472 @@
+/**
+ * HunterDash - Main Stylesheet
+ * 
+ * This file contains CSS variables, reset, typography, and core utilities.
+ * Extracted from monolithic index.html for better maintainability.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL SCROLLBAR HIDING
+   ═══════════════════════════════════════════════════════════════ */
+* {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
+}
+
+/* Re-enable styled scrollbars only where really needed */
+.settings-body,
+.legend {
+    scrollbar-width: thin;
+}
+
+.settings-body::-webkit-scrollbar,
+.legend::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CSS VARIABLES - LIGHT MODE (DEFAULT)
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+    /* Light Mode - Modern & Premium */
+    --background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    --background-solid: #f8fafc;
+    --surface: #ffffff;
+    --surface-elevated: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+
+    /* Hunter Accents (Light) - More Vibrant */
+    --primary: #16a34a;
+    --primary-light: rgba(22, 163, 74, 0.12);
+    --secondary: #22c55e;
+    --accent: #f97316;
+
+    /* Components - Cleaner, More Defined */
+    --card-border: rgba(0, 0, 0, 0.08);
+    --border-light: rgba(0, 0, 0, 0.06);
+    --border-strong: rgba(0, 0, 0, 0.15);
+
+    /* Inputs - Clean & Modern */
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+    --form-select-bg: #ffffff;
+
+    /* Navigation - Modern */
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --nav-hover-bg: rgba(22, 163, 74, 0.08);
+    --nav-active-text: #16a34a;
+    --nav-item-active-bg: rgba(22, 163, 74, 0.1);
+    --nav-item-active-border: rgba(22, 163, 74, 0.4);
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
+
+    /* Steam-style Tab Variables (Light Mode) - More Contrast */
+    --tab-container-bg: rgba(15, 23, 42, 0.04);
+    --tab-hover-bg: rgba(15, 23, 42, 0.06);
+    --tab-hover-border: rgba(15, 23, 42, 0.1);
+
+    /* Logic Colors - Vibrant */
+    --very-lucky: #22c55e;
+    --lucky: #84cc16;
+    --neutral: #94a3b8;
+    --unlucky: #f97316;
+    --very-unlucky: #ef4444;
+
+    --ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CSS VARIABLES - DARK MODE
+   ═══════════════════════════════════════════════════════════════ */
+.dark-mode {
+    /* COTW-Inspired "Night Hunt" - Solid & Premium */
+    --background: #0a0f0c;
+    --background-solid: #0a0f0c;
+    --surface: #141a16;
+    --surface-elevated: #1a211c;
+    --text-primary: #f0fdf4;
+    --text-secondary: #86efac;
+
+    /* Hunter Colors - Neon Accents */
+    --primary: #22c55e;
+    --primary-light: rgba(34, 197, 94, 0.15);
+    --secondary: #16a34a;
+    --accent: #fb923c;
+
+    /* Logic Colors - Neon Style */
+    --very-lucky: #4ade80;
+    --lucky: #86efac;
+    --neutral: #94a3b8;
+    --unlucky: #fb923c;
+    --very-unlucky: #f87171;
+
+    /* Components - Solid, No Veil */
+    --card-border: rgba(34, 197, 94, 0.2);
+    --border-light: rgba(34, 197, 94, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --input-bg: #1a211c;
+    --nav-bg: #141a16;
+    --nav-hover-bg: rgba(34, 197, 94, 0.12);
+    --nav-active-text: #ffffff;
+    --nav-item-active-bg: rgba(34, 197, 94, 0.15);
+    --nav-item-active-border: rgba(34, 197, 94, 0.4);
+    --sidebar-bg: #0f1512;
+
+    /* Steam-style Tab Variables (Dark Mode) - Solid */
+    --tab-container-bg: rgba(0, 0, 0, 0.3);
+    --tab-hover-bg: rgba(34, 197, 94, 0.1);
+    --tab-hover-border: rgba(34, 197, 94, 0.2);
+    --form-select-bg: #1a211c;
+
+    --ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK MODE OVERRIDES
+   ═══════════════════════════════════════════════════════════════ */
+/* Light mode - Remove blur effects that cause text blurriness */
+body:not(.dark-mode) .settings-content,
+body:not(.dark-mode) .settings-modal .animal-modal-content {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* Dark mode dropdown option styling */
+.dark-mode select,
+.dark-mode .form-select,
+.dark-mode .compare-select {
+    background-color: #1a211c;
+    color: var(--text-primary);
+}
+
+.dark-mode select option,
+.dark-mode .form-select option,
+.dark-mode .compare-select option {
+    background-color: #141a16;
+    color: #f0fdf4;
+}
+
+/* Dark mode solid backgrounds - Remove all veil effects */
+.dark-mode .card,
+.dark-mode .setting-item,
+.dark-mode .account-card,
+.dark-mode .template-card,
+.dark-mode .session-card,
+.dark-mode .settings-content,
+.dark-mode .toast {
+    background: #141a16;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.dark-mode .settings-modal {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .action-button.secondary {
+    background: #1a211c;
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.dark-mode .action-button.secondary:hover {
+    background: #212a24;
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+.dark-mode .toggle-switch {
+    background: #1a211c;
+}
+
+.dark-mode .toggle-switch:hover {
+    background: #212a24;
+}
+
+.dark-mode .setting-item:hover {
+    background: #1a211c;
+}
+
+.dark-mode .legend {
+    background: #141a16;
+}
+
+.dark-mode .legend-item {
+    background: #1a211c;
+}
+
+.dark-mode .legend-item:hover {
+    background: #212a24;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESET & BASE STYLES
+   ═══════════════════════════════════════════════════════════════ */
+* {
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background);
+    color: var(--text-primary);
+    transition: background 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
+    min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════ */
+h1 {
+    font-weight: 700;
+    font-size: 3.25rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--primary);
+    margin-top: 28px;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.app-logo {
+    max-width: 200px;
+    height: auto;
+    transition: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM INPUTS
+   ═══════════════════════════════════════════════════════════════ */
+input[type="number"] {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+input[type="number"]:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(74, 122, 42, 0.15);
+    background: var(--input-bg-focus);
+}
+
+input[type="number"]:hover {
+    border-color: var(--secondary);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════════════════ */
+.mini-btn {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.mini-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.reset-button {
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.reset-button:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    transform: translateY(-2px);
+}
+
+.reset-button:active {
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDERS
+   ═══════════════════════════════════════════════════════════════ */
+.widget-slider {
+    width: 100%;
+    accent-color: var(--primary);
+    cursor: pointer;
+    height: 6px;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--border-light);
+    margin: 8px 0;
+}
+
+.widget-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+    margin-top: -5px;
+}
+
+.widget-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px var(--primary-light);
+}
+
+.widget-slider::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-light);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HINTS & NOTES
+   ═══════════════════════════════════════════════════════════════ */
+.mini-hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    padding: 8px 12px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    background: var(--mini-hint-bg);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mini-hint.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    font-weight: 400;
+}

@@ -9,7 +9,7 @@ const historyService = require('./services/history.service');
 const templateService = require('./services/template.service');
 const accountServiceFactory = require('./services/account.service');
 const GrindService = require('./services/grind.service');
-const referenceService = require('./services/reference.service');
+const syncService = require('./services/sync.service');
 const { validatePoissonInput, validateSettings } = require('./utils/validator');
 
 let mainWindow;
@@ -975,50 +975,39 @@ function setupIpcHandlers() {
     }
   });
 
-  // Reference Tab IPC Handlers
-  ipcMain.handle('reference:get-maps', async () => {
+  // ========== SYNC SERVICE ==========
+  ipcMain.handle('sync:status', async () => {
     try {
-      return referenceService.getMaps();
+      return { success: true, data: syncService.getStatus() };
     } catch (error) {
-      console.error('Reference-GetMaps-Fehler:', error);
+      console.error('Sync-Status-Fehler:', error);
       return { success: false, error: error.message };
     }
   });
 
-  ipcMain.handle('reference:get-animals-for-map', async (event, mapId) => {
+  ipcMain.handle('sync:check', async () => {
     try {
-      return referenceService.getAnimalsForMap(mapId);
+      return await syncService.checkForUpdates();
     } catch (error) {
-      console.error('Reference-GetAnimalsForMap-Fehler:', error);
+      console.error('Sync-Check-Fehler:', error);
       return { success: false, error: error.message };
     }
   });
 
-  ipcMain.handle('reference:get-zones-for-animal', async (event, animalId) => {
+  ipcMain.handle('sync:run', async (event, options) => {
     try {
-      return referenceService.getZonesForAnimal(animalId);
+      return await syncService.syncAnimalData(options);
     } catch (error) {
-      console.error('Reference-GetZonesForAnimal-Fehler:', error);
+      console.error('Sync-Run-Fehler:', error);
       return { success: false, error: error.message };
     }
   });
 
-  ipcMain.handle('reference:get-active-animals', async (event, options) => {
+  ipcMain.handle('sync:reload', async () => {
     try {
-      const { time, zoneType, mapId } = options || {};
-      return referenceService.getActiveAnimals(time, zoneType, mapId);
+      return await syncService.reloadAnimalData();
     } catch (error) {
-      console.error('Reference-GetActiveAnimals-Fehler:', error);
-      return { success: false, error: error.message };
-    }
-  });
-
-  ipcMain.handle('reference:search-animals', async (event, options) => {
-    try {
-      const { query, language } = options || {};
-      return referenceService.searchAnimals(query, language);
-    } catch (error) {
-      console.error('Reference-SearchAnimals-Fehler:', error);
+      console.error('Sync-Reload-Fehler:', error);
       return { success: false, error: error.message };
     }
   });

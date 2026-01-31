@@ -11,7 +11,8 @@
     "build:win": "electron-builder --win --config build-config/electron-builder.js",
     "build:linux": "electron-builder --linux --config build-config/electron-builder.js",
     "build:all": "electron-builder --win --linux --config build-config/electron-builder.js",
-    "generate:icons": "node utils/icons.js"
+    "generate:icons": "node utils/icons.js",
+    "sync:data": "node scripts/sync-wiki-data.js"
   },
   "devDependencies": {
     "@electron-forge/publisher-github": "^7.10.2",

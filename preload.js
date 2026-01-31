@@ -83,11 +83,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.removeListener(channel, callback);
   },
 
-  reference: {
-    getMaps: () => ipcRenderer.invoke('reference:get-maps'),
-    getAnimalsForMap: (mapId) => ipcRenderer.invoke('reference:get-animals-for-map', mapId),
-    getZonesForAnimal: (animalId) => ipcRenderer.invoke('reference:get-zones-for-animal', animalId),
-    getActiveAnimals: (options) => ipcRenderer.invoke('reference:get-active-animals', options),
-    searchAnimals: (options) => ipcRenderer.invoke('reference:search-animals', options)
+  sync: {
+    getStatus: () => ipcRenderer.invoke('sync:status'),
+    check: () => ipcRenderer.invoke('sync:check'),
+    run: (options) => ipcRenderer.invoke('sync:run', options),
+    reload: () => ipcRenderer.invoke('sync:reload')
   }
 });

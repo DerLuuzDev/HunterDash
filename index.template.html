@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HunterDash - COTW Glück-Rechner</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- External CSS (extracted from inline) -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/components/navigation.css">
+    <link rel="stylesheet" href="assets/styles/components/modal.css">
+    <link rel="stylesheet" href="assets/styles/components/card.css">
+    <link rel="stylesheet" href="assets/styles/components/toast.css">
+    <link rel="stylesheet" href="assets/styles/pages/calculator.css">
+    <link rel="stylesheet" href="assets/styles/pages/grind.css">
+    <link rel="stylesheet" href="assets/styles/pages/reference.css">
+    <link rel="stylesheet" href="assets/styles/pages/statistics.css">
+
+    <!-- Critical inline styles (above-fold) -->
+    <style>
+        /* Minimal critical CSS for fast first paint */
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background, #f8fafc);
+            color: var(--text-primary, #0f172a);
+        }
+
+        .loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #16a34a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+
+    <!-- Chart.js (external library) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- Initial loading state -->
+    <div id="app-loader" class="loading-spinner"></div>
+
+    <!-- Main App Container (populated by JS) -->
+    <div id="app" style="opacity: 0; transition: opacity 0.3s;">
+
+        <!-- Settings Button (fixed) -->
+        <button class="settings-button" onclick="SettingsManager.openSettings()">⚙️</button>
+
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <!-- Populated by NavigationManager -->
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="main-content">
+
+            <!-- Tab: Rechner -->
+            <section id="tab-rechner" class="tab-content active">
+                <!-- Calculator HTML structure -->
+            </section>
+
+            <!-- Tab: Grind -->
+            <section id="tab-grind" class="tab-content">
+                <!-- Grind Helper HTML structure -->
+            </section>
+
+            <!-- Tab: Accounts -->
+            <section id="tab-accounts" class="tab-content">
+                <!-- Accounts HTML structure -->
+            </section>
+
+            <!-- Tab: Reference -->
+            <section id="tab-reference" class="tab-content">
+                <!-- Reference HTML structure -->
+            </section>
+
+            <!-- Tab: Statistics -->
+            <section id="tab-statistics" class="tab-content">
+                <!-- Statistics HTML structure -->
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Modals Container (appended dynamically) -->
+    <div id="modals-container"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- 
+        ╔═══════════════════════════════════════════════════════════════╗
+        ║  MODULAR JAVASCRIPT IMPORTS                                   ║
+        ║  Each manager is now a separate ES module                     ║
+        ╚═══════════════════════════════════════════════════════════════╝
+    -->
+    <script type="module">
+        // Utils
+        import { debounce } from './renderer/utils/debounce.js';
+        import { formatNumber, formatTime } from './renderer/utils/formatters.js';
+
+        // Managers
+        import ToastManager from './renderer/managers/ToastManager.js';
+        import SettingsManager from './renderer/managers/SettingsManager.js';
+        import NavigationManager from './renderer/managers/NavigationManager.js';
+        import Calculator from './renderer/managers/Calculator.js';
+        import HistoryManager from './renderer/managers/HistoryManager.js';
+        import AccountManager from './renderer/managers/AccountManager.js';
+        import GrindManager from './renderer/managers/GrindManager.js';
+        import ReferenceManager from './renderer/managers/ReferenceManager.js';
+        import TemplateManager from './renderer/managers/TemplateManager.js';
+        import StatisticsManager from './renderer/managers/StatisticsManager.js';
+        import UndoRedoManager from './renderer/managers/UndoRedoManager.js';
+
+        // Expose to global scope for inline onclick handlers
+        window.ToastManager = ToastManager;
+        window.SettingsManager = SettingsManager;
+        window.NavigationManager = NavigationManager;
+        window.Calculator = Calculator;
+        window.HistoryManager = HistoryManager;
+        window.AccountManager = AccountManager;
+        window.GrindManager = GrindManager;
+        window.ReferenceManager = ReferenceManager;
+        window.TemplateManager = TemplateManager;
+        window.StatisticsManager = StatisticsManager;
+        window.UndoRedoManager = UndoRedoManager;
+
+        // Initialize app when DOM is ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('HunterDash: Initializing...');
+
+            try {
+                // Load settings first
+                await SettingsManager.load();
+
+                // Initialize navigation
+                NavigationManager.init();
+
+                // Initial calculation (without saving to history)
+                await Calculator.calculate(false);
+
+                // Hide loader, show app
+                document.getElementById('app-loader').style.display = 'none';
+                document.getElementById('app').style.opacity = '1';
+
+                console.log('HunterDash: Ready!');
+            } catch (error) {
+                console.error('HunterDash: Initialization failed', error);
+                ToastManager.show('Fehler bei der Initialisierung', 'error');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

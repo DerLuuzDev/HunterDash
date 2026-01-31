@@ -2,8 +2,8 @@
   "_comment": "Konsolidierte Tier-Daten für HunterDash - Daten von espis.de und COTW Wiki",
   "_format": {
     "animals": "Tier-ID → Stats + need_zones pro Map",
-    "need_zones": "{ _default: {drink, feed, rest}, [mapId]: {drink, feed, rest} }",
-    "stats": "class, difficulty, max_level, max_score, diamond, gold, silver, fur_common, fur_rare, lures, image"
+    "need_zones": "Map-ID → {drink, feed, rest} Arrays mit {start, end}",
+    "stats": "class, difficulty, max_level, max_score, diamond, gold, silver, fur_common, fur_rare, lures"
   },
   "_maps": [
     {
@@ -277,6 +277,7 @@
     "red_deer": {
       "name_de": "Rothirsch",
       "name_en": "Red Deer",
+      "icon": "🦌",
       "class": 9,
       "difficulty": "Leicht - Legendär",
       "max_level": 9,
@@ -304,41 +305,39 @@
       "great_one": true,
       "truRACS": true,
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            }
-          ],
-          "feed": [
-            {
-              "start": 13,
-              "end": 21
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 10,
-              "end": 13
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 6,
+            "end": 10
+          }
+        ],
+        "feed": [
+          {
+            "start": 13,
+            "end": 21
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 10,
+            "end": 13
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
       },
-      "max_weight_kg": 240,
-      "image": "red_deer.svg"
+      "max_weight_kg": 240
     },
     "wild_boar": {
       "name_de": "Wildschwein",
       "name_en": "Wild Boar",
+      "icon": "🐗",
       "class": 5,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -361,39 +360,37 @@
         "Wildschweinduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 0,
-              "end": 3
-            }
-          ],
-          "feed": [
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 17,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 17
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 0,
+            "end": 3
+          }
+        ],
+        "feed": [
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 17,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 17
+          }
+        ]
       },
       "truRACS": false,
       "great_one": true,
-      "max_weight_kg": 240,
-      "image": "wild_boar.svg"
+      "max_weight_kg": 240
     },
     "fallow_deer": {
       "name_de": "Damhirsch",
       "name_en": "Fallow Deer",
+      "icon": "🦌",
       "class": 4,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -419,47 +416,45 @@
         "Geweihrassel (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 10,
-              "end": 13
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 17,
-              "end": 21
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 13,
-              "end": 17
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 10,
+            "end": 13
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 10
+          },
+          {
+            "start": 17,
+            "end": 21
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 13,
+            "end": 17
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": true,
-      "max_weight_kg": 100,
-      "image": "fallow_deer.svg"
+      "max_weight_kg": 100
     },
     "roe_deer": {
       "name_de": "Reh",
       "name_en": "Roe Deer",
+      "icon": "🦌",
       "class": 3,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -485,47 +480,45 @@
         "Rehduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 14,
-              "end": 17
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 10
-            },
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 10,
-              "end": 14
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 14,
+            "end": 17
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 10
+          },
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 10,
+            "end": 14
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 35,
-      "image": "roe_deer.svg"
+      "max_weight_kg": 35
     },
     "red_fox": {
       "name_de": "Rotfuchs",
       "name_en": "Red Fox",
+      "icon": "🦊",
       "class": 2,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -547,39 +540,37 @@
         "Räuberlockpfeife \"Hase\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 7
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 7,
-              "end": 17
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 7
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 7,
+            "end": 17
+          }
+        ]
       },
       "truRACS": false,
       "great_one": true,
-      "max_weight_kg": 15,
-      "image": "red_fox.svg"
+      "max_weight_kg": 15
     },
     "canada_goose": {
       "name_de": "Kanadagans",
       "name_en": "Canada Goose",
+      "icon": "🦆",
       "class": 1,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -603,58 +594,56 @@
         "Kanadagans (Attrappe)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 7
-            },
-            {
-              "start": 9,
-              "end": 11
-            },
-            {
-              "start": 13,
-              "end": 15
-            },
-            {
-              "start": 17,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 5
-            },
-            {
-              "start": 7,
-              "end": 9
-            },
-            {
-              "start": 11,
-              "end": 13
-            },
-            {
-              "start": 15,
-              "end": 17
-            },
-            {
-              "start": 19,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 5,
+            "end": 7
+          },
+          {
+            "start": 9,
+            "end": 11
+          },
+          {
+            "start": 13,
+            "end": 15
+          },
+          {
+            "start": 17,
+            "end": 19
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 5
+          },
+          {
+            "start": 7,
+            "end": 9
+          },
+          {
+            "start": 11,
+            "end": 13
+          },
+          {
+            "start": 15,
+            "end": 17
+          },
+          {
+            "start": 19,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 9.2,
-      "image": "canada_goose.svg"
+      "max_weight_kg": 9.2
     },
     "ring_necked_pheasant": {
       "name_de": "Ringfasan",
       "name_en": "Ring-necked Pheasant",
+      "icon": "🐦",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -675,42 +664,40 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 11
-            },
-            {
-              "start": 14,
-              "end": 21
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 11,
-              "end": 14
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 4,
+            "end": 11
+          },
+          {
+            "start": 14,
+            "end": 21
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 11,
+            "end": 14
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": true,
-      "max_weight_kg": 3,
-      "image": "ring_necked_pheasant.svg"
+      "max_weight_kg": 3
     },
     "european_rabbit": {
       "name_de": "Wildkaninchen",
       "name_en": "European Rabbit",
+      "icon": "🐇",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -731,33 +718,31 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 18,
-              "end": 22
-            }
-          ],
-          "rest": []
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 5,
+            "end": 9
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 18,
+            "end": 22
+          }
+        ],
+        "rest": []
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 2.6,
-      "image": "european_rabbit.svg"
+      "max_weight_kg": 2.6
     },
     "eurasian_wigeon": {
       "name_de": "Eurasische Pfeifente",
       "name_en": "Eurasian Wigeon",
+      "icon": "🦆",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -780,49 +765,47 @@
         "Pfeifente (Attrappe)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 7
-            },
-            {
-              "start": 9,
-              "end": 11
-            },
-            {
-              "start": 13,
-              "end": 15
-            },
-            {
-              "start": 17,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 5
-            },
-            {
-              "start": 7,
-              "end": 9
-            },
-            {
-              "start": 11,
-              "end": 13
-            },
-            {
-              "start": 15,
-              "end": 17
-            },
-            {
-              "start": 19,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 5,
+            "end": 7
+          },
+          {
+            "start": 9,
+            "end": 11
+          },
+          {
+            "start": 13,
+            "end": 15
+          },
+          {
+            "start": 17,
+            "end": 19
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 5
+          },
+          {
+            "start": 7,
+            "end": 9
+          },
+          {
+            "start": 11,
+            "end": 13
+          },
+          {
+            "start": 15,
+            "end": 17
+          },
+          {
+            "start": 19,
+            "end": 24
+          }
+        ]
       },
       "vurhonga": {
         "drink": [],
@@ -866,8 +849,7 @@
             "end": 24
           }
         ]
-      },
-      "image": "eurasian_wigeon.svg"
+      }
     },
     "truRACS": false,
     "great_one": false,
@@ -875,6 +857,7 @@
     "cape_buffalo": {
       "name_de": "Kaffernbüffel",
       "name_en": "Cape Buffalo",
+      "icon": "🐃",
       "class": 9,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -893,43 +876,41 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 9,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 12,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 18,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 9,
+            "end": 12
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 12,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 18,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 950,
-      "image": "cape_buffalo.svg"
+      "max_weight_kg": 950
     },
     "european_bison": {
       "name_de": "Wisent",
       "name_en": "European Bison",
+      "icon": "🦬",
       "class": 9,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -949,47 +930,45 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 10,
-              "end": 14
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 10
-            },
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 14,
-              "end": 17
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 10,
+            "end": 14
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 10
+          },
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 14,
+            "end": 17
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 920,
-      "image": "european_bison.svg"
+      "max_weight_kg": 920
     },
     "moose": {
       "name_de": "Elch",
       "name_en": "Moose",
+      "icon": "🫎",
       "class": 8,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1015,47 +994,45 @@
         "Elchduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 12,
-              "end": 16
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 12,
+            "end": 16
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 8
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": true,
-      "max_weight_kg": 620,
-      "image": "moose.svg"
+      "max_weight_kg": 620
     },
     "roosevelt_elk": {
       "name_de": "Roosevelt-Wapiti",
       "name_en": "Roosevelt Elk",
+      "icon": "🫎",
       "class": 7,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1078,47 +1055,45 @@
         "Wapitiduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 500,
-      "image": "roosevelt_elk.svg"
+      "max_weight_kg": 500
     },
     "brown_bear": {
       "name_de": "Braunbär",
       "name_en": "Brown Bear",
+      "icon": "🐻",
       "class": 7,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -1144,39 +1119,37 @@
         "Räuberlockpfeife \"Verletztes Kitz\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 8,
-              "end": 20
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 8,
+            "end": 20
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 482,
-      "image": "brown_bear.svg"
+      "max_weight_kg": 482
     },
     "black_bear": {
       "name_de": "Schwarzbär",
       "name_en": "Black Bear",
+      "icon": "🐻",
       "class": 7,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -1198,39 +1171,37 @@
         "Räuberlockpfeife \"Verletztes Kitz\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 8,
-              "end": 20
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 8,
+            "end": 20
+          }
+        ]
       },
       "truRACS": false,
       "great_one": true,
-      "max_weight_kg": 290,
-      "image": "black_bear.svg"
+      "max_weight_kg": 290
     },
     "blue_wildebeest": {
       "name_de": "Streifengnu",
       "name_en": "Blue Wildebeest",
+      "icon": "🦬",
       "class": 6,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1251,51 +1222,49 @@
         "Bock-Lockpfeife \"Schnauben\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 9
-            }
-          ],
-          "feed": [
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 18,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 6,
+            "end": 9
+          }
+        ],
+        "feed": [
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 18,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 290,
-      "image": "blue_wildebeest.svg"
+      "max_weight_kg": 290
     },
     "lion": {
       "name_de": "Löwe",
       "name_en": "Lion",
+      "icon": "🦁",
       "class": 9,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -1316,39 +1285,37 @@
         "Räuberlockpfeife \"Verletztes Kitz\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 12,
-              "end": 15
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 8
-            }
-          ],
-          "rest": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 15,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 12,
+            "end": 15
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 8
+          }
+        ],
+        "rest": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 15,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 270,
-      "image": "lion.svg"
+      "max_weight_kg": 270
     },
     "gemsbok": {
       "name_de": "Spießbock",
       "name_en": "Gemsbok",
+      "icon": "🦌",
       "class": 6,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1369,43 +1336,41 @@
         "Geweihrassel (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 3,
-              "end": 6
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 20
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 3,
+            "end": 6
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 6,
+            "end": 10
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 10,
+            "end": 20
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 240,
-      "image": "gemsbok.svg"
+      "max_weight_kg": 240
     },
     "reindeer": {
       "name_de": "Eurasisches Tundraren",
       "name_en": "Mountain Reindeer",
+      "icon": "🦌",
       "class": 6,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1427,47 +1392,45 @@
         "Geweihrassel (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 182,
-      "image": "reindeer.svg"
+      "max_weight_kg": 182
     },
     "warthog": {
       "name_de": "Warzenschwein",
       "name_en": "Warthog",
+      "icon": "🐗",
       "class": 4,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1488,39 +1451,37 @@
         "Wildschwein-Lockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 15
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 18,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 15
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 18,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 150,
-      "image": "warthog.svg"
+      "max_weight_kg": 150
     },
     "lesser_kudu": {
       "name_de": "Kleiner Kudu",
       "name_en": "Lesser Kudu",
+      "icon": "🦌",
       "class": 4,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1543,39 +1504,37 @@
         "Geweihrassel (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 7
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 7,
-              "end": 18
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 18,
+            "end": 21
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 7
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 7,
+            "end": 18
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 105,
-      "image": "lesser_kudu.svg"
+      "max_weight_kg": 105
     },
     "whitetail": {
       "name_de": "Weißwedelhirsch",
       "name_en": "White-tailed Deer",
+      "icon": "🦌",
       "class": 4,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -1601,47 +1560,45 @@
         "Weisswedelhirschduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 8,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 8,
+            "end": 12
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 8
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": true,
-      "max_weight_kg": 100,
-      "image": "whitetail.svg"
+      "max_weight_kg": 100
     },
     "blacktail": {
       "name_de": "Schwarzwedelhirsch",
       "name_en": "Blacktail Deer",
+      "icon": "🦌",
       "class": 4,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1667,47 +1624,45 @@
         "Schwarzwedelduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 12,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 8
+          },
+          {
+            "start": 12,
+            "end": 16
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 95,
-      "image": "blacktail.svg"
+      "max_weight_kg": 95
     },
     "gray_wolf": {
       "name_de": "Grauwolf",
       "name_en": "Gray Wolf",
+      "icon": "🐺",
       "class": 6,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -1733,39 +1688,37 @@
         "Räuberlockpfeife \"Verletztes Kitz\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 17
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 17
+          }
+        ]
       },
       "truRACS": false,
       "great_one": true,
-      "max_weight_kg": 80,
-      "image": "gray_wolf.svg"
+      "max_weight_kg": 80
     },
     "eurasian_lynx": {
       "name_de": "Eurasischer Luchs",
       "name_en": "Eurasian Lynx",
+      "icon": "🐱",
       "class": 3,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -1786,43 +1739,41 @@
         "Räuberlockpfeife \"Hase\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 3,
-              "end": 6
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 9,
-              "end": 20
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 3,
+            "end": 6
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 9,
+            "end": 20
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 45,
-      "image": "eurasian_lynx.svg"
+      "max_weight_kg": 45
     },
     "springbok": {
       "name_de": "Springbock",
       "name_en": "Springbok",
+      "icon": "🦌",
       "class": 3,
       "difficulty": "5 - Mittel",
       "max_level": 5,
@@ -1842,42 +1793,40 @@
         "Bock-Lockpfeife \"Schnauben\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 14
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 14,
-              "end": 18
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 4,
+            "end": 14
+          },
+          {
+            "start": 18,
+            "end": 21
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 14,
+            "end": 18
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
       },
       "truRACS": true,
       "great_one": false,
-      "max_weight_kg": 42,
-      "image": "springbok.svg"
+      "max_weight_kg": 42
     },
     "coyote": {
       "name_de": "Kojote",
       "name_en": "Coyote",
+      "icon": "🐺",
       "class": 2,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -1900,39 +1849,37 @@
         "Räuberlockpfeife \"Hase\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 0,
-              "end": 4
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 7
-            },
-            {
-              "start": 17,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 7,
-              "end": 17
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 0,
+            "end": 4
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 7
+          },
+          {
+            "start": 17,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 7,
+            "end": 17
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 27,
-      "image": "coyote.svg"
+      "max_weight_kg": 27
     },
     "musk_deer": {
       "name_de": "Moschustier",
       "name_en": "Musk Deer",
+      "icon": "🦌",
       "class": 2,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -1955,39 +1902,37 @@
         "Moschustierduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 8,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 12,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 8
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [
+          {
+            "start": 8,
+            "end": 12
+          }
+        ],
+        "feed": [
+          {
+            "start": 12,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 8
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 17,
-      "image": "musk_deer.svg"
+      "max_weight_kg": 17
     },
     "side_striped_jackal": {
       "name_de": "Streifenschakal",
       "name_en": "Side-striped Jackal",
+      "icon": "🐺",
       "class": 2,
       "difficulty": "9 - Legendär",
       "max_level": 9,
@@ -2008,34 +1953,32 @@
         "Räuberlockpfeife \"Hase\" (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 18,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 18
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 18,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 18
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 14,
-      "image": "side_striped_jackal.svg"
+      "max_weight_kg": 14
     },
     "merriam_turkey": {
       "name_de": "Merriam-Truthahn",
       "name_en": "Merriam Turkey",
+      "icon": "🦃",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -2059,42 +2002,40 @@
         "Truthahn (Attrappe)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 11
-            },
-            {
-              "start": 14,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 11,
-              "end": 14
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 4,
+            "end": 11
+          },
+          {
+            "start": 14,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 11,
+            "end": 14
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 11,
-      "image": "merriam_turkey.svg"
+      "max_weight_kg": 11
     },
     "jackrabbit": {
       "name_de": "Präriehase",
       "name_en": "White-tailed Jackrabbit",
+      "icon": "🐇",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -2113,34 +2054,32 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 18,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 18
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 18,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 18
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 6.83,
-      "image": "jackrabbit.svg"
+      "max_weight_kg": 6.83
     },
     "scrub_hare": {
       "name_de": "Buschhase",
       "name_en": "Scrub Hare",
+      "icon": "🐇",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -2158,34 +2097,32 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 18,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 18
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 0,
+            "end": 6
+          },
+          {
+            "start": 18,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 18
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 5.8,
-      "image": "scrub_hare.svg"
+      "max_weight_kg": 5.8
     },
     "western_capercaillie": {
       "name_de": "Auerhuhn",
       "name_en": "Western Capercaillie",
+      "icon": "🐦",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -2205,42 +2142,40 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 11
-            },
-            {
-              "start": 14,
-              "end": 21
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 11,
-              "end": 14
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 4,
+            "end": 11
+          },
+          {
+            "start": 14,
+            "end": 21
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 11,
+            "end": 14
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 5,
-      "image": "western_capercaillie.svg"
+      "max_weight_kg": 5
     },
     "mallard": {
       "name_de": "Stockente",
       "name_en": "Mallard",
+      "icon": "🦆",
       "class": 1,
       "difficulty": "3 - Sehr leicht",
       "max_level": 3,
@@ -2263,58 +2198,56 @@
         "Stockente (Attrappe)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 7
-            },
-            {
-              "start": 9,
-              "end": 11
-            },
-            {
-              "start": 13,
-              "end": 15
-            },
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 5
-            },
-            {
-              "start": 7,
-              "end": 9
-            },
-            {
-              "start": 11,
-              "end": 13
-            },
-            {
-              "start": 15,
-              "end": 17
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 5,
+            "end": 7
+          },
+          {
+            "start": 9,
+            "end": 11
+          },
+          {
+            "start": 13,
+            "end": 15
+          },
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 5
+          },
+          {
+            "start": 7,
+            "end": 9
+          },
+          {
+            "start": 11,
+            "end": 13
+          },
+          {
+            "start": 15,
+            "end": 17
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
       },
       "truRACS": false,
       "great_one": false,
-      "max_weight_kg": 2.1,
-      "image": "mallard.svg"
+      "max_weight_kg": 2.1
     },
     "grizzly_bear": {
       "name_de": "Grizzlybär",
       "name_en": "Grizzly Bear",
+      "icon": "🐻",
       "class": 7,
       "difficulty": "Mittel - Legendär",
       "max_level": 9,
@@ -2338,44 +2271,42 @@
         "Bärenköder"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "rest": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ]
-        }
-      },
-      "image": "grizzly_bear.svg"
+        "drink": [
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "rest": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ]
+      }
     },
     "plains_bison": {
       "name_de": "Präriebison",
       "name_en": "Plains Bison",
+      "icon": "🦬",
       "class": 9,
       "difficulty": "Schwer - Legendär",
       "max_level": 9,
@@ -2396,44 +2327,42 @@
         "Bisonduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 8,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "plains_bison.svg"
+        "drink": [
+          {
+            "start": 8,
+            "end": 12
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 8
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
+      }
     },
     "caribou": {
       "name_de": "Karibu",
       "name_en": "Caribou",
+      "icon": "🦌",
       "class": 6,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -2455,44 +2384,42 @@
         "Karibu-Lockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "caribou.svg"
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
+      }
     },
     "mule_deer": {
       "name_de": "Maultierhirsch",
       "name_en": "Mule Deer",
+      "icon": "🦌",
       "class": 6,
       "difficulty": "Leicht",
       "max_level": 5,
@@ -2516,52 +2443,50 @@
         "Maultierhirschduft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ]
-        }
-      },
-      "image": "mule_deer.svg"
+        "drink": [
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 18,
+            "end": 21
+          }
+        ]
+      }
     },
     "rocky_mountain_elk": {
       "name_de": "Rocky Mountain Wapiti",
       "name_en": "Rocky Mountain Elk",
+      "icon": "🫎",
       "class": 8,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -2584,44 +2509,42 @@
         "Wapiti-Duft (Duft)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            },
-            {
-              "start": 0,
-              "end": 4
-            }
-          ]
-        }
-      },
-      "image": "rocky_mountain_elk.svg"
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          },
+          {
+            "start": 0,
+            "end": 4
+          }
+        ]
+      }
     },
     "mountain_lion": {
       "name_de": "Puma",
       "name_en": "Mountain Lion",
+      "icon": "🐱",
       "class": 5,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -2642,52 +2565,50 @@
         "Pumalockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 0,
-              "end": 3
-            }
-          ],
-          "feed": [
-            {
-              "start": 21,
-              "end": 24
-            },
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ]
-        }
-      },
-      "image": "mountain_lion.svg"
+        "drink": [
+          {
+            "start": 0,
+            "end": 3
+          }
+        ],
+        "feed": [
+          {
+            "start": 21,
+            "end": 24
+          },
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 18,
+            "end": 21
+          }
+        ]
+      }
     },
     "mountain_goat": {
       "name_de": "Schneeziege",
       "name_en": "Mountain Goat",
+      "icon": "🐐",
       "class": 4,
       "difficulty": "Leicht - Mittel",
       "max_level": 5,
@@ -2704,47 +2625,45 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 7
-            },
-            {
-              "start": 7,
-              "end": 10
-            },
-            {
-              "start": 10,
-              "end": 13
-            },
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 13,
-              "end": 17
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "mountain_goat.svg"
+        "drink": [],
+        "feed": [
+          {
+            "start": 4,
+            "end": 7
+          },
+          {
+            "start": 7,
+            "end": 10
+          },
+          {
+            "start": 10,
+            "end": 13
+          },
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 13,
+            "end": 17
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
+      }
     },
     "bighorn_sheep": {
       "name_de": "Dickhornschaf",
       "name_en": "Bighorn Sheep",
+      "icon": "🐑",
       "class": 4,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -2763,48 +2682,46 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 12,
-              "end": 16
-            }
-          ],
-          "feed": [
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "bighorn_sheep.svg"
+        "drink": [
+          {
+            "start": 12,
+            "end": 16
+          }
+        ],
+        "feed": [
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
+      }
     },
     "pronghorn": {
       "name_de": "Gabelbock",
       "name_en": "Pronghorn",
+      "icon": "🦌",
       "class": 4,
       "difficulty": "Leicht",
       "max_level": 5,
@@ -2825,52 +2742,50 @@
         "Gabelbock-Lockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 21,
-              "end": 24
-            },
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
-              "end": 6
-            }
-          ]
-        }
-      },
-      "image": "pronghorn.svg"
+        "drink": [
+          {
+            "start": 18,
+            "end": 21
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 21,
+            "end": 24
+          },
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 3,
+            "end": 6
+          }
+        ]
+      }
     },
     "puma": {
       "name_de": "Puma",
       "name_en": "Puma",
+      "icon": "🐱",
       "class": 5,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -2891,52 +2806,50 @@
         "Pumalockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 21,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ]
-        }
-      },
-      "image": "puma.svg"
+        "drink": [
+          {
+            "start": 21,
+            "end": 24
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 18,
+            "end": 21
+          }
+        ]
+      }
     },
     "water_buffalo": {
       "name_de": "Wasserbüffel",
       "name_en": "Water Buffalo",
+      "icon": "🐃",
       "class": 9,
       "difficulty": "Schwer - Legendär",
       "max_level": 9,
@@ -2953,52 +2866,50 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 12,
-              "end": 15
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 18,
-              "end": 21
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "water_buffalo.svg"
+        "drink": [
+          {
+            "start": 12,
+            "end": 15
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 18,
+            "end": 21
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
+      }
     },
     "axis_deer": {
       "name_de": "Axishirsch",
       "name_en": "Axis Deer",
+      "icon": "🦌",
       "class": 3,
       "difficulty": "Leicht",
       "max_level": 5,
@@ -3018,52 +2929,50 @@
         "Axishirsch-Lockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 3,
-              "end": 6
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 15,
-              "end": 18
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ]
-        }
-      },
-      "image": "axis_deer.svg"
+        "drink": [
+          {
+            "start": 3,
+            "end": 6
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 15,
+            "end": 18
+          },
+          {
+            "start": 18,
+            "end": 21
+          }
+        ]
+      }
     },
     "blackbuck": {
       "name_de": "Hirschziegenantilope",
       "name_en": "Blackbuck",
+      "icon": "🦌",
       "class": 3,
       "difficulty": "Leicht",
       "max_level": 5,
@@ -3081,52 +2990,50 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 9,
-              "end": 12
-            },
-            {
-              "start": 15,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 12,
-              "end": 15
-            },
-            {
-              "start": 21,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "blackbuck.svg"
+        "drink": [
+          {
+            "start": 18,
+            "end": 21
+          }
+        ],
+        "feed": [
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 9,
+            "end": 12
+          },
+          {
+            "start": 15,
+            "end": 18
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 12,
+            "end": 15
+          },
+          {
+            "start": 21,
+            "end": 24
+          }
+        ]
+      }
     },
     "cinnamon_teal": {
       "name_de": "Zimtente",
       "name_en": "Cinnamon Teal",
+      "icon": "🦆",
       "class": 1,
       "difficulty": "Trivial",
       "max_level": 1,
@@ -3145,35 +3052,33 @@
         "Entenlockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 9,
-              "end": 15
-            },
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "cinnamon_teal.svg"
+        "drink": [],
+        "feed": [
+          {
+            "start": 5,
+            "end": 9
+          },
+          {
+            "start": 15,
+            "end": 19
+          }
+        ],
+        "rest": [
+          {
+            "start": 9,
+            "end": 15
+          },
+          {
+            "start": 19,
+            "end": 5
+          }
+        ]
+      }
     },
     "bengal_tiger": {
       "name_de": "Bengalischer Tiger",
       "name_en": "Bengal Tiger",
+      "icon": "🐅",
       "class": 9,
       "difficulty": "Schwer - Legendär",
       "max_level": 9,
@@ -3193,32 +3098,30 @@
         "Tigerlockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 7
-            }
-          ],
-          "feed": [
-            {
-              "start": 7,
-              "end": 10
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 14
-            }
-          ]
-        }
-      },
-      "image": "bengal_tiger.svg"
+        "drink": [
+          {
+            "start": 4,
+            "end": 7
+          }
+        ],
+        "feed": [
+          {
+            "start": 7,
+            "end": 10
+          }
+        ],
+        "rest": [
+          {
+            "start": 10,
+            "end": 14
+          }
+        ]
+      }
     },
     "himalayan_tahr": {
       "name_de": "Himalaya-Tahr",
       "name_en": "Himalayan Tahr",
+      "icon": "🐐",
       "class": 4,
       "difficulty": "Leicht - Mittel",
       "max_level": 5,
@@ -3237,31 +3140,29 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 7
-            },
-            {
-              "start": 7,
-              "end": 11
-            }
-          ],
-          "rest": [
-            {
-              "start": 11,
-              "end": 14
-            }
-          ]
-        }
-      },
-      "image": "himalayan_tahr.svg"
+        "drink": [],
+        "feed": [
+          {
+            "start": 4,
+            "end": 7
+          },
+          {
+            "start": 7,
+            "end": 11
+          }
+        ],
+        "rest": [
+          {
+            "start": 11,
+            "end": 14
+          }
+        ]
+      }
     },
     "sambar_deer": {
       "name_de": "Sambarhirsch",
       "name_en": "Sambar Deer",
+      "icon": "🦌",
       "class": 6,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -3282,48 +3183,46 @@
         "Sambarhirsch-Lockpfeife (Caller)"
       ],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 3
-            },
-            {
-              "start": 6,
-              "end": 9
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 3,
-              "end": 6
-            },
-            {
-              "start": 9,
-              "end": 13
-            },
-            {
-              "start": 13,
-              "end": 17
-            }
-          ]
-        }
-      },
-      "image": "sambar_deer.svg"
+        "drink": [
+          {
+            "start": 17,
+            "end": 20
+          }
+        ],
+        "feed": [
+          {
+            "start": 0,
+            "end": 3
+          },
+          {
+            "start": 6,
+            "end": 9
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "rest": [
+          {
+            "start": 3,
+            "end": 6
+          },
+          {
+            "start": 9,
+            "end": 13
+          },
+          {
+            "start": 13,
+            "end": 17
+          }
+        ]
+      }
     },
     "nilgai": {
       "name_de": "Nilgauantilope",
       "name_en": "Nilgai",
+      "icon": "🦌",
       "class": 6,
       "difficulty": "Mittel",
       "max_level": 9,
@@ -3341,32 +3240,30 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 8,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 12,
-              "end": 16
-            }
-          ]
-        }
-      },
-      "image": "nilgai.svg"
+        "drink": [
+          {
+            "start": 8,
+            "end": 12
+          }
+        ],
+        "feed": [
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 12,
+            "end": 16
+          }
+        ]
+      }
     },
     "blue_sheep": {
       "name_de": "Blauschaf",
       "name_en": "Blue Sheep",
+      "icon": "🐑",
       "class": 4,
       "difficulty": "Leicht - Mittel",
       "max_level": 5,
@@ -3384,36 +3281,34 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 14,
-              "end": 17
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 7
-            },
-            {
-              "start": 7,
-              "end": 11
-            }
-          ],
-          "rest": [
-            {
-              "start": 11,
-              "end": 14
-            }
-          ]
-        }
-      },
-      "image": "blue_sheep.svg"
+        "drink": [
+          {
+            "start": 14,
+            "end": 17
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 7
+          },
+          {
+            "start": 7,
+            "end": 11
+          }
+        ],
+        "rest": [
+          {
+            "start": 11,
+            "end": 14
+          }
+        ]
+      }
     },
     "indian_muntjac": {
       "name_de": "Indischer Muntjak",
       "name_en": "Indian Muntjac",
+      "icon": "🦌",
       "class": 2,
       "difficulty": "Trivial",
       "max_level": 3,
@@ -3431,2318 +3326,325 @@
       ],
       "lures": [],
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 17,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 17
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "indian_muntjac.svg"
+        "drink": [
+          {
+            "start": 5,
+            "end": 9
+          },
+          {
+            "start": 17,
+            "end": 21
+          }
+        ],
+        "feed": [
+          {
+            "start": 9,
+            "end": 17
+          }
+        ],
+        "rest": [
+          {
+            "start": 21,
+            "end": 5
+          }
+        ]
+      }
     },
     "european_hare": {
       "name_de": "Feldhase",
       "name_en": "European Hare",
+      "icon": "🐰",
       "class": 1,
       "silver": 3,
       "gold": 5,
       "diamond": 6.5,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "european_hare.svg"
+      "need_zones": {}
     },
     "willow_ptarmigan": {
       "name_de": "Moorschneehuhn",
       "name_en": "Willow Ptarmigan",
+      "icon": "🐦",
       "class": 1,
       "silver": 506,
       "gold": 658,
       "diamond": 772,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 10
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 15
-            },
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "willow_ptarmigan.svg"
+      "need_zones": {}
     },
     "stubble_quail": {
       "name_de": "Schwarzbrustwachtel",
       "name_en": "Stubble Quail",
+      "icon": "🐦",
       "class": 1,
       "silver": 154,
       "gold": 202,
       "diamond": 238,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      },
-      "image": "stubble_quail.svg"
+      "need_zones": {}
     },
     "woolly_hare": {
       "name_de": "Tibetanischer Wollhase",
       "name_en": "Woolly Hare",
+      "icon": "🐰",
       "class": 1,
       "silver": 1.74,
       "gold": 2.62,
       "diamond": 3.28,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "woolly_hare.svg"
+      "need_zones": {}
     },
     "barasingha": {
       "name_de": "Barasingha",
       "name_en": "Barasingha",
+      "icon": "🦌",
       "class": 6,
       "silver": 95.88,
       "gold": 170.26,
       "diamond": 226.05,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      },
-      "image": "barasingha.svg"
+      "need_zones": {}
     },
     "snow_leopard": {
       "name_de": "Schneeleopard",
       "name_en": "Snow Leopard",
+      "icon": "🐆",
       "class": 4,
       "silver": 22,
       "gold": 26,
       "diamond": 29,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 8,
-              "end": 20
-            }
-          ]
-        }
-      },
-      "image": "snow_leopard.svg"
+      "need_zones": {}
     },
     "tibetan_fox": {
       "name_de": "Tibetfuchs",
       "name_en": "Tibetan Fox",
+      "icon": "🦊",
       "class": 2,
       "silver": 3.36,
       "gold": 5.08,
       "diamond": 6.36,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 7
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 7,
-              "end": 17
-            }
-          ]
-        }
-      },
-      "image": "tibetan_fox.svg"
+      "need_zones": {}
     },
     "wild_yak": {
       "name_de": "Wildyak",
       "name_en": "Wild Yak",
+      "icon": "🦬",
       "class": 9,
       "silver": 174.6,
       "gold": 230.96,
       "diamond": 273.23,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 8,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "wild_yak.svg"
+      "need_zones": {}
     },
     "saltwater_crocodile": {
       "name_de": "Salzwasserkrokodil",
       "name_en": "Saltwater Crocodile",
+      "icon": "🐊",
       "class": 7,
       "silver": 420,
       "gold": 760,
       "diamond": 1015,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 10,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 18,
-              "end": 10
-            }
-          ]
-        }
-      },
-      "image": "saltwater_crocodile.svg"
+      "need_zones": {}
     },
     "collared_peccary": {
       "name_de": "Halsbandpekari",
       "name_en": "Collared Peccary",
+      "icon": "🐗",
       "class": 4,
       "silver": 37.5,
       "gold": 98.5,
       "diamond": 144.25,
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      },
-      "image": "collared_peccary.svg"
+      "need_zones": {}
     },
     "greylag_goose": {
       "name_de": "Graugans",
       "name_en": "Greylag Goose",
+      "icon": "🦆",
       "class": 1,
       "silver": 2.8,
       "gold": 3.4,
       "diamond": 3.85,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 13,
-              "end": 17
-            }
-          ],
-          "rest": [
-            {
-              "start": 9,
-              "end": 13
-            },
-            {
-              "start": 17,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "greylag_goose.svg"
+      "need_zones": {}
     },
     "tundra_bean_goose": {
       "name_de": "Tundrasaatgans",
       "name_en": "Tundra Bean Goose",
+      "icon": "🦆",
       "class": 1,
       "silver": 2.18,
       "gold": 2.74,
       "diamond": 3.16,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 13,
-              "end": 17
-            }
-          ],
-          "rest": [
-            {
-              "start": 9,
-              "end": 13
-            },
-            {
-              "start": 17,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "tundra_bean_goose.svg"
+      "need_zones": {}
     },
     "goldeneye": {
       "name_de": "Schellente",
       "name_en": "Common Goldeneye",
+      "icon": "🦆",
       "class": 1,
       "silver": 740,
       "gold": 1020,
       "diamond": 1230,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      },
-      "image": "goldeneye.svg"
+      "need_zones": {}
     },
     "eurasian_teal": {
       "name_de": "Eurasische Krickente",
       "name_en": "Eurasian Teal",
+      "icon": "🦆",
       "class": 1,
       "silver": 312,
       "gold": 336,
       "diamond": 354,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 9,
-              "end": 15
-            },
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      },
-      "image": "eurasian_teal.svg"
+      "need_zones": {}
     },
     "beaver": {
       "name_de": "Biber",
       "name_en": "North American Beaver",
+      "icon": "🦫",
       "class": 2,
       "silver": 10,
       "gold": 15,
       "diamond": 20,
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 18,
-              "end": 6
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 18
-            }
-          ]
-        }
-      },
-      "image": "beaver.svg"
+      "need_zones": {}
     },
     "manitoban_elk": {
       "name_de": "Manitoba-Wapiti",
       "name_en": "Manitoban Elk",
+      "icon": "🦌",
       "class": 8,
       "silver": 177.83,
       "gold": 351.32,
       "diamond": 481.41,
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "manitoban_elk.svg"
+        "drink": [
+          {
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "feed": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
+      }
     },
     "wood_bison": {
       "name_de": "Waldbison",
       "name_en": "Wood Bison",
+      "icon": "🦬",
       "class": 9,
       "silver": 50.7,
       "gold": 148.1,
       "diamond": 221.15,
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 8,
-              "end": 12
-            }
-          ],
-          "feed": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ]
-        }
-      },
-      "image": "wood_bison.svg"
+        "drink": [
+          {
+            "start": 8,
+            "end": 12
+          }
+        ],
+        "feed": [
+          {
+            "start": 4,
+            "end": 8
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          },
+          {
+            "start": 20,
+            "end": 24
+          }
+        ]
+      }
     },
     "woodland_caribou": {
       "name_de": "Waldkaribu",
       "name_en": "Woodland Caribou",
+      "icon": "🦌",
       "class": 6,
       "silver": 152.53,
       "gold": 311.21,
       "diamond": 420.23,
       "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 12
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            },
-            {
-              "start": 12,
-              "end": 16
-            }
-          ]
-        }
-      },
-      "image": "woodland_caribou.svg"
+        "drink": [
+          {
+            "start": 20,
+            "end": 24
+          }
+        ],
+        "feed": [
+          {
+            "start": 8,
+            "end": 12
+          },
+          {
+            "start": 16,
+            "end": 20
+          }
+        ],
+        "rest": [
+          {
+            "start": 0,
+            "end": 4
+          },
+          {
+            "start": 12,
+            "end": 16
+          }
+        ]
+      }
     },
     "european_badger": {
       "name_de": "Europäischer Dachs",
       "name_en": "European Badger",
+      "icon": "🦡",
       "class": 2,
       "silver": 8,
       "gold": 12,
       "diamond": 16,
       "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 14
-            },
-            {
-              "start": 14,
-              "end": 18
-            }
-          ]
-        }
-      },
-      "image": "european_badger.svg"
-    },
-    "sika_deer": {
-      "name_de": "Sikahirsch",
-      "name_en": "Sika Deer",
-      "image": "sika_deer.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 195,
-      "diamond": 176.98,
-      "gold": 131.44,
-      "silver": 73.45,
-      "max_weight_kg": 70,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "dunkelbraun",
-        "hellbraun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch",
-        "gescheckt"
-      ],
-      "lures": [
-        "Sikahirsch-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 17,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 17
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "feral_pig": {
-      "name_de": "Wildes Hausschwein",
-      "name_en": "Feral Pig",
-      "image": "feral_pig.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 103,
-      "diamond": 94.79,
-      "gold": 69.75,
-      "silver": 37.8,
-      "max_weight_kg": 100,
-      "great_one": false,
-      "fur_common": [
-        "schwarz",
-        "braun",
-        "gefleckt"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Wildschwein-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            }
-          ]
-        }
-      }
-    },
-    "feral_goat": {
-      "name_de": "Verwilderte Ziege",
-      "name_en": "Feral Goat",
-      "image": "feral_goat.svg",
-      "class": 3,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 84,
-      "diamond": 78.12,
-      "gold": 61.6,
-      "silver": 39.48,
-      "max_weight_kg": 60,
-      "great_one": false,
-      "fur_common": [
-        "schwarz",
-        "weiß",
-        "braun",
-        "gescheckt"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 15
-            }
-          ],
-          "rest": [
-            {
-              "start": 19,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "chamois": {
-      "name_de": "Gämse",
-      "name_en": "Chamois",
-      "image": "chamois.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 45,
-      "diamond": 41.91,
-      "gold": 32.74,
-      "silver": 20.81,
-      "max_weight_kg": 50,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "dunkelbraun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 15
-            }
-          ],
-          "rest": [
-            {
-              "start": 19,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "rio_grande_turkey": {
-      "name_de": "Rio-Grande-Truthahn",
-      "name_en": "Rio Grande Turkey",
-      "image": "rio_grande_turkey.svg",
-      "class": 1,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 25,
-      "diamond": 23.5,
-      "gold": 19.5,
-      "silver": 14,
-      "max_weight_kg": 10,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "kupfer"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Truthahn-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 16,
-              "end": 19
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "antelope_jackrabbit": {
-      "name_de": "Antilopenhase",
-      "name_en": "Antelope Jackrabbit",
-      "image": "antelope_jackrabbit.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 4.8,
-      "diamond": 4.46,
-      "gold": 3.52,
-      "silver": 2.27,
-      "max_weight_kg": 4.5,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "mexican_bobcat": {
-      "name_de": "Mexikanischer Rotluchs",
-      "name_en": "Mexican Bobcat",
-      "image": "mexican_bobcat.svg",
-      "class": 4,
-      "difficulty": "Legendär",
-      "max_level": 9,
-      "max_score": 15,
-      "diamond": 13.97,
-      "gold": 10.53,
-      "silver": 5.74,
-      "max_weight_kg": 18,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Räuberlockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "eastern_wild_turkey": {
-      "name_de": "Östlicher Wildtruthahn",
-      "name_en": "Eastern Wild Turkey",
-      "image": "eastern_wild_turkey.svg",
-      "class": 1,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 25,
-      "diamond": 23.5,
-      "gold": 19.5,
-      "silver": 14,
-      "max_weight_kg": 11,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "kupfer"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Truthahn-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 16,
-              "end": 19
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "bobwhite_quail": {
-      "name_de": "Virginiawachtel",
-      "name_en": "Bobwhite Quail",
-      "image": "bobwhite_quail.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 0.32,
-      "diamond": 0.3,
-      "gold": 0.24,
-      "silver": 0.16,
-      "max_weight_kg": 0.28,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "weiß"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "eastern_cottontail": {
-      "name_de": "Florida-Waldkaninchen",
-      "name_en": "Eastern Cottontail",
-      "image": "eastern_cottontail.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 1.8,
-      "diamond": 1.67,
-      "gold": 1.32,
-      "silver": 0.85,
-      "max_weight_kg": 1.6,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "gray_fox": {
-      "name_de": "Graufuchs",
-      "name_en": "Gray Fox",
-      "image": "gray_fox.svg",
-      "class": 2,
-      "difficulty": "Legendär",
-      "max_level": 9,
-      "max_score": 7.2,
-      "diamond": 6.59,
-      "gold": 4.74,
-      "silver": 2.26,
-      "max_weight_kg": 6,
-      "great_one": false,
-      "fur_common": [
-        "grau",
-        "silber"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Räuberlockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 17,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 17
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "raccoon": {
-      "name_de": "Waschbär",
-      "name_en": "Raccoon",
-      "image": "raccoon.svg",
-      "class": 2,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 16,
-      "diamond": 14.88,
-      "gold": 11.2,
-      "silver": 6.08,
-      "max_weight_kg": 14,
-      "great_one": false,
-      "fur_common": [
-        "grau",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 4
-            }
-          ],
-          "rest": [
-            {
-              "start": 8,
-              "end": 20
-            }
-          ]
-        }
-      }
-    },
-    "wild_hog": {
-      "name_de": "Wildschwein (US)",
-      "name_en": "Wild Hog",
-      "image": "wild_hog.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 270,
-      "diamond": 250.79,
-      "gold": 189.49,
-      "silver": 103.81,
-      "max_weight_kg": 200,
-      "great_one": false,
-      "fur_common": [
-        "schwarz",
-        "braun",
-        "gefleckt"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Wildschwein-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 4,
-              "end": 8
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 4
-            }
-          ]
-        }
-      }
-    },
-    "american_alligator": {
-      "name_de": "Mississippi-Alligator",
-      "name_en": "American Alligator",
-      "image": "american_alligator.svg",
-      "class": 7,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 4.5,
-      "diamond": 4.17,
-      "gold": 3.22,
-      "silver": 1.93,
-      "max_weight_kg": 450,
-      "great_one": false,
-      "fur_common": [
-        "grün",
-        "dunkelgrün"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 8,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 16,
-              "end": 8
-            }
-          ]
-        }
-      }
-    },
-    "rock_ptarmigan": {
-      "name_de": "Alpenschneehuhn",
-      "name_en": "Rock Ptarmigan",
-      "image": "rock_ptarmigan.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 0.75,
-      "diamond": 0.7,
-      "gold": 0.55,
-      "silver": 0.36,
-      "max_weight_kg": 0.65,
-      "great_one": false,
-      "fur_common": [
-        "weiß",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 9,
-              "end": 15
-            },
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "black_grouse": {
-      "name_de": "Birkhuhn",
-      "name_en": "Black Grouse",
-      "image": "black_grouse.svg",
-      "class": 1,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 1.92,
-      "diamond": 1.78,
-      "gold": 1.4,
-      "silver": 0.9,
-      "max_weight_kg": 1.75,
-      "great_one": false,
-      "fur_common": [
-        "schwarz",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "leuzistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 4,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 4
-            }
-          ]
-        }
-      }
-    },
-    "hazel_grouse": {
-      "name_de": "Haselhuhn",
-      "name_en": "Hazel Grouse",
-      "image": "hazel_grouse.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 0.52,
-      "diamond": 0.48,
-      "gold": 0.38,
-      "silver": 0.24,
-      "max_weight_kg": 0.45,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 5,
-              "end": 10
-            },
-            {
-              "start": 15,
-              "end": 19
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 15
-            },
-            {
-              "start": 19,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "raccoon_dog": {
-      "name_de": "Marderhund",
-      "name_en": "Raccoon Dog",
-      "image": "raccoon_dog.svg",
-      "class": 2,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 12,
-      "diamond": 11.13,
-      "gold": 8.58,
-      "silver": 4.87,
-      "max_weight_kg": 10,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 18,
-              "end": 22
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 22,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 18
-            }
-          ]
-        }
-      }
-    },
-    "mountain_hare": {
-      "name_de": "Schneehase",
-      "name_en": "Mountain Hare",
-      "image": "mountain_hare.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 5.5,
-      "diamond": 5.12,
-      "gold": 4.04,
-      "silver": 2.6,
-      "max_weight_kg": 5,
-      "great_one": false,
-      "fur_common": [
-        "weiß",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "bobcat": {
-      "name_de": "Rotluchs",
-      "name_en": "Bobcat",
-      "image": "bobcat.svg",
-      "class": 4,
-      "difficulty": "Legendär",
-      "max_level": 9,
-      "max_score": 15,
-      "diamond": 13.97,
-      "gold": 10.53,
-      "silver": 5.74,
-      "max_weight_kg": 18,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Räuberlockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 0,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "javan_rusa": {
-      "name_de": "Mähnenhirsch",
-      "name_en": "Javan Rusa",
-      "image": "javan_rusa.svg",
-      "class": 6,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 260,
-      "diamond": 238.2,
-      "gold": 174.44,
-      "silver": 92.56,
-      "max_weight_kg": 160,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "dunkelbraun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Hirschlockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 9
-            },
-            {
-              "start": 17,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 9,
-              "end": 17
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "hog_deer": {
-      "name_de": "Schweinshirsch",
-      "name_en": "Hog Deer",
-      "image": "hog_deer.svg",
-      "class": 3,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 42,
-      "diamond": 38.5,
-      "gold": 28.7,
-      "silver": 15.9,
-      "max_weight_kg": 50,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "hellbraun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 18,
-              "end": 22
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 22,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "banteng": {
-      "name_de": "Banteng",
-      "name_en": "Banteng",
-      "image": "banteng.svg",
-      "class": 9,
-      "difficulty": "Legendär",
-      "max_level": 9,
-      "max_score": 95,
-      "diamond": 88.34,
-      "gold": 67.96,
-      "silver": 39.7,
-      "max_weight_kg": 900,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "schwarz"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "iberian_wolf": {
-      "name_de": "Iberischer Wolf",
-      "name_en": "Iberian Wolf",
-      "image": "iberian_wolf.svg",
-      "class": 5,
-      "difficulty": "Legendär",
-      "max_level": 9,
-      "max_score": 42,
-      "diamond": 38.66,
-      "gold": 28.16,
-      "silver": 14.09,
-      "max_weight_kg": 45,
-      "great_one": false,
-      "fur_common": [
-        "grau",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Wolfs-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 17
-            }
-          ]
-        }
-      }
-    },
-    "iberian_mouflon": {
-      "name_de": "Iberisches Mufflon",
-      "name_en": "Iberian Mouflon",
-      "image": "iberian_mouflon.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 96,
-      "diamond": 89.28,
-      "gold": 68.68,
-      "silver": 40.14,
-      "max_weight_kg": 55,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "hellbraun"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "beceite_ibex": {
-      "name_de": "Beceite-Steinbock",
-      "name_en": "Beceite Ibex",
-      "image": "beceite_ibex.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 153,
-      "diamond": 140.12,
-      "gold": 103.45,
-      "silver": 55.45,
-      "max_weight_kg": 90,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "ronda_ibex": {
-      "name_de": "Ronda-Steinbock",
-      "name_en": "Ronda Ibex",
-      "image": "ronda_ibex.svg",
-      "class": 4,
-      "difficulty": "Mittel",
-      "max_level": 5,
-      "max_score": 107,
-      "diamond": 98.18,
-      "gold": 73.08,
-      "silver": 39.78,
-      "max_weight_kg": 80,
-      "great_one": false,
-      "fur_common": [
-        "braun",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 10,
-              "end": 16
-            }
-          ],
-          "rest": [
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "harlequin_duck": {
-      "name_de": "Kragenente",
-      "name_en": "Harlequin Duck",
-      "image": "harlequin_duck.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 0.8,
-      "diamond": 0.74,
-      "gold": 0.59,
-      "silver": 0.38,
-      "max_weight_kg": 0.7,
-      "great_one": false,
-      "fur_common": [
-        "bunt",
-        "grau"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [
-        "Entenlocke"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "common_grey_wolf": {
-      "name_de": "Grauwolf",
-      "name_en": "Grey Wolf",
-      "image": "gray_wolf.svg",
-      "class": 5,
-      "difficulty": "Legendär",
-      "max_level": 9,
-      "max_score": 42,
-      "diamond": 38.66,
-      "gold": 28.16,
-      "silver": 14.09,
-      "max_weight_kg": 65,
-      "great_one": true,
-      "fur_common": [
-        "grau",
-        "braun",
-        "weiß"
-      ],
-      "fur_rare": [
-        "albinistisch",
-        "melanistisch"
-      ],
-      "lures": [
-        "Wolfs-Lockpfeife"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 17,
-              "end": 20
-            }
-          ],
-          "feed": [
-            {
-              "start": 0,
-              "end": 6
-            },
-            {
-              "start": 20,
-              "end": 24
-            }
-          ],
-          "rest": [
-            {
-              "start": 6,
-              "end": 17
-            }
-          ]
-        }
-      }
-    },
-    "tufted_duck": {
-      "name_de": "Reiherente",
-      "name_en": "Tufted Duck",
-      "image": "tufted_duck.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 1.3,
-      "diamond": 1.21,
-      "gold": 0.95,
-      "silver": 0.61,
-      "max_weight_kg": 1.1,
-      "great_one": false,
-      "fur_common": [
-        "schwarz-weiß",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [
-        "Entenlocke"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "common_eider": {
-      "name_de": "Eiderente",
-      "name_en": "Common Eider",
-      "image": "common_eider.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 2.8,
-      "diamond": 2.6,
-      "gold": 2.06,
-      "silver": 1.32,
-      "max_weight_kg": 2.5,
-      "great_one": false,
-      "fur_common": [
-        "schwarz-weiß",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [
-        "Entenlocke"
-      ],
-      "need_zones": {
-        "_default": {
-          "drink": [],
-          "feed": [
-            {
-              "start": 6,
-              "end": 10
-            },
-            {
-              "start": 16,
-              "end": 20
-            }
-          ],
-          "rest": [
-            {
-              "start": 10,
-              "end": 16
-            },
-            {
-              "start": 20,
-              "end": 6
-            }
-          ]
-        }
-      }
-    },
-    "white_tailed_jackrabbit": {
-      "name_de": "Weißschwanz-Eselshase",
-      "name_en": "White-tailed Jackrabbit",
-      "image": "white_tailed_jackrabbit.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 6,
-      "diamond": 5.58,
-      "gold": 4.4,
-      "silver": 2.84,
-      "max_weight_kg": 5.5,
-      "great_one": false,
-      "fur_common": [
-        "grau",
-        "weiß",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
-      }
-    },
-    "snowshoe_hare": {
-      "name_de": "Schneeschuhhase",
-      "name_en": "Snowshoe Hare",
-      "image": "snowshoe_hare.svg",
-      "class": 1,
-      "difficulty": "Leicht",
-      "max_level": 3,
-      "max_score": 2.2,
-      "diamond": 2.04,
-      "gold": 1.61,
-      "silver": 1.04,
-      "max_weight_kg": 2,
-      "great_one": false,
-      "fur_common": [
-        "weiß",
-        "braun"
-      ],
-      "fur_rare": [
-        "albinistisch"
-      ],
-      "lures": [],
-      "need_zones": {
-        "_default": {
-          "drink": [
-            {
-              "start": 5,
-              "end": 8
-            },
-            {
-              "start": 18,
-              "end": 21
-            }
-          ],
-          "feed": [
-            {
-              "start": 8,
-              "end": 18
-            }
-          ],
-          "rest": [
-            {
-              "start": 21,
-              "end": 5
-            }
-          ]
-        }
+        "drink": [],
+        "feed": [
+          {
+            "start": 6,
+            "end": 10
+          }
+        ],
+        "rest": [
+          {
+            "start": 10,
+            "end": 14
+          },
+          {
+            "start": 14,
+            "end": 18
+          }
+        ]
       }
     }
   }
