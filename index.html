@@ -176,9 +176,24 @@
                                     onclick="SettingsManager.recordHotkey('togglePause')" value="F7">
                             </div>
                             <div class="hotkey-item">
-                                <label data-i18n="hotkeyEndSession">Session beenden:</label>
+                                <label><span data-i18n="hotkeyEnd">Session beenden</span></label>
                                 <input type="text" id="hotkey-endSession" readonly
-                                    onclick="SettingsManager.recordHotkey('endSession')" value="F8">
+                                    onclick="SettingsManager.recordHotkey('endSession')">
+                            </div>
+                            <div class="hotkey-item">
+                                <label>💎 Diamond hinzufügen</label>
+                                <input type="text" id="hotkey-addDiamond" readonly
+                                    onclick="SettingsManager.recordHotkey('addDiamond')">
+                            </div>
+                            <div class="hotkey-item">
+                                <label>✨ Rare hinzufügen</label>
+                                <input type="text" id="hotkey-addRare" readonly
+                                    onclick="SettingsManager.recordHotkey('addRare')">
+                            </div>
+                            <div class="hotkey-item">
+                                <label>🔥 Great One hinzufügen</label>
+                                <input type="text" id="hotkey-addGreatOne" readonly
+                                    onclick="SettingsManager.recordHotkey('addGreatOne')">
                             </div>
                         </div>
                     </div>
@@ -691,15 +706,11 @@
                                 </select>
                             </div>
 
-                            <div class="input-group" id="animal-select-group" style="display: none;">
-                                <label for="session-animal" data-i18n="grindAnimalLabel">Tier:</label>
+                            <div class="input-group" id="animal-select-group">
+                                <label for="session-animal" data-i18n="grindAnimalLabel">Tier für Great One
+                                    Grind:</label>
                                 <select id="session-animal" class="form-select"></select>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="session-name" data-i18n="grindSessionNameLabel">Session-Name:</label>
-                                <input type="text" id="session-name" class="form-input" placeholder="z.B. GO Wolf"
-                                    maxlength="50" data-i18n="grindSessionNamePlaceholder">
+                                <input type="hidden" id="session-name"> <!-- Compatibility shim -->
                             </div>
 
                             <div class="session-display">
@@ -737,6 +748,40 @@
                                         ↩️ -1 Kill
                                     </button>
                                 </div>
+
+                                <!-- Loot Tracker -->
+                                <div class="session-controls-row loot-row">
+                                    <button class="loot-btn diamond" onclick="GrindManager.addSpecialKill('diamond')"
+                                        title="Diamond Kill">
+                                        💎
+                                    </button>
+                                    <button class="loot-btn rare" onclick="GrindManager.addSpecialKill('rare')"
+                                        title="Rare Kill">
+                                        ✨
+                                    </button>
+                                </div>
+                                <div class="session-controls-row">
+                                    <button class="action-button primary finish-go-btn"
+                                        style="width: 100%; border: 2px solid #ffd700; background: linear-gradient(135deg, rgba(26,95,42,0.9), rgba(20,80,30,0.9));"
+                                        onclick="GrindManager.finishGreatOneRun()">
+                                        🏆 Great One Gefunden! (Run beenden)
+                                    </button>
+                                </div>
+                                <div id="session-loot-display" class="session-loot-display" style="display: none;">
+                                </div>
+
+                                <!-- Bulk Adjustment -->
+                                <div class="session-controls-row bulk-row">
+                                    <div class="bulk-input-group">
+                                        <input type="number" id="bulk-kill-input" class="bulk-input-field"
+                                            placeholder="+X">
+                                        <button class="bulk-add-btn"
+                                            onclick="GrindManager.addBulkKills(document.getElementById('bulk-kill-input').value)">
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+
                                 <div class="session-controls-row secondary-row">
                                     <button class="action-button secondary" id="btn-pause-session"
                                         onclick="GrindManager.togglePause()" data-i18n="grindPause">
@@ -790,219 +835,9 @@
     <script src="renderer/managers/StatisticsManager.js"></script>
     <script src="renderer/managers/GrindManager.js"></script>
 
-    <script>
-        // ========================================
-        // TOOLTIP MANAGER
-        // ========================================
-        const tooltips = {
-            n: 'Gesamtzahl aller Harvests (Account-weit). Zu finden unter: Career > Statistics',
-            k_rare: 'Anzahl deiner gefundenen Rares (Albino, Piebald, Melanistic)',
-            p_rare: 'Wahrscheinlichkeit für Rares. Durchschnitt: 0.003 (1:333)',
-            k_diamond: 'Anzahl deiner Diamonds (Top Rating)',
-            p_diamond: 'Wahrscheinlichkeit für Diamonds. Durchschnitt: 0.01 (1:100)',
-            k_super: 'Anzahl deiner Super Rares (Rare Fur + Diamond)',
-            p_super: 'Wahrscheinlichkeit für Super Rares. Durchschnitt: 0.00003 (1:33.000)',
-            k_go: 'Anzahl deiner Great Ones (Top 0.05% Größe)',
-            p_go: 'Wahrscheinlichkeit für Great Ones. Durchschnitt: 0.00005 (1:20.000)'
-        };
-
-        function showTooltip(inputId, element) {
-            const tooltip = document.getElementById('tooltip');
-            if (tooltips[inputId]) {
-                tooltip.textContent = tooltips[inputId];
-                tooltip.style.left = `${element.getBoundingClientRect().right + 10} px`;
-                tooltip.style.top = `${element.getBoundingClientRect().top} px`;
-                tooltip.classList.add('show');
-            }
-        }
-
-        function hideTooltip() {
-            const tooltip = document.getElementById('tooltip');
-            tooltip.classList.remove('show');
-        }
-
-        function closeAllDropdowns() {
-            document.querySelectorAll('.preset-list.show').forEach(dropdown => {
-                dropdown.classList.remove('show');
-            });
-        }
-
-        // ========================================
-        // HELPER FUNCTIONS
-        // ========================================
-        function getCurrentFormData() {
-            return {
-                n: parseFloat(document.getElementById('n').value),
-                k_rare: parseFloat(document.getElementById('k_rare').value),
-                p_rare: parseFloat(document.getElementById('p_rare').value),
-                k_diamond: parseFloat(document.getElementById('k_diamond').value),
-                p_diamond: parseFloat(document.getElementById('p_diamond').value),
-                k_super: parseFloat(document.getElementById('k_super').value),
-                p_super: parseFloat(document.getElementById('p_super').value),
-                k_go: parseFloat(document.getElementById('k_go').value),
-                p_go: parseFloat(document.getElementById('p_go').value)
-            };
-        }
-
-        function applyFormData(data) {
-            if (data.n !== undefined) document.getElementById('n').value = data.n;
-            if (data.k_rare !== undefined) document.getElementById('k_rare').value = data.k_rare;
-            if (data.p_rare !== undefined) document.getElementById('p_rare').value = data.p_rare;
-            if (data.k_diamond !== undefined) document.getElementById('k_diamond').value = data.k_diamond;
-            if (data.p_diamond !== undefined) document.getElementById('p_diamond').value = data.p_diamond;
-            if (data.k_super !== undefined) document.getElementById('k_super').value = data.k_super;
-            if (data.p_super !== undefined) document.getElementById('p_super').value = data.p_super;
-            if (data.k_go !== undefined) document.getElementById('k_go').value = data.k_go;
-            if (data.p_go !== undefined) document.getElementById('p_go').value = data.p_go;
-        }
-
-        function showHelpModal() {
-            const helpModal = document.createElement('div');
-            helpModal.className = 'settings-modal show';
-            helpModal.innerHTML = `
-            < div class="settings-content" >
-                    <div class="settings-header">
-                        <h2 class="settings-title">⌨️ Tastaturkürzel</h2>
-                        <button class="settings-close" onclick="this.closest('.settings-modal').remove()">✕</button>
-                    </div>
-                    <ul style="line-height:2">
-                        <li><strong>Ctrl+Z:</strong> Letzte Änderung rückgängig machen</li>
-                        <li><strong>Ctrl+Y:</strong> Letzte Änderung wiederholen</li>
-                        <li><strong>Ctrl+S:</strong> Historie als CSV exportieren</li>
-                        <li><strong>Escape:</strong> Modals schließen</li>
-                        <li><strong>F1:</strong> Hilfe anzeigen</li>
-                    </ul>
-                </div >
-            `;
-            helpModal.onclick = (e) => {
-                if (e.target === helpModal) helpModal.remove();
-            };
-            document.body.appendChild(helpModal);
-        }
-
-        // ========================================
-        // SETUP P-SLIDERS AND PRESETS
-        // ========================================
-        function setupPSliders() {
-            const categories = ['rare', 'diamond', 'super', 'go'];
-            categories.forEach(cat => {
-                const slider = document.getElementById(`p_${cat}_slider`);
-                const number = document.getElementById(`p_${cat}`);
-
-                if (slider && number) {
-                    slider.addEventListener('input', () => {
-                        number.value = slider.value;
-                        Calculator.calculate();
-                    });
-
-                    number.addEventListener('input', () => {
-                        slider.value = number.value;
-                    });
-                }
-            });
-        }
-
-        // ========================================
-        // SETUP TOOLTIPS
-        // ========================================
-        function setupTooltips() {
-            Object.keys(tooltips).forEach(inputId => {
-                const input = document.getElementById(inputId);
-                if (input) {
-                    const label = input.previousElementSibling;
-                    if (label && label.tagName === 'LABEL') {
-                        label.style.cursor = 'help';
-                        label.addEventListener('mouseenter', (e) => showTooltip(inputId, label));
-                        label.addEventListener('mouseleave', hideTooltip);
-                    }
-                }
-            });
-        }
-
-
-
-        // ========================================
-        // ENHANCED INITIALIZATION
-        // ========================================
-        // Track if user has modified any values (to avoid saving history on initial load)
-        let userHasModifiedValues = false;
-        document.addEventListener('DOMContentLoaded', async function () {
-            console.log('DOM Content Loaded');
-            console.log('Managers available:', {
-                Calculator: typeof Calculator,
-                NavigationManager: typeof NavigationManager,
-                GrindManager: typeof GrindManager
-            });
-
-            try {
-                // Await SettingsManager.load() to ensure settings are ready
-                await SettingsManager.load();
-                setupPSliders();
-                setupTooltips();
-
-                console.log('Starting Calculator.calculate()...');
-                // Initial calculation does NOT save to history
-                await Calculator.calculate(false);
-                console.log('Calculator.calculate() completed');
-            } catch (error) {
-                console.error('Initialization error:', error);
-                ToastManager?.show?.('Fehler bei der Initialisierung', 'error');
-            }
-
-            const inputFields = document.querySelectorAll('input[type="number"]');
-            inputFields.forEach(input => {
-                input.addEventListener('input', function () {
-                    // User has modified values - now history should be saved
-                    userHasModifiedValues = true;
-                    clearTimeout(debounceTimer);
-                    debounceTimer = setTimeout(() => {
-                        // Only save to history if user has modified values
-                        Calculator.calculate(userHasModifiedValues);
-                    }, 200);
-                });
-                input.addEventListener('change', () => {
-                    userHasModifiedValues = true;
-                    UndoRedoManager.saveState(getCurrentFormData());
-                });
-            });
-
-            window.addEventListener('click', (e) => {
-                // Close dropdowns if clicking outside (ignore clicks on the button or the list itself)
-                if (!e.target.closest('.mini-btn') && !e.target.closest('.preset-list')) {
-                    closeAllDropdowns();
-                }
-            });
-        });
-
-        function closeAllDropdowns() {
-            document.querySelectorAll('.preset-list.show').forEach(list => {
-                list.classList.remove('show');
-                const widget = list.closest('.stat-widget');
-                if (widget) widget.style.zIndex = ''; // Reset z-index
-            });
-        }
-        function updateRatio(type, val) {
-            const p = parseFloat(val);
-            const el = document.getElementById('ratio_' + type);
-            if (!el) return;
-
-            if (!p || p <= 0) {
-                el.textContent = '(1:∞)';
-                return;
-            }
-
-            const ratio = Math.round(1 / p);
-            el.textContent = `(1: ${ratio.toLocaleString('de-DE')})`;
-        }
-
-        // Initial update on load
-        document.addEventListener('DOMContentLoaded', () => {
-            ['rare', 'diamond', 'super', 'go'].forEach(type => {
-                const val = document.getElementById('p_' + type)?.value;
-                if (val) updateRatio(type, val);
-            });
-        });
-    </script>
+    <script src="renderer/managers/TooltipManager.js"></script>
+    <script src="renderer/managers/UIManager.js"></script>
+    <script src="renderer/init.js"></script>
 </body>
 
 </html>

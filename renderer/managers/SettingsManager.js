@@ -122,13 +122,16 @@ const SettingsManager = {
         if (!this.settings.sessionHotkeys) {
             this.settings.sessionHotkeys = {
                 addKill: 'F7',
-                removeKill: 'F8',
+                removeKill: 'F10',
                 togglePause: 'F9',
-                endSession: 'F10'
+                endSession: 'F8',
+                addDiamond: 'F5',
+                addRare: 'F6',
+                addGreatOne: 'F4'
             };
         }
 
-        const hotkeyIds = ['addKill', 'removeKill', 'togglePause', 'endSession'];
+        const hotkeyIds = ['addKill', 'removeKill', 'togglePause', 'endSession', 'addDiamond', 'addRare', 'addGreatOne'];
         hotkeyIds.forEach(id => {
             const stored = localStorage.getItem(`hotkey-${id}`);
             if (stored) {
@@ -408,11 +411,21 @@ const SettingsManager = {
             audioVolume: 0.5,
             sessionHotkeys: {
                 addKill: 'F7',
-                removeKill: 'F10',
+                removeKill: 'F8',
                 togglePause: 'F9',
-                endSession: 'F8'
+                endSession: 'F10',
+                addDiamond: 'F5',
+                addRare: 'F6',
+                addGreatOne: 'F4'
             }
         };
+
+        // Add missing keys to existing settings (assuming this is part of a load/init logic)
+        // This block is placed here based on the provided instruction's context,
+        // as there is no explicit `load()` method in the provided code snippet.
+        if (!this.settings.sessionHotkeys.addDiamond) this.settings.sessionHotkeys.addDiamond = 'F5';
+        if (!this.settings.sessionHotkeys.addRare) this.settings.sessionHotkeys.addRare = 'F6';
+        if (!this.settings.sessionHotkeys.addGreatOne) this.settings.sessionHotkeys.addGreatOne = 'F4';
 
         this.save();
         this.load();

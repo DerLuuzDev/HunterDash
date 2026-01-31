@@ -24,6 +24,11 @@ const GrindManager = {
     templates: [],
     hotkeyListeners: {},
     openGroups: new Set(),
+    // Loot Tracking
+    sessionDiamonds: 0,
+    sessionRares: 0,
+    sessionGreatOnes: 0,
+    sessionEvents: [],
 
     async init() {
         await this.loadSettings();
@@ -195,16 +200,29 @@ const GrindManager = {
             if (this.hotkeyListeners.endSession) {
                 window.electronAPI.removeGrindHotkeyListener('grind:end-session', this.hotkeyListeners.endSession);
             }
+            // Remove old listeners for loot if they exist (safety check)
+            if (this.hotkeyListeners.addDiamond) window.electronAPI.removeGrindHotkeyListener('grind:add-diamond', this.hotkeyListeners.addDiamond);
+            if (this.hotkeyListeners.addRare) window.electronAPI.removeGrindHotkeyListener('grind:add-rare', this.hotkeyListeners.addRare);
+            if (this.hotkeyListeners.addGreatOne) window.electronAPI.removeGrindHotkeyListener('grind:add-greatone', this.hotkeyListeners.addGreatOne);
 
             this.hotkeyListeners.addKill = () => this.addKill();
             this.hotkeyListeners.removeKill = () => this.removeKill();
             this.hotkeyListeners.togglePause = () => this.togglePause();
             this.hotkeyListeners.endSession = () => this.endSession();
 
+            this.hotkeyListeners.addDiamond = () => this.addSpecialKill('diamond');
+            this.hotkeyListeners.addRare = () => this.addSpecialKill('rare');
+            this.hotkeyListeners.addGreatOne = () => this.finishGreatOneRun();
+
             window.electronAPI.onGrindHotkey('grind:add-kill', this.hotkeyListeners.addKill);
             window.electronAPI.onGrindHotkey('grind:remove-kill', this.hotkeyListeners.removeKill);
             window.electronAPI.onGrindHotkey('grind:toggle-pause', this.hotkeyListeners.togglePause);
             window.electronAPI.onGrindHotkey('grind:end-session', this.hotkeyListeners.endSession);
+
+            // Listen for potential backend events
+            window.electronAPI.onGrindHotkey('grind:add-diamond', this.hotkeyListeners.addDiamond);
+            window.electronAPI.onGrindHotkey('grind:add-rare', this.hotkeyListeners.addRare);
+            window.electronAPI.onGrindHotkey('grind:add-greatone', this.hotkeyListeners.addGreatOne);
         }
 
         if (this.inAppKeyHandler) {
@@ -219,7 +237,7 @@ const GrindManager = {
             const hotkeys = window.SettingsManager.settings?.sessionHotkeys || {};
             const pressedKey = this.formatKeyEvent(e);
 
-            console.log('Hotkey pressed:', pressedKey, '| Expected addKill:', hotkeys.addKill);
+            console.log('Hotkey pressed:', pressedKey);
 
             if (pressedKey === hotkeys.addKill) {
                 e.preventDefault();
@@ -233,6 +251,15 @@ const GrindManager = {
             } else if (pressedKey === hotkeys.endSession) {
                 e.preventDefault();
                 this.endSession();
+            } else if (pressedKey === hotkeys.addDiamond) {
+                e.preventDefault();
+                this.addSpecialKill('diamond');
+            } else if (pressedKey === hotkeys.addRare) {
+                e.preventDefault();
+                this.addSpecialKill('rare');
+            } else if (pressedKey === hotkeys.addGreatOne) {
+                e.preventDefault();
+                this.finishGreatOneRun();
             }
         };
 
@@ -332,6 +359,11 @@ const GrindManager = {
 
         let html = '';
         Object.entries(groups).forEach(([name, groupSessions]) => {
+            // Sort Ascending to assign Run Numbers
+            groupSessions.sort((a, b) => a.timestamp - b.timestamp);
+            groupSessions.forEach((s, index) => s.runNumber = index + 1);
+
+            // Sort Descending for Display
             groupSessions.sort((a, b) => b.timestamp - a.timestamp);
 
             const totalKills = groupSessions.reduce((sum, s) => sum + (s.kills || 0), 0);
@@ -339,52 +371,72 @@ const GrindManager = {
             const avgKph = totalDuration > 0 ? (totalKills / (totalDuration / 3600000)) : 0;
             const hasActive = groupSessions.some(s => s.status === 'running' || s.status === 'paused');
 
-            if (groupSessions.length === 1) {
-                const session = groupSessions[0];
-                html += this.renderSingleSession(session);
-            } else {
-                html += `
-                    <div class="grind-session-group">
-                        <div class="grind-session-group-header" onclick="GrindManager.toggleGroup('${name}')">
-                            <div class="grind-session-info">
-                                <div class="grind-session-name">
-                                    🏆 ${name} (${groupSessions.length} Sessions)
-                                    ${hasActive ? '<span class="status-badge running">🟢 Aktiv</span>' : ''}
-                                </div>
-                                <div class="grind-session-stats" style="font-weight: bold; color: var(--primary-dark);">
-                                    Gesamt: ${totalKills} Kills in ${this.formatDuration(totalDuration)} (${avgKph.toFixed(1)} K/h)
-                                </div>
+            // Calculate Loot Totals
+            const totalDiamonds = groupSessions.reduce((sum, s) => sum + (s.diamonds || 0), 0);
+            const totalRares = groupSessions.reduce((sum, s) => sum + (s.rares || 0), 0);
+            const totalGOs = groupSessions.reduce((sum, s) => sum + (s.greatOnes || 0), 0);
+
+            let lootSummary = '';
+            const lootParts = [];
+            if (totalDiamonds > 0) lootParts.push(`<span class="loot-badge diamond">💎 ${totalDiamonds}</span>`);
+            if (totalRares > 0) lootParts.push(`<span class="loot-badge rare">✨ ${totalRares}</span>`);
+            if (totalGOs > 0) lootParts.push(`<span class="loot-badge greatone">🔥 ${totalGOs}</span>`);
+            if (lootParts.length > 0) lootSummary = `<div class="grind-session-loot-summary">${lootParts.join('')}</div>`;
+
+            // Always render as group
+            html += `
+                <div class="grind-session-group">
+                    <div class="grind-session-group-header" onclick="GrindManager.toggleGroup('${name}')">
+                        <div class="grind-session-info">
+                            <div class="grind-session-name">
+                                🏆 ${name} (${groupSessions.length} Runs)
+                                ${hasActive ? '<span class="status-badge running">🟢 Aktiv</span>' : ''}
                             </div>
-                            <div class="grind-session-actions">
-                                <button class="action-button" onclick="event.stopPropagation(); GrindManager.continueGroup('${name}')">
-                                    ▶️ Fortsetzen
-                                </button>
-                                <span class="toggle-icon">▼</span>
+                            <div class="grind-session-stats" style="font-weight: bold; color: var(--primary-dark);">
+                                Gesamt: ${totalKills} Kills in ${this.formatDuration(totalDuration)}
                             </div>
+                            ${lootSummary}
                         </div>
-                        <div class="grind-session-group-details" id="group-${name.replace(/\s+/g, '-')}" style="display: ${this.openGroups.has(name) ? 'block' : 'none'};">
-                            ${groupSessions.map(session => this.renderSingleSession(session, true)).join('')}
+                        <div class="grind-session-actions">
+                            <button class="action-button" onclick="event.stopPropagation(); GrindManager.continueGroup('${name}')">
+                                ▶️ Fortsetzen
+                            </button>
+                            <span class="toggle-icon">▼</span>
                         </div>
                     </div>
-                `;
-            }
+                    <div class="grind-session-group-details" id="group-${name.replace(/\s+/g, '-')}" style="display: ${this.openGroups.has(name) ? 'block' : 'none'};">
+                        ${groupSessions.map(session => this.renderSingleSession(session, true)).join('')}
+                    </div>
+                </div>
+            `;
         });
 
         listContainer.innerHTML = html;
     },
 
     renderSingleSession(session, isNested = false) {
+        // Loot Summary for Single Session
+        let lootHtml = '';
+        const lootParts = [];
+        if (session.diamonds > 0) lootParts.push(`<span class="loot-badge diamond small">💎 ${session.diamonds}</span>`);
+        if (session.rares > 0) lootParts.push(`<span class="loot-badge rare small">✨ ${session.rares}</span>`);
+        if (session.greatOnes > 0) lootParts.push(`<span class="loot-badge greatone small">🔥 ${session.greatOnes}</span>`);
+        if (lootParts.length > 0) lootHtml = `<div class="grind-session-loot">${lootParts.join('')}</div>`;
+
+        const displayName = session.runNumber ? `Run #${session.runNumber}` : (session.name || 'Unbenannt');
+
         return `
             <div class="grind-session-item ${session.status || ''} ${isNested ? 'nested' : ''}">
                 <div class="grind-session-info">
                     <div class="grind-session-name">
-                        ${isNested ? '' : (session.name || 'Unbenannt')}
+                        ${displayName}
                         ${this.getStatusBadge(session.status)}
                     </div>
                     <div class="grind-session-date">${new Date(session.timestamp).toLocaleString('de-DE')}</div>
                     <div class="grind-session-stats">
                         ${session.kills} Kills in ${this.formatDuration(session.duration)} (${(session.kph || 0).toFixed(1)} K/h)
                     </div>
+                    ${lootHtml}
                 </div>
                 <div class="grind-session-actions">
                     ${session.status === 'paused' ? `
@@ -414,7 +466,26 @@ const GrindManager = {
 
     async continueGroup(name) {
         this.switchSubTab('timer');
-        document.getElementById('session-name').value = name;
+
+        // Try to find animal by name and select it
+        if (this.animals) {
+            const animal = this.animals.find(a =>
+                a.name === name ||
+                (a.nameDe && a.nameDe === name) ||
+                a.id === name
+            );
+
+            if (animal) {
+                const animalSelect = document.getElementById('session-animal');
+                if (animalSelect) {
+                    animalSelect.value = animal.id;
+                }
+            }
+        }
+
+        // Fallback or explicit name set
+        const nameInput = document.getElementById('session-name');
+        if (nameInput) nameInput.value = name;
 
         setTimeout(async () => {
             await this.startSession();
@@ -483,11 +554,28 @@ const GrindManager = {
     },
 
     async startSession() {
-        const name = document.getElementById('session-name').value.trim();
+        const animalSelect = document.getElementById('session-animal');
+        const animalId = animalSelect ? animalSelect.value : '';
+        let name = '';
+
+        if (animalId && this.animals) {
+            const animal = this.animals.find(a => a.id === animalId);
+            const lang = window.SettingsManager?.settings?.language || 'de';
+            name = animal ? (lang === 'de' && animal.nameDe ? animal.nameDe : animal.name) : animalId;
+        } else {
+            // Fallback or legacy name input
+            const nameInput = document.getElementById('session-name');
+            if (nameInput) name = nameInput.value.trim();
+        }
+
+        // Auto-fill hidden name input for compatibility
+        const nameInput = document.getElementById('session-name');
+        if (nameInput) nameInput.value = name;
+
         const templateId = document.getElementById('session-template').value;
 
         if (!name) {
-            window.ToastManager.show('Bitte gib einen Session-Namen ein', 'error');
+            window.ToastManager.show('Bitte wähle ein Tier aus', 'error');
             return;
         }
 
@@ -519,6 +607,11 @@ const GrindManager = {
         this.isSessionRunning = true;
         this.isSessionPaused = false;
         this.pausedDuration = 0;
+        // Initialize loot tracking
+        this.sessionDiamonds = 0;
+        this.sessionRares = 0;
+        this.sessionGreatOnes = 0;
+        this.sessionEvents = [];
 
         const initialSession = {
             id: this.currentSessionId,
@@ -576,6 +669,101 @@ const GrindManager = {
         this.playRemoveKillAudio();
         this.updateKPH();
         window.ToastManager.show(window.TranslationManager.t('toastKillRemoved'), 'info');
+    },
+
+    addBulkKills(amount) {
+        if (!this.isSessionRunning || this.isSessionPaused) return;
+
+        const parsedAmount = parseInt(amount, 10);
+        if (isNaN(parsedAmount) || parsedAmount <= 0) {
+            window.ToastManager.show('Bitte gib eine gültige Anzahl ein', 'error');
+            return;
+        }
+
+        this.sessionKills += parsedAmount;
+        document.getElementById('session-kills').textContent = this.sessionKills;
+
+        this.playKillAudio();
+        this.updateKPH();
+
+        window.ToastManager.show(`+${parsedAmount} Kills hinzugefügt`, 'success');
+
+        // Clear the input
+        const bulkInput = document.getElementById('bulk-kill-input');
+        if (bulkInput) bulkInput.value = '';
+    },
+
+    addSpecialKill(type) {
+        if (!this.isSessionRunning || this.isSessionPaused) return;
+
+        // Add kill count
+        this.sessionKills++;
+        document.getElementById('session-kills').textContent = this.sessionKills;
+
+        // Track special loot
+        const typeLabels = {
+            diamond: { counter: 'sessionDiamonds', icon: '💎', label: 'Diamond' },
+            rare: { counter: 'sessionRares', icon: '✨', label: 'Rare' },
+            greatone: { counter: 'sessionGreatOnes', icon: '🔥', label: 'Great One' }
+        };
+
+        const lootType = typeLabels[type];
+        if (lootType) {
+            this[lootType.counter]++;
+
+            // Log event
+            this.sessionEvents.push({
+                timestamp: Date.now(),
+                type: type,
+                killNumber: this.sessionKills
+            });
+
+            window.ToastManager.show(`${lootType.icon} ${lootType.label} gefunden!`, 'success');
+        }
+
+        this.playSpecialKillAudio();
+        this.updateKPH();
+        this.updateLootDisplay();
+    },
+
+    updateLootDisplay() {
+        const lootDisplay = document.getElementById('session-loot-display');
+        if (!lootDisplay) return;
+
+        const parts = [];
+        if (this.sessionDiamonds > 0) parts.push(`💎 ${this.sessionDiamonds}`);
+        if (this.sessionRares > 0) parts.push(`✨ ${this.sessionRares}`);
+        if (this.sessionGreatOnes > 0) parts.push(`🔥 ${this.sessionGreatOnes}`);
+
+        lootDisplay.textContent = parts.length > 0 ? parts.join(' | ') : '—';
+        lootDisplay.style.display = parts.length > 0 ? 'block' : 'none';
+    },
+
+    playSpecialKillAudio() {
+        try {
+            const settings = window.SettingsManager.settings || {};
+            if (settings.audioFeedback && settings.audioVolume > 0) {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                // Higher pitch for special kills
+                oscillator.frequency.value = 1200;
+                oscillator.type = 'sine';
+
+                const volume = settings.audioVolume || 0.5;
+                gainNode.gain.setValueAtTime(volume * 0.4, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.25);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.25);
+            }
+        } catch (error) {
+            console.error('Fehler beim Abspielen des Special-Kill Audio-Signals:', error);
+        }
     },
 
     playKillAudio() {
@@ -662,7 +850,12 @@ const GrindManager = {
             kills: this.sessionKills,
             duration: duration,
             kph: kph,
-            pausedDuration: this.pausedDuration
+            pausedDuration: this.pausedDuration,
+            // Loot Data
+            diamonds: this.sessionDiamonds,
+            rares: this.sessionRares,
+            greatOnes: this.sessionGreatOnes,
+            events: this.sessionEvents
         };
 
         await this.saveSession(session);
@@ -690,7 +883,12 @@ const GrindManager = {
             kills: this.sessionKills,
             duration: duration,
             kph: kph,
-            pausedDuration: this.pausedDuration
+            pausedDuration: this.pausedDuration,
+            // Loot Data
+            diamonds: this.sessionDiamonds,
+            rares: this.sessionRares,
+            greatOnes: this.sessionGreatOnes,
+            events: this.sessionEvents
         };
 
         await this.saveSession(session);
@@ -708,6 +906,13 @@ const GrindManager = {
         this.isSessionPaused = false;
         this.pauseStartTime = null;
         this.pausedDuration = 0;
+
+        // Reset loot
+        this.sessionDiamonds = 0;
+        this.sessionRares = 0;
+        this.sessionGreatOnes = 0;
+        this.sessionEvents = [];
+        this.updateLootDisplay();
 
         document.getElementById('session-start-container').style.display = 'block';
         document.getElementById('session-controls-active').style.display = 'none';
@@ -760,6 +965,12 @@ const GrindManager = {
                     this.sessionKills = session.kills;
                     this.pausedDuration = session.pausedDuration || 0;
 
+                    // Load Loot Data
+                    this.sessionDiamonds = session.diamonds || 0;
+                    this.sessionRares = session.rares || 0;
+                    this.sessionGreatOnes = session.greatOnes || 0;
+                    this.sessionEvents = session.events || [];
+
                     if (session.timestamp) {
                         this.sessionStartTime = session.timestamp;
                     } else {
@@ -799,6 +1010,7 @@ const GrindManager = {
         );
         document.getElementById('session-kills').textContent = this.sessionKills;
         this.updateKPH();
+        this.updateLootDisplay();
 
         document.getElementById('session-start-container').style.display = 'none';
         document.getElementById('session-controls-active').style.display = 'flex';
@@ -857,6 +1069,24 @@ const GrindManager = {
             console.error('GrindManager: Fehler beim Löschen der Session:', error);
             window.ToastManager.show('Fehler beim Löschen der Session', 'error');
         }
+    },
+
+    async finishGreatOneRun() {
+        if (!this.isSessionRunning || this.isSessionPaused) return;
+
+        // Log the Great One
+        this.addSpecialKill('greatone');
+
+        // Optional: Short delay for effect
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // End the session
+        await this.endSession();
+
+        window.ToastManager.show('🏆 Great One Run erfolgreich beendet!', 'success');
+
+        // Return to overview (optional, or stay on timer but inactive)
+        // this.switchSubTab('sessions');
     },
 
     async clearSessions() {
