@@ -2,7 +2,7 @@
 
 **Der ultimative Begleiter für theHunter: Call of the Wild**
 
-[![Codeberg release (latest by date)](https://img.shields.io/codeberg/v/DerLuuz/HunterDash?style=for-the-badge&color=22c55e)](https://codeberg.org/DerLuuz/HunterDash/releases)
+[![Release](https://img.shields.io/badge/release-v1.2.0-green?style=for-the-badge)](https://codeberg.org/DerLuuz/HunterDash/releases)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-blue?style=for-the-badge)](https://codeberg.org/DerLuuz/HunterDash/releases)
 
 HunterDash ist ein modernes **Overlay- und Tracking-Tool** für *theHunter: Call of the Wild*. Es hilft dir, deinen **Great One Grind** zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – die perfekte Alternative zu Population Scanner, aber 100% sicher und ohne Game-Files-Modifikation.
