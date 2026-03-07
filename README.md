@@ -7,7 +7,7 @@
 
 HunterDash ist ein modernes **Overlay- und Tracking-Tool** für *theHunter: Call of the Wild*. Es hilft dir, deinen **Great One Grind** zu optimieren, dein Glück (L-Score) zu berechnen und deine Statistiken im Blick zu behalten – die perfekte Alternative zu Population Scanner, aber 100% sicher und ohne Game-Files-Modifikation.
 
-![HunterDash Grind Tracker Overlay - Dark Mode UI](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Grind-Helper-Screenshot.png?raw=true)
+![HunterDash Grind Tracker Overlay - Dark Mode UI](https://codeberg.org/DerLuuz/HunterDash/raw/commit/28cd73fca845a0441ffef8575943abf009e1a8af/assets/screenshots/Grind-Helper-Screenshot.png)
 
 ## ✨ Hauptfunktionen
 
@@ -87,11 +87,11 @@ npm run build:all   # Alle Plattformen
 
 | **🎯 Glücks-Rechner** | **⏱️ Grind Session Tracker** |
 |:---:|:---:|
-| ![HunterDash Luck Calculator](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Luck-Score.png?raw=true) | ![HunterDash Session Tracker](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Sessions.png?raw=true) |
+| ![HunterDash Luck Calculator](https://codeberg.org/DerLuuz/HunterDash/raw/commit/28cd73fca845a0441ffef8575943abf009e1a8af/assets/screenshots/Luck-Score.png) | ![HunterDash Session Tracker](https://codeberg.org/DerLuuz/HunterDash/raw/commit/28cd73fca845a0441ffef8575943abf009e1a8af/assets/screenshots/Sessions.png) |
 
 | **📈 Statistics Dashboard** | **📃 Verlauf** |
 |:---:|:---:|
-| ![HunterDash Statistics](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Statistiken.png?raw=true) | ![Modern Glassmorphism Design](https://github.com/DerLuuz/HunterDash/blob/Beta-Updates-Sync/assets/screenshots/Historie.png?raw=true) |
+| ![HunterDash Statistics](https://codeberg.org/DerLuuz/HunterDash/raw/commit/28cd73fca845a0441ffef8575943abf009e1a8af/assets/screenshots/Statistiken.png) | ![Modern Glassmorphism Design](https://codeberg.org/DerLuuz/HunterDash/raw/commit/28cd73fca845a0441ffef8575943abf009e1a8af/assets/screenshots/Historie.png) |
 
 ---
 
