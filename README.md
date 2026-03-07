@@ -2,7 +2,7 @@
 
 **Der ultimative Begleiter für theHunter: Call of the Wild**
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/DerLuuz/HunterDash?style=for-the-badge&color=22c55e)](https://github.com/DerLuuz/HunterDash/releases)
+[![Codeberg release (latest by date)](https://img.shields.io/github/v/release/DerLuuz/HunterDash?style=for-the-badge&color=22c55e)](https://codeberg.org/DerLuuz/HunterDash/releases)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-blue?style=for-the-badge)](https://github.com/DerLuuz/HunterDash/releases)
 [![License](https://img.shields.io/github/license/DerLuuz/HunterDash?style=for-the-badge)](LICENSE)
 
